@@ -1,24 +1,16 @@
 <template>
-  <div>
-   <topNav />
-    <div class="banner">
-      <h1>vue3UI</h1>
-      <h2>基于VUE3的框架</h2>
-      <p class="actions">
-        <a href="">GitHub</a>
-        <a href="">开始</a>
-      </p>
-    </div>
+  <div class="topNav">
+    <div class="logo">LOGO</div>
+    <ul class="menu">
+      <li>菜单1</li>
+      <li>菜单2</li>
+    </ul>
   </div>
 </template>
 
-<script lang="ts">
-import topNav from '../components/topNav.vue';
+<script>
 export default {
-name: "Home",
-  components: {
-  topNav
-  }
+  name: 'topNav'
 }
 </script>
 
@@ -40,4 +32,5 @@ name: "Home",
     }
   }
 }
+
 </style>
