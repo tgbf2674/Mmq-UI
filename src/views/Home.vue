@@ -5,8 +5,8 @@
       <h1>vue3UI</h1>
       <h2>基于VUE3的框架</h2>
       <p class="actions">
-        <a href="">GitHub</a>
-        <a href="">开始</a>
+        <a href="https://github.com/tgbf2674/vue3-ui">GitHub</a>
+        <router-link to="/doc">开始</router-link>
       </p>
     </div>
   </div>
@@ -23,20 +23,24 @@ name: "Home",
 </script>
 
 <style lang="scss" scoped>
-.topNav {
-  background: pink;
+.banner {
+  padding: 100px 0;
   display: flex;
-  padding: 16px;
-  > .logo {
-    max-width: 6em;
-    margin-right: auto;
-  }
-  > .menu {
-    display: flex;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    > li {
-      margin: 0 1em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: lightgreen;
+  > .actions{
+    padding: 8px 0;
+    a {
+      margin:0 8px;
+      background: #fff;
+      display: inline-block;
+      $h: 28px;
+      height: $h;
+      line-height: $h;
+      border-radius: $h/2;
+      padding: 0 8px;
     }
   }
 }
