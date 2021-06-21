@@ -1,12 +1,12 @@
 <template>
   <template v-if="visible">
+    <Teleport to="body">
   <div @click="onClickOverlay" class="gulu-dialog-overlay"></div>
   <div class="gulu-dialog-wrapper">
     <div class="gulu-dialog">
-      <header>标题 <span @click="close" class="gulu-dialog-close"></span></header>
+      <header><slot name="title" /> <span @click="close" class="gulu-dialog-close"></span></header>
       <main>
-        <p>第一行字</p>
-        <p>第二行字</p>
+        <slot name="content"></slot>
       </main>
       <footer>
         <Button @click="ok" level="main">OK</Button>
@@ -14,6 +14,7 @@
       </footer>
     </div>
   </div>
+    </Teleport>
   </template>
 </template>
 
@@ -25,6 +26,10 @@ export default {
     visible: {
       type: Boolean,
       default: false
+    },
+    title:{
+      type: String,
+      default: '提示'
     },
     closeOnClickOverlay:{
       type: Boolean,
