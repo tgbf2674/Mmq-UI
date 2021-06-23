@@ -40,19 +40,19 @@ $h2: $h - 4px;
   border-radius: $h2 / 2;
   transition: all 250ms;
 }
-gulu-switch.gulu-checked{
+.gulu-switch.gulu-checked{
   background: #1890ff;
 }
-gulu-switch.gulu-checked > span {
+.gulu-switch.gulu-checked > span {
   left: calc(100% - #{$h2} - 2px);
 }
-gulu-switch:focus{
+.gulu-switch:focus{
   outline: none;
 }
-gulu-switch:active{
+.gulu-switch:active{
   > span {width: $h2 + 4px;}
 }
-gulu-switch.gulu-checked:active{
+.gulu-switch.gulu-checked:active{
   > span {width: $h2 + 4px; margin-left: -4px;}
 }
 </style>
