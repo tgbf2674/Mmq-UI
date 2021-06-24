@@ -4,9 +4,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'tab'
+  name: 'Vue3tab'
 }
 </script>
 
