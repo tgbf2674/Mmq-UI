@@ -50,24 +50,34 @@ name: "Home",
 <style lang="scss" scoped>
 $green: #02bcb0;
 $border-radius: 4px;
-.topNavAndBanner{
-  background: linear-gradient(145deg,rgba(227,255,253,1) 0%, rgba(183,233,230,1) 100%);
+$color: #007974;
+.topNavAndBanner {
+  background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
   clip-path: ellipse(80% 60% at 50% 40%);
 }
-.features{
+.features {
   margin: 64px auto;
-  width: 400px;
+  padding: 0 16px;
   @media (min-width: 800px) {
     width: 800px;
+    >ul {
+      >li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    >ul {
+      >li {
+        width: 33.3333%;
+      }
+    }
   }
   >ul {
     display: flex;
     flex-wrap: wrap;
     >li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;
@@ -93,7 +103,7 @@ $border-radius: 4px;
   }
 }
 .banner {
-  color: #007974;
+  color: $color;
   padding: 100px 0;
   display: flex;
   justify-content: center;
