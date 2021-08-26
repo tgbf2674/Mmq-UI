@@ -52,12 +52,17 @@ name: "Doc",
 </script>
 
 <style lang="scss" scoped>
+.layout ::v-deep(.topNav){
+  box-shadow: 0 2px 8px #f0f1f2;
+}
 .layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
   > .nav {
     flex-shrink: 0;
+    color: #333;
+    background: #ffffff;
   }
   > .content {
     flex-grow: 1;

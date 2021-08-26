@@ -40,6 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 $color: #007974;
+.home .topNav {
+  background: 0 0;
+}
 .topNav {
   color: $color;
   display: flex;
@@ -48,6 +51,7 @@ $color: #007974;
   top: 0;
   left: 0;
   width: 100%;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .25);
   z-index: 20;
   justify-content: center;
   align-items: center;
