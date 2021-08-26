@@ -47,12 +47,12 @@ export default {
 $border-color: #d9d9d9;
 
 .fade-leave-active {
-  -webkit-animation: flip-out-hor-top 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-  animation: flip-out-hor-top 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -webkit-animation: flip-out-hor-top 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: flip-out-hor-top 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 .fade-enter-active {
-  -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: flip-in-hor-bottom 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: flip-in-hor-bottom 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 @-webkit-keyframes flip-in-hor-bottom {
   0% {

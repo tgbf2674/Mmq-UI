@@ -78,13 +78,14 @@ name: "Doc",
   }
 }
 aside {
-  background: lightblue;
+  background: #ffffff;
   width: 150px;
   padding: 70px 0 16px 0;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
+  border-right: 1px solid #e8e8e8;
   z-index: 10;
   > h2 {
     margin-bottom: 4px;
@@ -96,10 +97,23 @@ aside {
       > a {
         display: block;
         padding: 4px 16px;
+        text-decoration: none;
+        font-size: 14px;
       }
-        .router-link-active {
-          background: white;
+      a:hover{
+        background: rgba(0,0,0,.12);
+      }
+      .router-link-active {
+        border-left: 4px solid #3f51b5;
+        background: #323232;
+        color: white;
+        font-weight: 500;
+        transition: all .3s linear;
+        padding-left: 32px!important;
+        &:hover {
+          background: #323232 !important;
         }
+      }
     }
   }
 }
