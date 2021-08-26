@@ -9,6 +9,7 @@ import card from './components/demo/CardDemo.vue'
 import icon from './components/demo/IconDemo.vue'
 import input from './components/demo/InputDemo.vue'
 import loading from './components/demo/LoadingDemo.vue'
+import message from './components/demo/MessageDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -33,7 +34,8 @@ export const router = createRouter({
         {path: 'card',component: card},
         {path: 'icon',component: icon},
         {path: 'input',component: input},
-        {path: 'loading',component: loading}
+        {path: 'loading',component: loading},
+        {path: 'message',component: message}
       ]}
   ]
 });
