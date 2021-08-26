@@ -1,11 +1,11 @@
 <template>
-  <div class="zero-card-content" :class="`zero-card-shadow-${shadow}`">
-    <header class="zero-card-header">
+  <div class="gulu-card-content" :class="`gulu-card-shadow-${shadow}`">
+    <header class="gulu-card-header">
       <slot name="title">卡片标题</slot>
     </header>
-    <div class="zero-card-body">
+    <div class="gulu-card-body">
       <slot></slot>
-      <div class="zero-card-item" v-for="(item,index) in listData" :key="index">{{ item }}</div>
+      <div class="gulu-card-item" v-for="(item,index) in listData" :key="index">{{ item }}</div>
     </div>
   </div>
 </template>
@@ -29,31 +29,31 @@ export default defineComponent({
 
 <style lang="scss">
 @import "./src/style/theme.scss";
-.zero-card-content {
+.gulu-card-content {
   border-radius: 4px;
   border: 1px solid $o-border-color;
   background-color: #fff;
   overflow: hidden;
   color: #303133;
-  &.zero-card-shadow-always {
+  &.gulu-card-shadow-always {
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   }
-  &.zero-card-shadow-never {
+  &.gulu-card-shadow-never {
     box-shadow: none;
   }
-  &.zero-card-shadow-hover {
+  &.gulu-card-shadow-hover {
     &:hover {
       box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
     }
   }
-  .zero-card-header {
+  .gulu-card-header {
     padding: 18px 20px;
     border-bottom: 1px solid $o-border-color;
     box-sizing: border-box;
   }
-  .zero-card-body {
+  .gulu-card-body {
     padding: 20px;
-    .zero-card-item {
+    .gulu-card-item {
       margin-bottom: 16px;
       font-size: 14px;
       &:last-child {
