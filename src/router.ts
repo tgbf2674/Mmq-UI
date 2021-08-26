@@ -8,6 +8,7 @@ import tabsDemo from './components/demo/tabsDemo.vue'
 import card from './components/demo/CardDemo.vue'
 import icon from './components/demo/IconDemo.vue'
 import input from './components/demo/InputDemo.vue'
+import loading from './components/demo/LoadingDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -31,7 +32,8 @@ export const router = createRouter({
         {path: 'tabs',component: tabsDemo},
         {path: 'card',component: card},
         {path: 'icon',component: icon},
-        {path: 'input',component: input}
+        {path: 'input',component: input},
+        {path: 'loading',component: loading}
       ]}
   ]
 });

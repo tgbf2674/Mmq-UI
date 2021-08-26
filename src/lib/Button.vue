@@ -6,21 +6,21 @@
 </template>
 
 <script lang="ts">
-import {computed} from 'vue';
+import {computed, defineComponent, PropType} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Button',
   props: {
     theme: {
-      type: String,
+      type: String as PropType<ButtonTheme>,
       default: 'button'
     },
     size: {
-      type: String,
+      type: String as PropType<ButtonSize>,
       default: 'normal'
     },
     level: {
-      type: String,
+      type: String as PropType<ButtonLevel>,
       default: 'normal',
     },
     disabled: {
@@ -45,7 +45,7 @@ export default {
       classes
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

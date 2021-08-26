@@ -24,7 +24,7 @@ export const openDialog = (options)=>{
         content(){
           return h('p',{
             style: {
-              color: '#ff9900'
+              color: '#443456'
             }
           },content)
         }

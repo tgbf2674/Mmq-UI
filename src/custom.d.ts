@@ -9,9 +9,15 @@ type ButtonLevel = "main" | "normal" | "danger"
 type CardShadow = "always" | "hover" | "never"
 
 //dialog
-interface DialogOptions {
+interface IDialogOptions {
   title: string,
   content: string,
   ok: Function,
-  cancel: Function
+  cancel: Function,
+  closeOnClickOverlay: boolean
+}
+
+interface ILoadingOptions {
+  text: string,
+  background?: string
 }

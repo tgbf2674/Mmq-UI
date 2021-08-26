@@ -102,13 +102,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./src/style/theme.scss";
 $radius: 4px;
 $border-color: #d9d9d9;
 .gulu-dialog {
   background: white;
   border-radius: $radius;
   box-shadow: 0 0 3px fade_out(black, 0.5);
-  min-width: 15em;
+  min-width: 30em;
   max-width: 90%;
 
   &-overlay {
