@@ -1,18 +1,18 @@
 <demo>
-支持清空
+长度限制
 </demo>
 <template>
-  <Input clearable v-model:inputValue="inputValue"/>
+  <Input maxlength="10" v-model:inputValue="inputValue"/>
 </template>
 
 <script lang="ts">
-import Input from "../lib/Input.vue";
+import Input from "../../lib/Input.vue";
 import {ref} from 'vue';
 export default {
   components: {Input},
   setup() {
     const inputValue = ref('');
-    return { inputValue};
+    return {inputValue};
   }
 };
 </script>

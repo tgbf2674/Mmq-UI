@@ -1,12 +1,12 @@
 <demo>
-支持禁用
+密码框
 </demo>
 <template>
-  <Input disabled v-model:inputValue="inputValue"/>
+  <Input type="password" v-model:inputValue="inputValue"/>
 </template>
 
 <script lang="ts">
-import Input from "../lib/Input.vue";
+import Input from "../../lib/Input.vue";
 import {ref} from 'vue';
 export default {
   components: {Input},

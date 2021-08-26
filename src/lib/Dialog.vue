@@ -1,37 +1,42 @@
 <template>
-  <template v-if="visible">
-    <Teleport to="body">
-  <div @click="onClickOverlay" class="gulu-dialog-overlay"></div>
-  <div class="gulu-dialog-wrapper">
-    <div class="gulu-dialog">
-      <header><slot name="title" /> <span @click="close" class="gulu-dialog-close"></span></header>
-      <main>
-        <slot name="content"></slot>
-      </main>
-      <footer>
-        <Button @click="ok" level="main">OK</Button>
-        <Button @click="cancel">Cancel</Button>
-      </footer>
-    </div>
-  </div>
-    </Teleport>
-  </template>
+  <Teleport to="body">
+    <template v-if="visible">
+      <div @click="onClickOverlay" class="gulu-dialog-overlay"></div>
+      <div class="gulu-dialog-wrapper" :draggable="draggable" @dragend="x" @dragstart="y">
+        <div class="gulu-dialog">
+          <header>
+            <slot name="title"/>
+            <span @click="close" class="gulu-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"></slot>
+          </main>
+          <footer>
+            <Button @click="ok" level="main" :loading="isLoading">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
+      </div>
+    </template>
+  </Teleport>
 </template>
 
 <script lang="ts">
-import Button from './Button.vue'
+import Button from './Button.vue';
+import {ref} from 'vue';
+
 export default {
   name: 'Dialog',
-  props:{
+  props: {
     visible: {
       type: Boolean,
       default: false
     },
-    title:{
+    title: {
       type: String,
-      default: '提示'
+      default: '请输入标题'
     },
-    closeOnClickOverlay:{
+    closeOnClickOverlay: {
       type: Boolean,
       default: false
     },
@@ -40,34 +45,60 @@ export default {
     },
     cancel: {
       type: Function
+    },
+    draggable: {
+      type: Boolean,
+      default: false
     }
   },
-  components:{
+  components: {
     Button
   },
-  setup(props,context){
-    const close = ()=>{
-     context.emit('update:visible',false)
-    }
-    const onClickOverlay= ()=>{
-      if(props.closeOnClickOverlay===false){
-        close()
+  setup(props, context) {
+    const isLoading = ref(false);
+    const close = () => {
+      context.emit('update:visible', false);
+    };
+    const onClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        close();
       }
-    }
-    const ok = ()=>{
-      if(props.ok && props.ok() !== false){
-        close()
+    };
+    const ok = () => {
+      if (props.ok) {
+        isLoading.value = true;
+        props.ok().then((res) => {
+          if (res) {
+            close();
+            isLoading.value = false;
+          }
+        });
+      } else {
+        close();
       }
-    }
-    const cancel = ()=>{
-      props.cancel && props.cancel()
-      close()
-    }
+    };
+    const cancel = () => {
+      props.cancel && props.cancel();
+      close();
+    };
+    const x1 = ref(null);
+    const y1 = ref(null);
+    const x = (e) => {
+      const {x, y} = e;
+      const {offsetTop, offsetLeft} = e.target;
+      e.target.style.top = offsetTop - (y1.value - y) + 'px';
+      e.target.style.left = offsetLeft - (x1.value - x) + 'px';
+    };
+    const y = (e) => {
+      const {x, y} = e;
+      x1.value = x;
+      y1.value = y;
+    };
     return {
-      close,onClickOverlay,ok,cancel
-    }
+      close, onClickOverlay, ok, cancel, isLoading, x, y
+    };
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -79,6 +110,7 @@ $border-color: #d9d9d9;
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;
+
   &-overlay {
     position: fixed;
     top: 0;
@@ -88,6 +120,7 @@ $border-color: #d9d9d9;
     background: fade_out(black, 0.5);
     z-index: 10;
   }
+
   &-wrapper {
     position: fixed;
     left: 50%;
@@ -95,7 +128,8 @@ $border-color: #d9d9d9;
     transform: translate(-50%, -50%);
     z-index: 11;
   }
-  >header {
+
+  > header {
     padding: 12px 16px;
     border-bottom: 1px solid $border-color;
     display: flex;
@@ -103,20 +137,24 @@ $border-color: #d9d9d9;
     justify-content: space-between;
     font-size: 20px;
   }
-  >main {
+
+  > main {
     padding: 12px 16px;
   }
-  >footer {
+
+  > footer {
     border-top: 1px solid $border-color;
     padding: 12px 16px;
     text-align: right;
   }
+
   &-close {
     position: relative;
     display: inline-block;
     width: 16px;
     height: 16px;
     cursor: pointer;
+
     &::before,
     &::after {
       content: '';
@@ -127,9 +165,11 @@ $border-color: #d9d9d9;
       top: 50%;
       left: 50%;
     }
+
     &::before {
       transform: translate(-50%, -50%) rotate(-45deg);
     }
+
     &::after {
       transform: translate(-50%, -50%) rotate(45deg);
     }

@@ -4,8 +4,8 @@
 </template>
 
 <script lang="ts">
-import Demo from './Demo.vue';
-import Icon1Demo from './Icon1.demo.vue';
+import Demo from '../Demo.vue';
+import Icon1Demo from '../demoInstance/Icon1.demo.vue';
 export default {
   components: {Demo},
   setup() {

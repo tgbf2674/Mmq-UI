@@ -1,17 +1,17 @@
 <demo>
-密码框
+常规用法
 </demo>
 <template>
-  <Input type="password" v-model:inputValue="inputValue"/>
+  <Input placeholder="请输入姓名" v-model:inputValue="inputValue"/>
 </template>
 
 <script lang="ts">
-import Input from "../lib/Input.vue";
+import Input from "../../lib/Input.vue";
 import {ref} from 'vue';
 export default {
   components: {Input},
   setup() {
-    const inputValue = ref('');
+    const inputValue = ref('李四');
     return {inputValue};
   }
 };

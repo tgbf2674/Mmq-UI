@@ -10,13 +10,12 @@
 </template>
 
 <script lang="ts">
-import Card from "../lib/Card.vue";
+import Card from "../../lib/Card.vue";
 import {ref} from 'vue';
 export default {
   components: {Card},
   setup() {
-    const currentTab = ref('first');
-    return {currentTab};
+
   }
 };
 </script>

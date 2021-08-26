@@ -6,9 +6,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Demo from "./Demo.vue";
-import Card1Demo from './Card1.demo.vue'
-import Card2Demo from './Card2.demo.vue'
+import Demo from "../Demo.vue";
+import Card1Demo from '../demoInstance/Card1.demo.vue'
+import Card2Demo from '../demoInstance/Card2.demo.vue'
 export default defineComponent({
   name: "CardDemo",
   components: {Demo},

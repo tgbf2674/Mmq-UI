@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-import Demo from './Demo.vue';
-import Input1Demo from './Input1.demo.vue'
-import Input2Demo from './Input2.demo.vue'
-import Input3Demo from './Input3.demo.vue'
-import Input4Demo from './Input4.demo.vue'
-import Input5Demo from './Input5.demo.vue'
-import Input6Demo from './Input6.demo.vue'
+import Demo from '../Demo.vue';
+import Input1Demo from '../demoInstance/Input1.demo.vue'
+import Input2Demo from '../demoInstance/Input2.demo.vue'
+import Input3Demo from '../demoInstance/Input3.demo.vue'
+import Input4Demo from '../demoInstance/Input4.demo.vue'
+import Input5Demo from '../demoInstance/Input5.demo.vue'
+import Input6Demo from '../demoInstance/Input6.demo.vue'
 export default {
   components: {Demo},
   setup() {

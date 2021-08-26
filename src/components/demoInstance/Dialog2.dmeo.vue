@@ -8,14 +8,14 @@
 </template>
 
 <script lang="ts">
-import Button from '../lib/Button.vue'
+import Button from '../../lib/Button.vue'
 import {
   ref,
   h
 } from 'vue'
 import {
   openDialog
-} from '../lib/openDialog'
+} from '../../lib/openDialog'
 export default {
   components: {
     Button
@@ -25,8 +25,12 @@ export default {
       openDialog({
         title: h('strong', {}, '标题'),
         content: '你好',
-        ok() {
-          console.log('ok')
+        ok:()=> {
+          return new Promise((resolve) => {
+            setTimeout(()=>{
+              resolve(true)
+            },1000)
+          })
         },
         cancel() {
           console.log('cancel')
