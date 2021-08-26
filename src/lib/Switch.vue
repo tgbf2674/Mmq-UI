@@ -1,15 +1,15 @@
 <template>
-  <button class="gulu-switch" :class="{'gulu-checked': value}" @click="toggle"><span class="gulu-span"></span></button>
+  <button class="gulu-switch" :disabled="disabled" :class="{'gulu-checked': value}" @click="toggle"><span class="gulu-span"></span></button>
   <div>{{value}}</div>
 </template>
 
 <script lang="ts">
-import {ref} from 'vue';
 
 export default {
   name: 'Switch',
   props: {
-    value: Boolean
+    value: Boolean,
+    disabled: Boolean
   },
   setup(props, context) {
     const toggle = ()=>{
@@ -29,6 +29,9 @@ $h2: $h - 4px;
   border: none;background: #bfbfbf;
   border-radius: $h/2;
   position: relative;
+  &:disabled{
+    cursor: not-allowed;
+  }
 }
 .gulu-span{
   position: absolute;

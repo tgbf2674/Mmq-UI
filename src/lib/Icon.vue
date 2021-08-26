@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg class="o-icon" :style="style" aria-hidden="true">
+    <svg class="gulu-icon" :style="style" aria-hidden="true">
       <use :xlink:href="'#'+name"></use>
     </svg>
   </div>
@@ -22,7 +22,7 @@ export default defineComponent({
     },
     fontSize: {
       type: Number,
-      default: 36
+      default: 24
     }
   },
   computed: {
@@ -37,7 +37,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.o-icon {
+.gulu-icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;

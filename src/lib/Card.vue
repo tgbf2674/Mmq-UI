@@ -31,7 +31,7 @@ export default defineComponent({
 @import "./src/style/theme.scss";
 .gulu-card-content {
   border-radius: 4px;
-  border: 1px solid $o-border-color;
+  border: 1px solid $gulu-border-color;
   background-color: #fff;
   overflow: hidden;
   color: #303133;
@@ -48,7 +48,7 @@ export default defineComponent({
   }
   .gulu-card-header {
     padding: 18px 20px;
-    border-bottom: 1px solid $o-border-color;
+    border-bottom: 1px solid $gulu-border-color;
     box-sizing: border-box;
   }
   .gulu-card-body {

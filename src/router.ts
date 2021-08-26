@@ -7,6 +7,7 @@ import dialogDemo from './components/dialogDemo.vue'
 import tabsDemo from './components/tabsDemo.vue'
 import card from './components/CardDemo.vue'
 import icon from './components/IconDemo.vue'
+import input from './components/InputDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -29,7 +30,8 @@ export const router = createRouter({
         {path: 'dialog',component: dialogDemo},
         {path: 'tabs',component: tabsDemo},
         {path: 'card',component: card},
-        {path: 'icon',component: icon}
+        {path: 'icon',component: icon},
+        {path: 'input',component: input}
       ]}
   ]
 });
