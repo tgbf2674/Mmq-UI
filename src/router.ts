@@ -11,6 +11,7 @@ import input from './components/demo/InputDemo.vue'
 import loading from './components/demo/LoadingDemo.vue'
 import message from './components/demo/MessageDemo.vue'
 import collapse from './components/demo/CollapseDemo.vue'
+import spread from './components/demo/SpreadDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -37,7 +38,8 @@ export const router = createRouter({
         {path: 'input',component: input},
         {path: 'loading',component: loading},
         {path: 'message',component: message},
-        {path: 'collapse',component: collapse}
+        {path: 'collapse',component: collapse},
+        {path: 'spread',component: spread}
       ]}
   ]
 });
