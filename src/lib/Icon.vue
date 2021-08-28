@@ -22,7 +22,7 @@ export default defineComponent({
     },
     fontSize: {
       type: Number,
-      default: 24
+      default: 14
     }
   },
   computed: {

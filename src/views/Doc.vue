@@ -71,7 +71,7 @@ name: "Doc",
   > .content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: 156px;
+    padding-left: 256px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
@@ -90,14 +90,17 @@ name: "Doc",
 }
 aside {
   background: #ffffff;
-  width: 150px;
+  width: 250px;
   padding: 70px 0 16px 0;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
+  line-height: 40px;
   border-right: 1px solid #e8e8e8;
   z-index: 10;
+  overflow-y: auto;
+  overflow-x: hidden;
   > h2 {
     margin-bottom: 4px;
     padding: 0 16px;

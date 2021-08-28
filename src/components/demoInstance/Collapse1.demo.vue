@@ -5,12 +5,16 @@
   <div>
     <Collapse v-model:activeName="activeName">
       <CollapseItem name="1">
-        <template #heading>标题1</template>
+        <template #header>标题1</template>
         <template #body>内容1</template>
       </CollapseItem>
-      <CollapseItem name="2">
-        <template #heading>标题2</template>
+      <CollapseItem name="2" disabled>
+        <template #header>标题2</template>
         <template #body>内容2</template>
+      </CollapseItem>
+      <CollapseItem name="3">
+        <template #header>标题3</template>
+        <template #body>内容3</template>
       </CollapseItem>
     </Collapse>
   </div>

@@ -26,10 +26,10 @@ export default defineComponent({
       oldOverflow: ''
     });
     const verticalTransition = computed(() => {
-      return `${+props.duration}ms height ease-in-out, ${+props.duration}ms padding-top ease-in-out, ${+props.duration}ms padding-bottom ease-in-out`;
+      return `${props.duration}ms height ease-in-out, ${props.duration}ms padding-top ease-in-out, ${props.duration}ms padding-bottom ease-in-out`;
     });
     const horizontalTransition = computed(() => {
-      return `${+props.duration}ms width ease-in-out, ${+props.duration}ms padding-left ease-in-out, ${+props.duration}ms padding-right ease-in-out`;
+      return `${props.duration}ms width ease-in-out, ${props.duration}ms padding-left ease-in-out, ${props.duration}ms padding-right ease-in-out`;
     });
     const beforeEnter = (el: HTMLDivElement) => {
       if (props.horizontal) {

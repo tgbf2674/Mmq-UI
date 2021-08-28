@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts">
-import {provide,getCurrentInstance} from 'vue'
-import mitt from 'mitt'
-export const emitter = mitt()
-export default {
-name: "Collapse",
+import {defineComponent, getCurrentInstance, provide} from 'vue';
+import mitt from 'mitt';
+export const emitter = mitt();
+export default defineComponent({
+  name: "Collapse",
   props: {
-  activeName: {
-    type: Array,
-  },
-    accordion:{
-    type: Boolean,
+    activeName: {
+      type: Array
+    },
+    accordion: {
+      type: Boolean,
       default: false
     }
   },
@@ -41,8 +41,9 @@ name: "Collapse",
       }
     });
     provide('collapse', props);
+    return {};
   }
-}
+});
 </script>
 
 <style lang='scss' scoped>

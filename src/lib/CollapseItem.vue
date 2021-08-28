@@ -1,45 +1,49 @@
 <template>
-  <div class="gulu-collapse-item" :class="{isActive: isActive}">
-    <div class="gulu-collapse-item-header" @click="handleHeaderClick">
+  <div class="gulu-collapse-item" :class="{isActive}">
+    <div class="gulu-collapse-item-header" :class="{disabled}" @click="handleHeaderClick">
       <slot name="header"></slot>
-      <Icon name="icon-menuright"></Icon>
+      <Icon name="icon-menuright"/>
     </div>
-    <div v-show="isActive" class="gulu-collapse-item-body">
-      <slot name="body"></slot>
-    </div>
+    <Spread :visible="isActive">
+      <div class="gulu-collapse-item-body">
+        <slot name="body"></slot>
+      </div>
+    </Spread>
   </div>
 </template>
 
 <script lang="ts">
 import Icon from './Icon.vue';
-import {computed, defineComponent, inject} from 'vue';
+import {computed, defineComponent, getCurrentInstance, inject} from 'vue';
 import {emitter} from './Collapse.vue'
+import Spread from './Spread.vue';
 export default defineComponent({
-  name: 'CollapseItem',
-  components: {Icon},
-  props:{
-    disabled: {
-      type: Boolean,
-      default: false
-    },
+  name: "CollapseItem",
+  components: {Icon, Spread},
+  props: {
     name: {
       type: String,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false
     }
   },
-  setup(props,context){
-    const isActive = computed(()=>{
-      return inject('collapse').activeName.findIndex(item =>item ===props.name) >=0
-    })
-
-    const handleHeaderClick=()=>{
-      emitter.emit('itemClick,props.name')
-    }
-    return {
-      isActive,handleHeaderClick
-    }
+  setup(props) {
+    const internalInstance = getCurrentInstance();
+    const isActive = computed(() => {
+      return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
+    });
+    const handleHeaderClick = () => {
+      if (props.disabled) {
+        return;
+      }
+      emitter.emit('itemClick', {newActiveName: props.name, uid: internalInstance.parent.uid});
+    };
+    return {isActive, handleHeaderClick};
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -50,6 +54,7 @@ export default defineComponent({
     align-items: center;
     height: 48px;
     line-height: 48px;
+    justify-content: space-between;
     background-color: #fff;
     color: #303133;
     cursor: pointer;
@@ -58,7 +63,13 @@ export default defineComponent({
     font-weight: 500;
     transition: border-bottom-color .3s;
     outline: none;
-
+    &.disabled {
+      cursor: not-allowed;
+      color: rgba(0, 0, 0, .25);
+      svg {
+        fill: rgba(0, 0, 0, .25);
+      }
+    }
     svg {
       margin: 0 8px 0 auto;
       transition: transform .3s;
@@ -75,7 +86,7 @@ export default defineComponent({
     line-height: 2;
   }
   &.isActive {
-    .o-collapse-item-header {
+    .gulu-collapse-item-header {
       border-bottom-color: transparent;
       svg {
         transform: rotate(90deg);
