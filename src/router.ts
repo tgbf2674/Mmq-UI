@@ -13,6 +13,7 @@ import message from './components/demo/MessageDemo.vue'
 import collapse from './components/demo/CollapseDemo.vue'
 import spread from './components/demo/SpreadDemo.vue'
 import radio from './components/demo/RadioDemo.vue'
+import dropdown from './components/demo/DropDownDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -41,7 +42,8 @@ export const router = createRouter({
         {path: 'message',component: message},
         {path: 'collapse',component: collapse},
         {path: 'spread',component: spread},
-        {path: 'radio',component: radio}
+        {path: 'radio',component: radio},
+        {path: 'dropdown',component: dropdown}
       ]}
   ]
 });
