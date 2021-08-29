@@ -23,9 +23,9 @@
 
 <script lang="ts">
 import Button from './Button.vue';
-import {ref} from 'vue';
+import {ref,defineComponent} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Dialog',
   props: {
     visible: {
@@ -98,7 +98,7 @@ export default {
       close, onClickOverlay, ok, cancel, isLoading, x, y
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

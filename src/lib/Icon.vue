@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gulu-icon-wrapper">
     <svg class="gulu-icon" :style="style" aria-hidden="true">
       <use :xlink:href="'#'+name"></use>
     </svg>
@@ -37,10 +37,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.gulu-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  overflow: hidden;
+.gulu-icon-wrapper {
+  display: inline;
+  font-size: 14px;
+  .gulu-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    overflow: hidden;
+  }
 }
 </style>
