@@ -30,6 +30,7 @@
           <li><router-link to="/doc/spread">spread 组件</router-link></li>
           <li><router-link to="/doc/radio">radio 组件</router-link></li>
           <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
+          <li><router-link to="/doc/tooltip">tooltip 组件</router-link></li>
         </ol>
       </aside>
       <main>
