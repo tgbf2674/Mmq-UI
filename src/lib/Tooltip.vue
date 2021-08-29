@@ -15,7 +15,7 @@ export default defineComponent({
       required: true
     },
     direction: {
-      type: String,
+      type: String as PropType<string>,
       default: 'right'
     }
   },
