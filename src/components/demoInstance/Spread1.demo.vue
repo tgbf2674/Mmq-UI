@@ -24,7 +24,7 @@ export default {
 <style lang="scss">
 .spread-content {
   height: 200px;
-  width: 400px;
+  width: 200px;
   background: #2b85e4;
   margin-top: 20px;
 }
