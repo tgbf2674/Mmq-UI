@@ -32,6 +32,7 @@
           <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
           <li><router-link to="/doc/tooltip">tooltip 组件</router-link></li>
           <li><router-link to="/doc/swiper">swiper 组件</router-link></li>
+          <li><router-link to="/doc/sticky">sticky 组件</router-link></li>
         </ol>
       </aside>
       <main>

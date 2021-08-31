@@ -1,3 +1,6 @@
+<demo>
+自动轮播
+</demo>
 <template>
   <Swiper auto>
     <div style="height: 300px;width: 100%;background: #3f51b5"></div>
