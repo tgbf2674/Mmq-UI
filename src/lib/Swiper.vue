@@ -20,6 +20,12 @@
 import {onUnmounted,onMounted,ref} from 'vue'
 export default {
   name: 'Swiper',
+  props:{
+    auto: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup(props,context){
     const defaults = context.slots.default()
     const active = ref(0)
@@ -56,12 +62,16 @@ export default {
       }
     }
     onMounted(()=>{
+      if(props.auto){
       timer.value = setInterval(()=>{
         setActive()
       },3000)
+    }
     })
     onUnmounted(()=>{
-      clearInterval(timer.value)
+      if(props.auto) {
+        clearInterval(timer.value)
+      }
     })
     return {defaults,active,currentSwiper,addActive,reduceActive,getClass}
   }
