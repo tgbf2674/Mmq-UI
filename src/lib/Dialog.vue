@@ -38,7 +38,7 @@ export default defineComponent({
     },
     closeOnClickOverlay: {
       type: Boolean,
-      default: false
+      default: true
     },
     ok: {
       type: Function

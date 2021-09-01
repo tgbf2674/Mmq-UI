@@ -33,7 +33,8 @@ export default defineComponent ({
         },
         cancel() {
           console.log('cancel');
-        }
+        },
+        closeOnClickOverlay: true
       });
     };
     return {

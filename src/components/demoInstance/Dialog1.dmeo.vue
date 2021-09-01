@@ -4,7 +4,7 @@
 <template>
   <div>
     <Button @click="toggle">打开对话框</Button>
-    <Dialog v-model:visible="open" :closeOnClickOverlay="false" :ok="okCallback" :cancel="f2">
+    <Dialog v-model:visible="open" :closeOnClickOverlay=true :ok="okCallback" :cancel="f2">
       <template v-slot:content>
         <strong>hi</strong>
         <div>hi2</div>

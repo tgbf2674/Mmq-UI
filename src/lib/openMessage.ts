@@ -2,10 +2,8 @@
 import Message from './Message.vue'
 import {createApp,h} from 'vue'
 
-const fuckDem = document.getElementById('fuck')
-
 export const openMessage = (options: MessageOptions) => {
-    const {message, type, canClose, displayTime = 100, top = 10} = options;
+    const {message, type, canClose, displayTime = 3, top = 10} = options;
     const div = document.createElement('div');
     div.id = 'fuck'
     document.body.appendChild(div);

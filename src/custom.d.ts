@@ -13,7 +13,8 @@ interface DialogOptions {
   title: string,
   content: string,
   ok: Function,
-  cancel: Function
+  cancel: Function,
+  closeOnClickOverlay: boolean
 }
 
 //Loading
