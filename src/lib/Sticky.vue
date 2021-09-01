@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {onMounted, onUnmounted, ref} from 'vue';
+import {onMounted, onUnmounted, PropType, ref} from 'vue';
 
 export default {
   name: 'Sticky',
@@ -17,7 +17,7 @@ export default {
       default: 0
     }
   },
-  setup(props){
+  setup(props: PropType<string>){
     const sticky = ref(false)
     const top = ref(0)
     const stickyRef = ref(null)

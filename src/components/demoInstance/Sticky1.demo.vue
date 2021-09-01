@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Sticky :distance="20">
+    <Sticky :distance="70">
       <div style="width: 100%;height: 100px;background: #409eff"></div>
     </Sticky>
     <div>1</div>
