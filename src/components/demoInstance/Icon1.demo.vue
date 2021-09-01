@@ -2,7 +2,7 @@
 常规用法
 </demo>
 <template>
-  <Icon name="icon-user" font-size="20"/>
+  <Icon name="icon-user" fill="rgb(24,144,255)" font-size="20"/>
 </template>
 
 <script lang="ts">

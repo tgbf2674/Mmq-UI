@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
-    <div v-if="messageVisible" :style="{top:top+'%'}" class="gulu-messageWrapper" :class="'gulu-messageWrapper-'+type">
-      <Icon :name="'icon-'+type"/>
+    <div v-if="messageVisible" :style="{top:top+'%'}" class="gulu-messageWrapper" :class="messageWrapper">
+      <Icon :name="iconName"/>
       <span class="gulu-message">{{ message }}</span>
       <span v-if="canClose" class="close" @click="close">╳</span>
     </div>
@@ -9,39 +9,52 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {computed,defineComponent, ref} from 'vue';
 import Icon from './Icon.vue'
 export default defineComponent({
   name: 'Message',
   components: {Icon},
   props:{
     close: {
-      type: Function
+      type: Function,
     },
     message: {
       type: String,
       required: true
     },
-    type: {
-      type:String,
-      default: 'info'
-    },
     canClose: {
       type: Boolean,
       default: true
     },
+    type: {
+      type:String,
+      default: 'success',
+      validator(value: string): boolean {
+        return ['success','error','warning','info'].indexOf(value) >=0
+      }
+    },
     top: {
       type: Number
+    },
+    displayTime: {
+      type: Number,
+      default: 3
     }
   },
-  setup(){
+  setup(props){
     const messageVisible = ref(true)
-    return {messageVisible,open}
-  }
+    const messageWrapper = computed(()=>{
+      return 'gulu-messageWrapper-'+ props.type
+    })
+    const iconName = computed(()=>{
+      return 'icon-'+ props.type
+    })
+    return {messageVisible,messageWrapper,iconName}
+  },
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/style/theme.scss";
 @keyframes enter {
   from {top: 0}
@@ -67,7 +80,7 @@ export default defineComponent({
     .gulu-message {
       color: $gulu-type-error;
     }
-    #icon-error {
+    svg {
       fill: $gulu-type-error;
     }
     .close {

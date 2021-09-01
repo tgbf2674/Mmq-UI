@@ -25,9 +25,10 @@ interface LoadingOptions {
 //Message
 interface MessageOptions {
   message: string,
-  type?: string,
+  type?: 'success' | 'error' | 'warning' | 'info' | string,
   canClose?: boolean,
   close?: () => void,
   displayTime?: number,
-  top?: number
+  top?: number,
+  time: number
 }

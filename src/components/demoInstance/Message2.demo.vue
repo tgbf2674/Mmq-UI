@@ -9,16 +9,16 @@
 </template>
 
 <script lang="ts">
-import Message from "../../lib/Message.vue";
 import Button from "../../lib/Button.vue";
 import {openMessage} from '../../lib/openMessage';
 export default {
-  components: {Message, Button},
+  components: {Button},
   setup() {
     const openSuccess = () => {
       openMessage({
         message: '这是一条成功提示消息',
         type: 'success',
+        displayTime:100,
       });
     };
     const openError = () => {
@@ -37,8 +37,7 @@ export default {
       openMessage({
         message: '这是一条普通消息',
         type: 'info',
-        canClose: 'false',
-
+        canClose: false,
       });
     };
     return {openSuccess, openError,openWarning,openInfo};

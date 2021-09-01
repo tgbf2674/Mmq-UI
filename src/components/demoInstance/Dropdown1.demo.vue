@@ -1,6 +1,6 @@
 <template>
   <Dropdown>
-    <span>下拉菜单<Icon name="icon-menudown"/></span>
+    <span>下拉菜单<Icon fill="rgb(64,158,255)" name="icon-menudown"/></span>
     <template #dropdown>
       <span>西游记</span>
       <span>三国演义</span>
