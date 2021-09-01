@@ -1,6 +1,6 @@
 import Dialog from './Dialog.vue'
 import {createApp, h} from 'vue';
-export const openDialog = (options)=>{
+export const openDialog = (options: DialogOptions)=>{
   const {title,content,ok,cancel} = options
   const div = document.createElement('div')
   document.body.append(div)
@@ -12,7 +12,7 @@ export const openDialog = (options)=>{
   const app = createApp({
     render(){
       return h(Dialog, {visible: true,
-        'onUpdate:visible':(newVisible)=>{
+        'onUpdate:visible':(newVisible:any)=>{
           if(newVisible===false) {
             close()
           }

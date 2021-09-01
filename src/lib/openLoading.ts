@@ -1,6 +1,6 @@
 import Loading from './Loading.vue'
 import {createApp, h} from 'vue'
-export const openLoading = (options) => {
+export const openLoading = (options: LoadingOptions) => {
   const {text, background} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Sticky :distance="20">
-      <div style="width: 100%;height: 100px;background: #3f51b5"></div>
+      <div style="width: 100%;height: 100px;background: #409eff"></div>
     </Sticky>
     <div>1</div>
     <div>1</div>
