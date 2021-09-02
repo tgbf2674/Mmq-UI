@@ -17,6 +17,7 @@ import dropdown from './components/demo/DropDownDemo.vue'
 import tooltip from './components/demo/TooltipDemo.vue'
 import swiper from './components/demo/SwiperDemo.vue'
 import sticky from './components/demo/StickyDemo.vue'
+import grid from './components/demo/GridDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -49,7 +50,8 @@ export const router = createRouter({
         {path: 'dropdown',component: dropdown},
         {path: 'tooltip',component: tooltip},
         {path: 'swiper',component: swiper},
-        {path: 'sticky', component: sticky}
+        {path: 'sticky', component: sticky},
+        {path: 'grid', component: grid},
       ]}
   ]
 });

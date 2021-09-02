@@ -5,7 +5,6 @@ import {createApp,h} from 'vue'
 export const openMessage = (options: MessageOptions) => {
     const {message, type, canClose, displayTime = 3, top = 10} = options;
     const div = document.createElement('div');
-    div.id = 'fuck'
     document.body.appendChild(div);
     const close = () => {
       if (div) {
