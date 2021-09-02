@@ -1,13 +1,8 @@
 <demo>
-常规用法
+支持间隔
 </demo>
 <template>
-  <Grid>
-    <GridCol :span="24">
-      <div class="demo1"></div>
-    </GridCol>
-  </Grid>
-  <Grid>
+  <Grid :gutter="10">
     <GridCol :span="16">
       <div class="demo1"></div>
     </GridCol>
@@ -18,17 +13,20 @@
       <div class="demo3"></div>
     </GridCol>
   </Grid>
-  <Grid>
+  <Grid :gutter="20">
     <GridCol :span="6">
       <div class="demo1"></div>
     </GridCol>
-    <GridCol :span="6">
+    <GridCol :span="2">
       <div class="demo2"></div>
     </GridCol>
     <GridCol :span="6">
       <div class="demo1"></div>
     </GridCol>
     <GridCol :span="6">
+      <div class="demo2"></div>
+    </GridCol>
+    <GridCol :span="4">
       <div class="demo2"></div>
     </GridCol>
   </Grid>
@@ -36,10 +34,10 @@
 
 <script lang="ts">
 import Grid from '../../lib/Grid.vue'
-import GridCol from '../../lib/GridCol.vue'
+import GridCol from '../../lib/GridCol.vue';
 export default {
-name: "Grid1.demo",
-  components: {Grid, GridCol}
+name: "Grid2.demo",
+  components: {Grid,GridCol}
 }
 </script>
 
