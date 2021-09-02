@@ -3,7 +3,7 @@
     <slot v-if="false" ref="imgRef" @click="imgClick"></slot>
     <component class="myImg" :is="$slots.default" @click="imgClick" ref="imgRef"></component>
     <teleport to="body">
-      <div ref="modelRef" class="model">
+      <div @click="closeModel" ref="modelRef" class="model">
         <span @click="closeModel" ref="closeRef" class="gulu-imageModel-close">&times;</span>
         <img ref="modelImgRef" class="model-content" src="" alt="">
       </div>
@@ -67,6 +67,9 @@ export default {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .model-content {
