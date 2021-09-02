@@ -1,3 +1,6 @@
+<demo>
+常规用法
+</demo>
 <template>
   <Dropdown>
     <span>下拉菜单<Icon fill="rgb(64,158,255)" name="icon-menudown"/></span>
