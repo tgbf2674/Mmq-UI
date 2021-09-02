@@ -18,6 +18,7 @@ import tooltip from './components/demo/TooltipDemo.vue'
 import swiper from './components/demo/SwiperDemo.vue'
 import sticky from './components/demo/StickyDemo.vue'
 import grid from './components/demo/GridDemo.vue'
+import image from './components/demo/ImageDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -52,6 +53,7 @@ export const router = createRouter({
         {path: 'swiper',component: swiper},
         {path: 'sticky', component: sticky},
         {path: 'grid', component: grid},
+        {path: 'image', component: image},
       ]}
   ]
 });

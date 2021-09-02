@@ -34,6 +34,7 @@
           <li><router-link to="/doc/swiper">swiper 组件</router-link></li>
           <li><router-link to="/doc/sticky">sticky 组件</router-link></li>
           <li><router-link to="/doc/grid">grid 组件</router-link></li>
+          <li><router-link to="/doc/image">image 组件</router-link></li>
         </ol>
       </aside>
       <main>

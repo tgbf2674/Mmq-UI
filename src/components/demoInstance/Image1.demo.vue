@@ -1,10 +1,15 @@
+<demo>
+常规用法
+</demo>
 <template>
-$END$
+  <ImageModel></ImageModel>
 </template>
 
-<script>
+<script lang="ts">
+import ImageModel from '../../lib/ImageModel.vue'
 export default {
-name: "Image1.demo"
+  name: 'Image1.demo',
+  components: {ImageModel}
 }
 </script>
 
