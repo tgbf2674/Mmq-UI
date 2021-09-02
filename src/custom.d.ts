@@ -8,6 +8,7 @@ type ButtonLevel = "main" | "normal" | "danger"
 //Card
 type CardShadow = "always" | "hover" | "never"
 
+
 //dialog
 interface DialogOptions {
   title: string,

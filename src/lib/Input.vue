@@ -1,6 +1,6 @@
 <template>
   <div class="gulu-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
-    <input v-model="childInputValue" :type="childInputType" class="gulu-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
+    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="gulu-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
     <span v-if="clearable && childInputValue" class="gulu-input-icon-wrapper">
             <Icon @click="clearInputValue" name="icon-error"/>
        </span>
@@ -23,6 +23,7 @@ import Icon from "./Icon.vue";
 export default defineComponent({
   name: "Input",
   components: {Icon},
+  inheritAttrs: false,
   props: {
     placeholder: {
       type: String,
@@ -67,11 +68,16 @@ export default defineComponent({
     const countNum = computed(() => {
       return childInputValue.value.length || '0';
     });
-    const childInputValue = ref(props.inputValue);
+    const childInputValue = ref();
+    watchEffect(()=>{
+      childInputValue.value = props.inputValue
+    })
     const childInputType = ref(props.type);
     watchEffect(() => {
-      if (countNum.value > props.maxlength) {
-        childInputValue.value = childInputValue.value.slice(0, props.maxlength * 1);
+      if(props.maxlength) {
+        if (countNum.value > props.maxlength) {
+          childInputValue.value = childInputValue.value.slice(0, parseInt(props.maxlength) * 1);
+        }
       }
     });
     return {inputChange, childInputValue, clearInputValue, childInputType, changeInputType, countNum};
