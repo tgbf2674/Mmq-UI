@@ -1,6 +1,7 @@
 <demo>
 常规用法
 </demo>
+
 <template>
   <Input placeholder="请输入姓名" v-model:inputValue="inputValue"/>
 </template>

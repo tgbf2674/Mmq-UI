@@ -2,8 +2,8 @@
 常规用法
 </demo>
 <template>
-  <ImageModel>
-    <img src=../../assets/sport.jpg alt=""/>
+  <ImageModel modelImgSrc="../src/assets/sport.jpg">
+    <img src=../../assets/view.jpg alt=""/>
   </ImageModel>
 </template>
 
