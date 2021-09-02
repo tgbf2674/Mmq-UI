@@ -21,8 +21,8 @@ name: "Grid",
       watchEffect(()=>{
         if(gutter){
           Array.from(gutterRef.value.children).forEach((item: any)=>{
-            if(item.nextSibling.className === 'gulu-grid-col'){
-              item.style.marginRight = gutter + 'px'
+            if(item.nextSibling.className === 'gulu-grid-col' || (!item.nextSibling.className && !item.previousElementSibling)){
+              item.style.paddingRight = gutter + 'px'
             }
           })
         }

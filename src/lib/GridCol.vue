@@ -1,11 +1,11 @@
 <template>
-  <div class="gulu-grid-col" :style="{width: widthRef}">
+  <div ref="colRef" class="gulu-grid-col" :style="{width: widthRef}">
     <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import {computed} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 
 export default {
   name: 'GridCol',
@@ -13,17 +13,30 @@ export default {
     span: {
       type: Number,
       required: true
+    },
+    offset: {
+      type: Number,
+      default: 0
     }
   },
-  setup({span}:any){
+  setup({span,offset}:any){
+    const colRef = ref()
     const widthRef = computed(()=>{
       return Number(span/24 *100).toFixed(2)+ '%'
     })
-    return {widthRef}
+    onMounted(()=>{
+      if(offset){
+        const width = colRef.value.offsetWidth
+        colRef.value.style.transform = `translateX(${Number(offset /span *width)}px)`
+      }
+    })
+    return {widthRef,colRef}
   }
 }
 </script>
 
 <style scoped>
-
+.gulu-grid-col{
+  box-sizing: border-box;
+}
 </style>
