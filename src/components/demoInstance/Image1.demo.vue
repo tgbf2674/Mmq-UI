@@ -3,7 +3,7 @@
 </demo>
 <template>
   <ImageModel>
-    <img src=../../assets/sport.jpg alt=""/>
+    <img src="https://s3.bmp.ovh/imgs/2021/09/28a6eb31320a61be.jpg" alt=""/>
   </ImageModel>
 </template>
 
@@ -16,3 +16,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+img {
+  width: 100%;
+  max-width: 300px;
+}
+</style>

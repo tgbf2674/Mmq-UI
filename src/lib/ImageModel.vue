@@ -1,7 +1,9 @@
 <template>
   <div class="gulu-imageModel-wrapper">
-    <slot v-if="false" ref="imgRef" @click="imgClick"></slot>
-    <component class="myImg" :is="$slots.default" @click="imgClick" ref="imgRef"></component>
+    <slot v-if="false" @click="imgClick"></slot>
+    <div class="myImg" @click="imgClick">
+      <component :is="$slots.default"></component>
+    </div>
     <teleport to="body">
       <div @click="closeModel" ref="modelRef" class="model">
         <span @click="closeModel" ref="closeRef" class="gulu-imageModel-close">&times;</span>
@@ -25,9 +27,7 @@ export default {
   },
   setup(props: any) {
     const modelRef = ref();
-    const imgRef = ref();
     const modelImgRef = ref();
-    const closeRef = ref();
     const imgClick = (event: any) => {
       modelRef.value.style.display = 'block';
       modelImgRef.value.src = props.modelImgSrc || event.target.src;
@@ -46,8 +46,11 @@ export default {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    width: 100%;
-    max-width: 300px;
+
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
 
     &:hover {
       opacity: 0.7;
@@ -67,7 +70,8 @@ export default {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
-  &:hover{
+
+  &:hover {
     cursor: pointer;
   }
 }
@@ -112,6 +116,7 @@ export default {
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
+
   &:hover,
   &:focus {
     color: #bbb;
@@ -119,7 +124,6 @@ export default {
     cursor: pointer;
   }
 }
-
 
 
 @media only screen and (max-width: 700px) {
