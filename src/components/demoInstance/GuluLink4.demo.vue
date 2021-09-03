@@ -3,8 +3,8 @@
 </demo>
 <template>
   <div>
-    <gulu-link icon="icon-upload">编辑</gulu-link>
-    <gulu-link icon="icon-user">用户</gulu-link>
+    <gulu-link type="danger" icon="icon-delete">删除</gulu-link>
+    <gulu-link type="warning" icon="icon-user">用户</gulu-link>
   </div>
 </template>
 

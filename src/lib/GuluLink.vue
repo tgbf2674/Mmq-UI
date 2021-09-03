@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType, ref} from 'vue';
+import {computed, defineComponent, PropType, ref, reactive} from 'vue';
 import Icon from './Icon.vue';
 
 export default defineComponent({
@@ -44,13 +44,11 @@ export default defineComponent({
   emits: ['click'],
   setup(props,{emit}){
     const IconType = ref(props.type)
-    const IconColor = computed(()=>{
-      const map = {'default': '#909399','primary': '#409eff','success': '#67c23a', 'warning': '#e6a23c','danger': '#f56c6c','info': '#909399'}
+    const map = reactive({'default': '#909399','primary': '#409eff','success': '#67c23a', 'warning': '#e6a23c','danger': '#f56c6c','info': '#909399'})
+    const IconColor =computed(()=>{
       for(let key in map){
-        if(IconType ===key){
+        if(IconType.value === key){
           return map[key]
-        }else{
-          return map['default']
         }
       }
     })
