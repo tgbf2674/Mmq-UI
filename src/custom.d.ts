@@ -10,6 +10,10 @@ type CardShadow = "always" | "hover" | "never"
 //Link
 type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default'
 
+//Tag
+type TagType = 'success' | 'info' | 'warning' | 'danger' | ''
+type ComponentSize = 'medium' | 'small' | 'mini'
+
 //dialog
 interface DialogOptions {
   title: string,

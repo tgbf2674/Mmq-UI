@@ -54,6 +54,7 @@ export default defineComponent({
       type: String
     }
   },
+  emits: ['input','change','focus','blur','mouseleave','mouseenter','keydown','update:inputValue'],
   setup(props, context) {
     const inputChange = () => {
       context.emit('update:inputValue', childInputValue.value);
