@@ -1,7 +1,7 @@
 <template>
   <a :class="['gulu-link',type ? `gulu-link-${type}` : '',disabled && 'is-disabled',underline && !disabled && 'is-underline']"
      :href="disabled || !href ? null : href" @click="handleClick">
-    <Icon v-if="icon" :class="icon"></Icon>
+    <Icon v-if="icon" :name="icon" :fill="IconColor"></Icon>
     <span v-if="$slots.default" class="gulu-link-inner">
     <slot></slot>
   </span>
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {computed, defineComponent, PropType, ref} from 'vue';
 import Icon from './Icon.vue';
 
 export default defineComponent({
@@ -43,13 +43,24 @@ export default defineComponent({
   },
   emits: ['click'],
   setup(props,{emit}){
+    const IconType = ref(props.type)
+    const IconColor = computed(()=>{
+      const map = {'default': '#909399','primary': '#409eff','success': '#67c23a', 'warning': '#e6a23c','danger': '#f56c6c','info': '#909399'}
+      for(let key in map){
+        if(IconType ===key){
+          return map[key]
+        }else{
+          return map['default']
+        }
+      }
+    })
     const handleClick = (event: Event)=>{
       if(!props.disabled){
         emit('click',event)
       }
     }
     return {
-      handleClick
+      handleClick,IconColor
     }
   }
 });

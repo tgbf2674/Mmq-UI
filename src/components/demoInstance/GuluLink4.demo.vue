@@ -3,7 +3,7 @@
 </demo>
 <template>
   <div>
-    <gulu-link icon="icon-edit">编辑</gulu-link>
+    <gulu-link icon="icon-upload">编辑</gulu-link>
     <gulu-link icon="icon-user">用户</gulu-link>
   </div>
 </template>
