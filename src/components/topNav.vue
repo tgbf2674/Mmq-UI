@@ -29,7 +29,7 @@ export default {
   setup(){
     const menuVisible = inject<Ref<boolean>>('menuVisible')
     const toggleMenu= ()=>{
-      menuVisible.value = !menuVisible.value
+      menuVisible!.value = !menuVisible!.value
     }
     return {
       toggleMenu
@@ -69,6 +69,12 @@ $color: #007974;
     flex-wrap: nowrap;
     > li {
       margin: 0 1em;
+      background-color: #1cbbb4;
+      color: #ffffff;
+      line-height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      text-align: center;
     }
   }
   > .toggleAside{
