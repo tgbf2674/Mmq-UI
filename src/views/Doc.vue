@@ -17,26 +17,31 @@
         </ol>
         <h2>组件列表</h2>
         <ol>
-          <li><router-link to="/doc/switch">Switch 组件</router-link></li>
-          <li><router-link to="/doc/button">Button 组件</router-link></li>
-          <li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
-          <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
-          <li><router-link to="/doc/card">card 组件</router-link></li>
+          <span>基础</span>
+          <li><router-link to="/doc/container">container 组件</router-link></li>
+          <li><router-link to="/doc/grid">grid 组件</router-link></li>
           <li><router-link to="/doc/icon">icon 组件</router-link></li>
+          <li><router-link to="/doc/button">Button 组件</router-link></li>
+          <li><router-link to="/doc/link">link 组件</router-link></li>
+          <span>表单</span>
+          <li><router-link to="/doc/radio">radio 组件</router-link></li>
           <li><router-link to="/doc/input">input 组件</router-link></li>
+          <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
+          <li><router-link to="/doc/switch">Switch 组件</router-link></li>
+          <span>提示</span>
           <li><router-link to="/doc/loading">loading 组件</router-link></li>
           <li><router-link to="/doc/message">message 组件</router-link></li>
+          <span>导航</span>
+          <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
+          <li><router-link to="/doc/sticky">sticky 组件</router-link></li>
+          <span>其他</span>
+          <li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
+          <li><router-link to="/doc/card">card 组件</router-link></li>
           <li><router-link to="/doc/collapse">collapse 组件</router-link></li>
           <li><router-link to="/doc/spread">spread 组件</router-link></li>
-          <li><router-link to="/doc/radio">radio 组件</router-link></li>
-          <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
           <li><router-link to="/doc/tooltip">tooltip 组件</router-link></li>
           <li><router-link to="/doc/swiper">swiper 组件</router-link></li>
-          <li><router-link to="/doc/sticky">sticky 组件</router-link></li>
-          <li><router-link to="/doc/grid">grid 组件</router-link></li>
           <li><router-link to="/doc/image">image 组件</router-link></li>
-          <li><router-link to="/doc/container">container 组件</router-link></li>
-          <li><router-link to="/doc/link">link 组件</router-link></li>
         </ol>
       </aside>
       <main>
@@ -116,6 +121,16 @@ aside {
   }
 
   > ol {
+    > span {
+      margin-top: 10px;
+      display: block;
+      padding-left: 16px;
+      color: rgba(0, 0, 0, 0.35);
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 500;
+      cursor: default;
+    }
     > li {
       > a {
         display: block;
