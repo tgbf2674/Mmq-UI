@@ -12,20 +12,18 @@
 </template>
 
 <script lang="ts">
-import {ref, nextTick} from 'vue';
+import {ref, PropType} from 'vue';
 
 export default {
   name: 'Dropdown',
-  setup(props, context) {
+  setup(props: PropType<any>, context:any) {
     const selected = ref('请选择')
-    const dropdowns = context.slots.dropdown().map(item => item.children);
+    const dropdowns = context.slots.dropdown().map((item: any) => item.children);
     const dropdownItemVisible = ref(false);
     const showDropdownItem = () => dropdownItemVisible.value = true;
     const hiddenDropdownItem = () => dropdownItemVisible.value = false;
-    const selectedItem = async (event)=>{
-      await nextTick()
+    const selectedItem = (event: any)=>{
       selected.value = event.target.innerText
-      console.log(selected.value)
     }
     return {dropdowns, dropdownItemVisible, showDropdownItem, hiddenDropdownItem,selectedItem,selected};
   }

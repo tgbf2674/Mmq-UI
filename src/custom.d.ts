@@ -7,7 +7,8 @@ type ButtonLevel = "main" | "normal" | "danger"
 
 //Card
 type CardShadow = "always" | "hover" | "never"
-
+//Link
+type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default'
 
 //dialog
 interface DialogOptions {

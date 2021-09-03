@@ -20,6 +20,7 @@ import sticky from './components/demo/StickyDemo.vue'
 import grid from './components/demo/GridDemo.vue'
 import image from './components/demo/ImageDemo.vue'
 import container from './components/demo/ContainerDemo.vue'
+import link from './components/demo/LinkDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -56,6 +57,7 @@ export const router = createRouter({
         {path: 'grid', component: grid},
         {path: 'image', component: image},
         {path: 'container', component: container},
+        {path: 'link', component: link},
       ]}
   ]
 });
