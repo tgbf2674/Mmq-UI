@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import Swiper1Demo from '../demoInstance/Swiper1.demo.vue'
-import Swiper2Demo from '../demoInstance/Swiper2.demo.vue'
+import Swiper1Demo from '../demoInstance/Swiper/Swiper1.demo.vue'
+import Swiper2Demo from '../demoInstance/Swiper/Swiper2.demo.vue'
 import Demo from '../Demo.vue';
 export default {
 name: "Swiper",

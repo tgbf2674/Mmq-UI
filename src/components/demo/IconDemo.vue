@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import Demo from '../Demo.vue';
-import Icon1Demo from '../demoInstance/Icon1.demo.vue';
+import Icon1Demo from '../demoInstance/Icon/Icon1.demo.vue';
 export default {
   components: {Demo},
   setup() {

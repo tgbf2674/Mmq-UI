@@ -7,7 +7,7 @@
 import Tabs from '../../lib/Tabs.vue'
 import Tab from '../../lib/Tab.vue'
 import Demo from '../Demo.vue'
-import Tabs1Demo from '../demoInstance/Tabs1.demo.vue'
+import Tabs1Demo from '../demoInstance/Tab/Tabs1.demo.vue'
 export default {
 name: "tabsDemo",
   components: {

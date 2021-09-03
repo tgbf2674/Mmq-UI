@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import Demo from '../Demo.vue'
-import Container1Demo from '../demoInstance/Container1.demo.vue'
+import Container1Demo from '../demoInstance/Container/Container1.demo.vue'
 export default {
 name: "ContainerDemo",
   components: {Demo},

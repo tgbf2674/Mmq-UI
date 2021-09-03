@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import Message1Demo from '../demoInstance/Message1.demo.vue'
-import Message2Demo from '../demoInstance/Message2.demo.vue'
+import Message1Demo from '../demoInstance/Message/Message1.demo.vue'
+import Message2Demo from '../demoInstance/Message/Message2.demo.vue'
 import Demo from '../Demo.vue'
 export default {
 name: "MessageDemo",

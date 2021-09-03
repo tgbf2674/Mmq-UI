@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import Demo from '../Demo.vue'
-import Radio1Demo from '../demoInstance/Radio1.demo.vue'
-import Radio2Demo from '../demoInstance/Radio2.demo.vue'
+import Radio1Demo from '../demoInstance/Raido/Radio1.demo.vue'
+import Radio2Demo from '../demoInstance/Raido/Radio2.demo.vue'
 export default {
 name: "RadioDemo",
   components: {Demo},

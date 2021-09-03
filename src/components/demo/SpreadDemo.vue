@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import Spread1Demo from '../demoInstance/Spread1.demo.vue';
-import Spread2Demo from '../demoInstance/Spread2.demo.vue';
+import Spread1Demo from '../demoInstance/Spread/Spread1.demo.vue';
+import Spread2Demo from '../demoInstance/Spread/Spread2.demo.vue';
 import Demo from '../Demo.vue';
 
 export default {

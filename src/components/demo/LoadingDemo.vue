@@ -6,8 +6,8 @@
 
 <script>
 import Demo from '../Demo.vue'
-import Loading1Demo from '../demoInstance/Loading1.demo.vue'
-import Loading2Demo from '../demoInstance/Loading2.demo.vue'
+import Loading1Demo from '../demoInstance/Loading/Loading1.demo.vue'
+import Loading2Demo from '../demoInstance/Loading/Loading2.demo.vue'
 export default {
   name: 'LoadingDemo',
   components: {Demo},

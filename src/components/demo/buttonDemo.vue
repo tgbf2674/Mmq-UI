@@ -9,11 +9,11 @@
 
 <script lang="ts">
 import Button from '../../lib/Button.vue'
-import Button1Demo from '../demoInstance/Button1.demo.vue'
-import Button2Demo from '../demoInstance/Button2.demo.vue'
-import Button3Demo from '../demoInstance/Button3.demo.vue'
-import Button4Demo from '../demoInstance/Button4.demo.vue'
-import Button5Demo from '../demoInstance/Button5.demo.vue'
+import Button1Demo from '../demoInstance/Button/Button1.demo.vue'
+import Button2Demo from '../demoInstance/Button/Button2.demo.vue'
+import Button3Demo from '../demoInstance/Button/Button3.demo.vue'
+import Button4Demo from '../demoInstance/Button/Button4.demo.vue'
+import Button5Demo from '../demoInstance/Button/Button5.demo.vue'
 import Demo from '../Demo.vue'
 export default {
   name: 'buttonDemo',

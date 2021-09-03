@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import Demo from '../Demo.vue'
-import Collapse1Demo from '../demoInstance/Collapse1.demo.vue'
-import Collapse2Demo from '../demoInstance/Collapse2.demo.vue'
+import Collapse1Demo from '../demoInstance/Collapse/Collapse1.demo.vue'
+import Collapse2Demo from '../demoInstance/Collapse/Collapse2.demo.vue'
 export default {
 name: "CollapseDemo",
   components: {Demo},

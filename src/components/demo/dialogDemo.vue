@@ -9,9 +9,9 @@ import Dialog from '../../lib/Dialog.vue'
 import Button from '../../lib/Button.vue';
 import {openDialog} from '../../lib/openDialog'
 import Demo from '../Demo.vue';
-import Dialog1Demo from '../demoInstance/Dialog1.dmeo.vue';
-import Dialog2Demo from '../demoInstance/Dialog2.dmeo.vue';
-import Dialog3Demo from '../demoInstance/Dialog3.demo.vue';
+import Dialog1Demo from '../demoInstance/Dialog/Dialog1.dmeo.vue';
+import Dialog2Demo from '../demoInstance/Dialog/Dialog2.dmeo.vue';
+import Dialog3Demo from '../demoInstance/Dialog/Dialog3.demo.vue';
 import {ref} from 'vue';
 export default {
   name: 'dialogDemo',

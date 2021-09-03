@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import Sticky1Demo from '../demoInstance/Sticky1.demo.vue'
+import Sticky1Demo from '../demoInstance/Sticky/Sticky1.demo.vue'
 import Demo from '../Demo.vue';
 export default {
 name: "StickyDemo",

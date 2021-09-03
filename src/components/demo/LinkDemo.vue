@@ -8,10 +8,10 @@
 
 <script lang="ts">
 import Demo from '../Demo.vue';
-import GuluLink1Demo from '../demoInstance/GuluLink1.demo.vue'
-import GuluLink2Demo from '../demoInstance/GuluLink2.demo.vue'
-import GuluLink3Demo from '../demoInstance/GuluLink3.demo.vue'
-import GuluLink4Demo from '../demoInstance/GuluLink4.demo.vue'
+import GuluLink1Demo from '../demoInstance/Link/GuluLink1.demo.vue'
+import GuluLink2Demo from '../demoInstance/Link/GuluLink2.demo.vue'
+import GuluLink3Demo from '../demoInstance/Link/GuluLink3.demo.vue'
+import GuluLink4Demo from '../demoInstance/Link/GuluLink4.demo.vue'
 export default {
   name: 'LinkDemo',
   components: {Demo},

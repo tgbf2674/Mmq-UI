@@ -61,7 +61,6 @@ name: "Doc",
   },
   setup(){
     const menuVisible = inject<Ref<boolean>>('menuVisible')
-    console.log(menuVisible.value)
     return {
       menuVisible
     }

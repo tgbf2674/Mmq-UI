@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import Dropdown1Demo from '../demoInstance/Dropdown1.demo.vue'
+import Dropdown1Demo from '../demoInstance/Dropdown/Dropdown1.demo.vue'
 import Demo from '../Demo.vue'
 export default {
   name: 'DropDownDemo',

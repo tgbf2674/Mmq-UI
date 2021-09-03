@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import Tooltip1Demo from '../demoInstance/Tooltip1.demo.vue'
+import Tooltip1Demo from '../demoInstance/Tooltip/Tooltip1.demo.vue'
 import Demo from '../Demo.vue';
 export default {
 name: "TooltipDemo",
