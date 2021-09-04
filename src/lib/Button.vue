@@ -114,7 +114,7 @@ $grey: grey;
 
   &.gulu-size-big {
     font-size: 24px;
-    height: 48px;
+    height: 32px;
     padding: 0 16px;
   }
 

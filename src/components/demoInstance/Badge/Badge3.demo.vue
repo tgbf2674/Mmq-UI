@@ -1,17 +1,11 @@
 <demo>
-常规使用
+自定义内容
 </demo>
 <template>
-  <Badge :value="12" class="item">
+  <Badge value="new" :max="99" class="item">
     <Button size="big">评论</Button>
   </Badge>
-  <Badge :value="12" class="item">
-    <Button size="big">回复</Button>
-  </Badge>
-  <Badge :value="1" class="item" type="primary">
-    <Button size="big">评论</Button>
-  </Badge>
-  <Badge :value="2" class="item" type="danger">
+  <Badge value="hot" type="danger" :max="10" class="item">
     <Button size="big">回复</Button>
   </Badge>
 </template>
