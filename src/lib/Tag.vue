@@ -123,7 +123,6 @@ export default defineComponent({
   background-color: mix(#f0f9eb, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #67c23a;
-
   .close {
     color: #67c23a;
 
@@ -138,7 +137,6 @@ export default defineComponent({
   background-color: mix(#f4f4f5, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #909399;
-
   .close {
     color: #909399;
 
@@ -153,7 +151,6 @@ export default defineComponent({
   background-color: mix(#fdf6ec, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #e6a23c;
-
   .close {
     color: #e6a23c;
 
@@ -168,7 +165,6 @@ export default defineComponent({
   background-color: mix(#fef0f0, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #f56c6c;
-
   .close {
     color: #f56c6c;
 
@@ -205,4 +201,29 @@ export default defineComponent({
     transform: scale(0.8);
   }
 }
+
+.gulu-tag-dark{
+  color: #fff;
+  &.gulu-tag{
+    background: #409eff;
+  }
+  &.gulu-tag-success{
+    background: #67c23a;
+  }
+  &.gulu-tag-info{
+    background: #909399;
+  }
+  &.gulu-tag-danger{
+    background: #f56c6c;
+  }
+  &.gulu-tag-warning{
+    background: #e6a23c;
+  }
+}
+
+
+.gulu-tag-plain{
+  background: #fff;
+}
+
 </style>
