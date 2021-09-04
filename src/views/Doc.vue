@@ -32,6 +32,7 @@
           <li><router-link to="/doc/tag">tag 组件</router-link></li>
           <li><router-link to="/doc/badge">badge 组件</router-link></li>
           <li><router-link to="/doc/empty">empty 组件</router-link></li>
+          <li><router-link to="/doc/result">result 组件</router-link></li>
           <span>提示</span>
           <li><router-link to="/doc/loading">loading 组件</router-link></li>
           <li><router-link to="/doc/message">message 组件</router-link></li>

@@ -1,5 +1,5 @@
 <demo>
-自定义图片
+自定义大小
 </demo>
 <template>
   <Empty imageSize="200"></Empty>
