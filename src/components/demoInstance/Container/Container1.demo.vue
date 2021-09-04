@@ -1,5 +1,5 @@
 <demo>
-上下两栏布局
+常见的各种布局
 </demo>
 <template>
   <div class="wrapper">

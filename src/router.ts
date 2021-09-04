@@ -23,6 +23,7 @@ import container from './components/demo/ContainerDemo.vue'
 import link from './components/demo/LinkDemo.vue'
 import tag from './components/demo/TagDemo.vue'
 import badge from './components/demo/BadgeDemo.vue'
+import empty from './components/demo/EmptyDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -62,6 +63,7 @@ export const router = createRouter({
         {path: 'link', component: link},
         {path: 'tag', component: tag},
         {path: 'badge', component: badge},
+        {path: 'empty', component: empty},
       ]}
   ]
 });
