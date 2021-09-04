@@ -1,8 +1,8 @@
 <demo>
-基础用法
+自定义图片
 </demo>
 <template>
-  <Empty description="描述文字"></Empty>
+  <Empty imageSize="200"></Empty>
 </template>
 
 <script lang="ts">
