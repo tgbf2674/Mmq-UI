@@ -78,7 +78,7 @@ export default {
   .header, .footer {
     background-color: $gulu-container-header;
     text-align: center;
-    line-height: 40px;
+    line-height: 60px;
   }
 
   .aside {
@@ -91,6 +91,21 @@ export default {
     background-color: $gulu-container-main;
     line-height: 160px;
     text-align: center;
+  }
+  .gulu-container:nth-child(5){
+    .aside{
+      line-height: 220px;
+    }
+  }
+  .gulu-container:nth-child(6){
+    .aside{
+      line-height: 220px;
+    }
+  }
+  .gulu-container:nth-child(7){
+    .aside{
+      line-height: 280px;
+    }
   }
 }
 </style>

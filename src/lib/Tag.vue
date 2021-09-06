@@ -1,15 +1,9 @@
 <template>
-  <span v-if="disableTransitions" :class="classes" :style="{background: color}" @click="handleClick">
+  <span :class="classes" :style="{background: color}" @click="handleClick">
     <slot></slot>
     <span v-if="canClose" class="close" @click="handleClose">&times;
     </span>
   </span>
-  <transition v-else name="gulu-zoom-in-center">
-    <span v-if="disableTransitions" :class="classes" :style="{background: color}" @click="handleClick">
-    <slot></slot>
-    <span v-if="canClose" class="close" @click="handleClose">&times;</span>
-  </span>
-  </transition>
 </template>
 
 <script lang="ts">
@@ -26,10 +20,6 @@ export default defineComponent({
       default: ''
     },
     hit: Boolean,
-    disableTransitions: {
-      type: Boolean,
-      default: 'true'
-    },
     color: {
       type: String,
       default: ''

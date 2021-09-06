@@ -13,7 +13,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .gulu-main{
-  --gulu-main-padding: 20px;
+  --gulu-main-padding: 0 20px;
   display: block;
   flex: 1;
   flex-basis: auto;

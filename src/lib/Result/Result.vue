@@ -28,7 +28,7 @@ import IconWarning from './icon-warning.vue'
 import IconInfo from './icon-info.vue'
 import {computed, defineComponent} from 'vue';
 
-const IconMap = {
+const IconMap:any = {
   success: 'icon-success',
   warning: 'icon-warning',
   error: 'icon-error',

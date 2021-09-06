@@ -3,9 +3,7 @@
     <slot></slot>
     <transition name="el-zoom-in-center">
       <sup v-show="!hidden && (content || content === 0 || isDot)"
-      class="gulu-badge-content" :class="[isDot ? 'is-dot' : 'gulu-badge-content-' + type,{
-        'is-fixed': $slots.default
-      }]" v-text="content"></sup>
+      class="gulu-badge-content" :class="[isDot ? 'is-dot' : 'gulu-badge-content-' + type,'is-fixed']" v-text="content"></sup>
     </transition>
   </div>
 </template>

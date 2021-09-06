@@ -29,9 +29,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .gulu-footer{
-  --gulu-footer-padding: 20px;
+  --gulu-footer-padding: 0 20px;
   padding: var(--gulu-footer-padding);
   box-sizing: border-box;
   flex-shrink: 0;
+  height: 60px;
 }
 </style>

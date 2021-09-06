@@ -29,10 +29,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .gulu-header{
-  --gulu-header-padding: 20px;
+  --gulu-header-padding: 0 20px;
   padding: var(--gulu-header-padding);
   box-sizing: border-box;
   flex-shrink: 0;
-  height: var(--el-header-height);
+  height: 60px;
 }
 </style>
