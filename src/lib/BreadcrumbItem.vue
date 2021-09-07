@@ -1,0 +1,83 @@
+<template>
+<span class="gulu-breadcrumb-item">
+  <span ref="link" :class="['gulu-breadcrumb-inner',to? 'is-link' : '']" role="link">
+    <slot></slot>
+  </span>
+  <Icon fill="#c0c4cc" v-if="separatorClass" class="gulu-breadcrumb-separator" :name="separatorClass"></Icon>
+  <span v-else class="gulu-breadcrumb-separator" role="presentation">{{ separator }}</span>
+</span>
+</template>
+
+<script lang="ts">
+import {getCurrentInstance, inject, onMounted, PropType, ref} from 'vue';
+import Icon from './Icon.vue'
+export default {
+  name: 'BreadcrumbItem',
+  components: {Icon},
+  props: {
+    to:{
+      type: [String,Object] as PropType<string| Record<string, unknown>>,
+      default:''
+    },
+    replace: {
+      type: Boolean,
+      default:false
+    }
+  },
+  setup(props){
+    const link = ref(null)
+    const parent = inject<IBreadcrumbProps>('breadcrumb')
+    const instance = getCurrentInstance()
+    const router = instance.appContext.config.globalProperties.$router
+    onMounted(()=>{
+      link.value.setAttribute('role','link')
+      link.value.addEventListener('click',()=>{
+        if(!props.to || !router)return
+        props.replace ? router.replace(props.to) : router.push(props.to)
+      })
+    })
+    return {
+      link,separator: parent?.separator,
+      separatorClass: parent?.separatorClass
+    }
+  }
+}
+</script>
+
+<style lang="scss" >
+.gulu-breadcrumb-item{
+  float: left;
+  .gulu-breadcrumb-inner{
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s cubic-bezier(0.645,0.045,0.355,1);
+    color: #c0c4cc;
+    a{
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.2s cubic-bezier(0.645,0.045,0.355,1);
+      color: #303133;
+      &:hover{
+        color: #409eff;
+        cursor: pointer;
+      }
+    }
+  }
+  .is-link{
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s cubic-bezier(0.645,0.045,0.355,1);
+    color: #303133;
+    &:hover{
+      color: #409eff;
+      cursor: pointer;
+    }
+  }
+  .gulu-breadcrumb-separator{
+    margin: 0 9px;
+    font-weight: 700;
+    width: 14px;
+    color: #c0c4cc;
+  }
+}
+</style>

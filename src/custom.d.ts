@@ -14,6 +14,12 @@ type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default
 type TagType = 'success' | 'info' | 'warning' | 'danger' | ''
 type ComponentSize = 'medium' | 'small' | 'mini'
 
+//breadcrumb
+interface IBreadcrumbProps{
+  separator: string
+  separatorClass: string
+}
+
 //dialog
 interface DialogOptions {
   title: string,

@@ -1,5 +1,5 @@
 <template>
-  <Breadcrumb>
+  <Breadcrumb separatorClass="icon-right">
     <BreadcrumbItem :to="{path: '/'}">首页</BreadcrumbItem>
     <BreadcrumbItem ><a href="">活动管理</a></BreadcrumbItem>
     <BreadcrumbItem >活动列表</BreadcrumbItem>
