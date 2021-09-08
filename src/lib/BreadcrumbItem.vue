@@ -9,14 +9,14 @@
 </template>
 
 <script lang="ts">
-import {getCurrentInstance, inject, onMounted, PropType, ref} from 'vue';
+import {getCurrentInstance, inject, onMounted, PropType, Ref, ref} from 'vue';
 import Icon from './Icon.vue'
 export default {
   name: 'BreadcrumbItem',
   components: {Icon},
   props: {
     to:{
-      type: [String,Object] as PropType<string| Record<string, unknown>>,
+      type: [String,Object] as PropType<string>,
       default:''
     },
     replace: {
@@ -24,11 +24,11 @@ export default {
       default:false
     }
   },
-  setup(props){
-    const link = ref(null)
+  setup(props:any){
+    const link:Ref = ref(null)
     const parent = inject<IBreadcrumbProps>('breadcrumb')
     const instance = getCurrentInstance()
-    const router = instance.appContext.config.globalProperties.$router
+    const router = instance?.appContext.config.globalProperties.$router
     onMounted(()=>{
       link.value.setAttribute('role','link')
       link.value.addEventListener('click',()=>{

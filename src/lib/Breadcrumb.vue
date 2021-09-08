@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, provide, ref} from 'vue';
+import {defineComponent, onMounted, provide, Ref, ref} from 'vue';
 
 export default defineComponent({
   name: 'Breadcrumb',
@@ -20,7 +20,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const breadcrumb = ref(null);
+    const breadcrumb:Ref = ref(null);
     provide<IBreadcrumbProps>('breadcrumb', props);
     onMounted(() => {
       const items = breadcrumb.value.querySelectorAll('.gulu-breadcrumb-item');
