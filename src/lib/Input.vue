@@ -70,15 +70,13 @@ export default defineComponent({
       return childInputValue.value.length || '0';
     });
     const childInputValue = ref();
-    watchEffect(()=>{
-      childInputValue.value = props.inputValue
-    })
+    watchEffect(() => {
+       childInputValue.value = props.inputValue;
+    });
     const childInputType = ref(props.type);
     watchEffect(() => {
-      if(props.maxlength) {
-        if (countNum.value > props.maxlength) {
-          childInputValue.value = childInputValue.value.slice(0, parseInt(props.maxlength) * 1);
-        }
+      if (countNum.value > Number(props.maxlength)) {
+        childInputValue.value = childInputValue.value.slice(0, Number(props.maxlength) * 1);
       }
     });
     return {inputChange, childInputValue, clearInputValue, childInputType, changeInputType, countNum};

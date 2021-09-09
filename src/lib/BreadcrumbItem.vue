@@ -28,7 +28,7 @@ export default {
     const link:Ref = ref(null)
     const parent = inject<IBreadcrumbProps>('breadcrumb')
     const instance = getCurrentInstance()
-    const router = instance?.appContext.config.globalProperties.$router
+    const router = instance!.appContext.config.globalProperties.$router
     onMounted(()=>{
       link.value.setAttribute('role','link')
       link.value.addEventListener('click',()=>{
@@ -37,8 +37,8 @@ export default {
       })
     })
     return {
-      link,separator: parent?.separator,
-      separatorClass: parent?.separatorClass
+      link,separator: parent!.separator,
+      separatorClass: parent!.separatorClass
     }
   }
 }

@@ -2,7 +2,7 @@
   <Teleport to="body">
     <template v-if="visible">
       <div @click="onClickOverlay" class="gulu-dialog-overlay"></div>
-      <div class="gulu-dialog-wrapper" :draggable="draggable" @dragend="x" @dragstart="y">
+      <div class="gulu-dialog-wrapper" :draggable="draggable" @dragend="end" @dragstart="start">
         <div class="gulu-dialog">
           <header>
             <slot name="title"/>
@@ -83,19 +83,19 @@ export default defineComponent({
     };
     const x1 = ref(null);
     const y1 = ref(null);
-    const x = (e) => {
+    const end = (e) => {
       const {x, y} = e;
       const {offsetTop, offsetLeft} = e.target;
       e.target.style.top = offsetTop - (y1.value - y) + 'px';
       e.target.style.left = offsetLeft - (x1.value - x) + 'px';
     };
-    const y = (e) => {
+    const start = (e) => {
       const {x, y} = e;
       x1.value = x;
       y1.value = y;
     };
     return {
-      close, onClickOverlay, ok, cancel, isLoading, x, y
+      close, onClickOverlay, ok, cancel, isLoading, end, start
     };
   }
 });

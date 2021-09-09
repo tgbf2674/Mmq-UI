@@ -3,7 +3,7 @@
 </demo>
 
 <template>
-  <Input placeholder="请输入姓名" v-model:inputValue="inputValue"/>
+  <Input placeholder="请输入姓名" v-model:input-value="inputValue"/>
 </template>
 
 <script lang="ts">

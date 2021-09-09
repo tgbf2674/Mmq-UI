@@ -33,13 +33,13 @@ export default defineComponent({
   setup(props) {
     const internalInstance = getCurrentInstance();
     const isActive = computed(() => {
-      return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
+      return (inject('collapse')as any).activeName.findIndex((item:any) => item === props.name) >= 0;
     });
     const handleHeaderClick = () => {
       if (props.disabled) {
         return;
       }
-      emitter.emit('itemClick', {newActiveName: props.name, uid: internalInstance.parent.uid});
+      emitter.emit('itemClick', {newActiveName: props.name, uid: internalInstance!.parent!.uid});
     };
     return {isActive, handleHeaderClick};
   }

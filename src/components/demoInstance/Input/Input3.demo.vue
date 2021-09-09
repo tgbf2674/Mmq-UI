@@ -2,7 +2,7 @@
 支持禁用
 </demo>
 <template>
-  <Input disabled v-model:inputValue="inputValue"/>
+  <Input disabled v-model="inputValue"/>
 </template>
 
 <script lang="ts">

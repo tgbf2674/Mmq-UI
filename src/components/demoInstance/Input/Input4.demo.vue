@@ -2,7 +2,7 @@
 密码框
 </demo>
 <template>
-  <Input type="password" v-model:inputValue="inputValue"/>
+  <Input type="password" v-model="inputValue"/>
 </template>
 
 <script lang="ts">

@@ -1,3 +1,6 @@
+<demo>
+自定义间隔符
+</demo>
 <template>
   <Breadcrumb separatorClass="icon-right">
     <BreadcrumbItem :to="{path: '/'}">首页</BreadcrumbItem>

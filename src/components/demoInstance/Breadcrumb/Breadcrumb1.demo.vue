@@ -1,3 +1,6 @@
+<demo>
+基本使用
+</demo>
 <template>
   <Breadcrumb>
     <BreadcrumbItem :to="{path: '/'}">首页</BreadcrumbItem>

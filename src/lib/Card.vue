@@ -4,7 +4,6 @@
       <slot name="title">卡片标题</slot>
     </header>
     <div class="gulu-card-body">
-      <slot></slot>
       <div class="gulu-card-item" v-for="(item,index) in listData" :key="index">{{ item }}</div>
     </div>
   </div>

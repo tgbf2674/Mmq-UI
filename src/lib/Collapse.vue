@@ -19,14 +19,14 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props, context) {
+  setup(props:any, context) {
     const internalInstance = getCurrentInstance();
-    emitter.on('itemClick', val => {
+    emitter.on('itemClick', (val:any) => {
       const {newActiveName, uid} = val;
-      if (internalInstance.uid !== uid) {
+      if (internalInstance!.uid !== uid) {
         return;
       }
-      const index = props.activeName.findIndex(item => item === newActiveName);
+      const index = props.activeName.findIndex((item:any) => item === newActiveName);
       //props.activeName是个代理对象，不是数组
       const propsActiveName = Array.from(props.activeName);
       if (props.accordion) {

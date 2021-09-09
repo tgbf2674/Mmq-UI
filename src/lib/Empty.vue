@@ -1,7 +1,7 @@
 <template>
 <div class="gulu-empty">
   <div class="gulu-empty-image" :style="imageStyle">
-    <img :src="image" v-if="image" ondragstart="return false" />
+    <img :src="image" v-if="image" />
     <slot v-else name="image">
       <img-empty></img-empty>
     </slot>
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import ImgEmpty from './ImageEmpty.vue'
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, onMounted} from 'vue';
 export default defineComponent({
   name: 'Empty',
   components: {

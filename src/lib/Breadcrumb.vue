@@ -39,6 +39,5 @@ export default defineComponent({
 .gulu-breadcrumb {
   font-size: 14px;
   line-height: 1;
-
 }
 </style>

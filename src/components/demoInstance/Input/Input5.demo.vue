@@ -2,7 +2,7 @@
 长度限制
 </demo>
 <template>
-  <Input maxlength="10" v-model:inputValue="inputValue"/>
+  <Input maxlength="10" v-model="inputValue"/>
 </template>
 
 <script lang="ts">

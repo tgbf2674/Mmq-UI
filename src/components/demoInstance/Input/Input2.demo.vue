@@ -2,7 +2,7 @@
 支持清空
 </demo>
 <template>
-  <Input clearable v-model:inputValue="inputValue"/>
+  <Input clearable v-model="inputValue"/>
 </template>
 
 <script lang="ts">

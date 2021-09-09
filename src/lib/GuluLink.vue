@@ -5,7 +5,7 @@
     <Icon v-if="icon" :name="icon" :fill="IconColor"></Icon>
     <span v-if="$slots.default" class="gulu-link-inner">
     <slot></slot>
-  </span>
+    </span>
     <slot v-if="$slots.icon" name="icon"></slot>
   </a>
 </template>
