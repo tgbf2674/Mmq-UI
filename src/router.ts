@@ -26,6 +26,7 @@ import badge from './components/demo/BadgeDemo.vue'
 import empty from './components/demo/EmptyDemo.vue'
 import result from './components/demo/ResultDemo.vue'
 import breadcrumb from './components/demo/BreadcrumbDemo.vue'
+import skeleton from './components/demo/SkeletonDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -67,7 +68,8 @@ export const router = createRouter({
         {path: 'badge', component: badge},
         {path: 'empty', component: empty},
         {path: 'result',component: result},
-        {path: 'breadcrumb',component: breadcrumb}
+        {path: 'breadcrumb',component: breadcrumb},
+        {path: 'skeleton', component: skeleton}
       ]}
   ]
 });

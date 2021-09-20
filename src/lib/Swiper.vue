@@ -1,14 +1,15 @@
 <template>
   <div class="gulu-swiper-container">
     <div class="gulu-swiper" v-for="(item,index) in defaults" :key="index" :class="getClass(index)">
-      <div class="number-Text">{{active+1}} / {{defaults.length}}</div>
       <div class="fade">
         <component :is="item" v-show="index===active"></component>
       </div>
     </div>
-    <div class="dotWrapper">
+
+    <div class="dotWrapper" ref="dotRef">
       <span v-for="(item,index) in defaults" :key="index" class="dot" @click="currentSwiper(index)"></span>
     </div>
+
     <a class="prev" @click="reduceActive">&#10094</a>
     <a class="next" @click="addActive">&#10095</a>
   </div>
@@ -29,9 +30,11 @@ export default {
   setup(props,context){
     const defaults = context.slots.default()
     const active = ref(0)
+    const dotRef = ref()
     const timer = ref<any>(0)
     const currentSwiper = (val: number)=>{
       active.value = val
+      dotRef.value.children[active.value].className += ' current'
     }
     const getClass = (val:number)=>{
       if(val === active.value){
@@ -73,7 +76,7 @@ export default {
         clearInterval(timer.value)
       }
     })
-    return {defaults,active,currentSwiper,addActive,reduceActive,getClass}
+    return {defaults,active,currentSwiper,addActive,reduceActive,getClass,dotRef}
   }
 }
 </script>
@@ -130,6 +133,11 @@ export default {
   display: inline-block;
   transition: background-color 0.6s ease;
 }
+
+.dot .current{
+  background-color: #67c23a;
+}
+
 .active, .dot:hover {
   background-color: #717171;
 }
