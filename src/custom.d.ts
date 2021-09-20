@@ -1,12 +1,12 @@
 //Button
-type ButtonTheme = "button" | "link" | "text"
+type ButtonTheme = 'button' | 'link' | 'text'
 
-type ButtonSize = "big" | "normal" | "small"
+type ButtonSize = 'big' | 'normal' | 'small'
 
-type ButtonLevel = "main" | "normal" | "danger"
+type ButtonLevel = 'main' | 'normal' | 'danger'
 
 //Card
-type CardShadow = "always" | "hover" | "never"
+type CardShadow = 'always' | 'hover' | 'never'
 //Link
 type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default'
 
@@ -15,10 +15,22 @@ type TagType = 'success' | 'info' | 'warning' | 'danger' | ''
 type ComponentSize = 'medium' | 'small' | 'mini'
 
 //breadcrumb
-interface IBreadcrumbProps{
+interface IBreadcrumbProps {
   separator: string
   separatorClass: string
 }
+
+// skeleton
+type Variants =
+  | 'circle'
+  | 'rect'
+  | 'h1'
+  | 'h3'
+  | 'text'
+  | 'caption'
+  | 'p'
+  | 'image'
+  | 'button'
 
 //dialog
 interface DialogOptions {
