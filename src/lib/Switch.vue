@@ -1,9 +1,10 @@
 <template>
   <button class="gulu-switch" :disabled="disabled" :class="{'gulu-checked': value}" @click="toggle"><span class="gulu-span"></span></button>
-  <div>{{value}}</div>
 </template>
 
 <script lang="ts">
+
+import {PropType} from 'vue';
 
 export default {
   name: 'Switch',
@@ -11,7 +12,7 @@ export default {
     value: Boolean,
     disabled: Boolean
   },
-  setup(props, context) {
+  setup(props:any, context:any) {
     const toggle = ()=>{
       context.emit('update:value',!props.value)
     }

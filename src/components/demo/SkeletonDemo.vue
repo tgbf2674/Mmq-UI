@@ -5,6 +5,7 @@
   <Demo :component="Skeleton3Demo"></Demo>
   <Demo :component="Skeleton4Demo"></Demo>
   <Demo :component="Skeleton5Demo"></Demo>
+  <Demo :component="Skeleton6Demo"></Demo>
 </template>
 
 <script lang="ts">
@@ -13,6 +14,7 @@ import Skeleton2Demo from '../demoInstance/Skeleton/Skeleton2.demo.vue';
 import Skeleton3Demo from '../demoInstance/Skeleton/Skeleton3.demo.vue';
 import Skeleton4Demo from '../demoInstance/Skeleton/Skeleton4.demo.vue';
 import Skeleton5Demo from '../demoInstance/Skeleton/Skeleton5.demo.vue';
+import Skeleton6Demo from '../demoInstance/Skeleton/Skeleton6.demo.vue';
 import Demo from '../Demo.vue';
 
 export default {
@@ -20,7 +22,7 @@ name: "Skeleton",
   components: {Demo},
   setup(){
     return {
-      Skeleton1Demo,Skeleton2Demo,Skeleton3Demo,Skeleton4Demo,Skeleton5Demo
+      Skeleton1Demo,Skeleton2Demo,Skeleton3Demo,Skeleton4Demo,Skeleton5Demo,Skeleton6Demo
     }
   }
 }
