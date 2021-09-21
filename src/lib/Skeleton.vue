@@ -75,13 +75,13 @@ export default defineComponent({
 
 .gulu-skeleton{
   width: 100%;
-  .is-first, .gulu-skeleton-paragraph{
+  &.is-first, .gulu-skeleton-paragraph{
     height: 16px;
     margin-top: 16px;
     background: #f2f2f2;
   }
-  .is-animated{
-    .gulu-skeleton-item{
+   &.is-animated{
+     ::v-deep .gulu-skeleton-item{
       background: linear-gradient(90deg,#f2f2f2 25%,#e6e6e6 37%,#f2f2f2 63%);
       background-size: 400% 100%;
       animation: gulu-skeleton-loading 1.4s ease infinite;
