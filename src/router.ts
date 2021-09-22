@@ -27,13 +27,14 @@ import empty from './components/demo/EmptyDemo.vue'
 import result from './components/demo/ResultDemo.vue'
 import breadcrumb from './components/demo/BreadcrumbDemo.vue'
 import skeleton from './components/demo/SkeletonDemo.vue'
+import scrollbar from './components/demo/ScrollbarDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
 import install from './markdown/install.md'
 import getStarted from './markdown/get-started.md'
 const history = createWebHashHistory();
-const md= string => h(Markdown,{content: string,key: string})
+const md= (string:string) => h(Markdown,{content: string,key: string})
 export const router = createRouter({
   history: history,
   routes: [
@@ -69,7 +70,8 @@ export const router = createRouter({
         {path: 'empty', component: empty},
         {path: 'result',component: result},
         {path: 'breadcrumb',component: breadcrumb},
-        {path: 'skeleton', component: skeleton}
+        {path: 'skeleton', component: skeleton},
+        {path: 'scrollbar',component: scrollbar}
       ]}
   ]
 });
