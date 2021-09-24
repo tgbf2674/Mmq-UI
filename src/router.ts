@@ -27,7 +27,6 @@ import empty from './components/demo/EmptyDemo.vue'
 import result from './components/demo/ResultDemo.vue'
 import breadcrumb from './components/demo/BreadcrumbDemo.vue'
 import skeleton from './components/demo/SkeletonDemo.vue'
-import scrollbar from './components/demo/ScrollbarDemo.vue'
 import alert from './components/demo/AlertDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
@@ -72,7 +71,6 @@ export const router = createRouter({
         {path: 'result',component: result},
         {path: 'breadcrumb',component: breadcrumb},
         {path: 'skeleton', component: skeleton},
-        {path: 'scrollbar',component: scrollbar},
         {path: 'alert', component: alert}
       ]}
   ]

@@ -23,7 +23,6 @@
           <li><router-link to="/doc/icon">icon 组件</router-link></li>
           <li><router-link to="/doc/button">Button 组件</router-link></li>
           <li><router-link to="/doc/link">link 组件</router-link></li>
-          <li><router-link to="/doc/scrollbar">scrollbar 组件</router-link></li>
           <span>表单</span>
           <li><router-link to="/doc/radio">radio 组件</router-link></li>
           <li><router-link to="/doc/input">input 组件</router-link></li>
