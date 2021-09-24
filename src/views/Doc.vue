@@ -37,6 +37,7 @@
           <li><router-link to="/doc/skeleton">skeleton 组件</router-link></li>
           <span>提示</span>
           <li><router-link to="/doc/loading">loading 组件</router-link></li>
+          <li><router-link to="/doc/alert">Alert 组件</router-link></li>
           <li><router-link to="/doc/message">message 组件</router-link></li>
           <span>导航</span>
           <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
