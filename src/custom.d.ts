@@ -14,6 +14,9 @@ type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default
 type TagType = 'success' | 'info' | 'warning' | 'danger' | ''
 type ComponentSize = 'medium' | 'small' | 'mini'
 
+//alert
+type AlertEffect = 'light' | 'dark'
+
 //breadcrumb
 interface IBreadcrumbProps {
   separator: string
