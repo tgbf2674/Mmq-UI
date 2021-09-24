@@ -28,6 +28,7 @@
           <li><router-link to="/doc/input">input 组件</router-link></li>
           <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
           <li><router-link to="/doc/switch">Switch 组件</router-link></li>
+          <li><router-link to="/doc/form">Form 组件</router-link></li>
           <span>数据</span>
           <li><router-link to="/doc/tag">tag 组件</router-link></li>
           <li><router-link to="/doc/badge">badge 组件</router-link></li>
