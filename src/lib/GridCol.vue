@@ -19,7 +19,7 @@ export default {
       default: 0
     }
   },
-  setup({span,offset}:any){
+  setup({span,offset}:{span: number;offset: number}){
     const colRef = ref()
     const widthRef = computed(()=>{
       return Number(span/24 *100).toFixed(2)+ '%'

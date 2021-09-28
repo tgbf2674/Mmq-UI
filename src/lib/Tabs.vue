@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import Tab from '../lib/Tab.vue'
-import {computed, ref,watchEffect} from 'vue';
-export default {
+import {computed, defineComponent, ref, watchEffect} from 'vue';
+export default defineComponent({
   name: 'Tabs',
   props: {
     selected: {
@@ -21,14 +21,14 @@ export default {
     }
   },
   setup(props,context){
-    const defaults = context.slots.default()
-    const selectedItem = ref<HTMLDivElement>(null)
-    const indicator = ref<HTMLDivElement>(null)
-    const container = ref<HTMLDivElement>(null)
+    const defaults = context.slots.default!()
+    const selectedItem = ref<HTMLDivElement>()
+    const indicator = ref<HTMLDivElement>()
+    const container = ref<HTMLDivElement>()
     watchEffect(()=>{
       if(selectedItem.value && indicator.value) {
         const {width} = selectedItem.value.getBoundingClientRect()
-        const {left: left2} = container.value.getBoundingClientRect()
+        const {left: left2} = container.value!.getBoundingClientRect()
         const {left: left1} = selectedItem.value.getBoundingClientRect()
         const left = left1 - left2
         indicator.value.style.left = left + 'px'
@@ -43,11 +43,11 @@ export default {
     })
     const current = computed(()=>{
       return defaults.find((tag)=>{
-        return tag.props.title ===props.selected
+        return tag.props!.title ===props.selected
       })
     })
     const titles = defaults.map((tag)=>{
-      return tag.props.title
+      return tag.props!.title
     })
     const select =(title: string)=>{
       context.emit('update:selected',title)
@@ -56,7 +56,7 @@ export default {
       defaults,titles,current,select,selectedItem,indicator,container
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

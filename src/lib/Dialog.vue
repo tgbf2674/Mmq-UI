@@ -67,7 +67,7 @@ export default defineComponent({
     const ok = () => {
       if (props.ok) {
         isLoading.value = true;
-        props.ok().then((res) => {
+        props.ok().then((res:boolean) => {
           if (res) {
             close();
             isLoading.value = false;
@@ -83,13 +83,13 @@ export default defineComponent({
     };
     const x1 = ref(null);
     const y1 = ref(null);
-    const end = (e) => {
+    const end = (e:any) => {
       const {x, y} = e;
       const {offsetTop, offsetLeft} = e.target;
-      e.target.style.top = offsetTop - (y1.value - y) + 'px';
-      e.target.style.left = offsetLeft - (x1.value - x) + 'px';
+      e.target.style.top = offsetTop - (y1.value! - y) + 'px';
+      e.target.style.left = offsetLeft - (x1.value! - x) + 'px';
     };
-    const start = (e) => {
+    const start = (e:any) => {
       const {x, y} = e;
       x1.value = x;
       y1.value = y;

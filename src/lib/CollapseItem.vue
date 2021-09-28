@@ -33,7 +33,7 @@ export default defineComponent({
   setup(props) {
     const internalInstance = getCurrentInstance();
     const isActive = computed(() => {
-      return (inject('collapse')as any).activeName.findIndex((item:any) => item === props.name) >= 0;
+      return (inject<ICollapseProps>('collapse')!).activeName.findIndex((item:any) => item === props.name) >= 0;
     });
     const handleHeaderClick = () => {
       if (props.disabled) {

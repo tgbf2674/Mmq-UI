@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import {onUnmounted,onMounted,ref} from 'vue'
-export default {
+import {onUnmounted, onMounted, ref, defineComponent} from 'vue';
+export default defineComponent({
   name: 'Swiper',
   props:{
     auto: {
@@ -27,11 +27,11 @@ export default {
       default: false
     }
   },
-  setup(props,context){
-    const defaults = context.slots.default()
+  setup(props:{auto: boolean}, {slots}){
+    const defaults = slots.default!()
     const active = ref(0)
     const dotRef = ref()
-    const timer = ref<any>(0)
+    const timer:any = ref(0)
     const currentSwiper = (val: number)=>{
       active.value = val
       dotRef.value.children[active.value].className += ' current'
@@ -78,7 +78,7 @@ export default {
     })
     return {defaults,active,currentSwiper,addActive,reduceActive,getClass,dotRef}
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

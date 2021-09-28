@@ -12,17 +12,17 @@
 </template>
 
 <script lang="ts">
-import {ref, PropType} from 'vue';
+import {ref} from 'vue';
 
 export default {
   name: 'Dropdown',
-  setup(props: PropType<any>, context:any) {
+  setup(props:any,{slots}:any) {
     const selected = ref('请选择')
-    const dropdowns = context.slots.dropdown().map((item: any) => item.children);
+    const dropdowns = slots.dropdown().map((item:HTMLElement) => item.children);
     const dropdownItemVisible = ref(false);
     const showDropdownItem = () => dropdownItemVisible.value = true;
     const hiddenDropdownItem = () => dropdownItemVisible.value = false;
-    const selectedItem = (event: any)=>{
+    const selectedItem = (event:any)=>{
       selected.value = event.target.innerText
     }
     return {dropdowns, dropdownItemVisible, showDropdownItem, hiddenDropdownItem,selectedItem,selected};

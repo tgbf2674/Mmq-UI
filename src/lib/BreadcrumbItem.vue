@@ -24,7 +24,7 @@ export default {
       default:false
     }
   },
-  setup(props:any){
+  setup(props: { to: PropType<string>; replace: boolean; }){
     const link:Ref = ref(null)
     const parent = inject<IBreadcrumbProps>('breadcrumb')
     const instance = getCurrentInstance()

@@ -15,14 +15,14 @@ name: "Grid",
     default: 0
   }
   },
-  setup({gutter}: any){
+  setup(props:{gutter: number}){
     const gutterRef = ref()
     onMounted(()=>{
       watchEffect(()=>{
-        if(gutter){
+        if(props.gutter){
           Array.from(gutterRef.value.children).forEach((item: any)=>{
-            if(item.nextSibling.className === 'gulu-grid-col' || (!item.nextSibling.className && !item.previousElementSibling)){
-              item.style.paddingRight = gutter + 'px'
+            if(item.nextSibling!.className === 'gulu-grid-col' || (item.nextSibling!.className && !item.previousElementSibling)){
+              item.style.paddingRight = props.gutter + 'px'
             }
           })
         }

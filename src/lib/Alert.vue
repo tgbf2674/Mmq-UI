@@ -68,7 +68,7 @@ export default defineComponent({
     const typeClass = computed(() => {
       return `gulu-alert--${props.type}`;
     });
-    const iconName = computed(() => ALERT_TYPE_CLASSES_MAP[props.type] || ALERT_TYPE_CLASSES_MAP['info']
+    const iconName = computed(() => ALERT_TYPE_CLASSES_MAP[props.type as keyof typeof ALERT_TYPE_CLASSES_MAP] || ALERT_TYPE_CLASSES_MAP['info']
     );
     const closeName = computed(()=>{
       if(props.closeText===''){

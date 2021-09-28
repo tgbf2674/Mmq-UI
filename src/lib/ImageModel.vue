@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import {ref} from 'vue';
+import {defineComponent, ref} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Image',
   props: {
     //放大展示的图片路径
@@ -25,7 +25,7 @@ export default {
       default: ''
     }
   },
-  setup(props: any) {
+  setup(props: {modelImgSrc: string}) {
     const modelRef = ref();
     const modelImgRef = ref();
     const imgClick = (event: any) => {
@@ -37,7 +37,7 @@ export default {
     };
     return {modelRef, modelImgRef, imgClick, closeModel};
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>

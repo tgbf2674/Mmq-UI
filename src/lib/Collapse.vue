@@ -12,21 +12,22 @@ export default defineComponent({
   name: "Collapse",
   props: {
     activeName: {
-      type: Array
+      type: Array,
+      default: ()=>{return []}
     },
     accordion: {
       type: Boolean,
       default: false
     }
   },
-  setup(props:any, context) {
+  setup(props, context) {
     const internalInstance = getCurrentInstance();
     emitter.on('itemClick', (val:any) => {
       const {newActiveName, uid} = val;
       if (internalInstance!.uid !== uid) {
         return;
       }
-      const index = props.activeName.findIndex((item:any) => item === newActiveName);
+      const index = props.activeName.findIndex((item) => item === newActiveName);
       //props.activeName是个代理对象，不是数组
       const propsActiveName = Array.from(props.activeName);
       if (props.accordion) {

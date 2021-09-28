@@ -12,6 +12,7 @@ type LinkType = 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default
 
 //Tag
 type TagType = 'success' | 'info' | 'warning' | 'danger' | ''
+
 type ComponentSize = 'medium' | 'small' | 'mini'
 
 //alert
@@ -22,6 +23,12 @@ interface IBreadcrumbProps {
   separator: string
   separatorClass: string
 }
+
+interface ICollapseProps{
+  activeName: Array<string>
+  accordion: boolean
+}
+
 
 // skeleton
 type Variants =

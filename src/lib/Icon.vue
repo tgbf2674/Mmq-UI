@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from 'vue';
+import {computed, defineComponent} from 'vue';
 import './iconfont.js';
 export default defineComponent({
   name: "icon",
@@ -26,9 +26,8 @@ export default defineComponent({
       default: 14
     }
   },
-  setup(props,context){
+  setup(props){
     const style = computed(()=>{
-      let fill = ''
       return {
         fill : props.fill,
         'font-size': props.fontSize + 'px'

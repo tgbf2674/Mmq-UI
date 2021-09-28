@@ -4,21 +4,28 @@
 
 <script lang="ts">
 
-import {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Switch',
   props: {
-    value: Boolean,
-    disabled: Boolean
+    value: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
-  setup(props:any, context:any) {
+  emits: ['update:value'],
+  setup(props:{value: boolean}, context) {
     const toggle = ()=>{
-      context.emit('update:value',!props.value)
+      context.emit('update:value',!(props.value))
     }
     return {toggle}
   }
-}
+})
 </script>
 
 <style lang="scss">

@@ -55,8 +55,10 @@ export default defineComponent({
     });
     const IconColor = computed(() => {
       for (let key in map) {
-        if (IconType.value === key) {
-          return map[key];
+        if(map.hasOwnProperty(key)) {
+          if (IconType.value === key) {
+            return map[key];
+          }
         }
       }
     });
