@@ -19,7 +19,7 @@ export default {
       loading.value = true
       setTimeout(()=>{
         loading.value = false
-      },1500)
+      },15000)
     }
     return {
       openLoading,loading

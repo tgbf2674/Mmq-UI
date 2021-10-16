@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import {computed,defineComponent, ref} from 'vue';
+import {computed, defineComponent, PropType, ref} from 'vue';
 import Icon from './Icon.vue'
 export default defineComponent({
   name: 'Message',
@@ -27,7 +27,7 @@ export default defineComponent({
       default: true
     },
     type: {
-      type:String,
+      type:String as PropType<MessageOptions['type']>,
       default: 'success',
       validator(value: string): boolean {
         return ['success','error','warning','info'].indexOf(value) >=0
@@ -41,13 +41,13 @@ export default defineComponent({
       default: 3
     }
   },
-  setup(props){
+  setup({type}:any){
     const messageVisible = ref(true)
     const messageWrapper = computed(()=>{
-      return 'gulu-messageWrapper-'+ props.type
+      return 'gulu-messageWrapper-'+ type
     })
     const iconName = computed(()=>{
-      return 'icon-'+ props.type
+      return 'icon-'+ type
     })
     return {messageVisible,messageWrapper,iconName}
   },

@@ -1,4 +1,4 @@
-<template>
+  <template>
   <span class="gulu-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
     <label class="gulu-radio">
       <span class="gulu-radio-input">
@@ -11,7 +11,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import {defineComponent} from 'vue';
+
+export default defineComponent({
   name: 'Radio',
   props:{
     options:{
@@ -28,7 +30,7 @@ export default {
     }
   },
   setup(props,context){
-    const select = (e)=>{
+    const select = (e: {target: HTMLInputElement})=>{
       if(e.target.value === props.value){
         return
       }
@@ -36,7 +38,7 @@ export default {
     }
     return {select}
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

@@ -29,6 +29,11 @@ interface ICollapseProps{
   accordion: boolean
 }
 
+type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T
+  currentTarget: T
+}
+
 
 // skeleton
 type Variants =
@@ -60,7 +65,7 @@ interface LoadingOptions {
 //Message
 interface MessageOptions {
   message: string,
-  type?: 'success' | 'error' | 'warning' | 'info' | string,
+  type?: 'success' | 'error' | 'warning' | 'info' ,
   canClose?: boolean,
   close?: () => void,
   displayTime?: number,
