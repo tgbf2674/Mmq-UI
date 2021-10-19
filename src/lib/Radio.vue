@@ -5,13 +5,13 @@
         <span class="gulu-radio-inner" :class="{'is-checked' :item.value ===value}"></span>
         <input type="radio" @click="select" :value="item.value" class="gulu-radio-original">
       </span>
-      <span class="gulu-radio-label" :class="{'is-checked' :item.label ===value}"> {{item.label}}</span>
+      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===value}"> {{item.label}}</span>
     </label>
   </span>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'Radio',
@@ -65,6 +65,7 @@ export default defineComponent({
       cursor: pointer;
       outline: none;
       display: inline-block;
+      font-size: 14px;
       line-height: 1;
       position: relative;
       vertical-align: middle;

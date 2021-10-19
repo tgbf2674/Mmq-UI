@@ -11,9 +11,6 @@
       </template>
     </div>
   </template>
-  <template v-else>
-    <slot v-bind="$attrs"></slot>
-  </template>
 </template>
 
 <script lang="ts">
