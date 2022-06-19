@@ -34,20 +34,26 @@ export default defineComponent({
     circle: {
       type: Boolean,
       default: false
+    },
+    round: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
-    const {theme, size, level, circle} = props;
+    const {theme, size, level, circle, round} = props;
     const buttonGroupContext = inject('buttonGroupContext', undefined)
     const _size = computed(() => size || buttonGroupContext?.size || '' )
     const _level = computed(() => level || buttonGroupContext?.level || '')
     const isCircle = computed(() => circle ? 'isCircle' : '')
+    const isRound = computed(() => round ? 'isRound' : '')
     const classes = computed(() => {
       return {
         [`gulu-theme-${theme}`]: theme,
         [`gulu-size-${_size.value}`]: _size.value,
         [`gulu-level-${_level.value}`]: _level.value,
-        [`${isCircle.value}`]: isCircle.value
+        [`${isCircle.value}`]: isCircle.value,
+        [`${isRound.value}`]: isRound.value,
         };
     });
     return {
@@ -81,7 +87,6 @@ $grey: grey;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
   transition: background 250ms;
-
   & + & {
     margin-left: 8px;
   }
@@ -123,8 +128,8 @@ $grey: grey;
   }
 
   &.gulu-size-big {
-    font-size: 24px;
-    height: 32px;
+    font-size: 28px;
+    height: 48px;
     padding: 0 16px;
   }
 
@@ -211,6 +216,10 @@ $grey: grey;
 
   &.isCircle {
     border-radius: 50%;
+  }
+
+  &.isRound {
+    border-radius: 25% / 50%;
   }
 
   > .gulu-loadingIndicator {

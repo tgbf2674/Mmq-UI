@@ -2,6 +2,9 @@
 <template>
   <div>
     <Button circle>1</Button>
+    <Button size="big" round>大大大</Button>
+    <Button round>中中中</Button>
+    <Button size="small" round>小小小</Button>
   </div>
 </template>
 
