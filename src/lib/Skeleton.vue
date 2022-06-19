@@ -57,10 +57,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-skeleton{
-  animation: gulu-skeleton-loading 1.4s ease infinite;
-}
-
 @keyframes gulu-skeleton-loading {
   0%{
     background-position: 100% 50%;

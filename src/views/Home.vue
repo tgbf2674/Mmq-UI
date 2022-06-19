@@ -2,8 +2,8 @@
   <div class="topNavAndBanner">
    <topNav />
     <div class="banner">
-      <h1>vue3UI</h1>
-      <h2>基于VUE3的框架</h2>
+      <h1>VEGDog-UI</h1>
+      <h2>基于VUE3的UI框架</h2>
       <p class="actions">
         <a href="https://github.com/tgbf2674/vue3-ui">GitHub</a>
         <router-link to="/doc">开始</router-link>
@@ -17,21 +17,21 @@
           <use xlink:href="#icon-Vue"></use>
         </svg>
         <h3>基于 Vue 3</h3>
-        <p>骄傲地使用了 Vue 3 Composition API</p>
+        <p>都已经2022年了，玩玩vue3吧，求求了，再不玩vue4都出了</p>
       </li>
       <li>
         <svg class="icon">
           <use xlink:href="#icon-ts"></use>
         </svg>
         <h3>基于 TypeScript </h3>
-        <p>源代码采用 TypeScript 书写</p>
+        <p>类型明确时代码是TypeScript,不明确的时候就是AnyScript</p>
       </li>
       <li>
         <svg class="icon">
           <use xlink:href="#icon-LC_icon_light_line"></use>
         </svg>
-        <h3>代码易读</h3>
-        <p>每个组件的源代码都极其简洁</p>
+        <h3>代码易懂</h3>
+        <p>每个组件的源代码都是新手的胡思乱想，所以新手也能明白人在干嘛</p>
       </li>
     </ul>
   </div>
@@ -52,12 +52,17 @@ $green: #0081ff;
 $border-radius: 4px;
 $color: #fff;
 .topNavAndBanner {
+  height: 34%;
   background: linear-gradient(145deg, #0081ff 0%, #1cbbb4 100%);
   clip-path: ellipse(80% 60% at 50% 40%);
 }
 .features {
   margin: 64px auto;
   padding: 0 16px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   @media (min-width: 800px) {
     width: 800px;
     >ul {
@@ -104,10 +109,11 @@ $color: #fff;
 }
 .banner {
   color: $color;
-  padding: 100px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  text-align: center;
+  transform: translate(-50%, -50%);
   flex-direction: column;
   >.actions {
     padding: 8px 0;

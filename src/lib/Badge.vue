@@ -2,9 +2,10 @@
   <div class="gulu-badge">
     <slot></slot>
     <div>
-      <sup v-show="!hidden && (content || content === 0 || isDot)"
+      <div v-show="!hidden && (content || content === 0 || isDot)"
            class="gulu-badge-content" :class="[isDot ? 'is-dot' : 'gulu-badge-content-' + type,'is-fixed']"
-           v-text="content"></sup>
+           v-text="content">
+      </div>
     </div>
   </div>
 </template>

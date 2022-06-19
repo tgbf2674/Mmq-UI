@@ -1,10 +1,12 @@
 <template>
-  <button class="gulu-switch" :disabled="disabled" :class="{'gulu-checked': value}" @click="toggle"><span class="gulu-span"></span></button>
+  <button class="gulu-switch" :disabled="disabled" :class="{'gulu-checked': value}" @click="toggle">
+    <span class="gulu-span"></span>
+  </button>
 </template>
 
 <script lang="ts">
 
-import {defineComponent, PropType} from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'Switch',

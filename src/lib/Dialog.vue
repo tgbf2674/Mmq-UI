@@ -84,7 +84,6 @@ export default defineComponent({
     const x1 = ref(null);
     const y1 = ref(null);
     const end = (e:any) => {
-
       const {x, y} = e;
       const {offsetTop, offsetLeft} = e.target;
       e.target.style.top = offsetTop - (y1.value! - y) + 'px';

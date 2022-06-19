@@ -1,12 +1,12 @@
 <template>
   <button class="gulu-button" :class="classes" :disabled="disabled">
     <span v-if="loading" class="gulu-loadingIndicator"></span>
-    <slot/>
+    <slot />
   </button>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType} from 'vue';
+import {computed, defineComponent, inject, PropType} from 'vue';
 
 export default defineComponent({
   name: 'Button',
@@ -17,11 +17,11 @@ export default defineComponent({
     },
     size: {
       type: String as PropType<ButtonSize>,
-      default: 'normal'
+      default: ''
     },
     level: {
       type: String as PropType<ButtonLevel>,
-      default: 'normal',
+      default: '',
     },
     disabled: {
       type: Boolean,
@@ -34,12 +34,15 @@ export default defineComponent({
   },
   setup(props) {
     const {theme, size, level} = props;
+    const buttonGroupContext = inject('buttonGroupContext', undefined)
+    const _size = computed(() => size || buttonGroupContext?.size || '' )
+    const _level = computed(() => level || buttonGroupContext?.level || '')
+    console.log(_size, _level)
     const classes = computed(() => {
       return {
         [`gulu-theme-${theme}`]: theme,
-        [`gulu-size-${size}`]: size,
-        [`gulu-level-${level}`]: level,
-      };
+        [`gulu-size-${_size.value}`]: _size.value,
+        [`gulu-level-${_level.value}`]: _level.value};
     });
     return {
       classes
