@@ -6,6 +6,7 @@
   <Demo :component="Button4Demo"></Demo>
   <Demo :component="Button5Demo"></Demo>
   <Demo :component="Button6Demo"></Demo>
+  <Demo :component="Button7Demo"></Demo>
 </template>
 
 <script lang="ts">
@@ -16,6 +17,7 @@ import Button3Demo from '../demoInstance/Button/Button3.demo.vue'
 import Button4Demo from '../demoInstance/Button/Button4.demo.vue'
 import Button5Demo from '../demoInstance/Button/Button5.demo.vue'
 import Button6Demo from '../demoInstance/Button/Button6.demo.vue'
+import Button7Demo from '../demoInstance/Button/Button7.demo.vue'
 import Demo from '../Demo.vue'
 export default {
   name: 'buttonDemo',
@@ -26,7 +28,7 @@ export default {
     const onClick = ()=>{
     }
     return {
-      onClick,Button1Demo,Button2Demo,Button3Demo,Button4Demo,Button5Demo,Button6Demo
+      onClick,Button1Demo,Button2Demo,Button3Demo,Button4Demo,Button5Demo,Button6Demo,Button7Demo
     }
   }
 }
