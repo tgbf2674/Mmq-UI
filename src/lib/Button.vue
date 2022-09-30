@@ -42,9 +42,9 @@ export default defineComponent({
   },
   setup(props) {
     const {theme, size, level, circle, round} = props;
-    const buttonGroupContext = inject('buttonGroupContext', undefined)
-    const _size = computed(() => size || buttonGroupContext?.size || '' )
-    const _level = computed(() => level || buttonGroupContext?.level || '')
+    const buttonGroupContext: ButtonSizeLevelType = inject('buttonGroupContext', {size: 'normal', level: 'normal'})
+    const _size = computed(() => size || buttonGroupContext.size || '' )
+    const _level = computed(() => level || buttonGroupContext.level || '')
     const isCircle = computed(() => circle ? 'isCircle' : '')
     const isRound = computed(() => round ? 'isRound' : '')
     const classes = computed(() => {

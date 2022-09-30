@@ -3,13 +3,13 @@
 打开终端运行下列命令：
 
 ```
-npm install VEGDOG-UI
+npm install xxx
 ```
 
 或
 
 ```
-yarn add VEGDOG-UI
+yarn add xxx
 ```
 
 下一节：[开始使用](#/doc/get-started)

@@ -27,12 +27,17 @@ export default defineComponent({
     vertical: {
       type: Boolean,
       default: false
+    },
+    canCancel: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props,context){
     const select = (e: {target: HTMLInputElement})=>{
       if(e.target.value === props.value){
-        return
+        if (props.canCancel) e.target.value = ''
+        else return
       }
       context.emit('update:value',e.target.value)
     }

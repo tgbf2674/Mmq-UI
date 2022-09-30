@@ -5,6 +5,11 @@ type ButtonSize = 'big' | 'normal' | 'small'
 
 type ButtonLevel = 'main' | 'normal' | 'danger'
 
+type ButtonSizeLevelType = {
+  size: ButtonSize,
+  level: ButtonLevel
+}
+
 //Card
 type CardShadow = 'always' | 'hover' | 'never'
 //Link

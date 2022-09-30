@@ -1,0 +1,23 @@
+<demo>
+支持取消选择
+</demo>
+<template>
+  <Radio v-model:value="selectedValue" :options="options" can-cancel vertical/>
+</template>
+
+<script lang="ts">
+import Radio from "../../../lib/Radio.vue";
+import {ref} from 'vue';
+export default {
+  components: {Radio},
+  setup() {
+    const selectedValue = ref('Apple');
+    const options = ref([
+      {label: '苹果', value: 'Apple'},
+      {label: '梨', value: 'Pear'},
+      {label: '橘子', value: 'Orange'}
+    ]);
+    return {selectedValue, options};
+  }
+};
+</script>

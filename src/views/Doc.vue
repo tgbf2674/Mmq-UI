@@ -41,6 +41,7 @@
           <li><router-link to="/doc/message">message 组件</router-link></li>
           <span>导航</span>
           <li><router-link to="/doc/tabs">Tabs 组件</router-link></li>
+          <li><router-link to="/doc/backTop">backTop 组件</router-link></li>
           <li><router-link to="/doc/sticky">sticky 组件</router-link></li>
           <li><router-link to="/doc/breadcrumb">breadcrumb 组件</router-link></li>
           <span>其他</span>
