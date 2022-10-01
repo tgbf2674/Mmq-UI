@@ -13,6 +13,7 @@ import message from './components/demo/MessageDemo.vue'
 import collapse from './components/demo/CollapseDemo.vue'
 import spread from './components/demo/SpreadDemo.vue'
 import radio from './components/demo/RadioDemo.vue'
+import checkbox from './components/demo/CheckboxDemo.vue';
 import dropdown from './components/demo/DropDownDemo.vue'
 import tooltip from './components/demo/TooltipDemo.vue'
 import swiper from './components/demo/SwiperDemo.vue'
@@ -60,6 +61,7 @@ export const router = createRouter({
         {path: 'collapse',component: collapse},
         {path: 'spread',component: spread},
         {path: 'radio',component: radio},
+        {path: 'checkbox',component: checkbox},
         {path: 'dropdown',component: dropdown},
         {path: 'tooltip',component: tooltip},
         {path: 'swiper',component: swiper},

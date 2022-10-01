@@ -25,6 +25,7 @@
           <li><router-link to="/doc/link">link 组件</router-link></li>
           <span>表单</span>
           <li><router-link to="/doc/radio">radio 组件</router-link></li>
+          <li><router-link to="/doc/checkbox">checkbox 组件</router-link></li>
           <li><router-link to="/doc/input">input 组件</router-link></li>
           <li><router-link to="/doc/dropdown">dropdown 组件</router-link></li>
           <li><router-link to="/doc/switch">Switch 组件</router-link></li>

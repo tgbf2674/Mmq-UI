@@ -1,11 +1,11 @@
-  <template>
+<template>
   <span class="gulu-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
     <label class="gulu-radio">
       <span class="gulu-radio-input">
         <span class="gulu-radio-inner" :class="{'is-checked' :item.value ===value}"></span>
         <input type="radio" @click="select" :value="item.value" class="gulu-radio-original">
       </span>
-      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===value}"> {{item.label}}</span>
+      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===value}"> {{ item.label }}</span>
     </label>
   </span>
 </template>
@@ -15,12 +15,12 @@ import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'Radio',
-  props:{
-    options:{
+  props: {
+    options: {
       type: Array,
       required: true
     },
-    value:{
+    value: {
       type: String,
       required: true
     },
@@ -33,25 +33,27 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props,context){
-    const select = (e: {target: HTMLInputElement})=>{
-      if(e.target.value === props.value){
-        if (props.canCancel) e.target.value = ''
-        else return
+  setup(props, context) {
+    const select = (e: { target: HTMLInputElement }) => {
+      if (e.target.value === props.value) {
+        if (props.canCancel) e.target.value = '';
+        else return;
       }
-      context.emit('update:value',e.target.value)
-    }
-    return {select}
+      context.emit('update:value', e.target.value);
+    };
+    return {select};
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
+
 .gulu-radio-wrapper {
   &.vertical {
     display: block;
   }
+
   .gulu-radio {
     color: #606266;
     font-weight: 500;
@@ -65,6 +67,7 @@ export default defineComponent({
     margin-right: 30px;
     -moz-user-select: none;
     -webkit-user-select: none;
+
     .gulu-radio-input {
       white-space: nowrap;
       cursor: pointer;
@@ -74,6 +77,7 @@ export default defineComponent({
       line-height: 1;
       position: relative;
       vertical-align: middle;
+
       .gulu-radio-inner {
         border: 1px solid $gulu-border-color;
         border-radius: 100%;
@@ -84,6 +88,7 @@ export default defineComponent({
         cursor: pointer;
         display: inline-block;
         box-sizing: border-box;
+
         &:after {
           width: 4px;
           height: 4px;
@@ -96,14 +101,17 @@ export default defineComponent({
           transform: translate(-50%, -50%) scale(0);
           transition: transform .15s ease-in;
         }
+
         &.is-checked {
           border-color: $gulu-type-primary;
           background-color: rgb(64, 158, 255);
+
           &:after {
             transform: translate(-50%, -50%) scale(1);
           }
         }
       }
+
       .gulu-radio-original {
         opacity: 0;
         outline: none;
@@ -117,9 +125,11 @@ export default defineComponent({
       }
     }
   }
+
   .gulu-radio-label {
     font-size: 14px;
     padding-left: 10px;
+
     &.is-checked {
       color: $gulu-type-primary-dark;
     }
