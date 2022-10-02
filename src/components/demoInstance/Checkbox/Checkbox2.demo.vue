@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import checkbox from '../../../lib/Checkout.vue';
+import checkbox from '../../../lib/Checkbox.vue';
 import {ref} from 'vue';
 export default {
   name: 'Checkbox1.demo',

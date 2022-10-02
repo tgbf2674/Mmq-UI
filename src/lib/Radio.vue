@@ -2,16 +2,16 @@
   <span class="gulu-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
     <label class="gulu-radio">
       <span class="gulu-radio-input">
-        <span class="gulu-radio-inner" :class="{'is-checked' :item.value ===value}"></span>
+        <span class="gulu-radio-inner" :class="{'is-checked' :item.value ===modelValue}"></span>
         <input type="radio" @click="select" :value="item.value" class="gulu-radio-original">
       </span>
-      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===value}"> {{ item.label }}</span>
+      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===modelValue}"> {{ item.label }}</span>
     </label>
   </span>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'Radio',
@@ -20,7 +20,7 @@ export default defineComponent({
       type: Array,
       required: true
     },
-    value: {
+    modelValue: {
       type: String,
       required: true
     },
@@ -35,11 +35,11 @@ export default defineComponent({
   },
   setup(props, context) {
     const select = (e: { target: HTMLInputElement }) => {
-      if (e.target.value === props.value) {
+      if (e.target.value === props.modelValue) {
         if (props.canCancel) e.target.value = '';
         else return;
       }
-      context.emit('update:value', e.target.value);
+      context.emit('update:modelValue', e.target.value);
     };
     return {select};
   }

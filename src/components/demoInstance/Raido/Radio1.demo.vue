@@ -2,7 +2,7 @@
 常规用法
 </demo>
 <template>
-  <Radio v-model:value="selectedValue" :options="options"></Radio>
+  <Radio v-model="selectedValue" :options="options"></Radio>
 </template>
 
 <script lang="ts">

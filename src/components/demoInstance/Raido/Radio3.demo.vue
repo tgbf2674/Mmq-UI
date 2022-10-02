@@ -2,7 +2,7 @@
 支持取消选择
 </demo>
 <template>
-  <Radio v-model:value="selectedValue" :options="options" can-cancel vertical/>
+  <Radio v-model="selectedValue" :options="options" can-cancel vertical/>
 </template>
 
 <script lang="ts">

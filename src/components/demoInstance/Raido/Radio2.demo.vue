@@ -2,7 +2,7 @@
 垂直排列
 </demo>
 <template>
-  <Radio v-model:value="selectedValue" :options="options" vertical/>
+  <Radio v-model="selectedValue" :options="options" vertical/>
 </template>
 
 <script lang="ts">
