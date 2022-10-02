@@ -2,7 +2,7 @@
 禁用状态
 </demo>
 <template>
-  <CheckboxGroup :value="value">
+  <CheckboxGroup :value="value" @change="checkboxChange">
     <checkbox label="haha"></checkbox>
     <checkbox label="xixi"></checkbox>
     <checkbox label="heihei"></checkbox>
@@ -19,8 +19,11 @@ export default {
   components: {checkbox, CheckboxGroup},
   setup() {
     const value = ref(['haha', 'xixi'])
+    const checkboxChange = (val) => {
+      console.log(val)
+    }
     return {
-      value
+      value, checkboxChange
     }
   }
 }

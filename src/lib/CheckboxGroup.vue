@@ -5,23 +5,35 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, provide} from 'vue';
+import {computed, defineComponent, provide} from 'vue';
 
 export default defineComponent ({
   name: 'CheckoutGroup',
   props: {
-    value: {
+    modelValue: {
       type: Array,
-      required: true
+      required: true,
+      default: () => undefined
     },
     disabled: {
       type: Boolean,
       default: false
     }
   },
-  setup(props) {
+  emits: ['change', 'update:modelValue'],
+  setup(props, ctx) {
+    const changeEvent = (val: unknown) => {
+      ctx.emit('update:modelValue', val);
+      ctx.emit('change', val)
+    };
+
+    const modelValue = computed(() => props.modelValue);
     provide(
-      'CheckboxGroupContext', props.value
+      'CheckboxGroupContext', {
+        name: 'CheckboxGroupContext',
+        modelValue,
+        changeEvent
+      }
     )
   }
 })
