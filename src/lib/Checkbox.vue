@@ -1,12 +1,12 @@
 <template>
   <label :class="['gulu-checkbox']">
-    <input :disabled="disabled" :value="modelValue" type="checkbox" class="gulu-checkbox-input" @change="select"/>
-    <span>{{ label }}{{ value }}</span>
+    <input ref="checkboxRef" :disabled="disabled" :checked="modelValue" type="checkbox" class="gulu-checkbox-input" @change="select"/>
+    <span>{{ label }}</span>
   </label>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, onMounted, watch} from 'vue';
+import {defineComponent, inject, onMounted, ref} from 'vue';
 
 export default defineComponent({
   name: 'checkbox',
@@ -25,21 +25,18 @@ export default defineComponent({
   },
   setup(props, context) {
     const hasCheckGroup: string [] = inject('CheckboxGroupContext', []);
+    const checkboxRef = ref(null as HTMLInputElement|null)
     onMounted(() => {
-      console.log(props.modelValue)
+      hasCheckGroup.forEach(item => {
+        if (checkboxRef.value && item === props.label) {
+          checkboxRef.value.checked = true
+        }
+      })
     })
-    // onMounted(() => {
-    //   console.log(hasCheckGroup, 'hahaha')
-    //   hasCheckGroup.forEach(item => {
-    //     if (item === props.label) {
-    //       context.emit('update:modelValue', true);
-    //     }
-    //   })
-    // })
     const select = (e: { target: HTMLInputElement }) => {
-      e.target.checked ? context.emit('update:modelValue', false) : context.emit('update:modelValue', true)
+      context.emit('update:modelValue', e.target.checked)
     };
-    return {select};
+    return {select, checkboxRef};
   }
 });
 </script>

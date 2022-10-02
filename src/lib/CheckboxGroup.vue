@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, provide} from 'vue';
+import {defineComponent, provide} from 'vue';
 
 export default defineComponent ({
   name: 'CheckoutGroup',
