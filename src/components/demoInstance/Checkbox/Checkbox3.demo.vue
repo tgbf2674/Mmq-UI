@@ -2,12 +2,13 @@
 禁用状态
 </demo>
 <template>
-  <CheckboxGroup :value="value" @change="checkboxChange">
+  <CheckboxGroup v-model="value" @change="checkboxChange">
     <checkbox label="haha"></checkbox>
     <checkbox label="xixi"></checkbox>
     <checkbox label="heihei"></checkbox>
     <checkbox label="wuhu"></checkbox>
   </CheckboxGroup>
+  {{ value }}
 </template>
 
 <script lang="ts">
@@ -19,7 +20,7 @@ export default {
   components: {checkbox, CheckboxGroup},
   setup() {
     const value = ref(['haha', 'xixi'])
-    const checkboxChange = (val) => {
+    const checkboxChange = (val: any) => {
       console.log(val)
     }
     return {

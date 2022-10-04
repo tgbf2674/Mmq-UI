@@ -1,7 +1,9 @@
 <template>
   <label :class="['gulu-checkbox']">
-    <input :disabled="disabled" v-model="model" type="checkbox" class="gulu-checkbox-input" @change="select"/>
-    <span>{{ label }}{{ model }}</span>
+    <input :disabled="disabled" v-model="model" :value="label" :checked="isChecked" :indeterminate="indeterminate" type="checkbox" class="gulu-checkbox-input" @change="select"/>
+    <span class="gulu-checkbox-label">
+      <slot>{{ label }}</slot>
+    </span>
   </label>
 </template>
 
@@ -28,6 +30,14 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    checked: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -45,11 +55,19 @@ export default defineComponent({
         context.emit('update:modelValue', val)
       }
     })
+    const isChecked = computed(() => {
+      const value = model.value
+      if (Array.isArray(value)) {
+        return value.includes(props.label)
+      } else {
+        return value
+      }
+    })
     const select = (e: InputEvent) => {
       const target = e.target as HTMLInputElement
       context.emit('update:modelValue', target.checked)
     };
-    return {select, model};
+    return {select, model, isChecked};
   }
 });
 </script>
