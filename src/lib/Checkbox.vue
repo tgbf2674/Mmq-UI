@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import {computed, ComputedRef, defineComponent, inject, onMounted, ref} from 'vue';
+import {computed, ComputedRef, defineComponent, inject} from 'vue';
 
 interface CheckboxGroupType {
   name?: string,

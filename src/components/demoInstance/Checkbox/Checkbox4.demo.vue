@@ -2,13 +2,11 @@
 禁用状态
 </demo>
 <template>
-  <checkbox v-model="checkAll" :indeterminate="isIndeterminate" label="check all" @change="handleAllChange"></checkbox>
+  <checkbox v-model="checkAll" :indeterminate="isIndeterminate"></checkbox>
   <CheckboxGroup v-model="checkedCities" @change="handleCheckedCitiesChange">
-    <checkbox label="haha"></checkbox>
-    <checkbox label="xixi"></checkbox>
-    <checkbox label="heihei"></checkbox>
-    <checkbox label="wuhu"></checkbox>
+    <checkbox v-for="city in cities" :key="city" :label="city"></checkbox>
   </CheckboxGroup>
+  {{ value }}
 </template>
 
 <script lang="ts">
@@ -23,17 +21,18 @@ export default {
     const isIndeterminate = ref(true)
     const checkedCities = ref(['Shanghai', 'Beijing'])
     const cities = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
-    const handleCheckedCitiesChange = (value: string[]) => {
-      const checkedCount = value.length
-      checkAll.value = checkedCount === cities.length
-      isIndeterminate.value = checkedCount > 0 && checkedCount < cities.length
-    }
-    const handleAllChange = (val: any) => {
+
+    const handleCheckAllChange = (val: boolean) => {
       checkedCities.value = val ? cities : []
       isIndeterminate.value = false
     }
+    const handleCheckedCitiesChange = (value: string[]) => {
+      const checkedCount = value.length
+      checkAll.value = checkedCount === cities.length
+      isIndeterminate.value = checkedCount > 0 && cities.length > checkedCount
+    }
     return {
-      handleCheckedCitiesChange, checkAll, isIndeterminate, checkedCities, handleAllChange
+      checkedCities, checkAll, isIndeterminate, handleCheckedCitiesChange, handleCheckAllChange, cities
     }
   }
 }
