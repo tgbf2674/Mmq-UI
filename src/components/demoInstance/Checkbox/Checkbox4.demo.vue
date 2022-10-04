@@ -3,7 +3,7 @@
 </demo>
 <template>
   <checkbox v-model="checkAll" :indeterminate="isIndeterminate"></checkbox>
-  <CheckboxGroup v-model="checkedCities" @change="handleCheckedCitiesChange">
+  <CheckboxGroup v-model="checkedCities" @change="handleCheckedCitiesChange" :max="2" :min="1">
     <checkbox v-for="city in cities" :key="city" :label="city"></checkbox>
   </CheckboxGroup>
   {{ value }}

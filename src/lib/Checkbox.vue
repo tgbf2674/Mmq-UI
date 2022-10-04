@@ -1,6 +1,6 @@
 <template>
   <label :class="['gulu-checkbox']">
-    <input :disabled="disabled" v-model="model" :value="label" :checked="isChecked" :indeterminate="indeterminate" type="checkbox" class="gulu-checkbox-input" @change="select"/>
+    <input :disabled="isDisabled" v-model="model" :value="label" :checked="isChecked" :indeterminate="indeterminate" type="checkbox" class="gulu-checkbox-input" @change="select"/>
     <span class="gulu-checkbox-label">
       <slot>{{ label }}</slot>
     </span>
@@ -8,12 +8,15 @@
 </template>
 
 <script lang="ts">
-import {computed, ComputedRef, defineComponent, inject} from 'vue';
+import {computed, ComputedRef, defineComponent, inject, ref, watch, watchEffect} from 'vue';
 
 interface CheckboxGroupType {
   name?: string,
   modelValue?: ComputedRef,
-  changeEvent?: (val: unknown) => void
+  changeEvent?: (val: unknown) => void,
+  max?: number,
+  min?: number,
+  disabled?: boolean
 }
 
 export default defineComponent({
@@ -55,6 +58,18 @@ export default defineComponent({
         context.emit('update:modelValue', val)
       }
     })
+    const isLimitDisabled = computed(() =>{
+      const max = checkboxGroup.max
+      const min = checkboxGroup.min
+      if (Array.isArray(model.value))
+      return (
+        (max && model.value.length >= max && !isChecked.value) ||
+        (min && min !== 0 && model.value.length <= min && isChecked.value)
+      )
+    })
+    const isDisabled = computed(() =>  {
+      return checkboxGroup.disabled || isLimitDisabled.value
+    })
     const isChecked = computed(() => {
       const value = model.value
       if (Array.isArray(value)) {
@@ -67,7 +82,7 @@ export default defineComponent({
       const target = e.target as HTMLInputElement
       context.emit('update:modelValue', target.checked)
     };
-    return {select, model, isChecked};
+    return {select, model, isChecked, isDisabled};
   }
 });
 </script>

@@ -18,6 +18,12 @@ export default defineComponent ({
     disabled: {
       type: Boolean,
       default: false
+    },
+    max: {
+      type: Number
+    },
+    min: {
+      type: Number
     }
   },
   emits: ['change', 'update:modelValue'],
@@ -31,7 +37,10 @@ export default defineComponent ({
     provide(
       'CheckboxGroupContext', {
         name: 'CheckboxGroupContext',
+        disabled: props.disabled,
         modelValue,
+        max: props.max,
+        min: props.min,
         changeEvent
       }
     )
