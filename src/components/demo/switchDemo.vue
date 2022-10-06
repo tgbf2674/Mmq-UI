@@ -17,7 +17,7 @@ name: "switchDemo",
   setup(){
     return {
       Switch1Demo,
-      Switch2Demo,
+      Switch2Demo
     }
   }
 }

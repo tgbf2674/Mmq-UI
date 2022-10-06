@@ -3,7 +3,7 @@
 </demo>
 
 <template>
-  <Switch v-model:value="bool" />
+  <Switch v-model:value="bool" active-text="1" inactive-text="2"/>
 </template>
 <script lang="ts">
 import Switch from '../../../lib/Switch.vue'

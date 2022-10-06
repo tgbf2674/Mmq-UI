@@ -1,5 +1,5 @@
 {
-  "name": "gulu-ui-1",
+  "name": "mmq-ui",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -17,5 +17,20 @@
     "@vue/compiler-sfc": "3.0.0-rc.1",
     "sass": "1.26.10",
     "vite": "1.0.0-rc.1"
-  }
+  },
+  "description": "ui库",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgbf2674/vue3-ui.git"
+  },
+  "keywords": [
+    "ui库"
+  ],
+  "author": "tgbf2674",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tgbf2674/vue3-ui/issues"
+  },
+  "homepage": "https://github.com/tgbf2674/vue3-ui#readme"
 }
