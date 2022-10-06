@@ -1,0 +1,7 @@
+export { default as MqSwitch } from './Switch.vue'
+export { default as MqButton } from './Button.vue'
+export { default as MqButtonGroup } from './ButtonGroup.vue'
+export { default as MqTabs } from './Tabs.vue'
+export { default as MqTab } from './Tab.vue'
+export { default as MqRadio } from './Radio.vue'
+export { default as MqTag } from './Tag.vue'
