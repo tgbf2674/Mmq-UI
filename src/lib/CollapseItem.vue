@@ -1,11 +1,11 @@
 <template>
-  <div class="gulu-collapse-item" :class="{isActive}">
-    <div class="gulu-collapse-item-header" :class="{disabled}" @click="handleHeaderClick">
+  <div class="mmq-collapse-item" :class="{isActive}">
+    <div class="mmq-collapse-item-header" :class="{disabled}" @click="handleHeaderClick">
       <slot name="header"></slot>
       <Icon name="icon-menuright"/>
     </div>
     <Spread :visible="isActive">
-      <div class="gulu-collapse-item-body">
+      <div class="mmq-collapse-item-body">
         <slot name="body"></slot>
       </div>
     </Spread>
@@ -48,8 +48,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
-.gulu-collapse-item {
-  .gulu-collapse-item-header {
+.mmq-collapse-item {
+  .mmq-collapse-item-header {
     display: flex;
     align-items: center;
     height: 48px;
@@ -76,7 +76,7 @@ export default defineComponent({
       font-weight: 300;
     }
   }
-  .gulu-collapse-item-body {
+  .mmq-collapse-item-body {
     overflow: hidden;
     box-sizing: border-box;
     border-bottom: 1px solid #ebeef5;
@@ -86,7 +86,7 @@ export default defineComponent({
     line-height: 2;
   }
   &.isActive {
-    .gulu-collapse-item-header {
+    .mmq-collapse-item-header {
       border-bottom-color: transparent;
       svg {
         transform: rotate(90deg);

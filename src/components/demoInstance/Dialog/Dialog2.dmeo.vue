@@ -1,5 +1,5 @@
 <demo>
-函数式调用 Dialog
+函数式调用
 </demo>
 <template>
   <div>
@@ -13,9 +13,9 @@ import {
   defineComponent,
   h
 } from 'vue';
-import {openDialog} from '../../../lib/openDialog';
+import { openDialog } from '../../../lib/openDialog';
 
-export default defineComponent ({
+export default defineComponent({
   components: {
     Button
   },
@@ -41,5 +41,5 @@ export default defineComponent ({
       showDialog
     };
   }
-});
+})
 </script>

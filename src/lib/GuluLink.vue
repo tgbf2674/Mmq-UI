@@ -1,9 +1,9 @@
 <template>
   <a
-    :class="['gulu-link',type ? `gulu-link-${type}` : '',disabled && 'is-disabled',underline && !disabled && 'is-underline']"
+    :class="['mmq-link',type ? `mmq-link-${type}` : '',disabled && 'is-disabled',underline && !disabled && 'is-underline']"
     :href="disabled || !href ? null : href" @click="handleClick">
     <Icon v-if="icon" :name="icon" :fill="IconColor"></Icon>
-    <span v-if="$slots.default" class="gulu-link-inner">
+    <span v-if="$slots.default" class="mmq-link-inner">
     <slot></slot>
     </span>
     <slot v-if="$slots.icon" name="icon"></slot>
@@ -75,7 +75,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-link {
+.mmq-link {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
@@ -89,7 +89,7 @@ export default defineComponent({
   font-size: 14px;
   font-weight: 300;
 
-  &.gulu-link-default {
+  &.mmq-link-default {
     color: #909399;
 
     &:hover {
@@ -111,7 +111,7 @@ export default defineComponent({
     }
   }
 
-  &.gulu-link-primary {
+  &.mmq-link-primary {
     color: #409eff;
 
     &:hover {
@@ -133,7 +133,7 @@ export default defineComponent({
     }
   }
 
-  &.gulu-link-success {
+  &.mmq-link-success {
     color: #67c23a;
 
     &:hover {
@@ -155,7 +155,7 @@ export default defineComponent({
     }
   }
 
-  &.gulu-link-warning {
+  &.mmq-link-warning {
     color: #e6a23c;
 
     &:hover {
@@ -177,7 +177,7 @@ export default defineComponent({
     }
   }
 
-  &.gulu-link-danger {
+  &.mmq-link-danger {
     color: #f56c6c;
 
     &:hover {
@@ -199,7 +199,7 @@ export default defineComponent({
     }
   }
 
-  &.gulu-link-info {
+  &.mmq-link-info {
     color: #909399;
 
     &:hover {

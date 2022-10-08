@@ -1,5 +1,5 @@
 <template>
-  <div ref="breadcrumb" class="gulu-breadcrumb" aria-label="Breadcrumb" role="navigation">
+  <div ref="breadcrumb" class="mmq-breadcrumb" aria-label="Breadcrumb" role="navigation">
     <slot></slot>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default defineComponent({
     const breadcrumb:Ref = ref(null);
     provide<IBreadcrumbProps>('breadcrumb', props);
     onMounted(() => {
-      const items = breadcrumb.value.querySelectorAll('.gulu-breadcrumb-item');
+      const items = breadcrumb.value.querySelectorAll('.mmq-breadcrumb-item');
       if (items.length) {
         items[items.length - 1].setAttribute('aria-current', 'page');
       }
@@ -36,7 +36,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-breadcrumb {
+.mmq-breadcrumb {
   font-size: 14px;
   line-height: 1;
 }

@@ -3,12 +3,12 @@
 </demo>
 <template>
   <div>
-    <gulu-link href="https://4399.com" target="_blank">默认链接</gulu-link>
-    <gulu-link @click="clicked" type="primary">主要链接</gulu-link>
-    <gulu-link type="success">成功链接</gulu-link>
-    <gulu-link type="warning">警告链接</gulu-link>
-    <gulu-link type="danger">危险链接</gulu-link>
-    <gulu-link type="info">信息链接</gulu-link>
+    <mmq-link href="https://4399.com" target="_blank">默认链接</mmq-link>
+    <mmq-link @click="clicked" type="primary">主要链接</mmq-link>
+    <mmq-link type="success">成功链接</mmq-link>
+    <mmq-link type="warning">警告链接</mmq-link>
+    <mmq-link type="danger">危险链接</mmq-link>
+    <mmq-link type="info">信息链接</mmq-link>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import GuluLink from '../../../lib/GuluLink.vue'
 export default {
   name: 'GuluLink1.demo',
   components:{
-    'gulu-link': GuluLink
+    'mmq-link': GuluLink
   },
   setup(){
     const clicked = (event:any)=>{

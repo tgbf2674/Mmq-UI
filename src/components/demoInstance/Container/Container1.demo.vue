@@ -76,33 +76,33 @@ export default {
     margin-bottom: 40px;
   }
   .header, .footer {
-    background-color: $gulu-container-header;
+    background-color: $mmq-container-header;
     text-align: center;
     line-height: 60px;
   }
 
   .aside {
-    background-color: $gulu-container-aside;
+    background-color: $mmq-container-aside;
     text-align: center;
     line-height: 160px;
   }
 
   .main {
-    background-color: $gulu-container-main;
+    background-color: $mmq-container-main;
     line-height: 160px;
     text-align: center;
   }
-  .gulu-container:nth-child(5){
+  .mmq-container:nth-child(5){
     .aside{
       line-height: 220px;
     }
   }
-  .gulu-container:nth-child(6){
+  .mmq-container:nth-child(6){
     .aside{
       line-height: 220px;
     }
   }
-  .gulu-container:nth-child(7){
+  .mmq-container:nth-child(7){
     .aside{
       line-height: 280px;
     }

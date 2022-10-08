@@ -1,11 +1,11 @@
 <template>
-  <span class="gulu-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
-    <label class="gulu-radio">
-      <span class="gulu-radio-input">
-        <span class="gulu-radio-inner" :class="{'is-checked' :item.value ===modelValue}"></span>
-        <input type="radio" @click="select" :value="item.value" class="gulu-radio-original">
+  <span class="mmq-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
+    <label class="mmq-radio">
+      <span class="mmq-radio-input">
+        <span class="mmq-radio-inner" :class="{'is-checked' :item.value ===modelValue}"></span>
+        <input type="radio" @click="select" :value="item.value" class="mmq-radio-original">
       </span>
-      <span class="gulu-radio-label" :class="{'is-checked' :item.value ===modelValue}"> {{ item.label }}</span>
+      <span class="mmq-radio-label" :class="{'is-checked' :item.value ===modelValue}"> {{ item.label }}</span>
     </label>
   </span>
 </template>
@@ -49,12 +49,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
 
-.gulu-radio-wrapper {
+.mmq-radio-wrapper {
   &.vertical {
     display: block;
   }
 
-  .gulu-radio {
+  .mmq-radio {
     color: #606266;
     font-weight: 500;
     line-height: 1;
@@ -68,7 +68,7 @@ export default defineComponent({
     -moz-user-select: none;
     -webkit-user-select: none;
 
-    .gulu-radio-input {
+    .mmq-radio-input {
       white-space: nowrap;
       cursor: pointer;
       outline: none;
@@ -78,8 +78,8 @@ export default defineComponent({
       position: relative;
       vertical-align: middle;
 
-      .gulu-radio-inner {
-        border: 1px solid $gulu-border-color;
+      .mmq-radio-inner {
+        border: 1px solid $mmq-border-color;
         border-radius: 100%;
         width: 14px;
         height: 14px;
@@ -103,7 +103,7 @@ export default defineComponent({
         }
 
         &.is-checked {
-          border-color: $gulu-type-primary;
+          border-color: $mmq-type-primary;
           background-color: rgb(64, 158, 255);
 
           &:after {
@@ -112,7 +112,7 @@ export default defineComponent({
         }
       }
 
-      .gulu-radio-original {
+      .mmq-radio-original {
         opacity: 0;
         outline: none;
         position: absolute;
@@ -126,12 +126,12 @@ export default defineComponent({
     }
   }
 
-  .gulu-radio-label {
+  .mmq-radio-label {
     font-size: 14px;
     padding-left: 10px;
 
     &.is-checked {
-      color: $gulu-type-primary-dark;
+      color: $mmq-type-primary-dark;
     }
   }
 }

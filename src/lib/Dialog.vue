@@ -1,12 +1,12 @@
 <template>
   <Teleport to="body">
     <template v-if="visible">
-      <div @click="onClickOverlay" class="gulu-dialog-overlay"></div>
-      <div class="gulu-dialog-wrapper" :draggable="draggable" @dragend="end" @dragstart="start">
-        <div class="gulu-dialog">
+      <div @click="onClickOverlay" class="mmq-dialog-overlay"></div>
+      <div class="mmq-dialog-wrapper" :draggable="draggable" @dragend="end" @dragstart="start">
+        <div class="mmq-dialog">
           <header>
             <slot name="title"/>
-            <span @click="close" class="gulu-dialog-close"></span>
+            <span @click="close" class="mmq-dialog-close"></span>
           </header>
           <main>
             <slot name="content"></slot>
@@ -106,7 +106,7 @@ export default defineComponent({
 @import "./src/style/theme.scss";
 $radius: 4px;
 $border-color: #d9d9d9;
-.gulu-dialog {
+.mmq-dialog {
   background: white;
   border-radius: $radius;
   box-shadow: 0 0 3px fade_out(black, 0.5);

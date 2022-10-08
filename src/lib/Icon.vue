@@ -1,6 +1,6 @@
 <template>
-  <div class="gulu-icon-wrapper">
-    <svg class="gulu-icon" :style="style" aria-hidden="true">
+  <div class="mmq-icon-wrapper">
+    <svg class="mmq-icon" :style="style" aria-hidden="true">
       <use :xlink:href="'#'+name"></use>
     </svg>
   </div>
@@ -41,10 +41,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.gulu-icon-wrapper {
+.mmq-icon-wrapper {
   display: inline;
   font-size: 14px;
-  .gulu-icon {
+  .mmq-icon {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;

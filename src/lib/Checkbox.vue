@@ -1,7 +1,7 @@
 <template>
-  <label :class="['gulu-checkbox']">
-    <input :disabled="isDisabled" v-model="model" :value="label" :checked="isChecked" :indeterminate="indeterminate" type="checkbox" class="gulu-checkbox-input" @change="select"/>
-    <span class="gulu-checkbox-label">
+  <label :class="['mmq-checkbox']">
+    <input :disabled="isDisabled" v-model="model" :value="label" :checked="isChecked" :indeterminate="indeterminate" type="checkbox" class="mmq-checkbox-input" @change="select"/>
+    <span class="mmq-checkbox-label">
       <slot>{{ label }}</slot>
     </span>
   </label>

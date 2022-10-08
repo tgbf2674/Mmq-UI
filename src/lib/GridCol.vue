@@ -1,5 +1,5 @@
 <template>
-  <div ref="colRef" class="gulu-grid-col" :style="{width: widthRef}">
+  <div ref="colRef" class="mmq-grid-col" :style="{width: widthRef}">
     <slot></slot>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-.gulu-grid-col{
+.mmq-grid-col{
   box-sizing: border-box;
 }
 </style>

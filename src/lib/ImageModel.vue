@@ -1,12 +1,12 @@
 <template>
-  <div class="gulu-imageModel-wrapper">
+  <div class="mmq-imageModel-wrapper">
     <slot v-if="false" @click="imgClick"></slot>
     <div class="myImg" @click="imgClick">
       <component :is="$slots.default"></component>
     </div>
     <teleport to="body">
       <div @click="closeModel" ref="modelRef" class="model">
-        <span @click="closeModel" ref="closeRef" class="gulu-imageModel-close">&times;</span>
+        <span @click="closeModel" ref="closeRef" class="mmq-imageModel-close">&times;</span>
         <img ref="modelImgRef" class="model-content" src="" alt="">
       </div>
     </teleport>
@@ -41,7 +41,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-imageModel-wrapper {
+.mmq-imageModel-wrapper {
   .myImg {
     border-radius: 5px;
     cursor: pointer;
@@ -108,7 +108,7 @@ export default defineComponent({
   }
 }
 
-.gulu-imageModel-close {
+.mmq-imageModel-close {
   position: absolute;
   top: 15px;
   right: 35px;

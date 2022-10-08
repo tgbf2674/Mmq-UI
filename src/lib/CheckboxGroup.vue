@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-checkboxGroup">
+  <div class="mmq-checkboxGroup">
     <slot />
   </div>
 </template>

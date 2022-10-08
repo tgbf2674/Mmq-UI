@@ -1,16 +1,16 @@
 <template>
-<div class="gulu-empty">
-  <div class="gulu-empty-image" :style="imageStyle">
+<div class="mmq-empty">
+  <div class="mmq-empty-image" :style="imageStyle">
     <img :src="image" v-if="image" />
     <slot v-else name="image">
       <img-empty></img-empty>
     </slot>
   </div>
-  <div class="gulu-empty-description">
+  <div class="mmq-empty-description">
     <slot v-if="$slots.description" name="description"></slot>
     <p v-else>{{emptyDescription}}</p>
   </div>
-  <div v-if="$slots.default" class="gulu-empty-bottom">
+  <div v-if="$slots.default" class="mmq-empty-bottom">
     <slot></slot>
   </div>
 </div>
@@ -54,7 +54,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.gulu-empty{
+.mmq-empty{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +62,7 @@ export default defineComponent({
   text-align: center;
   box-sizing: border-box;
   padding: 40px 0;
-  .gulu-empty-image{
+  .mmq-empty-image{
     width: 160px;
     img{
       user-select: none;
@@ -78,7 +78,7 @@ export default defineComponent({
       vertical-align: top;
     }
   }
-  .gulu-empty-description{
+  .mmq-empty-description{
     margin-top: 20px;
     p{
       margin: 0;
@@ -86,7 +86,7 @@ export default defineComponent({
       color: #909399;
     }
   }
-  .gulu-empty-bottom{
+  .mmq-empty-bottom{
     margin-top: 20px;
   }
 }

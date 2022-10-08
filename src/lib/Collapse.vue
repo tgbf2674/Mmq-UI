@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-collapse">
+  <div class="mmq-collapse">
     <slot></slot>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
-.gulu-collapse{
+.mmq-collapse{
   border-top: 1px solid #ebeef5;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-buttonGroup">
+  <div class="mmq-buttonGroup">
     <slot />
   </div>
 </template>
@@ -34,8 +34,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.gulu-buttonGroup > .gulu-button {
-  & + .gulu-button {
+.mmq-buttonGroup > .mmq-button {
+  & + .mmq-button {
     margin-left: 0;
   }
   &:first-child {

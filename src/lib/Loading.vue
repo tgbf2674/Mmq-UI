@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div v-if="loading" class="gulu-loading-wrapper" style="'background-color':background">
+    <div v-if="loading" class="mmq-loading-wrapper" style="'background-color':background">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
-.gulu-loading-wrapper {
+.mmq-loading-wrapper {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -74,7 +74,7 @@ export default {
   display: block;
   width: 25%;
   height: 25%;
-  background-color: $gulu-type-primary-dark;
+  background-color: $mmq-type-primary-dark;
   border-radius: 100%;
   animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
 }

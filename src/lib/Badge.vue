@@ -1,9 +1,9 @@
 <template>
-  <div class="gulu-badge">
+  <div class="mmq-badge">
     <slot></slot>
     <div>
       <div v-show="!hidden && (content || content === 0 || isDot)"
-           class="gulu-badge-content" :class="[isDot ? 'is-dot' : 'gulu-badge-content-' + type,'is-fixed']"
+           class="mmq-badge-content" :class="[isDot ? 'is-dot' : 'mmq-badge-content-' + type,'is-fixed']"
            v-text="content">
       </div>
     </div>
@@ -52,12 +52,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-badge {
+.mmq-badge {
   position: relative;
   vertical-align: middle;
   display: inline-block;
 
-  .gulu-badge-content {
+  .mmq-badge-content {
     background-color: #409eff;
     border-radius: 10px;
     color: #ffffff;
@@ -90,23 +90,23 @@ export default defineComponent({
       border-radius: 50%;
     }
 
-    &.gulu-badge-content-primary {
+    &.mmq-badge-content-primary {
       background-color: #409eff;
     }
 
-    &.gulu-badge-content-success {
+    &.mmq-badge-content-success {
       background-color: #67c23a;
     }
 
-    &.gulu-badge-content-warning {
+    &.mmq-badge-content-warning {
       background-color: #e6a23c;
     }
 
-    &.gulu-badge-content-info {
+    &.mmq-badge-content-info {
       background-color: #909399;
     }
 
-    &.gulu-badge-content-danger {
+    &.mmq-badge-content-danger {
       background-color: #f56c6c;
     }
   }

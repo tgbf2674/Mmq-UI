@@ -1,6 +1,6 @@
 <template>
-  <button class="gulu-switch" :disabled="disabled" :class="{'gulu-checked': value}" @click="toggle">
-    <span class="gulu-span"></span>
+  <button class="mmq-switch" :disabled="disabled" :class="{'mmq-checked': value}" @click="toggle">
+    <span class="mmq-span"></span>
   </button>
 </template>
 
@@ -31,41 +31,42 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@use "sass:math";
 $h: 22px;
 $h2: $h - 4px;
-.gulu-switch{
+.mmq-switch{
   height: $h;
   width: $h*2;
   border: none;background: #bfbfbf;
-  border-radius: $h/2;
+  border-radius: math.div($h2, 2);
   position: relative;
   &:disabled{
     cursor: not-allowed;
   }
 }
-.gulu-span{
+.mmq-span{
   position: absolute;
   top: 2px;
   left: 2px;
   height: $h2;
   width: $h2;
   background:white;
-  border-radius: $h2 / 2;
+  border-radius: math.div($h2, 2);
   transition: all 250ms;
 }
-.gulu-switch.gulu-checked{
+.mmq-switch.mmq-checked{
   background: #1890ff;
 }
-.gulu-switch.gulu-checked > .gulu-span {
+.mmq-switch.mmq-checked > .mmq-span {
   left: calc(100% - #{$h2} - 2px);
 }
-.gulu-switch:focus{
+.mmq-switch:focus{
   outline: none;
 }
-.gulu-switch:active{
+.mmq-switch:active{
   > span {width: $h2 + 4px;}
 }
-.gulu-switch.gulu-checked:active{
+.mmq-switch.mmq-checked:active{
   > span {width: $h2 + 4px; margin-left: -4px;}
 }
 </style>

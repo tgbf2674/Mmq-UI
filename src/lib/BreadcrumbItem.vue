@@ -1,10 +1,10 @@
 <template>
-<span class="gulu-breadcrumb-item">
-  <span ref="link" :class="['gulu-breadcrumb-inner',to? 'is-link' : '']" role="link">
+<span class="mmq-breadcrumb-item">
+  <span ref="link" :class="['mmq-breadcrumb-inner',to? 'is-link' : '']" role="link">
     <slot></slot>
   </span>
-  <Icon fill="#c0c4cc" v-if="separatorClass" class="gulu-breadcrumb-separator" :name="separatorClass"></Icon>
-  <span v-else class="gulu-breadcrumb-separator" role="presentation">{{ separator }}</span>
+  <Icon fill="#c0c4cc" v-if="separatorClass" class="mmq-breadcrumb-separator" :name="separatorClass"></Icon>
+  <span v-else class="mmq-breadcrumb-separator" role="presentation">{{ separator }}</span>
 </span>
 </template>
 
@@ -45,9 +45,9 @@ export default {
 </script>
 
 <style lang="scss" >
-.gulu-breadcrumb-item{
+.mmq-breadcrumb-item{
   float: left;
-  .gulu-breadcrumb-inner{
+  .mmq-breadcrumb-inner{
     font-weight: 700;
     text-decoration: none;
     transition: color 0.2s cubic-bezier(0.645,0.045,0.355,1);
@@ -73,7 +73,7 @@ export default {
       cursor: pointer;
     }
   }
-  .gulu-breadcrumb-separator{
+  .mmq-breadcrumb-separator{
     margin: 0 9px;
     font-weight: 700;
     width: 14px;

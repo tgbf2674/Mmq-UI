@@ -1,6 +1,6 @@
 <template>
-  <div class="gulu-dropdown">
-    <div class="gulu-dropdown-link" @mouseenter="showDropdownItem" @mouseleave="hiddenDropdownItem">
+  <div class="mmq-dropdown">
+    <div class="mmq-dropdown-link" @mouseenter="showDropdownItem" @mouseleave="hiddenDropdownItem">
       <slot></slot>
       <slot name="dropdown" v-if="false"></slot>
       <ul v-show="dropdownItemVisible">
@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
 
-.gulu-dropdown-link {
+.mmq-dropdown-link {
   cursor: pointer;
   color: #409eff;
 
@@ -43,7 +43,7 @@ export default {
   }
 }
 
-.gulu-dropdown {
+.mmq-dropdown {
   display: inline-block;
   position: relative;
   color: #606266;

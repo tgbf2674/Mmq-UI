@@ -1,8 +1,8 @@
 <template>
   <teleport to="body">
-    <div v-if="messageVisible" :style="{top:top+'%'}" class="gulu-messageWrapper" :class="messageWrapper">
+    <div v-if="messageVisible" :style="{top:top+'%'}" class="mmq-messageWrapper" :class="messageWrapper">
       <Icon :name="iconName"/>
-      <span class="gulu-message">{{ message }}</span>
+      <span class="mmq-message">{{ message }}</span>
       <span v-if="canClose" class="close" @click="close">╳</span>
     </div>
   </teleport>
@@ -44,7 +44,7 @@ export default defineComponent({
   setup({type}:any){
     const messageVisible = ref(true)
     const messageWrapper = computed(()=>{
-      return 'gulu-messageWrapper-'+ type
+      return 'mmq-messageWrapper-'+ type
     })
     const iconName = computed(()=>{
       return 'icon-'+ type
@@ -59,7 +59,7 @@ export default defineComponent({
 @keyframes enter {
   from {top: 0}
 }
-.gulu-messageWrapper {
+.mmq-messageWrapper {
   animation: enter .3s;
   z-index: 9999;
   min-width: 380px;
@@ -72,49 +72,49 @@ export default defineComponent({
   display: flex;
   align-items: center;
   border-radius: 4px;
-  &.gulu-messageWrapper-error {
-    border-color: $gulu-type-error-disabled;
+  &.mmq-messageWrapper-error {
+    border-color: $mmq-type-error-disabled;
     border-style: solid;
     border-width: 1px;
-    background: $gulu-type-error-light;
-    .gulu-message {
-      color: $gulu-type-error;
+    background: $mmq-type-error-light;
+    .mmq-message {
+      color: $mmq-type-error;
     }
     svg {
-      fill: $gulu-type-error;
+      fill: $mmq-type-error;
     }
     .close {
-      color: $gulu-type-error;
+      color: $mmq-type-error;
     }
   }
-  &.gulu-messageWrapper-success {
-    border-color: $gulu-type-success-disabled;
+  &.mmq-messageWrapper-success {
+    border-color: $mmq-type-success-disabled;
     border-style: solid;
     border-width: 1px;
-    background: $gulu-type-success-light;
-    .gulu-message {
-      color: $gulu-type-success;
+    background: $mmq-type-success-light;
+    .mmq-message {
+      color: $mmq-type-success;
     }
     svg {
-      fill: $gulu-type-success;
+      fill: $mmq-type-success;
     }
     .close {
-      color: $gulu-type-success;
+      color: $mmq-type-success;
     }
   }
-  &.gulu-messageWrapper-warning {
-    border-color: $gulu-type-warning-disabled;
+  &.mmq-messageWrapper-warning {
+    border-color: $mmq-type-warning-disabled;
     border-style: solid;
     border-width: 1px;
-    background: $gulu-type-warning-light;
-    .gulu-message {
-      color: $gulu-type-warning;
+    background: $mmq-type-warning-light;
+    .mmq-message {
+      color: $mmq-type-warning;
     }
     svg {
-      fill: $gulu-type-warning;
+      fill: $mmq-type-warning;
     }
     .close {
-      color: $gulu-type-warning;
+      color: $mmq-type-warning;
     }
   }
   svg {
@@ -122,7 +122,7 @@ export default defineComponent({
     font-size: 18px;
     margin-right: 10px;
   }
-  .gulu-message {
+  .mmq-message {
     flex-grow: 1;
     font-size: 14px;
     line-height: 1.5;

@@ -1,5 +1,5 @@
 <template>
-  <div ref="gutterRef" class="gulu-grid-wrapper" :class="{gutter: gutter}">
+  <div ref="gutterRef" class="mmq-grid-wrapper" :class="{gutter: gutter}">
     <slot></slot>
   </div>
 </template>
@@ -21,7 +21,7 @@ name: "Grid",
       watchEffect(()=>{
         if(props.gutter){
           Array.from(gutterRef.value.children).forEach((item: any)=>{
-            if(item.nextSibling!.className === 'gulu-grid-col' || (item.nextSibling!.className && !item.previousElementSibling)){
+            if(item.nextSibling!.className === 'mmq-grid-col' || (item.nextSibling!.className && !item.previousElementSibling)){
               item.style.paddingRight = props.gutter + 'px'
             }
           })
@@ -34,7 +34,7 @@ name: "Grid",
 </script>
 
 <style lang="scss" scoped>
-.gulu-grid-wrapper{
+.mmq-grid-wrapper{
   display: flex;
 }
 </style>

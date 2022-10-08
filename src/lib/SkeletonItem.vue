@@ -1,5 +1,5 @@
 <template>
-  <div :class="['gulu-skeleton-item',`gulu-skeleton-${variant}`]">
+  <div :class="['mmq-skeleton-item',`mmq-skeleton-${variant}`]">
     <imagePlaceholder v-if="variant === 'image' "></imagePlaceholder>
   </div>
 </template>
@@ -23,8 +23,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-skeleton {
-  .gulu-skeleton-item {
+.mmq-skeleton {
+  .mmq-skeleton-item {
     background: #f2f2f2;
     display: inline-block;
     height: 16px;
@@ -32,13 +32,13 @@ export default defineComponent({
     width: 100%;
   }
 
-  .gulu-skeleton-button {
+  .mmq-skeleton-button {
     height: 40px;
     width: 64px;
     border-radius: 4px;
   }
 
-  .gulu-skeleton-p {
+  .mmq-skeleton-p {
     width: 100%;
     &.is-last {
       width: 61%;
@@ -49,24 +49,24 @@ export default defineComponent({
     }
   }
 
-  .gulu-skeleton-text {
+  .mmq-skeleton-text {
     width: 100%;
     height: 16px;
   }
 
-  .gulu-skeleton-h1 {
+  .mmq-skeleton-h1 {
     height: 36px;
   }
 
-  .gulu-skeleton-h3 {
+  .mmq-skeleton-h3 {
     height: 28px;
   }
 
-  .gulu-skeleton-h5 {
+  .mmq-skeleton-h5 {
     height: 16px;
   }
 
-  .gulu-skeleton-image {
+  .mmq-skeleton-image {
     width: unset;
     display: flex;
     align-items: center;

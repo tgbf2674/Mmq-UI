@@ -1,21 +1,21 @@
 <template>
-<div class="gulu-result">
-  <div class="gulu-result-icon">
+<div class="mmq-result">
+  <div class="mmq-result-icon">
     <slot name="icon">
       <component :is="iconElement" :class="iconElement"></component>
     </slot>
   </div>
-  <div v-if="title || $slots.title" class="gulu-result-title">
+  <div v-if="title || $slots.title" class="mmq-result-title">
     <slot name="title">
       <p>{{title}}</p>
     </slot>
   </div>
-  <div v-if="subTitle || $slots.subTitle" class="gulu-result-subTitle">
+  <div v-if="subTitle || $slots.subTitle" class="mmq-result-subTitle">
     <slot name="subTitle">
       <p>{{ subTitle }}</p>
     </slot>
   </div>
-  <div v-if="$slots.extra" class="gulu-result-extra">
+  <div v-if="$slots.extra" class="mmq-result-extra">
     <slot name="extra"></slot>
   </div>
 </div>
@@ -67,7 +67,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-result{
+.mmq-result{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,13 +75,13 @@ export default defineComponent({
   text-align: center;
   box-sizing: border-box;
   padding: 40px 30px;
-  .gulu-result-icon{
+  .mmq-result-icon{
     svg{
       width: 64px;
       height: 64px;
     }
   }
-  .gulu-result-title{
+  .mmq-result-title{
     margin-top: 20px;
     p{
       margin: 0;
@@ -89,7 +89,7 @@ export default defineComponent({
       line-height: 1.3;
     }
   }
-  .gulu-result-subTitle{
+  .mmq-result-subTitle{
     margin-top: 10px;
     p{
       margin: 0;
@@ -97,7 +97,7 @@ export default defineComponent({
       line-height: 1.3;
     }
   }
-  .gulu-result-extra{
+  .mmq-result-extra{
     margin-top: 30px;
   }
   .icon-success{

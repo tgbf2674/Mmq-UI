@@ -20,7 +20,7 @@
 import Dialog from '../../../lib/Dialog.vue';
 import Button from '../../../lib/Button.vue';
 import {
-  ref,defineComponent,h
+  ref,defineComponent
 } from 'vue';
 export default defineComponent({
   components: {

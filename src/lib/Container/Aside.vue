@@ -1,5 +1,5 @@
 <template>
-  <aside class="gulu-aside" :style="style">
+  <aside class="mmq-aside" :style="style">
     <slot></slot>
   </aside>
 </template>
@@ -27,7 +27,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-aside {
+.mmq-aside {
   overflow: auto;
   box-sizing: border-box;
   flex-shrink: 0;

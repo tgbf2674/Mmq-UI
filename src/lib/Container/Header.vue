@@ -1,5 +1,5 @@
 <template>
-  <header class="gulu-header" :style="style">
+  <header class="mmq-header" :style="style">
     <slot></slot>
   </header>
 </template>
@@ -28,9 +28,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-header{
-  --gulu-header-padding: 0 20px;
-  padding: var(--gulu-header-padding);
+.mmq-header{
+  --mmq-header-padding: 0 20px;
+  padding: var(--mmq-header-padding);
   box-sizing: border-box;
   flex-shrink: 0;
   height: 60px;

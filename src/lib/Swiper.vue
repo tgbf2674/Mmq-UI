@@ -1,6 +1,6 @@
 <template>
-  <div class="gulu-swiper-container">
-    <div class="gulu-swiper" v-for="(item,index) in defaults" :key="index" :class="getClass(index)">
+  <div class="mmq-swiper-container">
+    <div class="mmq-swiper" v-for="(item,index) in defaults" :key="index" :class="getClass(index)">
       <div class="fade">
         <component :is="item" v-show="index===active"></component>
       </div>
@@ -90,7 +90,7 @@ export default defineComponent({
   left: 50%;
   transform: translate(-50%,-60%);
 }
-.gulu-swiper-container {
+.mmq-swiper-container {
   max-width: 1000px;
   position: relative;
   margin: auto;

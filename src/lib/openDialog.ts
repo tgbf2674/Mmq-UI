@@ -5,7 +5,7 @@ export const openDialog = (options: DialogOptions)=>{
   const div = document.createElement('div')
   document.body.append(div)
   const close = ()=>{
-    app.unmount(div)
+    app.unmount()
     div.remove()
   }
   const app = createApp({

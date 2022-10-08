@@ -46,10 +46,10 @@ export default defineComponent({
     const classes = computed(() => {
       const {type, hit, effect} = props;
       return [
-        'gulu-tag',
-        type ? `gulu-tag-${type}` : '',
-        tagSize.value ? `gulu-tag-${tagSize.value}` : '',
-        effect ? `gulu-tag-${effect}` : '',
+        'mmq-tag',
+        type ? `mmq-tag-${type}` : '',
+        tagSize.value ? `mmq-tag-${tagSize.value}` : '',
+        effect ? `mmq-tag-${effect}` : '',
         hit && 'is-hit'
       ];
     });
@@ -68,7 +68,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-tag {
+.mmq-tag {
   background-color: mix(#ecf5ff, #fff);
   border: 1px solid #d9ecff;
   color: #409eff;
@@ -109,7 +109,7 @@ export default defineComponent({
   border-color: #d9ecff;
 }
 
-.gulu-tag-success {
+.mmq-tag-success {
   background-color: mix(#f0f9eb, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #67c23a;
@@ -123,7 +123,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-info {
+.mmq-tag-info {
   background-color: mix(#f4f4f5, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #909399;
@@ -137,7 +137,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-warning {
+.mmq-tag-warning {
   background-color: mix(#fdf6ec, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #e6a23c;
@@ -151,7 +151,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-danger {
+.mmq-tag-danger {
   background-color: mix(#fef0f0, #fff);
   border-color: mix(#dcdfe6, #fff);
   color: #f56c6c;
@@ -165,7 +165,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-medium {
+.mmq-tag-medium {
   height: 28px;
   line-height: 26px;
 
@@ -174,7 +174,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-small {
+.mmq-tag-small {
   height: 24px;
   line-height: 22px;
 
@@ -183,7 +183,7 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-mini {
+.mmq-tag-mini {
   height: 20px;
   line-height: 18px;
 
@@ -192,27 +192,27 @@ export default defineComponent({
   }
 }
 
-.gulu-tag-dark{
+.mmq-tag-dark{
   color: #fff;
-  &.gulu-tag{
+  &.mmq-tag{
     background: #409eff;
   }
-  &.gulu-tag-success{
+  &.mmq-tag-success{
     background: #67c23a;
   }
-  &.gulu-tag-info{
+  &.mmq-tag-info{
     background: #909399;
   }
-  &.gulu-tag-danger{
+  &.mmq-tag-danger{
     background: #f56c6c;
   }
-  &.gulu-tag-warning{
+  &.mmq-tag-warning{
     background: #e6a23c;
   }
 }
 
 
-.gulu-tag-plain{
+.mmq-tag-plain{
   background: #fff;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="gulu-container" :class="{'is-vertical': isVertical}">
+  <section class="mmq-container" :class="{'is-vertical': isVertical}">
     <slot></slot>
   </section>
 </template>
@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .gulu-container{
+  .mmq-container{
     flex-grow: 1;
     display: flex;
     box-sizing: border-box;

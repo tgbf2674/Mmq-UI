@@ -1,17 +1,17 @@
 <template>
-  <div class="gulu-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
-    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="gulu-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
-    <span v-if="clearable && childInputValue" class="gulu-input-icon-wrapper">
+  <div class="mmq-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
+    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="mmq-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
+    <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
             <Icon @click="clearInputValue" name="icon-error"/>
        </span>
-    <span v-if="type==='password' && childInputValue" class="gulu-input-icon-wrapper">
+    <span v-if="type==='password' && childInputValue" class="mmq-input-icon-wrapper">
             <Icon @click="changeInputType" name="icon-preview"/>
        </span>
-    <span v-if="maxlength" class="gulu-input-count-wrapper">{{ countNum }}/{{ maxlength }}</span>
-    <span v-if="prefixIcon" class="gulu-input-icon-prefix">
+    <span v-if="maxlength" class="mmq-input-count-wrapper">{{ countNum }}/{{ maxlength }}</span>
+    <span v-if="prefixIcon" class="mmq-input-icon-prefix">
             <Icon :name="prefixIcon"/>
         </span>
-    <span v-if="suffixIcon" class="gulu-input-icon-suffix">
+    <span v-if="suffixIcon" class="mmq-input-icon-suffix">
             <Icon :name="suffixIcon"/>
         </span>
   </div>
@@ -86,7 +86,7 @@ export default defineComponent({
 
 <style lang="scss">
 @import "./src/style/theme.scss";
-%gulu-input-icon {
+%mmq-input-icon {
   position: absolute;
   top: 0;
   display: flex;
@@ -95,11 +95,11 @@ export default defineComponent({
   font-size: 10px;
   fill: #999999;
 }
-.gulu-input {
+.mmq-input {
   position: relative;
   font-size: 14px;
   display: inline-block;
-  .gulu-input-inner {
+  .mmq-input-inner {
     -webkit-appearance: none;
     background-color: #fff;
     background-image: none;
@@ -128,10 +128,10 @@ export default defineComponent({
     }
     &:focus {
       outline: none;
-      border-color: $gulu-type-primary;
+      border-color: $mmq-type-primary;
     }
   }
-  .gulu-input-icon-wrapper {
+  .mmq-input-icon-wrapper {
     position: absolute;
     height: 40px;
     right: 10px;
@@ -147,19 +147,19 @@ export default defineComponent({
       }
     }
   }
-  .gulu-input-icon-prefix {
-    @extend %gulu-input-icon;
+  .mmq-input-icon-prefix {
+    @extend %mmq-input-icon;
     left: 0;
     margin-left: 10px;
     margin-right: 5px;
   }
-  .gulu-input-icon-suffix {
-    @extend %gulu-input-icon;
+  .mmq-input-icon-suffix {
+    @extend %mmq-input-icon;
     right: 0;
     margin-left: 5px;
     margin-right: 10px;
   }
-  .gulu-input-count-wrapper {
+  .mmq-input-count-wrapper {
     position: absolute;
     display: flex;
     align-items: center;
@@ -170,7 +170,7 @@ export default defineComponent({
     font-size: 12px;
   }
   &.is-disabled {
-    .gulu-input-inner {
+    .mmq-input-inner {
       background-color: #f5f7fa;
       border-color: #e4e7ed;
       color: #c0c4cc;
@@ -178,12 +178,12 @@ export default defineComponent({
     }
   }
   &.el-input--suffix {
-    .gulu-input-inner {
+    .mmq-input-inner {
       padding-right: 30px;
     }
   }
   &.el-input--prefix {
-    .gulu-input-inner {
+    .mmq-input-inner {
       padding-left: 40px;
     }
   }

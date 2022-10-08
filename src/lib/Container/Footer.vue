@@ -1,5 +1,5 @@
 <template>
-  <footer class="gulu-footer" :style="style">
+  <footer class="mmq-footer" :style="style">
     <slot></slot>
   </footer>
 </template>
@@ -28,9 +28,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-footer{
-  --gulu-footer-padding: 0 20px;
-  padding: var(--gulu-footer-padding);
+.mmq-footer{
+  --mmq-footer-padding: 0 20px;
+  padding: var(--mmq-footer-padding);
   box-sizing: border-box;
   flex-shrink: 0;
   height: 60px;

@@ -1,5 +1,5 @@
 <template>
-  <main class="gulu-main">
+  <main class="mmq-main">
     <slot></slot>
   </main>
 </template>
@@ -12,13 +12,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-main{
-  --gulu-main-padding: 20px;
+.mmq-main{
+  --mmq-main-padding: 20px;
   display: block;
   flex: 1;
   flex-basis: auto;
   overflow: auto;
   box-sizing: border-box;
-  padding: var(--gulu-main-padding);
+  padding: var(--mmq-main-padding);
 }
 </style>

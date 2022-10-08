@@ -1,6 +1,6 @@
 <template>
-  <div class="gulu-sticky-wrapper">
-    <div class="gulu-sticky" ref="stickyRef" :class="{sticky}">
+  <div class="mmq-sticky-wrapper">
+    <div class="mmq-sticky" ref="stickyRef" :class="{sticky}">
       <slot></slot>
     </div>
   </div>
@@ -46,9 +46,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-sticky-wrapper {
+.mmq-sticky-wrapper {
   width: 100%;
-  .gulu-sticky {
+  .mmq-sticky {
     width: 100%;
     height: 100%;
     &.sticky {

@@ -1,15 +1,15 @@
 <template>
-  <transition name="gulu-alert-fade">
-    <div v-show="visible" class="gulu-alert" :class="[typeClass,center ? 'is-center' : '', 'is-' +effect]" role="alert">
-      <Icon v-if="showIcon" class="gulu-alert__icon" :name="iconName" :class="isBigIcon"></Icon>
-      <div class="gulu-alert__content">
-        <span v-if="title || $slots.title" class="gulu-alert__title" :class="[isBoldTitle]">
+  <transition name="mmq-alert-fade">
+    <div v-show="visible" class="mmq-alert" :class="[typeClass,center ? 'is-center' : '', 'is-' +effect]" role="alert">
+      <Icon v-if="showIcon" class="mmq-alert__icon" :name="iconName" :class="isBigIcon"></Icon>
+      <div class="mmq-alert__content">
+        <span v-if="title || $slots.title" class="mmq-alert__title" :class="[isBoldTitle]">
           <slot name="title">{{ title }}</slot>
         </span>
-        <p v-if="$slots.default || description" class="gulu-alert__description">
+        <p v-if="$slots.default || description" class="mmq-alert__description">
           <slot>{{ description }}</slot>
         </p>
-        <Icon v-if="closable" class="gulu-alert__closebtn" :name="closeName"
+        <Icon v-if="closable" class="mmq-alert__closebtn" :name="closeName"
               @click="close">{{ closeText }}
         </Icon>
         <span v-if="closeText!== ''" class="is-customed" @click="close">{{closeText}}</span>
@@ -66,7 +66,7 @@ export default defineComponent({
   setup(props, {emit, slots}) {
     const visible = ref(true);
     const typeClass = computed(() => {
-      return `gulu-alert--${props.type}`;
+      return `mmq-alert--${props.type}`;
     });
     const iconName = computed(() => ALERT_TYPE_CLASSES_MAP[props.type as keyof typeof ALERT_TYPE_CLASSES_MAP] || ALERT_TYPE_CLASSES_MAP['info']
     );
@@ -91,7 +91,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gulu-alert {
+.mmq-alert {
   width: 100%;
   padding: 8px 16px;
   margin: 0;
@@ -106,21 +106,21 @@ export default defineComponent({
   transition: opacity 0.2s;
 
   &.is-light {
-    .gulu-alert__closebtn {
-      &::v-deep .gulu-icon {
+    .mmq-alert__closebtn {
+      &::v-deep .mmq-icon {
         fill: #909399;
       }
     }
   }
 
   &.is-dark {
-    .gulu-alert__closebtn {
-      &::v-deep .gulu-icon{
+    .mmq-alert__closebtn {
+      &::v-deep .mmq-icon{
         fill: #ffffff;
       }
     }
 
-    .gulu-alert__description {
+    .mmq-alert__description {
       color: #ffffff;
     }
   }
@@ -129,16 +129,16 @@ export default defineComponent({
     justify-content: center;
   }
 
-  &.gulu-alert--success {
+  &.mmq-alert--success {
     &.is-light {
       background-color: #f0f9eb;
       color: #67c23a;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #67c23a;
         }
       }
-      .gulu-alert__description {
+      .mmq-alert__description {
         color: #67c23a;
       }
     }
@@ -146,24 +146,24 @@ export default defineComponent({
     &.is-dark {
       background-color: #67c23a;
       color: #ffffff;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #ffffff;
         }
       }
     }
   }
 
-  &.gulu-alert--warning {
+  &.mmq-alert--warning {
     &.is-light {
       background-color: #fdf6ec;
       color: #e6a23c;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #e6a23c;
         }
       }
-      .gulu-alert__description {
+      .mmq-alert__description {
         color: #e6a23c;
       }
     }
@@ -171,24 +171,24 @@ export default defineComponent({
     &.is-dark {
       background-color: #e6a23c;
       color: #ffffff;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #ffffff;
         }
       }
     }
   }
 
-  &.gulu-alert--info {
+  &.mmq-alert--info {
     &.is-light {
       background-color: #f4f4f5;
       color: #909399;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #909399;
         }
       }
-      .gulu-alert__description {
+      .mmq-alert__description {
         color: #909399;
       }
     }
@@ -196,27 +196,27 @@ export default defineComponent({
     &.is-dark {
       background-color: #909399;
       color: #ffffff;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #ffffff;
         }
       }
     }
   }
 
-  &.gulu-alert--error {
+  &.mmq-alert--error {
     &.is-light {
       background-color: #fef0f0;
       color: #f56c6c;
-      .gulu-alert__icon{
-        &::v-deep .gulu-icon{
+      .mmq-alert__icon{
+        &::v-deep .mmq-icon{
           fill: #f56c6c;
         }
       }
-      .gulu-alert__description {
+      .mmq-alert__description {
         color: #f56c6c;
-        .gulu-alert__icon{
-          &::v-deep .gulu-icon{
+        .mmq-alert__icon{
+          &::v-deep .mmq-icon{
             fill: #ffffff;
           }
         }
@@ -229,12 +229,12 @@ export default defineComponent({
     }
   }
 
-  .gulu-alert__content {
+  .mmq-alert__content {
     display: table-cell;
     padding: 0 8px;
   }
 
-  .gulu-alert__icon {
+  .mmq-alert__icon {
     font-size: 16px;
     width: 16px;
     &.is-big {
@@ -243,8 +243,8 @@ export default defineComponent({
     }
   }
 
-  .gulu-alert__content {
-    .gulu-alert__title {
+  .mmq-alert__content {
+    .mmq-alert__title {
       font-size: 13px;
       line-height: 18px;
 
@@ -253,12 +253,12 @@ export default defineComponent({
       }
     }
 
-    & .gulu-alert__description {
+    & .mmq-alert__description {
       font-size: 12px;
       margin: 5px 0 0;
     }
 
-    .gulu-alert__closebtn {
+    .mmq-alert__closebtn {
       font-size: 12px;
       opacity: 1;
       position: absolute;
@@ -278,7 +278,7 @@ export default defineComponent({
   }
 }
 
-.gulu-alert-fade-enter-from, .gulu-alert-fade-leave-active{
+.mmq-alert-fade-enter-from, .mmq-alert-fade-leave-active{
   opacity: 0;
 }
 </style>
