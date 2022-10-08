@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .mmq-grid-col{
   box-sizing: border-box;
 }

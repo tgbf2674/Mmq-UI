@@ -9,7 +9,10 @@ export default {
   input: 'src/lib/index.ts',
   output: [{
     globals: {
-      vue: 'Vue'
+      vue: 'Vue',
+      mitt: 'mitt',
+     '@vue/runtime-core': 'runtimeCore',
+      '@vue/reactivity': 'reactivity'
     },
     name: 'mmq',
     file: 'dist/lib/mmqUI.js',
