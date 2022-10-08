@@ -2,7 +2,7 @@
   <div class="topNavAndBanner">
    <topNav />
     <div class="banner">
-      <h1>VEGDog-UI</h1>
+      <h1>Mq-UI</h1>
       <h2>基于VUE3的UI框架</h2>
       <p class="actions">
         <a href="https://github.com/tgbf2674/vue3-ui">GitHub</a>
