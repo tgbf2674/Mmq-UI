@@ -8,7 +8,7 @@
 import {onMounted, ref, watchEffect} from 'vue';
 
 export default {
-name: "Grid",
+name: "MqGrid",
   props: {
   gutter: {
     type: Number,

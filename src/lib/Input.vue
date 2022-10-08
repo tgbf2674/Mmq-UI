@@ -21,7 +21,7 @@
 import {computed, defineComponent, ref, watchEffect} from 'vue';
 import Icon from "./Icon.vue";
 export default defineComponent({
-  name: "Input",
+  name: "MqInput",
   components: {Icon},
   inheritAttrs: false,
   props: {

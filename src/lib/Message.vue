@@ -12,7 +12,7 @@
 import {computed, defineComponent, PropType, ref} from 'vue';
 import Icon from './Icon.vue'
 export default defineComponent({
-  name: 'Message',
+  name: 'MqMessage',
   components: {Icon},
   props:{
     close: {

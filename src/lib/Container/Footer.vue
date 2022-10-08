@@ -8,7 +8,7 @@
 import { computed, defineComponent } from 'vue'
 import type { CSSProperties } from 'vue'
 export default defineComponent({
-  name: 'Footer',
+  name: 'MqFooter',
   props: {
     height: {
       type :String,

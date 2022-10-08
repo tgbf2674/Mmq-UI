@@ -19,7 +19,7 @@ import {computed, defineComponent} from 'vue';
 import useThrottleRender from '../utils/use-throttle-render'
 
 export default defineComponent({
-  name: 'Skeleton',
+  name: 'MqSkeleton',
   components: {
     'mmq-skeleton-item': SkeletonItem
   },

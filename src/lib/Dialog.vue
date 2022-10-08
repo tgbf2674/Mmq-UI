@@ -26,7 +26,7 @@ import Button from './Button.vue';
 import {ref,defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'Dialog',
+  name: 'MqDialog',
   props: {
     visible: {
       type: Boolean,

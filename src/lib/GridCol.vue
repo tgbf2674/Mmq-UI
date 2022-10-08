@@ -8,7 +8,7 @@
 import {computed, onMounted, ref} from 'vue';
 
 export default {
-  name: 'GridCol',
+  name: 'MqGridCol',
   props:{
     span: {
       type: Number,

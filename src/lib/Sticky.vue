@@ -10,7 +10,7 @@
 import {defineComponent, onMounted, onUnmounted, ref} from 'vue';
 
 export default defineComponent({
-  name: 'Sticky',
+  name: 'MqSticky',
   props: {
     distance:{
       type:Number,

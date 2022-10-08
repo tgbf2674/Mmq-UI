@@ -12,7 +12,7 @@
 import {getCurrentInstance, inject, onMounted, PropType, Ref, ref} from 'vue';
 import Icon from './Icon.vue'
 export default {
-  name: 'BreadcrumbItem',
+  name: 'MqBreadcrumbItem',
   components: {Icon},
   props: {
     to:{

@@ -20,7 +20,7 @@ interface CheckboxGroupType {
 }
 
 export default defineComponent({
-  name: 'checkbox',
+  name: 'MqCheckbox',
   props: {
     label: {
       type: String,

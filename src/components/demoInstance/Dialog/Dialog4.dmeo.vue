@@ -1,9 +1,6 @@
-<demo>
-常规使用
-</demo>
 <template>
   <div>
-    <Button @click="toggle">打开对话框</Button>
+    <Button @click="toggle">常规使用</Button>
     <Dialog v-model:visible="open" :closeOnClickOverlay=true :ok="okCallback" :cancel="f2">
       <template v-slot:content>
         <strong>hi</strong>

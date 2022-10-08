@@ -35,7 +35,7 @@ const IconMap:any = {
   info: 'icon-info',
 }
 export default defineComponent({
-  name: 'Result',
+  name: 'MqResult',
   components: {
     [IconSuccess.name]: IconSuccess,
     [IconError.name]: IconError,

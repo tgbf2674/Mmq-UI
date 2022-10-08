@@ -20,7 +20,7 @@
 import ImgEmpty from './ImageEmpty.vue'
 import {computed, defineComponent, onMounted} from 'vue';
 export default defineComponent({
-  name: 'Empty',
+  name: 'MqEmpty',
   components: {
     'img-empty': ImgEmpty
   },

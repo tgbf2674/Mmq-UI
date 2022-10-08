@@ -14,7 +14,7 @@
 import Tab from '../lib/Tab.vue'
 import {computed, defineComponent, ref, watchEffect} from 'vue';
 export default defineComponent({
-  name: 'Tabs',
+  name: 'MqTabs',
   props: {
     selected: {
       type: String

@@ -18,7 +18,7 @@ import {computed, defineComponent, getCurrentInstance, inject} from 'vue';
 import {emitter} from './Collapse.vue'
 import Spread from './Spread.vue';
 export default defineComponent({
-  name: "CollapseItem",
+  name: "MqCollapseItem",
   components: {Icon, Spread},
   props: {
     name: {

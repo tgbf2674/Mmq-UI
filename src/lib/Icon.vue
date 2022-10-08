@@ -10,7 +10,7 @@
 import {computed, defineComponent} from 'vue';
 import './iconfont.js';
 export default defineComponent({
-  name: "icon",
+  name: "MqIcon",
   props: {
     name: {
       type: String,

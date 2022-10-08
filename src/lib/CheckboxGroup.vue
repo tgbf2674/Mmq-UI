@@ -8,7 +8,7 @@
 import {computed, defineComponent, provide} from 'vue';
 
 export default defineComponent ({
-  name: 'CheckoutGroup',
+  name: 'MqCheckoutGroup',
   props: {
     modelValue: {
       type: Array,

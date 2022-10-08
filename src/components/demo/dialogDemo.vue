@@ -1,6 +1,6 @@
 <template>
-<!--  <Demo :component="Dialog1Demo" />-->
-<!--  <Demo :component="Dialog2Demo" />-->
+  <Demo :component="Dialog4Demo" />
+  <Demo :component="Dialog5Demo" />
   <Demo :component="Dialog3Demo" />
 </template>
 
@@ -8,8 +8,8 @@
 import Dialog from '../../lib/Dialog.vue'
 import Button from '../../lib/Button.vue';
 import Demo from '../Demo.vue';
-// import Dialog1Demo from '../demoInstance/Dialog/Dialog1.dmeo.vue';
-// import Dialog2Demo from '../demoInstance/Dialog/Dialog2.dmeo.vue';
+import Dialog4Demo from '../demoInstance/Dialog/Dialog4.dmeo.vue';
+import Dialog5Demo from '../demoInstance/Dialog/Dialog5.dmeo.vue';
 import Dialog3Demo from '../demoInstance/Dialog/Dialog3.demo.vue';
 import {openDialog} from '../../lib/openDialog'
 import {ref} from 'vue';
@@ -44,7 +44,7 @@ export default {
       })
     }
     return {
-      x,toggle,f1,f2,showDialog,Dialog3Demo
+      x,toggle,f1,f2,showDialog,Dialog3Demo, Dialog5Demo, Dialog4Demo
     }
   }
 }

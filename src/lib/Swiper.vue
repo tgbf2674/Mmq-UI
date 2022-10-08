@@ -20,7 +20,7 @@
 <script lang="ts">
 import {onUnmounted, onMounted, ref, defineComponent} from 'vue';
 export default defineComponent({
-  name: 'Swiper',
+  name: 'MqSwiper',
   props:{
     auto: {
       type: Boolean,

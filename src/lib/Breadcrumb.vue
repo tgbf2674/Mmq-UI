@@ -8,7 +8,7 @@
 import {defineComponent, onMounted, provide, Ref, ref} from 'vue';
 
 export default defineComponent({
-  name: 'Breadcrumb',
+  name: 'MqBreadcrumb',
   props: {
     separator: {
       type: String,

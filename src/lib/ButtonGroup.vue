@@ -8,7 +8,7 @@
 import { computed, defineComponent, PropType, reactive, toRef, provide } from "vue";
 
 export default defineComponent({
-  name: 'ButtonGroup',
+  name: 'MqButtonGroup',
   props: {
     size: {
       type: String as PropType<ButtonSize>,

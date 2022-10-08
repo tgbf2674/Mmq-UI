@@ -14,7 +14,7 @@
 import {computed, defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'Badge',
+  name: 'MqBadge',
   props: {
     value: {
       type: [String, Number],

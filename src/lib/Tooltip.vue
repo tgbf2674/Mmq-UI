@@ -8,7 +8,7 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 export default defineComponent({
-  name: "Tooltip",
+  name: "MqTooltip",
   props: {
     content: {
       type: String as PropType<string>,

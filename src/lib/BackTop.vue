@@ -16,7 +16,7 @@
 import { ref } from "@vue/reactivity";
 import { computed, onBeforeUnmount, onMounted } from "@vue/runtime-core";
 export default {
-  name: "backTop",
+  name: "MqBackTop",
   props: {
     visibleHeight: {
       type: Number,

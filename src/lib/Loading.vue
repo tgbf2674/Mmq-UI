@@ -18,7 +18,7 @@
 
 <script lang="ts">
 export default {
-  name: 'Loading',
+  name: 'MqLoading',
   props: {
     loading: {
       type: Boolean,

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default {
-  name: 'Vue3tab'
+  name: 'MqTab'
 }
 </script>
 

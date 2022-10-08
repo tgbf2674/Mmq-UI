@@ -9,7 +9,7 @@
 import {computed, defineComponent, inject, PropType} from 'vue';
 
 export default defineComponent({
-  name: 'Button',
+  name: 'MqButton',
   props: {
     theme: {
       type: String as PropType<ButtonTheme>,

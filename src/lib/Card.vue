@@ -12,7 +12,7 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 export default defineComponent({
-  name: "Card",
+  name: "MqCard",
   props: {
     listData: Array,
     shadow: {

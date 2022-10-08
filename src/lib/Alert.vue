@@ -30,7 +30,7 @@ const ALERT_TYPE_CLASSES_MAP = {
 };
 
 export default defineComponent({
-  name: 'Alert',
+  name: 'MqAlert',
   components: {Icon},
   props: {
     title: {

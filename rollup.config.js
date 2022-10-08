@@ -11,7 +11,7 @@ export default {
     globals: {
       vue: 'Vue',
       mitt: 'mitt',
-     '@vue/runtime-core': 'runtimeCore',
+      '@vue/runtime-core': 'runtimeCore',
       '@vue/reactivity': 'reactivity'
     },
     name: 'mmq',
@@ -24,10 +24,16 @@ export default {
     format: 'es',
     plugins: [terser()]
   }, {
+    name: 'mmq',
+    file: 'index.d.ts',
+    format: 'esm',
+    plugins: [dts(), terser()]
+  }
+    , {
       name: 'mmq',
-      file: 'index.d.ts',
+      file: 'index.ts',
       format: 'esm',
-      plugins: [dts(),terser()]
+      plugins: [dts(), terser()]
     }
   ],
   plugins: [

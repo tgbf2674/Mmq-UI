@@ -37,3 +37,95 @@ export { default as MqSpread } from './Spread.vue'
 export { default as MqSticky } from './Sticky.vue'
 export { default as MqSwiper } from './Swiper.vue'
 export { default as MqTooltip } from './Tooltip.vue'
+
+import MqSwitch from './Switch.vue'
+import MqButton from './Button.vue'
+import MqButtonGroup from './ButtonGroup.vue'
+import MqTabs from './Tabs.vue'
+import MqTab from './Tab.vue'
+import MqRadio from './Radio.vue'
+import MqTag from './Tag.vue'
+import MqAside from './Container/Aside.vue'
+import MqContainer from './Container/Container.vue'
+import MqFooter from './Container/Footer.vue'
+import MqHeader from './Container/Header.vue'
+import MqMain from './Container/Main.vue'
+import MqResult from './Result/Result.vue'
+import MqAlert from './Alert.vue'
+import MqBackTop from './BackTop.vue'
+import MqBadge from './Badge.vue'
+import MqBreadcrumb from './Breadcrumb.vue'
+import MqBreadcrumbItem from './BreadcrumbItem.vue'
+import MqCard from './Card.vue'
+import MqCheckbox from './Checkbox.vue'
+import MqCheckboxGroup from './CheckboxGroup.vue'
+import MqCollapse from './Collapse.vue'
+import MqCollapseItem from './CollapseItem.vue'
+import MqDialog from './Dialog.vue'
+import MqDropdown from './Dropdown.vue'
+import MqEmpty from './Empty.vue'
+import MqForm from './Form.vue'
+import MqGrid from './Grid.vue'
+import MqGridCol from './GridCol.vue'
+import MqIcon from './Icon.vue'
+import MqInput from './Input.vue'
+import MqLoading from './Loading.vue'
+import MqMessage from './Message.vue'
+import MqSkeleton from './Skeleton.vue'
+import MqSkeletonItem from './SkeletonItem.vue'
+import MqSpread from './Spread.vue'
+import MqSticky from './Sticky.vue'
+import MqSwiper from './Swiper.vue'
+import MqTooltip from './Tooltip.vue'
+
+import { App} from 'vue';
+
+const componentList: any = [
+  MqFooter,
+  MqCollapse,
+  MqTooltip,
+  MqSticky,
+  MqSwiper,
+  MqSpread,
+  MqSkeletonItem,
+  MqSkeleton,
+  MqMessage,
+  MqLoading,
+  MqInput,
+  MqIcon,
+  MqGrid,
+  MqGridCol,
+  MqForm,
+  MqEmpty,
+  MqDialog,
+  MqDropdown,
+  MqCollapseItem,
+  MqBadge,
+  MqCheckboxGroup,
+  MqCard,
+  MqCheckbox,
+  MqBreadcrumb,
+  MqBreadcrumbItem,
+  MqHeader,
+  MqMain,
+  MqResult,
+  MqAlert,
+  MqBackTop,
+  MqSwitch,
+  MqButton,
+  MqButtonGroup,
+  MqTabs,
+  MqTab,
+  MqRadio,
+  MqTag,
+  MqAside,
+  MqContainer
+]
+
+const install = function (Vue: App) {
+  componentList.forEach((item: any) => {
+    Vue.component(item.name, item)
+  })
+}
+
+export default install

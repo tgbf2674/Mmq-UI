@@ -9,7 +9,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'Switch',
+  name: 'MqSwitch',
   props: {
     value: {
       type: Boolean,
@@ -30,15 +30,14 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
-@use "sass:math";
+<style lang="scss" scoped>
 $h: 22px;
 $h2: $h - 4px;
 .mmq-switch{
   height: $h;
   width: $h*2;
   border: none;background: #bfbfbf;
-  border-radius: math.div($h2, 2);
+  border-radius: calc(#{$h2} / 2);
   position: relative;
   &:disabled{
     cursor: not-allowed;
@@ -51,7 +50,7 @@ $h2: $h - 4px;
   height: $h2;
   width: $h2;
   background:white;
-  border-radius: math.div($h2, 2);
+  border-radius: calc(#{$h2} / 2);
   transition: all 250ms;
 }
 .mmq-switch.mmq-checked{

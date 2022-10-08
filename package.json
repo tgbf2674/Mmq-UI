@@ -1,12 +1,12 @@
 {
   "name": "mmq-ui",
-  "version": "0.0.10",
+  "version": "0.0.14",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "files": [
-    "dist/lib/*", "index.d.ts"
+    "dist/lib/*", "index.d.ts", "index.ts"
   ],
   "main": "dist/lib/mmqUI.js",
   "module": "dist/lib/mmqUI.esm.js",

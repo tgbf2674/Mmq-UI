@@ -15,7 +15,7 @@
 import {ref} from 'vue';
 
 export default {
-  name: 'Dropdown',
+  name: 'MqDropdown',
   setup(props:any,{slots}:any) {
     const selected = ref('请选择')
     const dropdowns = slots.dropdown().map((item:HTMLElement) => item.children);

@@ -9,7 +9,7 @@
 <script lang="ts">
 import {defineComponent, ref, computed} from "vue";
 export default defineComponent({
-  name: 'Spread',
+  name: 'MqSpread',
   props: {
     visible: {type: Boolean, required: true},
     //是否横向展开

@@ -10,7 +10,7 @@
 import {computed, defineComponent, PropType} from 'vue';
 
 export default defineComponent({
-  name: 'Tag',
+  name: 'MqTag',
   props: {
     canClose: {
       type: Boolean,

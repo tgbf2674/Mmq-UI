@@ -15,7 +15,7 @@ import {computed, defineComponent, PropType, ref, reactive} from 'vue';
 import Icon from './Icon.vue';
 
 export default defineComponent({
-  name: 'GuluLink',
+  name: 'MqLink',
   components: {Icon},
   props: {
     type: {

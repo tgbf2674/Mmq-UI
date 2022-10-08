@@ -9,7 +9,7 @@ import {defineComponent, getCurrentInstance, provide} from 'vue';
 import mitt from 'mitt';
 export const emitter = mitt();
 export default defineComponent({
-  name: "Collapse",
+  name: "MqCollapse",
   props: {
     activeName: {
       type: Array,

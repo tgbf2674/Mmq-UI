@@ -4,10 +4,10 @@
 然后在你的代码中写入下面的代码
 
 ```
-import {Button, Tabs, Switch, Dialog} from "vue3-ui"
+import {MqButton, MqTag, MqDialog} from 'mmq-ui'
 ```
 
-就可以使用我提供的组件了。
+就可以使用提供的组件了。
 
 ## Vue 单文件组件
 
@@ -20,7 +20,7 @@ import {Button, Tabs, Switch, Dialog} from "vue3-ui"
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "vue3-ui"
+import {Button, Tabs, Switch, Dialog} from "mmq-ui"
 export default {
   components: {Button}
 }

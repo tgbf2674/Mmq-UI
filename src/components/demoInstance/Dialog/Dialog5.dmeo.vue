@@ -1,9 +1,6 @@
-<demo>
-函数式调用
-</demo>
 <template>
   <div>
-    <Button @click="showDialog">打开对话框</Button>
+    <Button @click="showDialog">函数式调用</Button>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ import imagePlaceholder from './imagePlaceholder.vue';
 import {defineComponent, PropType} from 'vue';
 
 export default defineComponent({
-  name: 'SkeletonItem',
+  name: 'MqSkeletonItem',
   components: {
     imagePlaceholder
   },
