@@ -48,6 +48,7 @@
           <span>其他</span>
           <li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
           <li><router-link to="/doc/card">card 组件</router-link></li>
+          <li><router-link to="/doc/pagination">pagination 组件</router-link></li>
           <li><router-link to="/doc/collapse">collapse 组件</router-link></li>
           <li><router-link to="/doc/spread">spread 组件</router-link></li>
           <li><router-link to="/doc/tooltip">tooltip 组件</router-link></li>
