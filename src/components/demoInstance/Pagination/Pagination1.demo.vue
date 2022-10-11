@@ -2,12 +2,16 @@
  常规使用
 </demo>
 <template>
-  <div>111</div>
+  <MqPagination></MqPagination>
 </template>
 
-<script>
+<script lang="ts">
+import MqPagination from '../../../lib/MqPagination.vue'
 export default {
-  name: 'Pagination1.demo'
+  name: 'Pagination1.demo',
+  components: {
+    MqPagination
+  }
 }
 </script>
 
