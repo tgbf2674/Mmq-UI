@@ -1,9 +1,11 @@
 <template>
   <div class="mq-pagination" :style="{'justify-content': computedPosition}">
     <a @click="changePage(false)" href="javascript:;" :class="{'disabled': currentPage === 1}">上一页</a>
+    <a v-if="currentPage > 3" @click="changePage(1)" href="javascript:;" :class="{disabled: currentPage === 1}">1</a>
     <span v-if="currentPage>3">...</span>
     <a @click="changePage(item)" href="javascript:;" v-for="item in list" :key="item" :class="{active: currentPage === item}">{{item}}</a>
     <span v-if="currentPage < pages - 2">...</span>
+    <a v-if="currentPage < pages - 2" @click="changePage(pages)" href="javascript:;" :class="{disabled: currentPage === pages}">{{ pages }}</a>
     <a @click="changePage(true)" href="javascript:;" :class="{disabled: currentPage === pages}">下一页</a>
   </div>
 </template>
@@ -25,6 +27,10 @@ export default defineComponent({
     position: {
       type: String,
       default: 'center'
+    },
+    background: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -44,11 +50,12 @@ export default defineComponent({
       } else {
         if (currentPage.value <= 2) {
           for (let i = 1;i<=5;i++) res.push(i)
-        } else if (currentPage.value >= pages.value - 1) {
-          for (let i = pages.value - 4; i <= currentPage.value + 2; i++) {
-            res.push(i)
-          }
-        } else {
+        } else if (currentPage.value === pages.value) {
+          for (let i = pages.value-4; i<=currentPage.value;i++) res.push(i)
+        } else if (currentPage.value >= pages.value - 2) {
+          for (let i = currentPage.value - 2;i<=pages.value;i++)res.push(i)
+        }
+        else {
           for (let i = currentPage.value - 2; i <= currentPage.value + 2; i++) {
             res.push(i)
           }
