@@ -1,5 +1,5 @@
 <template>
-  <div class="mq-pagination" :style="{'justify-content': computedPosition}">
+  <div :class="['mq-pagination', background ? 'background': '']" :style="{'justify-content': computedPosition}">
     <a @click="changePage(false)" href="javascript:;" :class="{'disabled': currentPage === 1}">上一页</a>
     <a v-if="currentPage > 3" @click="changePage(1)" href="javascript:;" :class="{disabled: currentPage === 1}">1</a>
     <span v-if="currentPage>3">...</span>
@@ -93,18 +93,15 @@ export default defineComponent({
     display: inline-block;
     padding: 5px 10px;
     text-decoration: none;
-    color: #666;
-    border: 1px solid #e4e4e4;
-    border-radius: 4px;
+    color: #000;
     margin-right: 10px;
-  &:hover {
-    color: #27ba9b;
-  }
-  &.active {
-    background: #27ba9b;
-    color: #fff;
-    border-color: #27ba9b;
-  }
+    &:hover {
+      color: #27ba9b;
+    }
+
+    &.active {
+      color: #27ba9b;
+    }
   &.disabled {
     cursor: not-allowed;
     opacity: 0.4;
@@ -115,6 +112,15 @@ export default defineComponent({
 }
   >span {
     margin-right: 10px;
+  }
+}
+.background > a{
+  border-radius: 4px;
+  border-color: #27ba9b;
+  &.active {
+    color: #fff;
+    background: #27ba9b;
+    border-color: #27ba9b;
   }
 }
 </style>
