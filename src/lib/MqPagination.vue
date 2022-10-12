@@ -12,9 +12,10 @@
 
 <script>
 import {computed, defineComponent, ref} from 'vue'
-
+import Dropdown from './Dropdown.vue'
 export default defineComponent({
   name: 'MqPagination',
+  components: {Dropdown},
   props: {
     total: {
       type: Number,
@@ -31,6 +32,9 @@ export default defineComponent({
     background: {
       type: Boolean,
       default: false
+    },
+    pageSizes: {
+      type: Array,
     }
   },
   setup(props, context) {
@@ -67,11 +71,13 @@ export default defineComponent({
       if (type === false) {
         if (currentPage.value === 1)return
         if (currentPage.value > 1)currentPage.value-= 1
+        context.emit('prevClick', currentPage.value)
       } else if (type === true) {
         if (currentPage.value === pages.value) return
         if (currentPage.value < pages.value) {
           currentPage.value += 1
         }
+        context.emit('nextClick', currentPage.value)
       }else {
         currentPage.value = type
       }
