@@ -3,7 +3,7 @@
 </demo>
 <template>
   <MqSelect @onChange="handleChange" v-model="currentFoot">
-    <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"></MqSelectOption>
+    <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></MqSelectOption>
   </MqSelect>
 </template>
 
@@ -43,7 +43,7 @@ export default {
       {
         value: '选项6',
         label: '杂酱面',
-      },
+      }
     ];
     const currentFoot = ref('');
     const handleChange = (e: InputEvent) => {

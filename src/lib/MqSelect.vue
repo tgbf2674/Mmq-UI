@@ -123,7 +123,8 @@ export default defineComponent({
   top: 40px;
   text-align: center;
   max-height: 200px;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
   border: 1px solid #e4e7ed;
   border-radius: 4px;
   background-color: #fff;

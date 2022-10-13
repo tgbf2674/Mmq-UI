@@ -1,5 +1,5 @@
 <template>
-  <div :class="['mq-options-item']" @click.stop="handleOptionsClick">
+  <div :class="['mq-options-item', disabled? 'disabled-item' : '']" @click.stop="handleOptionsClick">
     <slot>
       <span>{{ label }}</span>
     </slot>
@@ -27,7 +27,9 @@ export default defineComponent({
   },
   setup (props) {
     const handleOptionsClick = () => {
-      emitter.emit('onChange', { value: props.value, label: props.label } || '')
+      if (!props.disabled) {
+        emitter.emit('onChange', {value: props.value, label: props.label} || '')
+      }
     }
     return {
       handleOptionsClick
@@ -53,5 +55,13 @@ export default defineComponent({
   &:hover {
     background: #f5f7fa;
   }
+}
+
+.disabled-item {
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+.disabled-item:hover {
+  border-color: #fff;
 }
 </style>
