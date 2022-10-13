@@ -32,6 +32,7 @@ import alert from './components/demo/AlertDemo.vue'
 import form from './components/demo/FormDemo.vue'
 import backTop from './components/demo/BackTopDemo.vue';
 import pagination from './components/demo/PaginationDemo.vue'
+import select from './components/demo/SelectDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -80,7 +81,8 @@ export const router = createRouter({
         {path: 'alert', component: alert},
         {path: 'form',component: form},
         {path: 'backTop',component: backTop},
-        {path: 'pagination',component: pagination}
+        {path: 'pagination',component: pagination},
+        {path: 'select',component: select}
       ]}
   ]
 });
