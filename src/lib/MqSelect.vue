@@ -3,7 +3,7 @@
     <div class="mmq-select-text-wrap">
       <input :disabled="disabled" :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
       <div class="mmq-select-icon-wrap">
-        <Icon :name="showOptions ? 'icon-menudown' : 'icon-menuright' "></Icon>
+        <Icon :name="showOptions ? 'icon-menudown' : showClearIcon ? '' : 'icon-menuright' "></Icon>
         <Icon v-if="showClearIcon" @click.stop="handleClearInputText" name="icon-close"></Icon>
       </div>
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted, ref} from 'vue';
+import {computed, defineComponent, getCurrentInstance, onMounted, ref} from 'vue';
 import MqSelectOption from './MqSelectOption.vue'
 import Icon from './Icon.vue';
 import mitt from 'mitt';
@@ -57,7 +57,14 @@ export default defineComponent({
       showOptions.value = false
     }
     onMounted(() => {
-      emitter.on('onChange', handleOptionsHandle)
+      const internalInstance = getCurrentInstance()
+      emitter.on('onChange', (val: any) => {
+        const {uid} = val
+        if (internalInstance!.uid !== uid) {
+          return
+        }
+        handleOptionsHandle(val)
+      })
       document.addEventListener('click', handleCloseOptions, false)
     })
     const handleOptionsHandle = (value: any) => {
@@ -72,6 +79,7 @@ export default defineComponent({
     }
     const handleClearInputText = () => {
       context.emit('update:modelValue', '')
+      currentLabel.value = ''
       showCancel.value = false
       showOptions.value = false
       context.emit('onChange', '')

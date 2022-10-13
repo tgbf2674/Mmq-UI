@@ -1,5 +1,5 @@
 <template>
-  <div :class="['mq-options-item', disabled? 'disabled-item' : '']" @click.stop="handleOptionsClick">
+  <div :class="['mq-options-item', disabled? 'disabled-item' : '']" @click="handleOptionsClick">
     <slot>
       <span>{{ label }}</span>
     </slot>
@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, getCurrentInstance} from 'vue';
 import { emitter } from './MqSelect.vue'
 export default defineComponent({
   name: 'MqSelectOption',
@@ -26,9 +26,10 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const internalInstance = getCurrentInstance();
     const handleOptionsClick = () => {
       if (!props.disabled) {
-        emitter.emit('onChange', {value: props.value, label: props.label} || '')
+        emitter.emit('onChange', {value: props.value, label: props.label, uid: internalInstance!.parent!.parent!.parent!.uid} || '')
       }
     }
     return {
