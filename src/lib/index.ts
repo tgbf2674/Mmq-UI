@@ -37,6 +37,9 @@ export { default as MqSpread } from './Spread.vue'
 export { default as MqSticky } from './Sticky.vue'
 export { default as MqSwiper } from './Swiper.vue'
 export { default as MqTooltip } from './Tooltip.vue'
+export { default as MqSelect } from './MqSelect.vue'
+export { default as MqSelectOption } from './MqSelectOption.vue'
+export { default as MqPagination } from './MqPagination.vue'
 
 import MqSwitch from './Switch.vue'
 import MqButton from './Button.vue'
@@ -77,7 +80,9 @@ import MqSpread from './Spread.vue'
 import MqSticky from './Sticky.vue'
 import MqSwiper from './Swiper.vue'
 import MqTooltip from './Tooltip.vue'
-
+import MqPagination from './MqPagination.vue';
+import MqSelect from './MqSelect.vue';
+import MqSelectOption from './MqSelectOption.vue';
 import { App} from 'vue';
 
 const componentList: any = [
@@ -119,7 +124,10 @@ const componentList: any = [
   MqRadio,
   MqTag,
   MqAside,
-  MqContainer
+  MqContainer,
+  MqPagination,
+  MqSelect,
+  MqSelectOption
 ]
 
 const install = function (Vue: App) {
