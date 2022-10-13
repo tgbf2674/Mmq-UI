@@ -1,7 +1,7 @@
 <template>
   <div class="mmq-select">
     <div class="mmq-select-text-wrap">
-      <input class="mmq-select-input" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
+      <input :class="['mmq-select-input', size]" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
       <div class="mmq-select-icon-wrap">
         <Icon :name="showOptions ? 'icon-menudown' : 'icon-menuright' "></Icon>
         <Icon v-if="showClearIcon" @click.stop="handleClearInputText" name="icon-close"></Icon>
@@ -36,6 +36,10 @@ export default defineComponent({
     clearable: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'normal'
     }
   },
   setup(props, context) {
@@ -79,7 +83,7 @@ export default defineComponent({
 .mmq-select {
   width: 240px;
   position: relative;
-
+  margin: 20px;
   .mmq-select-input {
     -webkit-appearance: none;
     background-color: #fff;
@@ -100,6 +104,18 @@ export default defineComponent({
     &:focus {
       border-color: #409eff;
     }
+  }
+  .large {
+    height: 40px;
+    line-height: 40px;
+  }
+  .normal {
+    height: 30px;
+    line-height: 30px;
+  }
+  .small {
+    height: 24px;
+    line-height: 24px;
   }
   // 过度
   .mmq-select-transition-enter-active,

@@ -2,9 +2,21 @@
 基本使用
 </demo>
 <template>
-  <MqSelect @onChange="handleChange" v-model="currentFoot">
-    <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></MqSelectOption>
-  </MqSelect>
+  <h5>适用广泛的基础单选 v-model 的值为当前被选中的 el-option 的 value 属性值</h5>
+  <div style="display: flex;align-items: center">
+    <MqSelect @onChange="handleChange" v-model="currentFoot" size="large">
+      <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
+                      :disabled="item.disabled"></MqSelectOption>
+    </MqSelect>
+    <MqSelect @onChange="handleChange" v-model="currentFoot" size="normal">
+      <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
+                      :disabled="item.disabled"></MqSelectOption>
+    </MqSelect>
+    <MqSelect @onChange="handleChange" v-model="currentFoot" size="small">
+      <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
+                      :disabled="item.disabled"></MqSelectOption>
+    </MqSelect>
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,8 +59,8 @@ export default {
     ];
     const currentFoot = ref('');
     const handleChange = (e: InputEvent) => {
-      console.log(e)
-    }
+      console.log(e);
+    };
     return {
       options, currentFoot, handleChange
     };
