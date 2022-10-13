@@ -1,7 +1,9 @@
 <template>
-  <div class="mmq-select">
+  <div ref="selectRef" class="mmq-select">
     <div class="mmq-select-text-wrap">
-      <input :disabled="disabled" :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
+      <input :disabled="disabled" :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text"
+             :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder"
+             @click.stop="showOptions = !showOptions"/>
       <div class="mmq-select-icon-wrap">
         <Icon :name="showOptions ? 'icon-menudown' : showClearIcon ? '' : 'icon-menuright' "></Icon>
         <Icon v-if="showClearIcon" @click.stop="handleClearInputText" name="icon-close"></Icon>
@@ -13,13 +15,16 @@
       </div>
     </transition>
   </div>
+  {{ currentLabel }}
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, onMounted, ref} from 'vue';
-import MqSelectOption from './MqSelectOption.vue'
+import {computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref} from 'vue';
+import MqSelectOption from './MqSelectOption.vue';
 import Icon from './Icon.vue';
 import mitt from 'mitt';
+import ta from '../../index';
+
 export const emitter = mitt();
 export default defineComponent({
   name: 'MqSelect',
@@ -30,7 +35,7 @@ export default defineComponent({
       default: '请输入'
     },
     modelValue: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     clearable: {
@@ -44,51 +49,81 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
-    const showCancel = ref(false)
-    const showOptions = ref(false)
-    const currentLabel = ref('')
+    const showCancel = ref(false);
+    const showOptions = ref(false);
+    let currentLabel = ref('');
+    const selectRef = ref<InstanceType<typeof HTMLElement>>(null)
+    const labelList = ref([] as Array<any>)
+    const valueList = ref([] as Array<any>)
+    provide('selectContext', props);
     const showClearIcon = computed(() => {
-      return props.clearable && props.modelValue?.length && showCancel
-    })
+      return props.clearable && props.modelValue?.length && showCancel;
+    });
     const handleCloseOptions = () => {
       showOptions.value = false
-    }
+    };
     onMounted(() => {
-      const internalInstance = getCurrentInstance()
+      const internalInstance = getCurrentInstance();
       emitter.on('onChange', (val: any) => {
-        const {uid} = val
+        const {uid} = val;
         if (internalInstance!.uid !== uid) {
-          return
+          return;
         }
-        handleOptionsHandle(val)
-      })
-      document.addEventListener('click', handleCloseOptions, false)
-    })
+        handleOptionsHandle(val);
+      });
+      document.addEventListener('click', (e) => {
+        const target: EventTarget = e.target!
+        if (selectRef) {
+          const isSelf = selectRef.value.contains(target as Node)
+          if (!isSelf) handleCloseOptions()
+        }
+      }, false);
+    });
     const handleOptionsHandle = (value: any) => {
-      showOptions.value = false
-      currentLabel.value = value.label
-      context.emit('onChange', value.label)
-      context.emit('update:modelValue', value.value)
-    }
+      if (!props.multiple) {
+        showOptions.value = false;
+        currentLabel.value = value.label;
+        context.emit('onChange', value.label);
+        context.emit('update:modelValue', value.value);
+      } else {
+        const index = labelList.value.findIndex((item: any) => {
+          return item === value.label;
+        })
+        if (index >= 0) {
+          valueList.value.splice(index, 1)
+          labelList.value.splice(index, 1)
+        } else {
+          valueList.value.push(value.value)
+          labelList.value.push(value.label)
+        }
+        currentLabel.value = labelList.value.join(', ')
+        context.emit('onChange', currentLabel);
+        context.emit('update:modelValue', valueList.value);
+      }
+    };
     const handleInputTextChange = (e: InputEvent) => {
-      const target = e.target as HTMLInputElement
-      context.emit('update:modelValue', target.value)
-    }
+      const target = e.target as HTMLInputElement;
+      context.emit('update:modelValue', target.value);
+    };
     const handleClearInputText = () => {
-      context.emit('update:modelValue', '')
-      currentLabel.value = ''
-      showCancel.value = false
-      showOptions.value = false
-      context.emit('onChange', '')
-    }
+      context.emit('update:modelValue', '');
+      currentLabel.value = '';
+      showCancel.value = false;
+      showOptions.value = false;
+      context.emit('onChange', '');
+    };
     return {
-      showClearIcon, showOptions, handleInputTextChange, handleClearInputText, currentLabel
-    }
+      showClearIcon, showOptions, handleInputTextChange, handleClearInputText, currentLabel, selectRef
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -96,6 +131,7 @@ export default defineComponent({
   width: 240px;
   position: relative;
   margin: 20px;
+
   .mmq-select-input {
     -webkit-appearance: none;
     background-color: #fff;
@@ -117,22 +153,27 @@ export default defineComponent({
       border-color: #409eff;
     }
   }
+
   .disabled {
     background: #f5f7fa;
     cursor: not-allowed;
   }
+
   .large {
     height: 40px;
     line-height: 40px;
   }
+
   .normal {
     height: 30px;
     line-height: 30px;
   }
+
   .small {
     height: 24px;
     line-height: 24px;
   }
+
   // 过度
   .mmq-select-transition-enter-active,
   .mmq-select-transition-leave-active {
@@ -149,6 +190,7 @@ export default defineComponent({
     transform: scaleY(0);
   }
 }
+
 .mmq-select-options-slots {
   position: absolute;
   left: 0;
@@ -169,6 +211,7 @@ export default defineComponent({
 .mmq-select-text-wrap {
   display: flex;
   align-items: center;
+
   .mmq-select-icon-wrap {
     position: absolute;
     right: 14px;

@@ -34,6 +34,10 @@ interface ICollapseProps{
   accordion: boolean
 }
 
+interface ISelectProps {
+  multiple: boolean
+}
+
 type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T
   currentTarget: T

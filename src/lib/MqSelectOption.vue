@@ -7,8 +7,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, getCurrentInstance} from 'vue';
-import { emitter } from './MqSelect.vue'
+import {computed, defineComponent, getCurrentInstance, inject} from 'vue';
+import {emitter} from './MqSelect.vue';
+
 export default defineComponent({
   name: 'MqSelectOption',
   props: {
@@ -25,18 +26,22 @@ export default defineComponent({
       default: false
     }
   },
-  setup (props) {
+  setup(props) {
     const internalInstance = getCurrentInstance();
     const handleOptionsClick = () => {
       if (!props.disabled) {
-        emitter.emit('onChange', {value: props.value, label: props.label, uid: internalInstance!.parent!.parent!.parent!.uid} || '')
+        emitter.emit('onChange', {
+          value: props.value,
+          label: props.label,
+          uid: internalInstance!.parent!.parent!.parent!.uid
+        });
       }
-    }
+    };
     return {
       handleOptionsClick
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +58,7 @@ export default defineComponent({
   line-height: 34px;
   box-sizing: border-box;
   cursor: pointer;
+
   &:hover {
     background: #f5f7fa;
   }
@@ -62,6 +68,7 @@ export default defineComponent({
   color: #c0c4cc;
   cursor: not-allowed;
 }
+
 .disabled-item:hover {
   border-color: #fff;
 }
