@@ -1,7 +1,7 @@
 <template>
   <div class="mmq-select">
     <div class="mmq-select-text-wrap">
-      <input :class="['mmq-select-input', size]" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
+      <input :disabled="disabled" :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text" :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder" @click.stop="showOptions = !showOptions" />
       <div class="mmq-select-icon-wrap">
         <Icon :name="showOptions ? 'icon-menudown' : 'icon-menuright' "></Icon>
         <Icon v-if="showClearIcon" @click.stop="handleClearInputText" name="icon-close"></Icon>
@@ -40,6 +40,10 @@ export default defineComponent({
     size: {
       type: String,
       default: 'normal'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -104,6 +108,10 @@ export default defineComponent({
     &:focus {
       border-color: #409eff;
     }
+  }
+  .disabled {
+    background: #f5f7fa;
+    cursor: not-allowed;
   }
   .large {
     height: 40px;

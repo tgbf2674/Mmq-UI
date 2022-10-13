@@ -1,18 +1,10 @@
 <demo>
-基本使用
+有禁用选项
 </demo>
 <template>
-  <h5>适用广泛的基础单选 v-model 的值为当前被选中的 mq-option 的 value 属性值</h5>
+  <h5>在 mq-option 中，设定 disabled 值为 true，即可禁用该选项</h5>
   <div style="display: flex;align-items: center">
     <MqSelect @onChange="handleChange" v-model="currentFoot" size="large">
-      <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
-                      :disabled="item.disabled"></MqSelectOption>
-    </MqSelect>
-    <MqSelect @onChange="handleChange" v-model="currentFoot" size="normal">
-      <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
-                      :disabled="item.disabled"></MqSelectOption>
-    </MqSelect>
-    <MqSelect @onChange="handleChange" v-model="currentFoot" size="small">
       <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
                       :disabled="item.disabled"></MqSelectOption>
     </MqSelect>
