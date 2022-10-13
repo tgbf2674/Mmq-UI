@@ -1,8 +1,9 @@
 <template>
   <div ref="selectRef" class="mmq-select">
     <div class="mmq-select-text-wrap">
-      <input :disabled="disabled" :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text"
-             :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder"
+      <input :readonly="!filterable" :disabled="disabled"
+             :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text"
+             :value="modelValue" @input="handleInputTextChange" :placeholder="placeholder"
              @click.stop="showOptions = !showOptions"/>
       <div class="mmq-select-icon-wrap">
         <Icon :name="showOptions ? 'icon-menudown' : showClearIcon ? '' : 'icon-menuright' "></Icon>
@@ -11,11 +12,14 @@
     </div>
     <transition name="mmq-select-transition">
       <div v-show="showOptions" class="mmq-select-options-slots">
-        <slot></slot>
+        <template v-if="filterResultList.length && isSearchIn && modelValue.length > 0">
+          <MqSelectOption v-for="item in filterResultList" :value="item.value" :key="item.value"
+                          :label="item.label"></MqSelectOption>
+        </template>
+        <slot v-if="(modelValue.length === 0 || !isSearchIn)"></slot>
       </div>
     </transition>
   </div>
-  {{ currentLabel }}
 </template>
 
 <script lang="ts">
@@ -23,7 +27,6 @@ import {computed, defineComponent, getCurrentInstance, onMounted, provide, react
 import MqSelectOption from './MqSelectOption.vue';
 import Icon from './Icon.vue';
 import mitt from 'mitt';
-import ta from '../../index';
 
 export const emitter = mitt();
 export default defineComponent({
@@ -53,21 +56,42 @@ export default defineComponent({
     multiple: {
       type: Boolean,
       default: false
+    },
+    filterable: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     const showCancel = ref(false);
     const showOptions = ref(false);
     let currentLabel = ref('');
-    const selectRef = ref<InstanceType<typeof HTMLElement>>(null)
-    const labelList = ref([] as Array<any>)
-    const valueList = ref([] as Array<any>)
+    const selectRef = ref<InstanceType<typeof HTMLElement>>();
+    const labelList = ref([] as Array<any>);
+    const valueList = ref([] as Array<any>);
+    const filterResultList = ref([] as Array<any>);
+    const filterDataList = ref([] as Array<any>);
+    const isSearchIn = ref(false);
+    const defaults: any = context.slots.default!()[0].children;
     provide('selectContext', props);
     const showClearIcon = computed(() => {
       return props.clearable && props.modelValue?.length && showCancel;
     });
     const handleCloseOptions = () => {
-      showOptions.value = false
+      showOptions.value = false;
+    };
+    const getSearchData = () => {
+      filterDataList.value = defaults.map((item: any) => {
+        const value = item.props.value;
+        const label = item.props.label;
+        return {
+          value, label
+        };
+      });
+    };
+    const setSearchData = (value: any) => {
+      isSearchIn.value = true;
+      filterResultList.value = filterDataList.value.filter((item) => item.label.includes(value));
     };
     onMounted(() => {
       const internalInstance = getCurrentInstance();
@@ -79,38 +103,42 @@ export default defineComponent({
         handleOptionsHandle(val);
       });
       document.addEventListener('click', (e) => {
-        const target: EventTarget = e.target!
+        const target: EventTarget = e.target!;
         if (selectRef) {
-          const isSelf = selectRef.value.contains(target as Node)
-          if (!isSelf) handleCloseOptions()
+          const isSelf = selectRef.value!.contains(target as Node);
+          if (!isSelf) handleCloseOptions();
         }
       }, false);
+      getSearchData();
     });
     const handleOptionsHandle = (value: any) => {
       if (!props.multiple) {
         showOptions.value = false;
         currentLabel.value = value.label;
-        context.emit('onChange', value.label);
-        context.emit('update:modelValue', value.value);
+        context.emit('onChange', value);
+        context.emit('update:modelValue', value.label);
       } else {
         const index = labelList.value.findIndex((item: any) => {
           return item === value.label;
-        })
+        });
         if (index >= 0) {
-          valueList.value.splice(index, 1)
-          labelList.value.splice(index, 1)
+          valueList.value.splice(index, 1);
+          labelList.value.splice(index, 1);
         } else {
-          valueList.value.push(value.value)
-          labelList.value.push(value.label)
+          valueList.value.push(value.value);
+          labelList.value.push(value.label);
         }
-        currentLabel.value = labelList.value.join(', ')
-        context.emit('onChange', currentLabel);
-        context.emit('update:modelValue', valueList.value);
+        currentLabel.value = labelList.value.join(', ');
+        context.emit('onChange', {label: labelList.value, value: valueList.value});
+        context.emit('update:modelValue', currentLabel.value);
       }
+      isSearchIn.value = false;
     };
     const handleInputTextChange = (e: InputEvent) => {
       const target = e.target as HTMLInputElement;
       context.emit('update:modelValue', target.value);
+      context.emit('onChange', currentLabel);
+      setSearchData(target.value);
     };
     const handleClearInputText = () => {
       context.emit('update:modelValue', '');
@@ -120,7 +148,15 @@ export default defineComponent({
       context.emit('onChange', '');
     };
     return {
-      showClearIcon, showOptions, handleInputTextChange, handleClearInputText, currentLabel, selectRef
+      showClearIcon,
+      showOptions,
+      handleInputTextChange,
+      handleClearInputText,
+      currentLabel,
+      selectRef,
+      filterResultList,
+      isSearchIn,
+      filterDataList
     };
   }
 });

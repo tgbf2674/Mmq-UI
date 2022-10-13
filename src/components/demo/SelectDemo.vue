@@ -5,6 +5,7 @@
   <Demo :component="SelectDemo3"></Demo>
   <Demo :component="SelectDemo4"></Demo>
   <Demo :component="SelectDemo5"></Demo>
+  <Demo :component="SelectDemo6"></Demo>
 </template>
 
 <script lang="ts">
@@ -14,6 +15,7 @@ import SelectDemo2 from '../demoInstance/Select/Select2.demo.vue'
 import SelectDemo3 from '../demoInstance/Select/Select3.demo.vue'
 import SelectDemo4 from '../demoInstance/Select/Select4.demo.vue'
 import SelectDemo5 from '../demoInstance/Select/Select5.demo.vue'
+import SelectDemo6 from '../demoInstance/Select/Select6.demo.vue'
 export default {
   name: 'SelectDemo',
   components: {
@@ -21,7 +23,7 @@ export default {
   },
   setup () {
     return {
-      SelectDemo1, SelectDemo2, SelectDemo3, SelectDemo4, SelectDemo5
+      SelectDemo1, SelectDemo2, SelectDemo3, SelectDemo4, SelectDemo5, SelectDemo6
     }
   }
 }
