@@ -17,6 +17,19 @@
                           :label="item.label"></MqSelectOption>
         </template>
         <slot v-if="(modelValue.length === 0 || !isSearchIn)"></slot>
+        <div
+          class="select-empty"
+          v-if="
+            (!loading &&
+              !remote &&
+              ((!filterResultList.length && isSearchIn && modelValue.length > 0) ||
+                !filterDataList.length)) ||
+            (remote && !loading)
+          "
+        >
+          暂无数据
+        </div>
+        <div class="select-loading" v-if="loading">加载中...</div>
       </div>
     </transition>
   </div>
@@ -38,7 +51,7 @@ export default defineComponent({
       default: '请输入'
     },
     modelValue: {
-      type: [String, Array],
+      type: [String, Array, Number, Boolean],
       default: ''
     },
     clearable: {
@@ -60,6 +73,14 @@ export default defineComponent({
     filterable: {
       type: Boolean,
       default: false
+    },
+    remote: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -75,7 +96,7 @@ export default defineComponent({
     const defaults: any = context.slots.default!()[0].children;
     provide('selectContext', props);
     const showClearIcon = computed(() => {
-      return props.clearable && props.modelValue?.length && showCancel;
+      return props.clearable && props.modelValue && showCancel;
     });
     const handleCloseOptions = () => {
       showOptions.value = false;
