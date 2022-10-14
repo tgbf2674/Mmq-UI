@@ -2,6 +2,7 @@
   <h1>Pagination 示例</h1>
   <Demo :component="PaginationDemo1"></Demo>
   <Demo :component="PaginationDemo2"></Demo>
+  <Demo :component="PaginationDemo3"></Demo>
   <h2>事件</h2>
   <table width="100%">
     <tr>
@@ -31,13 +32,14 @@
 import Demo from '../Demo.vue'
 import PaginationDemo1 from '../demoInstance/Pagination/Pagination1.demo.vue'
 import PaginationDemo2 from '../demoInstance/Pagination/Pagination2.demo.vue'
+import PaginationDemo3 from '../demoInstance/Pagination/Pagination3.demo.vue'
 
 export default {
   name: 'PaginationDemo',
   components: {Demo},
   setup() {
     return {
-      PaginationDemo1, PaginationDemo2
+      PaginationDemo1, PaginationDemo2, PaginationDemo3
     }
   }
 }

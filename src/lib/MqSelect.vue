@@ -21,10 +21,8 @@
           class="select-empty"
           v-if="
             (!loading &&
-              !remote &&
               ((!filterResultList.length && isSearchIn && modelValue.length > 0) ||
-                !filterDataList.length)) ||
-            (remote && !loading)
+                !filterDataList.length))
           "
         >
           暂无数据
@@ -40,6 +38,7 @@ import {computed, defineComponent, getCurrentInstance, onMounted, provide, react
 import MqSelectOption from './MqSelectOption.vue';
 import Icon from './Icon.vue';
 import mitt from 'mitt';
+import re from '../../index';
 
 export const emitter = mitt();
 export default defineComponent({
@@ -71,10 +70,6 @@ export default defineComponent({
       default: false
     },
     filterable: {
-      type: Boolean,
-      default: false
-    },
-    remote: {
       type: Boolean,
       default: false
     },

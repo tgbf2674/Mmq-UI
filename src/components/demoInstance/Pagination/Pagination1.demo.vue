@@ -2,7 +2,7 @@
  常规使用
 </demo>
 <template>
-  <MqPagination v-model="current" @changePage="changePage" :page-size="10" :total="80" :page="1" position="center"></MqPagination>
+  <MqPagination v-model="current" layout="prev, next" @changePage="changePage" :total="80" :page="1" position="center"></MqPagination>
   {{ current }}
 </template>
 

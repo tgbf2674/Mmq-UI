@@ -1,29 +1,30 @@
 <template>
   <div :class="['mq-pagination', background ? 'background': '']" :style="{'justify-content': computedPosition}">
-    <a @click="changePage(false)" href="javascript:;" :class="{'disabled': currentPage === 1}">上一页</a>
+    <span v-if="showTotal">Total: {{ total }}</span>
+    <MqSelect v-if="pageSizes.length > 0 && showSizes" v-model="pageSize" size="normal">
+      <MqSelectOption v-for="item in pageSizes" :key="item" :value="item" :label="item"></MqSelectOption>
+    </MqSelect>
+    <a v-if="showPrev" @click="changePage(false)" href="javascript:;" :class="{'disabled': currentPage === 1}">上一页</a>
     <a v-if="currentPage > 3" @click="changePage(1)" href="javascript:;" :class="{disabled: currentPage === 1}">1</a>
     <span v-if="currentPage>3">...</span>
     <a @click="changePage(item)" href="javascript:;" v-for="item in list" :key="item" :class="{active: currentPage === item}">{{item}}</a>
-    <span v-if="currentPage < pages - 2">...</span>
-    <a v-if="currentPage < pages - 2" @click="changePage(pages)" href="javascript:;" :class="{disabled: currentPage === pages}">{{ pages }}</a>
-    <a @click="changePage(true)" href="javascript:;" :class="{disabled: currentPage === pages}">下一页</a>
+    <span v-if="currentPage < pages - 3">...</span>
+    <a v-if="currentPage < pages - 3" @click="changePage(pages)" href="javascript:;" :class="{disabled: currentPage === pages}">{{ pages }}</a>
+    <a v-if="showNext" @click="changePage(true)" href="javascript:;" :class="{disabled: currentPage === pages}">下一页</a>
   </div>
 </template>
 
 <script>
 import {computed, defineComponent, ref} from 'vue'
-import Dropdown from './Dropdown.vue'
+import MqSelect from './MqSelect.vue'
+import MqSelectOption from './MqSelectOption.vue'
 export default defineComponent({
   name: 'MqPagination',
-  components: {Dropdown},
+  components: {MqSelect, MqSelectOption},
   props: {
     total: {
       type: Number,
       default: 80
-    },
-    pageSize: {
-      type: Number,
-      default: 10
     },
     position: {
       type: String,
@@ -35,6 +36,11 @@ export default defineComponent({
     },
     pageSizes: {
       type: Array,
+      default: () => []
+    },
+    layout: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {
@@ -43,7 +49,20 @@ export default defineComponent({
       else if (props.position === 'right') return 'flex-end'
       else if (props.position === 'center') return 'center'
     })
-    const pages = computed(() => Math.ceil(props.total / props.pageSize))
+    const showTotal = computed(() => {
+      return props.layout.includes('total')
+    })
+    const showSizes = computed(() => {
+      return props.layout.includes('sizes')
+    })
+    const showPrev = computed(() => {
+      return props.layout.includes('prev')
+    })
+    const showNext = computed(() => {
+      return props.layout.includes('next')
+    })
+    const pageSize = ref(10)
+    const pages = computed(() => Math.ceil(props.total / pageSize.value))
     const currentPage = ref(context.attrs.page || 1)
     const list = computed(() => {
       const res = []
@@ -85,7 +104,7 @@ export default defineComponent({
       context.emit('update:modelValue', currentPage.value)
     }
     return {
-      computedPosition, currentPage, pages, list, changePage
+      computedPosition, currentPage, pages, list, changePage, pageSize, showTotal, showSizes, showPrev, showNext
     }
   }
 })
@@ -94,6 +113,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .mq-pagination {
   display: flex;
+  align-items: center;
   padding: 30px;
   > a {
     display: inline-block;

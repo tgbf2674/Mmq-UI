@@ -1,8 +1,8 @@
 <demo>
- 带有背景色的分页
+附加功能
 </demo>
 <template>
-  <MqPagination background v-model="current" layout="prev, next" @changePage="changePage" :total="80" :page="1" position="center"></MqPagination>
+  <MqPagination background v-model="current" :page-sizes="[5, 10, 20, 40]" layout="prev, next, sizes, total" @changePage="changePage" :total="80" :page="1" position="center"></MqPagination>
   {{ current }}
 </template>
 
@@ -32,3 +32,4 @@ export default {
 <style scoped>
 
 </style>
+
