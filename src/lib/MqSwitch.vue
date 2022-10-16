@@ -1,8 +1,12 @@
 <template>
-  <div :class="['mmq-switch-wrapper', disabled ? 'mmq-switch-disabled' : '']" @click="changeSwitchStatus">
-    <div :class="['mmq-switch-status', switchStatusClass]">
-      <span class="mmq-switch-text">{{ switchStatusText }}</span>
+  <div class="mmq-switch-text-wrapper">
+    <div :class="!checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ closeText }}</div>
+    <div :class="['mmq-switch-wrapper', disabled ? 'mmq-switch-disabled' : '']">
+      <div :class="['mmq-switch-status', switchStatusClass]" @click="changeSwitchStatus">
+        <span class="mmq-switch-text">{{ inlinePrompt ? switchStatusText : '' }}</span>
+      </div>
     </div>
+    <div :class="checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ openText }}</div>
   </div>
 </template>
 
@@ -32,6 +36,10 @@ export default defineComponent({
     closeText: {
       type: String,
       default: ''
+    },
+    inlinePrompt: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
@@ -67,19 +75,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.mmq-switch-text-wrapper {
+  display: flex;
+  align-items: center;
+}
 .mmq-switch-wrapper {
   min-width: 44px;
   height: 24px;
-  margin-right: 8px;
+  margin: 0 10px;
   cursor: pointer;
-  display: inline-block;
   position: relative;
   user-select: none;
+
   .mmq-switch-status {
     width: 100%;
     height: 100%;
     border-radius: 12px;
     vertical-align: bottom;
+    display: flex;
+    align-items: center;
   }
 
   .mmq-switch-open {
@@ -102,7 +116,7 @@ export default defineComponent({
       height: 16px;
       border-radius: 8px;
       background-color: #fff;
-      transition: all cubic-bezier(1, 0.5, 0.8, 1) 0.3s;
+      transition: all 0.3s;
     }
   }
 
@@ -126,9 +140,13 @@ export default defineComponent({
       height: 16px;
       border-radius: 8px;
       background-color: #fff;
-      transition: all cubic-bezier(1, 0.5, 0.8, 1) 0.3s;
+      transition: all 0.3s;
     }
   }
+}
+
+.mmq-switch-text-selected {
+  color: #40a9ff;
 }
 
 .mmq-switch-disabled {

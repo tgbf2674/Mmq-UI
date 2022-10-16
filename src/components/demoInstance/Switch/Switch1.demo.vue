@@ -1,18 +1,18 @@
 <demo>
 常规用法
 </demo>
-
 <template>
-  <Switch v-model:value="bool" active-text="1" inactive-text="2"/>
+  <h5>绑定 v-model 到一个 Boolean 类型的变量。</h5>
+  <MqSwitch v-model="bool" />
 </template>
 <script lang="ts">
-import Switch from '../../../lib/Switch.vue'
+import MqSwitch from '../../../lib/MqSwitch.vue';
 import {
   ref
 } from 'vue'
 export default {
   components: {
-    Switch,
+    MqSwitch,
   },
   setup() {
     const bool = ref(false)

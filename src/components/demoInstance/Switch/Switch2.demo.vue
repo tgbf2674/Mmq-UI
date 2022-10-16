@@ -1,17 +1,18 @@
 <demo>
-支持 disabled
+支持禁用
 </demo>
 <template>
-  <Switch v-model:value="bool" disabled />
+  <h5>设置disabled属性，接受一个Boolean，设置true即可禁用。</h5>
+  <MqSwitch v-model="bool" disabled />
 </template>
 <script lang="ts">
-import Switch from '../../../lib/Switch.vue'
+import MqSwitch from '../../../lib/MqSwitch.vue';
 import {
   ref
 } from 'vue'
 export default {
   components: {
-    Switch,
+    MqSwitch,
   },
   setup() {
     const bool = ref(false)
