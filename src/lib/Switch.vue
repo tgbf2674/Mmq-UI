@@ -60,7 +60,7 @@ $h2: $h - 4px;
   left: calc(100% - #{$h2} - 2px);
 }
 .mmq-switch:focus{
-  outline: none;
+  outline: none
 }
 .mmq-switch:active{
   > span {width: $h2 + 4px;}

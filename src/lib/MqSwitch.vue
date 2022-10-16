@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted, ref, watchEffect} from 'vue';
+import {defineComponent, onMounted, ref, watchEffect} from 'vue';
 
 export default defineComponent({
   name: 'MqSwitch',
@@ -43,7 +43,7 @@ export default defineComponent({
       checkedValue.value = !props.modelValue;
       context.emit('update:modelValue', !props.modelValue);
       context.emit('change', !props.modelValue);
-      console.log(checkedValue.value)
+      console.log(checkedValue.value);
     };
     onMounted(() => {
       if (props.modelValue || props.defaultChecked) checkedValue.value = true;
@@ -75,7 +75,6 @@ export default defineComponent({
   display: inline-block;
   position: relative;
   user-select: none;
-
   .mmq-switch-status {
     width: 100%;
     height: 100%;
@@ -95,14 +94,15 @@ export default defineComponent({
     }
 
     &::before {
-      margin-top: 3px;
-      margin-left: calc(100% - 22px);
+      top: 4px;
+      left: calc(100% - 22px);
       position: absolute;
       content: '';
       width: 16px;
       height: 16px;
       border-radius: 8px;
       background-color: #fff;
+      transition: all cubic-bezier(1, 0.5, 0.8, 1) 0.3s;
     }
   }
 
@@ -119,12 +119,14 @@ export default defineComponent({
 
     &::before {
       position: absolute;
-      margin: 3px 0 0 3px;
+      top: 4px;
+      left: 4px;
       content: '';
       width: 16px;
       height: 16px;
       border-radius: 8px;
       background-color: #fff;
+      transition: all cubic-bezier(1, 0.5, 0.8, 1) 0.3s;
     }
   }
 }

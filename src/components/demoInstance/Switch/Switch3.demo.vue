@@ -2,7 +2,7 @@
 支持 disabled
 </demo>
 <template>
-  <MqSwitch v-model="bool" />
+  <MqSwitch v-model="bool" open-text="133333333" close-text="22222222222222" />
 </template>
 <script lang="ts">
 import MqSwitch from '../../../lib/MqSwitch.vue';
