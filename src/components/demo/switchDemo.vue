@@ -3,12 +3,14 @@
     <h1>Switch 组件示例 </h1>
     <Demo :component="Switch1Demo"></Demo>
     <Demo :component="Switch2Demo"></Demo>
+    <Demo :component="Switch3Demo"></Demo>
   </div>
 </template>
 
 <script lang="ts">
 import Switch1Demo from '../demoInstance/Switch/Switch1.demo.vue'
 import Switch2Demo from '../demoInstance/Switch/Switch2.demo.vue'
+import Switch3Demo from '../demoInstance/Switch/Switch3.demo.vue'
 import Demo from '../Demo.vue';
 export default {
 name: "switchDemo",
@@ -17,7 +19,8 @@ name: "switchDemo",
   setup(){
     return {
       Switch1Demo,
-      Switch2Demo
+      Switch2Demo,
+      Switch3Demo
     }
   }
 }
