@@ -4,6 +4,19 @@
     <Demo :component="Switch1Demo"></Demo>
     <Demo :component="Switch2Demo"></Demo>
     <Demo :component="Switch3Demo"></Demo>
+    <h2>事件</h2>
+    <table width="100%">
+      <tr>
+        <th>事件名</th>
+        <th>说明</th>
+        <th>参数</th>
+      </tr>
+      <tr>
+        <td>change</td>
+        <td>switch 状态发生变化时的回调函数</td>
+        <td>val，新状态的值</td>
+      </tr>
+    </table>
   </div>
 </template>
 
