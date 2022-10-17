@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, reactive, toRef, provide } from "vue";
+import { defineComponent, PropType, provide } from "vue";
 
 export default defineComponent({
   name: 'MqButtonGroup',

@@ -1,6 +1,8 @@
 import Button from '../lib/Button.vue'
+import ButtonGroup from '../lib/ButtonGroup.vue'
 import {mount} from '@vue/test-utils'
 import {describe, expect, test} from 'vitest'
+import {provide} from 'vue'
 
 describe('button', () => {
   test('存在', () => {
@@ -62,5 +64,21 @@ describe('button', () => {
       }
     })
     expect(wrapper.classes('isRound')).toBe(true)
+  })
+})
+
+describe('buttonGroup', () => {
+  test('按钮组可以设置内部按钮大小', () => {
+    const Component = {
+      template: `
+        <ButtonGroup size="big" level="danger">
+        <Button> ← 坐</Button>
+        <Button> → 右</Button>
+        </ButtonGroup>
+  `,
+      components: {ButtonGroup, Button}
+    }
+    const wrapper = mount(Component)
+    expect(wrapper.findComponent(Button).classes('mmq-size-big') && wrapper.findComponent(Button).classes('mmq-level-danger')).toBe(true)
   })
 })
