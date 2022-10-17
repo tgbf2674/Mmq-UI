@@ -2,7 +2,7 @@
   <div class="mmq-switch-text-wrapper">
     <div :class="!checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ closeText }}</div>
     <div :class="['mmq-switch-wrapper', disabled ? 'mmq-switch-disabled' : '']">
-      <div :class="['mmq-switch-status', switchStatusClass]" @click="changeSwitchStatus">
+      <div :class="['mmq-switch-status', switchStatusClass]" :style="{background: checkedValue ? openColor : closeColor, borderColor: checkedValue ? `1px solid ${openColor}` : `1px solid ${closeColor}`}" @click="changeSwitchStatus">
         <span class="mmq-switch-text">{{ inlinePrompt ? switchStatusText : '' }}</span>
       </div>
     </div>
@@ -24,6 +24,14 @@ export default defineComponent({
     defaultChecked: {
       type: Boolean,
       default: false
+    },
+    openColor: {
+      type: String,
+      default: '#40a9ff'
+    },
+    closeColor: {
+      type: String,
+      default: '#d9d9d9'
     },
     disabled: {
       type: Boolean,
@@ -97,9 +105,6 @@ export default defineComponent({
   }
 
   .mmq-switch-open {
-    background-color: #40a9ff;
-    border: 1px solid #40a9ff;
-
     .mmq-switch-text {
       padding-right: 24px;
       padding-left: 6px;
@@ -121,9 +126,6 @@ export default defineComponent({
   }
 
   .mmq-switch-close {
-    background-color: #d9d9d9;
-    border: 1px solid #d9d9d9;
-
     .mmq-switch-text {
       padding-right: 6px;
       padding-left: 24px;
