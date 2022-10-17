@@ -9,6 +9,9 @@ export default defineConfig({
   assetsDir: 'assets',
   plugins: [vue(), demo(), md()],
   test: {
-    environment: 'happy-dom'
+    environment: 'happy-dom',
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+    }
   }
 });

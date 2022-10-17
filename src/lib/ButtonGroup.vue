@@ -11,21 +11,15 @@ export default defineComponent({
   name: 'MqButtonGroup',
   props: {
     size: {
-      type: String as PropType<ButtonSize>,
-      default: 'normal'
+      type: String as PropType<ButtonSize>
     },
     level: {
-      type: String as PropType<ButtonLevel>,
-      default: 'normal'
+      type: String as PropType<ButtonLevel>
     }
   },
   setup(props) {
     provide(
-      'buttonGroupContext',
-      reactive({
-        size: toRef(props, 'size'),
-        level: toRef(props, 'level')
-      })
+      'buttonGroupContext', {size: props.size, level: props.level}
     )
     return {
     }

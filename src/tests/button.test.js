@@ -15,4 +15,52 @@ describe('button', () => {
     })
     expect(wrapper.attributes('disable')).toBe('true')
   })
+  test('可以设置主题', () => {
+    const wrapper = mount(Button, {
+      props: {
+        theme: 'link'
+      }
+    })
+    expect(wrapper.classes('mmq-theme-link')).toBe(true)
+  })
+  test('可以设置Loading', () => {
+    const wrapper = mount(Button, {
+      props: {
+        loading: true
+      }
+    })
+    expect(wrapper.find('span').exists() &&wrapper.find('span').classes('mmq-loadingIndicator')).toBe(true)
+  })
+  test('可以设置按钮颜色', () => {
+    const wrapper = mount(Button, {
+      props: {
+        level: 'main'
+      }
+    })
+    expect(wrapper.classes('mmq-level-main')).toBe(true)
+  })
+  test('可以设置按钮大小', async () => {
+    const wrapper = mount(Button, {
+      props: {
+        size: 'big'
+      }
+    })
+    await expect(wrapper.classes('mmq-size-big')).toBe(true)
+  })
+  test('可以设置原型按钮', () => {
+    const wrapper = mount(Button, {
+      props: {
+        circle: true
+      }
+    })
+    expect(wrapper.classes('isCircle')).toBe(true)
+  })
+  test('可以设置按钮圆角', () => {
+    const wrapper = mount(Button, {
+      props: {
+        round: true
+      }
+    })
+    expect(wrapper.classes('isRound')).toBe(true)
+  })
 })

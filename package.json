@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "testui": "vitest --ui"
   },
   "files": [
     "dist/lib/*",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "3.0.3",
+    "@vitest/coverage-c8": "^0.24.3",
     "@vue/test-utils": "^2.0.0-rc.18",
     "github-markdown-css": "4.0.0",
     "happy-dom": "^7.5.12",
