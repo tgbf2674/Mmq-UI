@@ -1,34 +1,34 @@
 <template>
   <div class="mmq-switch-text-wrapper">
-    <div :class="!checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ closeText }}</div>
+    <div v-if="!inlinePrompt" :class="selectOpenTextClass">{{ closeText }}</div>
     <div :class="['mmq-switch-wrapper', disabled ? 'mmq-switch-disabled' : '']">
       <div :class="['mmq-switch-status', switchStatusClass]"
-           :style="{background: checkedValue ? openColor : closeColor, borderColor: checkedValue ? `1px solid ${openColor}` : `1px solid ${closeColor}`}"
+           :style="selectStatusStyle"
            @click="changeSwitchStatus">
         <span class="mmq-switch-text">{{ inlinePrompt ? switchStatusText : '' }}</span>
       </div>
     </div>
-    <div :class="checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ openText }}</div>
+    <div v-if="!inlinePrompt" :class="selectCloseTextClass">{{ openText }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref, watchEffect} from 'vue';
+import {computed, defineComponent, onMounted, ref, watchEffect} from 'vue';
 
 export default defineComponent({
   name: 'MqSwitch',
   props: {
     modelValue: {
       required: true,
-      default: false,
-      type: Boolean || String || Number
+      type: [Boolean, String, Number],
+      default: false
     },
     openValue: {
-      type: Boolean || String || Number,
+      type: [Boolean, String, Number],
       default: true
     },
     closeValue: {
-      type: Boolean || String || Number,
+      type: [Boolean, String, Number],
       default: false
     },
     openColor: {
@@ -53,12 +53,31 @@ export default defineComponent({
     },
     inlinePrompt: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   setup(props, context) {
     const checkedValue = ref(props.modelValue);
     const switchStatusClass = ref('mmq-switch-close');
+    const selectOpenTextClass = computed(() => {
+      return checkedValue.value === props.openValue ? 'mmq-switch-text-selected' : ''
+    })
+    const selectCloseTextClass = computed(() => {
+      return checkedValue.value !== props.openValue ? 'mmq-switch-text-selected' : ''
+    })
+    const selectStatusStyle = computed(() => {
+      if (checkedValue.value === props.openValue) {
+        return {
+          background: props.openColor,
+          borderColor: '1px solid #' + props.openColor
+        }
+      } else {
+        return {
+          background: props.closeColor,
+          borderColor: '1px solid #' + props.closeColor
+        }
+      }
+    })
     const switchStatusText = ref('');
     const changeSwitchStatus = (e: Event) => {
       if (props.disabled) return;
@@ -71,7 +90,7 @@ export default defineComponent({
     });
 
     watchEffect(() => {
-      if (checkedValue.value) {
+      if (checkedValue.value === props.openValue) {
         switchStatusClass.value = 'mmq-switch-open';
         switchStatusText.value = props.openText;
       } else {
@@ -80,7 +99,7 @@ export default defineComponent({
       }
     });
     return {
-      switchStatusClass, switchStatusText, changeSwitchStatus, checkedValue
+      switchStatusClass, switchStatusText, changeSwitchStatus, checkedValue, selectOpenTextClass, selectCloseTextClass, selectStatusStyle
     };
   }
 });

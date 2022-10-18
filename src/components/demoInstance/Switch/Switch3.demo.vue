@@ -6,6 +6,7 @@
 
     使用open-text属性与close-text属性来设置开关的文字描述。</h5>
   <MqSwitch v-model="bool" open-text="open" close-text="close" />
+  <MqSwitch inline-prompt v-model="bool" open-text="open" close-text="close" />
 </template>
 <script lang="ts">
 import MqSwitch from '../../../lib/MqSwitch.vue';
