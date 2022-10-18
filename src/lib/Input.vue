@@ -30,7 +30,8 @@ export default defineComponent({
       default: '请输入内容'
     },
     inputValue: {
-      type: String
+      type: String,
+      default: ''
     },
     type: {
       type: String,
@@ -67,9 +68,9 @@ export default defineComponent({
       childInputType.value = childInputType.value === 'text' ? 'password' : 'text';
     };
     const countNum = computed(() => {
-      return childInputValue.value.length || '0';
+      return childInputValue.value.length || 0;
     });
-    const childInputValue = ref();
+    const childInputValue = ref('');
     watchEffect(() => {
        childInputValue.value = props.inputValue;
     });

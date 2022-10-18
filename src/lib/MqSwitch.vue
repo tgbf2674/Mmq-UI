@@ -62,7 +62,6 @@ export default defineComponent({
     const switchStatusText = ref('');
     const changeSwitchStatus = (e: Event) => {
       if (props.disabled) return;
-      // checkedValue.value = !props.modelValue;
       checkedValue.value === props.openValue ? checkedValue.value = props.closeValue : checkedValue.value = props.openValue
       context.emit('update:modelValue', checkedValue.value);
       context.emit('change', checkedValue.value);
