@@ -2,7 +2,9 @@
   <div class="mmq-switch-text-wrapper">
     <div :class="!checkedValue && inlinePrompt ? 'mmq-switch-text-selected' : '' ">{{ closeText }}</div>
     <div :class="['mmq-switch-wrapper', disabled ? 'mmq-switch-disabled' : '']">
-      <div :class="['mmq-switch-status', switchStatusClass]" :style="{background: checkedValue ? openColor : closeColor, borderColor: checkedValue ? `1px solid ${openColor}` : `1px solid ${closeColor}`}" @click="changeSwitchStatus">
+      <div :class="['mmq-switch-status', switchStatusClass]"
+           :style="{background: checkedValue ? openColor : closeColor, borderColor: checkedValue ? `1px solid ${openColor}` : `1px solid ${closeColor}`}"
+           @click="changeSwitchStatus">
         <span class="mmq-switch-text">{{ inlinePrompt ? switchStatusText : '' }}</span>
       </div>
     </div>
@@ -19,10 +21,14 @@ export default defineComponent({
     modelValue: {
       required: true,
       default: false,
-      type: Boolean
+      type: Boolean || String || Number
     },
-    defaultChecked: {
-      type: Boolean,
+    openValue: {
+      type: Boolean || String || Number,
+      default: true
+    },
+    closeValue: {
+      type: Boolean || String || Number,
       default: false
     },
     openColor: {
@@ -56,14 +62,13 @@ export default defineComponent({
     const switchStatusText = ref('');
     const changeSwitchStatus = (e: Event) => {
       if (props.disabled) return;
-      checkedValue.value = !props.modelValue;
-      context.emit('update:modelValue', !props.modelValue);
-      context.emit('change', !props.modelValue);
-      console.log(checkedValue.value);
+      // checkedValue.value = !props.modelValue;
+      checkedValue.value === props.openValue ? checkedValue.value = props.closeValue : checkedValue.value = props.openValue
+      context.emit('update:modelValue', checkedValue.value);
+      context.emit('change', checkedValue.value);
     };
     onMounted(() => {
-      if (props.modelValue || props.defaultChecked) checkedValue.value = true;
-      else if (!props.modelValue || !props.defaultChecked) checkedValue.value = false;
+      props.modelValue ? checkedValue.value = props.openValue : checkedValue.value = props.closeValue;
     });
 
     watchEffect(() => {
@@ -87,6 +92,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
 }
+
 .mmq-switch-wrapper {
   min-width: 44px;
   height: 24px;

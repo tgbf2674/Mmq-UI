@@ -4,6 +4,7 @@
     <Demo :component="Switch1Demo"></Demo>
     <Demo :component="Switch2Demo"></Demo>
     <Demo :component="Switch3Demo"></Demo>
+    <Demo :component="Switch4Demo"></Demo>
     <h2>事件</h2>
     <table width="100%">
       <tr>
@@ -24,6 +25,7 @@
 import Switch1Demo from '../demoInstance/Switch/Switch1.demo.vue'
 import Switch2Demo from '../demoInstance/Switch/Switch2.demo.vue'
 import Switch3Demo from '../demoInstance/Switch/Switch3.demo.vue'
+import Switch4Demo from '../demoInstance/Switch/Switch4.demo.vue'
 import Demo from '../Demo.vue';
 export default {
 name: "switchDemo",
@@ -33,7 +35,8 @@ name: "switchDemo",
     return {
       Switch1Demo,
       Switch2Demo,
-      Switch3Demo
+      Switch3Demo,
+      Switch4Demo
     }
   }
 }
