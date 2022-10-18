@@ -120,7 +120,7 @@ export default defineComponent({
       });
       document.addEventListener('click', (e) => {
         const target: EventTarget = e.target!;
-        if (selectRef) {
+        if (selectRef.value) {
           const isSelf = selectRef.value!.contains(target as Node);
           if (!isSelf) handleCloseOptions();
         }
