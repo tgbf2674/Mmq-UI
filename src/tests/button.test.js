@@ -2,7 +2,6 @@ import Button from '../lib/Button.vue'
 import ButtonGroup from '../lib/ButtonGroup.vue'
 import {mount} from '@vue/test-utils'
 import {describe, expect, test} from 'vitest'
-import {provide} from 'vue'
 
 describe('button', () => {
   test('存在', () => {
