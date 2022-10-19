@@ -21,7 +21,7 @@ name: "MqGrid",
       watchEffect(()=>{
         if(props.gutter){
           Array.from(gutterRef.value.children).forEach((item: any)=>{
-            if(item.nextSibling!.className === 'mmq-grid-col' || (item.nextSibling!.className && !item.previousElementSibling)){
+            if(item.nextSibling!.className === 'mmq-grid-col' || (item.nextSibling && !item.previousElementSibling)){
               item.style.paddingRight = props.gutter + 'px'
             }
           })

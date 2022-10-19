@@ -17,18 +17,15 @@
     </GridCol>
   </Grid>
   <Grid :gutter="20">
-    <GridCol :span="6" :offset="6">
+    <GridCol :span="6" :offset="4">
       <div class="demo1"></div>
     </GridCol>
-    <GridCol :span="6" :offset="12">
+    <GridCol :span="6" :offset="8">
       <div class="demo2"></div>
     </GridCol>
   </Grid>
   <Grid :gutter="20">
-    <GridCol :span="12">
-      <div class="demo1"></div>
-    </GridCol>
-    <GridCol :span="3">
+    <GridCol :span="12" :offset="6">
       <div class="demo1"></div>
     </GridCol>
   </Grid>
