@@ -1,6 +1,6 @@
 <template>
   <div class="mmq-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
-    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="mmq-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
+    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="mmq-input-inner" @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
     <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
             <Icon @click="clearInputValue" name="icon-error"/>
        </span>
@@ -70,6 +70,13 @@ export default defineComponent({
     const countNum = computed(() => {
       return childInputValue.value.length || 0;
     });
+    const onChangHandle = (e: InputEvent) => {
+      context.emit('change', e)
+    }
+    const onkeydownHandle = (e: KeyboardEvent) => {
+      if(e.keyCode === 13)
+      context.emit('keydown', e)
+    }
     const childInputValue = ref('');
     watchEffect(() => {
        childInputValue.value = props.inputValue;
@@ -80,7 +87,7 @@ export default defineComponent({
         childInputValue.value = childInputValue.value.slice(0, Number(props.maxlength) * 1);
       }
     });
-    return {inputChange, childInputValue, clearInputValue, childInputType, changeInputType, countNum};
+    return {inputChange, childInputValue, clearInputValue, childInputType, changeInputType, countNum, onkeydownHandle, onChangHandle};
   }
 });
 </script>

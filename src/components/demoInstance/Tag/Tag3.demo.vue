@@ -7,24 +7,36 @@
        v-for="tag in dynamicTags"
        canClose
        @close="closeTag">
-      {{tag}}
+    {{ tag }}
   </Tag>
+  <span style="margin-left: 20px">
+    <Button @click="isEdit = true" v-if="!isEdit">+ tag</Button>
+    <Input v-if="isEdit" v-model="value" @change="enterClick" @keydown.enter="enterClick"/>
+  </span>
 </template>
 
 <script lang="ts">
 import Tag from '../../../lib/Tag.vue';
-import {reactive} from 'vue';
+import Input from '../../../lib/Input.vue';
+import Button from '../../../lib/Button.vue';
+import {reactive, ref} from 'vue';
 
 export default {
   name: 'Tag3.demo',
-  components: {Tag},
+  components: {Tag, Input, Button},
   setup() {
-    let dynamicTags= reactive(['标签一', '标签二', '标签三'])
-    const closeTag = (name:string) => {
-      dynamicTags.splice(dynamicTags.indexOf(name),1)
+    let dynamicTags = reactive(['标签一', '标签二', '标签三']);
+    const isEdit = ref(false);
+    const closeTag = (name: string) => {
+      dynamicTags.splice(dynamicTags.indexOf(name), 1);
+    };
+    const value = ref('');
+    const enterClick = (e: KeyboardEvent) => {
+      dynamicTags.push(value.value);
+      isEdit.value = false;
     };
     return {
-      dynamicTags,closeTag,
+      dynamicTags, closeTag, isEdit, enterClick, value
     };
   }
 };
