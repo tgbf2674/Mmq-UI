@@ -67,6 +67,6 @@ describe('switch', () => {
       }
     })
     await wrapper.find('.mmq-switch-status').trigger('click')
-    expect(wrapper.find('.mmq-switch-close').exists()).toBe(true)
+    expect(wrapper.props('modelValue')).toBe(100)
   })
 })

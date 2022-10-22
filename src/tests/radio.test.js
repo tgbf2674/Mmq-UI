@@ -11,14 +11,33 @@ describe('Radio', () => {
     })
     expect(wrapper.exists()).toBe(true)
   })
-  test('点击选各种', async () => {
+  test('点击选各种',async () => {
     const wrapper = mount(Radio, {
       props: {
-        options: ['1', '2', '3'],
-        modelValue: '1'
+        options: [
+          {label: '苹果', value: 'Apple'},
+          {label: '梨', value: 'Pear'},
+          {label: '橘子', value: 'Orange'}
+        ],
+        modelValue: ''
       }
     })
-    await wrapper.find('.mmq-radio-original').trigger('click')
-    expect(wrapper.props('modelValue')).toBe('1')
+    await wrapper.find('input').trigger('click')
+    expect(wrapper.find('input').attributes().value).toBe('Apple')
+  })
+  test('点击选各种',async () => {
+    const wrapper = mount(Radio, {
+      props: {
+        options: [
+          {label: '苹果', value: 'Apple'},
+          {label: '梨', value: 'Pear'},
+          {label: '橘子', value: 'Orange'}
+        ],
+        modelValue: 'Apple',
+        canCancel: true
+      }
+    })
+    await wrapper.find('input').trigger('click')
+    expect(wrapper.find('input').attributes().value).toBe('')
   })
 })

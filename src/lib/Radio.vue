@@ -3,7 +3,7 @@
     <label class="mmq-radio">
       <span class="mmq-radio-input">
         <span class="mmq-radio-inner" :class="{'is-checked' :item.value ===modelValue}"></span>
-        <input type="radio" @click="select" :value="item.value" class="mmq-radio-original">
+        <input type="radio" @click="select(item.value)" :value="value" class="mmq-radio-original">
       </span>
       <span class="mmq-radio-label" :class="{'is-checked' :item.value ===modelValue}"> {{ item.label }}</span>
     </label>
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'MqRadio',
@@ -34,14 +34,15 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const select = (e: { target: HTMLInputElement }) => {
-      if (e.target.value === props.modelValue) {
-        if (props.canCancel) e.target.value = '';
-        else return;
+    const value = ref(props.modelValue)
+    const select = (val: string) => {
+      value.value = val
+      if (value.value === props.modelValue) {
+        if (props.canCancel) value.value = '';
       }
-      context.emit('update:modelValue', e.target.value);
+      context.emit('update:modelValue', value.value);
     };
-    return {select};
+    return {select, value};
   }
 });
 </script>
