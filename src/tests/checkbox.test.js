@@ -49,7 +49,10 @@ describe('checkbox', () => {
     }
     const wrapper = mount(Component)
     await wrapper.setData({ value: ['xixi'] })
-    expect(wrapper.find('input').element.checked).toBe(false)
+    const input = wrapper.find('input')
+    input.element.checked = true
+    await input.trigger('change')
+    expect(wrapper.find('input').element.checked).toBe(true)
   })
   test('支持禁用', async () => {
     const Component = {

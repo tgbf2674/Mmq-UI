@@ -34,11 +34,10 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref} from 'vue';
+import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref} from 'vue';
 import MqSelectOption from './MqSelectOption.vue';
 import Icon from './Icon.vue';
 import mitt from 'mitt';
-import re from '../../index';
 
 export const emitter = mitt();
 export default defineComponent({
@@ -131,7 +130,10 @@ export default defineComponent({
       if (!props.multiple) {
         showOptions.value = false;
         currentLabel.value = value.label;
-        context.emit('onChange', value);
+        context.emit('onChange', {
+          label: value.label,
+          value: value.value
+        });
         context.emit('update:modelValue', value.label);
       } else {
         const index = labelList.value.findIndex((item: any) => {
