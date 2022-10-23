@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import {computed, ComputedRef, defineComponent, inject, ref, watch, watchEffect} from 'vue';
+import {computed, ComputedRef, defineComponent, inject} from 'vue';
 
 interface CheckboxGroupType {
   name?: string,
@@ -61,14 +61,17 @@ export default defineComponent({
     const isLimitDisabled = computed(() =>{
       const max = checkboxGroup.max
       const min = checkboxGroup.min
-      if (Array.isArray(model.value))
-      return (
-        (max && model.value.length >= max && !isChecked.value) ||
-        (min && min !== 0 && model.value.length <= min && isChecked.value)
-      )
+      if (Array.isArray(model.value) && (min || max)) {
+        return (
+          (max && model.value.length >= max && !isChecked.value) ||
+          (min && min !== 0 && model.value.length <= min && isChecked.value)
+        )
+      } else {
+        return props.disabled
+      }
     })
     const isDisabled = computed(() =>  {
-      return checkboxGroup.disabled || isLimitDisabled.value || props.disabled
+      return checkboxGroup.disabled || isLimitDisabled.value
     })
     const isChecked = computed(() => {
       const value = model.value

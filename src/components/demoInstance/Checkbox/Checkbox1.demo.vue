@@ -2,8 +2,8 @@
 常规用法
 </demo>
 <template>
-  <checkbox v-model="value" label="西瓜"></checkbox>{{value}}
-  <checkbox v-model="value1" label="葡萄"></checkbox>{{value1}}
+  <checkbox v-model="value" @change="changeHandle" label="西瓜"></checkbox>
+  <checkbox v-model="value1" label="葡萄"></checkbox>
   <checkbox v-model="value2" label="车厘子"></checkbox>
   <checkbox v-model="value3" label="菠萝" disabled></checkbox>
 </template>
@@ -19,8 +19,11 @@ export default {
     const value1 = ref(true)
     const value2 = ref(false)
     const value3 = ref(false)
+    const changeHandle = (val: any) => {
+      console.log(val)
+    }
     return {
-      value, value1, value2, value3
+      value, value1, value2, value3, changeHandle
     }
   }
 }

@@ -28,11 +28,6 @@ export default defineComponent ({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, ctx) {
-    const changeEvent = (val: unknown) => {
-      ctx.emit('update:modelValue', val);
-      ctx.emit('change', val)
-    };
-
     const modelValue = computed(() => props.modelValue);
     provide(
       'CheckboxGroupContext', {
@@ -41,7 +36,10 @@ export default defineComponent ({
         modelValue,
         max: props.max,
         min: props.min,
-        changeEvent
+        changeEvent: (val: unknown) => {
+          ctx.emit('update:modelValue', val);
+          ctx.emit('change', val)
+        }
       }
     )
   }

@@ -1,5 +1,5 @@
 <demo>
-禁用状态
+indeterminate 状态(半选状态)
 </demo>
 <template>
   <checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange"></checkbox>
