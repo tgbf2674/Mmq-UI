@@ -61,12 +61,12 @@ describe('switch', () => {
   test('扩展value的类型', async () => {
     const wrapper = mount(MqSwitch, {
       props: {
-        modelValue: 100,
+        modelValue: 1,
         openValue: 100,
         closeValue: 1
       }
     })
     await wrapper.find('.mmq-switch-status').trigger('click')
-    expect(wrapper.props('modelValue')).toBe(100)
+    expect(wrapper.find('.mmq-switch-close').exists()).toBe(true)
   })
 })

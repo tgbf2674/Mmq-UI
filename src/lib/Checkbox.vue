@@ -68,7 +68,7 @@ export default defineComponent({
       )
     })
     const isDisabled = computed(() =>  {
-      return checkboxGroup.disabled || isLimitDisabled.value
+      return checkboxGroup.disabled || isLimitDisabled.value || props.disabled
     })
     const isChecked = computed(() => {
       const value = model.value
