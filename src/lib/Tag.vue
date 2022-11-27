@@ -17,9 +17,8 @@ export default defineComponent({
     },
     type: {
       type: String as PropType<TagType>,
-      default: ''
+      default: 'success'
     },
-    hit: Boolean,
     color: {
       type: String,
       default: ''
@@ -44,13 +43,12 @@ export default defineComponent({
       return props.size;
     });
     const classes = computed(() => {
-      const {type, hit, effect} = props;
+      const {type, effect} = props;
       return [
         'mmq-tag',
-        type ? `mmq-tag-${type}` : '',
+        `mmq-tag-${type}`,
         tagSize.value ? `mmq-tag-${tagSize.value}` : '',
-        effect ? `mmq-tag-${effect}` : '',
-        hit && 'is-hit'
+        `mmq-tag-${effect}`
       ];
     });
     const handleClose = (event:any) => {
@@ -103,10 +101,6 @@ export default defineComponent({
     color: #fff;
     background-color: #409eff;
   }
-}
-
-.is-hit {
-  border-color: #d9ecff;
 }
 
 .mmq-tag-success {
