@@ -11,16 +11,16 @@ export default defineComponent({
   name: 'MqHeader',
   props: {
     height: {
-      type: String,
-      default: null,
+      type: [Number, String],
+      default: 60,
     },
   },
   setup(props) {
     return {
       style: computed(() => (
-        props.height ? {
-          'height': props.height,
-        } : {}
+        {
+          'height': `${props.height}px`,
+        }
       ) as CSSProperties),
   }
   },

@@ -12,14 +12,14 @@ export default defineComponent({
   name: 'MqAside',
   props: {
     width: {
-      type: String,
-      default: null
+      type: [Number, String],
+      default: 300
     }
   },
   setup(props) {
     return {
       style: computed(() => {
-        return props.width ? {'width': props.width} as CSSProperties : {};
+        return {width: `${props.width}px`}
       })
     };
   }

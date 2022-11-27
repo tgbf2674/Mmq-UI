@@ -2,7 +2,7 @@
 import { md } from './plugin/md'
 import { demo } from './plugin/demo'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vitest/config';
+import {configDefaults, defineConfig} from 'vitest/config';
 
 export default defineConfig({
   base: './',
