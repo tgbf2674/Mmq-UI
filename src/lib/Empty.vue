@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import ImgEmpty from './ImageEmpty.vue'
-import {computed, defineComponent, onMounted} from 'vue';
+import {computed, defineComponent} from 'vue';
 export default defineComponent({
   name: 'MqEmpty',
   components: {
