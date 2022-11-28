@@ -43,8 +43,9 @@ export default defineComponent({
       }
       if (typeof props.value === 'number' && typeof props.max === 'number') {
         return props.max < props.value ? `${props.max}+` : props.value;
+      } else {
+        return props.value;
       }
-      return props.value;
     });
     return {content};
   }

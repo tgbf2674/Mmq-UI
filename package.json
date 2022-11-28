@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
+    "coverage": "rm -rf coverage && vitest run --coverage",
     "testui": "vitest --ui"
   },
   "files": [
