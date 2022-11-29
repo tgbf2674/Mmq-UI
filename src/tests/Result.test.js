@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils'
 import {describe, test, expect} from 'vitest'
 import Button from '../lib/Button.vue'
 import Result from '../lib/Result/Result.vue'
-describe('Empty组件', () => {
+describe('Result组件', () => {
   test('基本使用', () => {
     const Component = {
       template: `

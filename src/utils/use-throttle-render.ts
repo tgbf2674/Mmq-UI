@@ -2,18 +2,18 @@ import {onMounted, ref, watch} from 'vue';
 
 import type {Ref} from 'vue';
 
-type TimeoutHandle = ReturnType<typeof global.setTimeout>
+type TimeoutHandle = ReturnType<typeof setTimeout>
 
 export default function (loading: Ref<boolean>, throttle = 0) {
   if (throttle === 0) return loading;
   const throttled = ref(false);
-  let timeoutHandle: TimeoutHandle = 0;
+  let timeoutHandle: TimeoutHandle;
 
   const dispatchThrottling = () => {
     if (timeoutHandle) {
       clearTimeout(timeoutHandle);
     }
-    timeoutHandle = window.setTimeout(() => {
+    timeoutHandle = setTimeout(() => {
       throttled.value = loading.value;
     }, throttle);
   };
