@@ -59,7 +59,7 @@ export default defineComponent({
   setup(props){
     const iconElement = computed(()=>{
       const icon = props.icon
-      return icon && IconMap[icon] ? IconMap[icon]: 'icon-info'
+      return IconMap[icon]
     })
     return {iconElement}
   }

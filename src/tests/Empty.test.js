@@ -35,7 +35,7 @@ describe('Empty组件', () => {
   test('自定义图片底部', async () => {
     const Component = {
       template: `
-        <Empty imageSize="200">
+        <Empty :imageSize="200">
         <Button level="main">按钮</Button>
         </Empty>
       `,
