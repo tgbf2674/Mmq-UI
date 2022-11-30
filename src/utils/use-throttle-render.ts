@@ -23,10 +23,8 @@ export default function (loading: Ref<boolean>, throttle = 0) {
     (val) => {
       if (val) {
         dispatchThrottling();
-      } else {
-        throttled.value = val;
       }
     }
-    )
-  return throttled
+  );
+  return throttled;
 }
