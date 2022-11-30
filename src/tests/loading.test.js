@@ -2,7 +2,6 @@ import {mount} from '@vue/test-utils'
 import {describe, test, expect} from 'vitest'
 import Loading from '../lib/Loading.vue'
 import Switch from '../lib/Switch.vue'
-import Button from '../lib/Button.vue'
 describe('Loading组件', () => {
   test('基本使用', async () => {
     const Component = {

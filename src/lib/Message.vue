@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
-    <div v-if="messageVisible" :style="{top:top+'%'}" class="mmq-messageWrapper" :class="messageWrapper">
-      <Icon :name="iconName"/>
+    <div :style="{top:top+'%'}" class="mmq-messageWrapper" :class="`mmq-messageWrapper-${type}`">
+      <Icon :name="`icon-${type}`"/>
       <span class="mmq-message">{{ message }}</span>
       <span v-if="canClose" class="close" @click="close">╳</span>
     </div>
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType, ref} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import Icon from './Icon.vue'
 export default defineComponent({
   name: 'MqMessage',
@@ -40,17 +40,7 @@ export default defineComponent({
       type: Number,
       default: 3
     }
-  },
-  setup({type}:any){
-    const messageVisible = ref(true)
-    const messageWrapper = computed(()=>{
-      return 'mmq-messageWrapper-'+ type
-    })
-    const iconName = computed(()=>{
-      return 'icon-'+ type
-    })
-    return {messageVisible,messageWrapper,iconName}
-  },
+  }
 })
 </script>
 

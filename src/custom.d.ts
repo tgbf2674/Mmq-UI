@@ -79,5 +79,5 @@ interface MessageOptions {
   close?: () => void,
   displayTime?: number,
   top?: number,
-  time: number
+  time?: number
 }

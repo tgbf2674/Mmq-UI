@@ -1,4 +1,3 @@
-
 import Message from './Message.vue'
 import {createApp,h} from 'vue'
 
@@ -8,7 +7,7 @@ export const openMessage = (options: MessageOptions) => {
     document.body.appendChild(div);
     const close = () => {
       if (div) {
-        app.unmount(div);
+        app.unmount();
         div.remove();
       }
     };

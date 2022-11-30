@@ -1,14 +1,13 @@
 <template>
   <div class="mmq-icon-wrapper">
-    <svg class="mmq-icon" :style="style" aria-hidden="true">
+    <svg class="mmq-icon" :style="{ fill, 'font-size': fontSize + 'px' }" aria-hidden="true">
       <use :xlink:href="'#'+name"></use>
     </svg>
   </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
-import './iconfont.js';
+import {defineComponent} from 'vue';
 export default defineComponent({
   name: "MqIcon",
   props: {
@@ -24,17 +23,6 @@ export default defineComponent({
     fontSize: {
       type: Number,
       default: 14
-    }
-  },
-  setup(props){
-    const style = computed(()=>{
-      return {
-        fill : props.fill,
-        'font-size': props.fontSize + 'px'
-      }
-    })
-    return {
-      style
     }
   }
 });
