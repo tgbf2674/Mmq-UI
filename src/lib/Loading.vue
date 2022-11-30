@@ -32,9 +32,7 @@ export default {
       default: 'hsla(0,0%,100%,.9)'
     }
   },
-  setup(){
-    return {close}
-  }
+  setup(){}
 }
 </script>
 
