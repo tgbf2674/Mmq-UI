@@ -21,7 +21,7 @@ export default defineComponent({
       default: ''
     },
     fontSize: {
-      type: Number,
+      type: [Number, String],
       default: 14
     }
   }
