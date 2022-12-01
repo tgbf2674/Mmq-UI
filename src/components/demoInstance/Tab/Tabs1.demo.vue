@@ -2,7 +2,7 @@
 常规使用
 </demo>
 <template>
-  <Tabs type="card" v-model:selected="x">
+  <Tabs type="card" v-model="x">
     <Tab title="导航1">内容1</Tab>
     <Tab title="导航2">内容2</Tab>
   </Tabs>

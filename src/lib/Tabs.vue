@@ -1,7 +1,7 @@
 <template>
   <div class="mmq-tabs">
     <div class="mmq-tabs-nav" ref="container">
-      <div :class="['mmq-tabs-nav-item', {selected: t===selected}, { 'mmq-tabs-nav-type-card': type === 'card' }]" @click="select(t)" v-for="(t,index) in titles" :ref="el=>{if(t ===selected) selectedItem=el}" :key="index">{{t}}</div>
+      <div :class="['mmq-tabs-nav-item', {selected: t===modelValue}, { 'mmq-tabs-nav-type-card': type === 'card' }]" @click="select(t)" v-for="(t,index) in titles" :ref="el=>{if(t ===modelValue) selectedItem=el}" :key="index">{{t}}</div>
       <div class="mmq-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="mmq-tabs-content">
@@ -16,7 +16,7 @@ import {computed, defineComponent, ref, watchEffect} from 'vue';
 export default defineComponent({
   name: 'MqTabs',
   props: {
-    selected: {
+    modelValue: {
       type: String
     },
     type: {
@@ -45,14 +45,14 @@ export default defineComponent({
     })
     const current = computed(()=>{
       return defaults.find((tag)=>{
-        return tag.props!.title ===props.selected
+        return tag.props!.title ===props.modelValue
       })
     })
     const titles = defaults.map((tag)=>{
       return tag.props!.title
     })
     const select =(title: string)=>{
-      context.emit('update:selected',title)
+      context.emit('update:modelValue',title)
     }
     return {
       defaults,titles,current,select,selectedItem,indicator,container
@@ -84,7 +84,6 @@ $border-color: #d9d9d9;
       background: $blue;
       bottom: -1px;
       transition: all 250ms;
-      width: 70%;
     }
     &-type-card{
       border: 1px solid #e4ede7;
