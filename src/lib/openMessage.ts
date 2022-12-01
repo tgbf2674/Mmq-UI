@@ -23,9 +23,7 @@ export const openMessage = (options: MessageOptions) => {
       }
     });
     setTimeout(() => {
-      if (displayTime) {
         close();
-      }
     }, displayTime! * 1000);
     app.mount(div);
 };

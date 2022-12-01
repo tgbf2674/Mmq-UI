@@ -9,14 +9,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, onMounted, PropType, ref} from 'vue';
 import Icon from './Icon.vue'
 export default defineComponent({
   name: 'MqMessage',
   components: {Icon},
   props:{
     close: {
-      type: Function,
+      type: Function
     },
     message: {
       type: String,

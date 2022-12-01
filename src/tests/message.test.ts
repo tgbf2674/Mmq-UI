@@ -13,7 +13,9 @@ describe('Message组件', () => {
         open() {
           openMessage({
             message: '我是通过函数调用的message',
-            canClose: true
+            canClose: true,
+            type: 'success',
+            top: 50,
           })
         }
       }
