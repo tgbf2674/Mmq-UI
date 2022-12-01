@@ -1,7 +1,7 @@
 <template>
   <div class="mmq-tabs">
     <div class="mmq-tabs-nav" ref="container">
-      <div :class="{selected: t===selected}" @click="select(t)" class="mmq-tabs-nav-item" v-for="(t,index) in titles" :ref="el=>{if(t ===selected) selectedItem=el}" :key="index">{{t}}</div>
+      <div :class="['mmq-tabs-nav-item', {selected: t===selected}, { 'mmq-tabs-nav-type-card': type === 'card' }]" @click="select(t)" v-for="(t,index) in titles" :ref="el=>{if(t ===selected) selectedItem=el}" :key="index">{{t}}</div>
       <div class="mmq-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="mmq-tabs-content">
@@ -17,6 +17,9 @@ export default defineComponent({
   name: 'MqTabs',
   props: {
     selected: {
+      type: String
+    },
+    type: {
       type: String
     }
   },
@@ -35,8 +38,7 @@ export default defineComponent({
         indicator.value.style.width = width + 'px'
       }
     })
-    defaults.forEach((tag)=>{
-      //@ts-ignore
+    defaults.forEach((tag: any)=>{
       if(tag.type.name !== Tab.name){
         throw new Error('Tabs 子标签必须是Tab')
       }
@@ -70,12 +72,8 @@ $border-color: #d9d9d9;
     border-bottom: 1px solid $border-color;
     position: relative;
     &-item {
-      padding: 8px 0;
-      margin: 0 16px;
+      padding: 8px 16px;
       cursor: pointer;
-      &:first-child {
-        margin-left: 0;
-      }
       &.selected {
         color: $blue;
       }
@@ -84,10 +82,17 @@ $border-color: #d9d9d9;
       position: absolute;
       height: 3px;
       background: $blue;
-      left: 0;
       bottom: -1px;
-      width: 100px;
       transition: all 250ms;
+      width: 70%;
+    }
+    &-type-card{
+      border: 1px solid #e4ede7;
+      border-bottom: none;
+      border-left: none;
+      &:first-child {
+        border-left: 1px solid #e4ede7;
+      }
     }
   }
   &-content {
