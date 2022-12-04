@@ -64,7 +64,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $blue: #40a9ff;
 $color: #333;
 $border-color: #d9d9d9;
