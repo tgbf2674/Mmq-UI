@@ -4,8 +4,7 @@
 <template>
   <div>
     <Collapse v-model:activeName="activeName">
-      <CollapseItem name="1">
-        <template #header>标题1</template>
+      <CollapseItem title="标题1" name="1">
         <template #body>内容1</template>
       </CollapseItem>
       <CollapseItem name="2" disabled>

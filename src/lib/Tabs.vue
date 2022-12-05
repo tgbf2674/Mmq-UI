@@ -1,7 +1,7 @@
 <template>
   <div class="mmq-tabs">
     <div :class="['mmq-tabs-nav', borderCardClass]" ref="container">
-      <div :class="['mmq-tabs-nav-item', {selected: t===modelValue}, type ? `mmq-tabs-nav-type-${type}`: null]" @click="select(t)" v-for="(t,index) in titles" :ref="el=>{if(t ===modelValue) selectedItem=el}" :key="index">{{t}}</div>
+      <div :class="['mmq-tabs-nav-item', {selected: t===modelValue}, type ? `mmq-tabs-nav-type-${type}`: null]" @click="select(t)" v-for="(t,index) in titles" :ref="el=>{if(t === modelValue) selectedItem=el}" :key="index">{{t}}</div>
       <div v-if="!type" class="mmq-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="mmq-tabs-content">
@@ -48,7 +48,7 @@ export default defineComponent({
     })
     const current = computed(()=>{
       return defaults.find((tag)=>{
-        return tag.props!.title ===props.modelValue
+        return tag.props!.title === props.modelValue
       })
     })
     const titles = defaults.map((tag)=>{

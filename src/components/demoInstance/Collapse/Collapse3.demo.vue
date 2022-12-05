@@ -1,10 +1,11 @@
 <demo>
-手风琴模式
+自定义面板标题
 </demo>
 <template>
   <div>
     <Collapse v-model:activeName="activeName" accordion>
-      <CollapseItem title="狂人日记" name="1">
+      <CollapseItem name="1">
+        <template #header>狂人日记  <Icon name="icon-user" fill="rgb(24,144,255)" font-size="20"/></template>
         <template #body>我未必无意之中，不吃了我妹子的几片肉，现在也轮到我自己，……有了四千年吃人履历的我，当初虽然不知道，现在明白，难见真的人</template>
       </CollapseItem>
       <CollapseItem name="2">
@@ -27,9 +28,10 @@
 <script lang="ts">
 import Collapse from "../../../lib/Collapse.vue";
 import CollapseItem from "../../../lib/CollapseItem.vue";
+import Icon from '../../../lib/Icon.vue';
 import {ref} from "vue";
 export default {
-  components: {Collapse, CollapseItem},
+  components: {Collapse, CollapseItem, Icon},
   setup() {
     const activeName = ref(['2']);
     return {activeName};
