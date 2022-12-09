@@ -1,7 +1,10 @@
 <template>
   <div class="tooltip">
     <slot></slot>
-    <span class="tooltipText" :class="direction" :style="computedEffect">{{ content }}</span>
+    <span v-if="content" class="tooltipText" :class="direction" :style="computedEffect">{{ content }}</span>
+    <div v-else class="tooltipText" :class="direction" :style="computedEffect">
+      <slot name="content"></slot>
+    </div>
   </div>
 </template>
 
@@ -82,8 +85,8 @@ export default defineComponent({
     }
     &.top {
       right: 50%;
-      top: -130%;
       transform: translate(50%);
+      bottom: 130%;
       &::after {
         top: 100%;
         left: 50%;
