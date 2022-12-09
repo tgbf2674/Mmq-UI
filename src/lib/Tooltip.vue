@@ -1,9 +1,8 @@
 <template>
   <div class="tooltip">
     <slot></slot>
-    <span v-if="content" class="tooltipText" :class="direction" :style="computedEffect">{{ content }}</span>
-    <div v-else class="tooltipText" :class="direction" :style="computedEffect">
-      <slot name="content"></slot>
+    <div class="tooltipText" :class="direction" :style="computedEffect">
+      <slot name="content">{{ content }}</slot>
     </div>
   </div>
 </template>
