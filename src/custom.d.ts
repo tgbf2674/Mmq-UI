@@ -81,3 +81,6 @@ interface MessageOptions {
   top?: number,
   time?: number
 }
+
+// Tooltip
+type TooltipEffectOptions = 'dark' | 'light'

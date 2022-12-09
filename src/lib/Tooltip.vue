@@ -1,12 +1,12 @@
 <template>
   <div class="tooltip">
     <slot></slot>
-    <span class="tooltipText" :class="direction">{{ content }}</span>
+    <span class="tooltipText" :class="direction" :style="computedEffect">{{ content }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {computed, defineComponent, PropType} from 'vue';
 export default defineComponent({
   name: "MqTooltip",
   props: {
@@ -17,9 +17,29 @@ export default defineComponent({
     direction: {
       type: String as PropType<string>,
       default: 'right'
+    },
+    effect: {
+      type: String as PropType<TooltipEffectOptions>,
+      default: 'dark'
     }
   },
   setup(props, context) {
+    const computedEffect = computed(() => {
+      if (props.effect === 'light') {
+        return {
+          background: '#fff',
+          color: '#606266'
+        }
+      } else {
+        return {
+          background: '#555',
+          color: '#fff'
+        }
+      }
+    })
+    return {
+      computedEffect
+    }
   }
 });
 </script>
@@ -34,8 +54,6 @@ export default defineComponent({
     min-width: 120px;
     font-size: 14px;
     white-space: nowrap;
-    background-color: #555;
-    color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 8px 10px;
