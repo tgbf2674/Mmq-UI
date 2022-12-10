@@ -52,7 +52,7 @@ export default defineComponent({
     onMounted(() => {
       isControl.value = props.visible !== undefined
       if (props.transition) {
-        tooltipRef.value.style.transition = 'opacity .3s'
+        tooltipRef.value.style.transition = 'all .3s'
       }
     })
     const computedVisible = computed(() => {
@@ -83,7 +83,6 @@ export default defineComponent({
   margin-left: 40px;
   position: relative;
   display: inline-block;
-  transition: opacity .3s;
   .tooltipText {
     min-width: 120px;
     font-size: 14px;
