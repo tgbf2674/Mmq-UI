@@ -28,6 +28,10 @@ export default defineComponent({
     visible: {
       type: Boolean,
       default: undefined
+    },
+    transition: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
@@ -47,6 +51,9 @@ export default defineComponent({
     const isControl = ref(false)
     onMounted(() => {
       isControl.value = props.visible !== undefined
+      if (props.transition) {
+        tooltipRef.value.style.transition = 'opacity .3s'
+      }
     })
     const computedVisible = computed(() => {
       return props.visible ? 'visible' : 'hidden'
@@ -76,7 +83,7 @@ export default defineComponent({
   margin-left: 40px;
   position: relative;
   display: inline-block;
-
+  transition: opacity .3s;
   .tooltipText {
     min-width: 120px;
     font-size: 14px;
@@ -87,7 +94,6 @@ export default defineComponent({
     margin-left: 5px;
     position: absolute;
     z-index: 9999;
-    transition: opacity 0.3s;
     visibility: hidden;
     opacity: 0;
 
