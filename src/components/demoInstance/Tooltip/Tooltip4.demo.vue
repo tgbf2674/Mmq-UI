@@ -1,9 +1,9 @@
 <demo>
-受控模式
+受控模式(支持v-model)
 </demo>
 <template>
-  <Tooltip v-model="visible" content="我是出现在上边的文字" direction="top">
-    <Button @mouseenter="visible = true" @mouseleave="visible = false">上边</Button>
+  <Tooltip v-model:visible="visible" content="我是出现在上边的文字" direction="top">
+    <Button @click="visible = !visible">上边</Button>
   </Tooltip>
 </template>
 

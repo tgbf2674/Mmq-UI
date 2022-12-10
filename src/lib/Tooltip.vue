@@ -1,21 +1,21 @@
 <template>
   <div @mouseenter="handleEnter" @mouseleave="handleLeave" class="tooltip">
     <slot></slot>
-    <div :class="['tooltipText', direction, isControl ? computedVisible : '']" :style="computedEffect">
+    <div ref="tooltipRef" :class="['tooltipText', direction, isControl&& computedVisible]"
+         :style="computedEffect">
       <slot name="content">{{ content }}</slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType} from 'vue';
+import {computed, defineComponent, onMounted, PropType, ref} from 'vue';
 
 export default defineComponent({
   name: 'MqTooltip',
   props: {
     content: {
-      type: String as PropType<string>,
-      required: true
+      type: String as PropType<string>
     },
     direction: {
       type: String as PropType<string>,
@@ -26,7 +26,8 @@ export default defineComponent({
       default: 'dark'
     },
     visible: {
-      type: Boolean
+      type: Boolean,
+      default: undefined
     }
   },
   setup(props, context) {
@@ -43,24 +44,28 @@ export default defineComponent({
         };
       }
     });
+    const isControl = ref(false)
+    onMounted(() => {
+      isControl.value = props.visible !== undefined
+    })
     const computedVisible = computed(() => {
-      if (props.visible) {
-        return 'visible';
-      } else {
-        return 'hidden';
-      }
-    });
+      return props.visible ? 'visible' : 'hidden'
+    })
+    const tooltipRef = ref()
     const handleEnter = () => {
-      context.emit('update:modelValue', true)
-    }
+      if (!isControl.value) {
+        tooltipRef.value.style.visibility = 'visible'
+        tooltipRef.value.style.opacity = '1'
+      }
+    };
     const handleLeave = () => {
-      context.emit('update:modelValue', false)
-    }
-    const isControl = () => {
-      return props.visible === undefined
-    }
+      if(!isControl.value) {
+        tooltipRef.value.style.visibility = 'hidden'
+        tooltipRef.value.style.opacity = '0'
+      }
+    };
     return {
-      computedEffect, computedVisible, handleEnter, handleLeave, isControl
+      computedEffect, handleEnter, handleLeave, tooltipRef, isControl, computedVisible
     };
   }
 });
@@ -73,7 +78,6 @@ export default defineComponent({
   display: inline-block;
 
   .tooltipText {
-    visibility: hidden;
     min-width: 120px;
     font-size: 14px;
     white-space: nowrap;
@@ -83,8 +87,9 @@ export default defineComponent({
     margin-left: 5px;
     position: absolute;
     z-index: 9999;
-    opacity: 0;
     transition: opacity 0.3s;
+    visibility: hidden;
+    opacity: 0;
 
     &::after {
       content: "";
@@ -144,14 +149,6 @@ export default defineComponent({
       }
     }
   }
-
-  &:hover {
-    .tooltipText {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
   .visible {
     visibility: visible;
     opacity: 1;
