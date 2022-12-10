@@ -2,7 +2,7 @@
 受控模式
 </demo>
 <template>
-  <Tooltip :visible="visible" content="我是出现在上边的文字" direction="top">
+  <Tooltip v-model="visible" content="我是出现在上边的文字" direction="top">
     <Button @mouseenter="visible = true" @mouseleave="visible = false">上边</Button>
   </Tooltip>
 </template>

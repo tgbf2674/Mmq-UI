@@ -1,7 +1,7 @@
 <template>
-  <div class="tooltip">
+  <div @mouseenter="handleEnter" @mouseleave="handleLeave" class="tooltip">
     <slot></slot>
-    <div :class="['tooltipText', direction, computedVisible]" :style="computedEffect">
+    <div :class="['tooltipText', direction, isControl ? computedVisible : '']" :style="computedEffect">
       <slot name="content">{{ content }}</slot>
     </div>
   </div>
@@ -50,8 +50,17 @@ export default defineComponent({
         return 'hidden';
       }
     });
+    const handleEnter = () => {
+      context.emit('update:modelValue', true)
+    }
+    const handleLeave = () => {
+      context.emit('update:modelValue', false)
+    }
+    const isControl = () => {
+      return props.visible === undefined
+    }
     return {
-      computedEffect, computedVisible
+      computedEffect, computedVisible, handleEnter, handleLeave, isControl
     };
   }
 });
