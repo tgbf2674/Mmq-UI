@@ -58,6 +58,7 @@ export default defineComponent({
   emits: ['input','change','focus','blur','mouseleave','mouseenter','keydown','update:inputValue'],
   setup(props, context) {
     const inputChange = () => {
+      context.emit('input', childInputValue.value)
       context.emit('update:inputValue', childInputValue.value);
     };
     const clearInputValue = () => {
