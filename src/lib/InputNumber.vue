@@ -1,15 +1,15 @@
 <template>
-  <span class="mmq-inputNumber">
-    <div class="mmq-inputNumber-decrease" @click="handleButtonMinus"><Icon name="icon-minus"></Icon></div>
-    <Input placeholder v-model:input-value="inputValue" @input="handleInputValue"/>
-    <div class="mmq-inputNumber-increase" @click="handleButtonAdd"><Icon name="icon-add"></Icon></div>
+  <span ref="inputNumberRef" :class="['mmq-inputNumber', disabled && 'disabled']">
+    <div :class="['mmq-inputNumber-decrease']" @click.prevent="handleButtonMinus"><Icon name="icon-minus"></Icon></div>
+    <Input :disabled="disabled" placeholder v-model:input-value="inputValue" @input="handleInputValue"/>
+    <div class="mmq-inputNumber-increase" @click.stop="handleButtonAdd"><Icon name="icon-add"></Icon></div>
   </span>
 </template>
 
 <script>
 import Input from './Input.vue'
 import Icon from './Icon.vue'
-import {defineComponent, watchEffect, ref} from 'vue'
+import {defineComponent, watchEffect, ref, onMounted} from 'vue'
 
 export default defineComponent({
   name: 'InputNumber',
@@ -18,12 +18,23 @@ export default defineComponent({
     modelValue: {
       type: Number,
       default: 0
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
     const inputValue = ref()
+    const inputNumberRef = ref()
     watchEffect(() => {
       inputValue.value = props.modelValue
+    })
+    onMounted(() => {
+      if (props.disabled) {
+        inputNumberRef.value.children[0].style.pointerEvents = 'none'
+        inputNumberRef.value.children[2].style.pointerEvents = 'none'
+      }
     })
     const handleButtonMinus = () => {
       context.emit('update:modelValue', props.modelValue - 1)
@@ -36,7 +47,7 @@ export default defineComponent({
       value ? context.emit('update:modelValue', value) : context.emit('update:modelValue', 0)
     }
     return {
-      handleButtonAdd, handleButtonMinus, handleInputValue, inputValue
+      handleButtonAdd, handleButtonMinus, handleInputValue, inputValue, inputNumberRef
     }
   }
 })
@@ -49,6 +60,7 @@ export default defineComponent({
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
+  cursor: pointer;
 
   &:hover {
     border: 1px solid #bdbec1;
@@ -64,7 +76,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     font-size: 8px;
     background: #f5f7fa;
 
@@ -83,7 +94,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     font-size: 8px;
     background: #f5f7fa;
 
@@ -105,10 +115,28 @@ export default defineComponent({
   }
 
   &:focus {
-    border-color: #bdbec1;
-    border-left: 1px solid #dcdfe6;
-    border-right: 1px solid #dcdfe6;
+    border-color: #dcdfe6;
   }
 }
 
+.disabled {
+  cursor: not-allowed;
+
+  &-increase {
+    pointer-events: none;
+  }
+  &-decrease {
+    pointer-events: none;
+  }
+  &:hover {
+    border: none;
+  }
+  ::v-deep .mmq-input-inner {
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: #dcdfe6;
+    }
+  }
+}
 </style>

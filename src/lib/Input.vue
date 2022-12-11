@@ -78,7 +78,7 @@ export default defineComponent({
       if(e.keyCode === 13)
       context.emit('keydown', e)
     }
-    const childInputValue = ref('');
+    const childInputValue = ref();
     watchEffect(() => {
        childInputValue.value = props.inputValue;
     });

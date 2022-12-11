@@ -4,7 +4,7 @@
 
 <template>
   <h5>要使用它，只需要在元素中使用 v-model 绑定变量即可，变量的初始值即为默认值</h5>
-  <InputNumber v-model="num"/>
+  <InputNumber disabled v-model="num"/>
 </template>
 
 <script lang="ts">
