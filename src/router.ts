@@ -8,6 +8,7 @@ import tabsDemo from './components/demo/tabsDemo.vue'
 import card from './components/demo/CardDemo.vue'
 import icon from './components/demo/IconDemo.vue'
 import input from './components/demo/InputDemo.vue'
+import inputNumber from './components/demo/inputNumberDemo.vue'
 import loading from './components/demo/LoadingDemo.vue'
 import message from './components/demo/MessageDemo.vue'
 import collapse from './components/demo/CollapseDemo.vue'
@@ -58,6 +59,7 @@ export const router = createRouter({
         {path: 'card',component: card},
         {path: 'icon',component: icon},
         {path: 'input',component: input},
+        {path: 'inputNumber',component: inputNumber},
         {path: 'loading',component: loading},
         {path: 'message',component: message},
         {path: 'collapse',component: collapse},
