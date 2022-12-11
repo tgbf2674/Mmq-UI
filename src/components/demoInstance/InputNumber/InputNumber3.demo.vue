@@ -4,7 +4,7 @@
 
 <template>
   <h5>max,min属性接受一个 Number，设定值的范围。</h5>
-  <InputNumber v-model="num"/>
+  <InputNumber :min="0" :max="10" v-model="num"/>
 </template>
 
 <script lang="ts">
