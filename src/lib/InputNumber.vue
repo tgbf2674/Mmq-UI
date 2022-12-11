@@ -1,9 +1,9 @@
 <template>
-  <div class="mmq-inputNumber">
-    <div class="mmq-inputNumber-decrease" @click="handleButtonMinus">-</div>
-    <Input v-model:input-value="modelValue" @input="handleInputValue" />
-    <div class="mmq-inputNumber-increase" @click="handleButtonAdd">+</div>
-  </div>
+  <span class="mmq-inputNumber">
+    <div class="mmq-inputNumber-decrease" @click="handleButtonMinus">➖</div>
+    <Input v-model:input-value="modelValue" @input="handleInputValue"/>
+    <div class="mmq-inputNumber-increase" @click="handleButtonAdd">➕</div>
+  </span>
 </template>
 
 <script>
@@ -20,12 +20,10 @@ export default defineComponent({
   },
   setup (props, context) {
     const handleButtonMinus = () => {
-      console.log(props.modelValue - 1)
       context.emit('update:modelValue', props.modelValue - 1)
     }
     const handleButtonAdd = () => {
-      const curVal = props.modelValue + 1
-      context.emit('update:modelValue', curVal)
+      context.emit('update:modelValue', props.modelValue + 1)
     }
     const handleInputValue = (value) => {
       context.emit('update:modelValue', value)
@@ -38,32 +36,54 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import "./src/style/theme.scss";
 .mmq-inputNumber {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  border-radius: 4px;
+  &:hover {
+    border: 1px solid #bdbec1;
+  }
   &-decrease {
     width: 30px;
     height: 30px;
     border: 1px solid #dcdfe6;
     border-right: none;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: 8px;
   }
   &-increase {
     width: 30px;
     height: 30px;
     border: 1px solid #dcdfe6;
     border-left: none;
-    border-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: 8px;
   }
 }
 ::v-deep .mmq-input-inner {
   border-radius: 0;
   width: 110px;
+  text-align: center;
+  &:hover {
+    border-color: #bdbec1;
+    border-left: 1px solid #dcdfe6;
+    border-right: 1px solid #dcdfe6;
+  }
+  &:focus {
+    border-color: #bdbec1;
+    border-left: 1px solid #dcdfe6;
+    border-right: 1px solid #dcdfe6;
+  }
 }
 </style>
