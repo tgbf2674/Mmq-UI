@@ -1,5 +1,5 @@
 <template>
-  <h1>Input示例</h1>
+  <h1>InputNumber示例</h1>
   <Demo :component="InputNumber1"/>
 </template>
 

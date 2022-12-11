@@ -1,17 +1,18 @@
 <template>
   <span class="mmq-inputNumber">
-    <div class="mmq-inputNumber-decrease" @click="handleButtonMinus">➖</div>
+    <div class="mmq-inputNumber-decrease" @click="handleButtonMinus"><Icon name="icon-minus"></Icon></div>
     <Input v-model:input-value="modelValue" @input="handleInputValue"/>
-    <div class="mmq-inputNumber-increase" @click="handleButtonAdd">➕</div>
+    <div class="mmq-inputNumber-increase" @click="handleButtonAdd"><Icon name="icon-add"></Icon></div>
   </span>
 </template>
 
 <script>
 import Input from './Input.vue'
+import Icon from './Icon.vue'
 import {defineComponent} from 'vue'
 export default defineComponent({
   name: 'InputNumber',
-  components: {Input},
+  components: {Input, Icon},
   props: {
     modelValue: {
       type: Number,
@@ -56,6 +57,10 @@ export default defineComponent({
     justify-content: center;
     cursor: pointer;
     font-size: 8px;
+    background: #f5f7fa;
+    &:hover {
+      fill: #409eff;
+    }
   }
   &-increase {
     width: 30px;
@@ -69,6 +74,10 @@ export default defineComponent({
     justify-content: center;
     cursor: pointer;
     font-size: 8px;
+    background: #f5f7fa;
+    &:hover {
+      fill: #409eff;
+    }
   }
 }
 ::v-deep .mmq-input-inner {
@@ -77,8 +86,8 @@ export default defineComponent({
   text-align: center;
   &:hover {
     border-color: #bdbec1;
-    border-left: 1px solid #dcdfe6;
-    border-right: 1px solid #dcdfe6;
+    border-left-color: #dcdfe6;
+    border-right-color: #dcdfe6;
   }
   &:focus {
     border-color: #bdbec1;
@@ -86,4 +95,5 @@ export default defineComponent({
     border-right: 1px solid #dcdfe6;
   }
 }
+
 </style>
