@@ -121,19 +121,11 @@ export default defineComponent({
 
 .disabled {
   cursor: not-allowed;
-
-  &-increase {
-    pointer-events: none;
-  }
-  &-decrease {
-    pointer-events: none;
-  }
   &:hover {
     border: none;
   }
   ::v-deep .mmq-input-inner {
     cursor: not-allowed;
-
     &:hover {
       border-color: #dcdfe6;
     }
