@@ -1,10 +1,10 @@
 <demo>
-常规用法
+禁用状态
 </demo>
 
 <template>
-  <h5>要使用它，只需要在元素中使用 v-model 绑定变量即可，变量的初始值即为默认值</h5>
-  <InputNumber v-model="num"/>
+  <h5>disabled属性接受一个 Boolean，设置为true即可禁用整个组件。</h5>
+  <InputNumber disabled v-model="num"/>
 </template>
 
 <script lang="ts">
