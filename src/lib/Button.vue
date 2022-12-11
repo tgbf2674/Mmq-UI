@@ -129,7 +129,7 @@ $grey: grey;
 
   &.mmq-size-big {
     font-size: 28px;
-    height: 48px;
+    height: 40px;
     padding: 0 16px;
   }
 

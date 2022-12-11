@@ -3,7 +3,7 @@
 </demo>
 
 <template>
-  <InputNumber/>
+  <InputNumber v-model="num"/>
 </template>
 
 <script lang="ts">
@@ -12,8 +12,8 @@ import {ref} from 'vue';
 export default {
   components: {InputNumber},
   setup() {
-    const inputValue = ref('李四');
-    return {inputValue};
+    const num = ref(1);
+    return {num};
   }
 };
 </script>

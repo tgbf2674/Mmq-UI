@@ -30,7 +30,7 @@ export default defineComponent({
       default: '请输入内容'
     },
     inputValue: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     type: {
@@ -99,7 +99,7 @@ export default defineComponent({
   top: 0;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 30px;
   font-size: 10px;
   fill: #999999;
 }
@@ -117,7 +117,7 @@ export default defineComponent({
     color: #606266;
     display: inline-block;
     font-size: inherit;
-    height: 40px;
+    height: 30px;
     line-height: 40px;
     outline: none;
     padding: 0 15px;
