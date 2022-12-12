@@ -5,7 +5,7 @@
         <Icon name="icon-minus"></Icon>
       </div>
     </div>
-    <Input :disabled="disabled" placeholder v-model:input-value="inputValue" @input="handleInputValue"/>
+    <Input :disabled="disabled" placeholder v-model:input-value="inputValue" @change="handleChange"/>
     <div :style="IncreaseNotAllowedStyle">
       <div :style="IncreasePointerNoneStyle" class="mmq-inputNumber-increase" @click.stop="handleButtonAdd">
         <Icon name="icon-add"></Icon>
@@ -14,11 +14,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Input from './Input.vue'
 import Icon from './Icon.vue'
-import {defineComponent, watchEffect, ref, onMounted, watch, computed} from 'vue'
-
+import {defineComponent, watchEffect, ref, computed} from 'vue'
+import mmqUtils from 'mmq-utils'
 export default defineComponent({
   name: 'InputNumber',
   components: {Input, Icon},
@@ -77,7 +77,7 @@ export default defineComponent({
       inputValue.value = props.modelValue
     })
     const handleButtonMinus = () => {
-      const curVal = props.modelValue - props.step
+      const curVal = mmqUtils.subtract(props.modelValue, props.step)
       if (curVal < props.min) {
         context.emit('update:modelValue', props.min)
       } else {
@@ -85,17 +85,19 @@ export default defineComponent({
       }
     }
     const handleButtonAdd = () => {
-      const curVal = props.modelValue + props.step
+      const curVal = mmqUtils.add(props.modelValue, props.step)
       curVal > props.max ? context.emit('update:modelValue', props.max) : context.emit('update:modelValue', curVal)
     }
-    const handleInputValue = (value) => {
-      value = Number(value.replace(/[^\d]/g, ''))
-      value ? context.emit('update:modelValue', 0) : context.emit('update:modelValue', value)
+    const handleChange = (value: any) => {
+      const isNumber = (/^-?\d*\.?\d+$/).test(value)
+      if (isNumber) value = Number(value)
+      else value = 0
+      value ? context.emit('update:modelValue', value) : context.emit('update:modelValue', 0)
     }
     return {
       handleButtonAdd,
       handleButtonMinus,
-      handleInputValue,
+      handleChange,
       inputValue,
       inputNumberRef,
       canMinusClick,
@@ -116,7 +118,6 @@ export default defineComponent({
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
-  cursor: pointer;
 
   &:hover {
     border: 1px solid #bdbec1;
@@ -134,7 +135,7 @@ export default defineComponent({
     justify-content: center;
     font-size: 8px;
     background: #f5f7fa;
-
+    cursor: pointer;
     &:hover {
       fill: #409eff;
     }
@@ -152,7 +153,7 @@ export default defineComponent({
     justify-content: center;
     font-size: 8px;
     background: #f5f7fa;
-
+    cursor: pointer;
     &:hover {
       fill: #409eff;
     }

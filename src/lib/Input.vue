@@ -71,8 +71,8 @@ export default defineComponent({
     const countNum = computed(() => {
       return childInputValue.value.length || 0;
     });
-    const onChangHandle = (e: InputEvent) => {
-      context.emit('change', e)
+    const onChangHandle = () => {
+      context.emit('change', childInputValue.value)
     }
     const onkeydownHandle = (e: KeyboardEvent) => {
       if(e.keyCode === 13)
@@ -133,7 +133,6 @@ export default defineComponent({
       transition-duration: 0.2s;
       transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
       transition-delay: 0s;
-      cursor: pointer;
     }
     &:focus {
       outline: none;
