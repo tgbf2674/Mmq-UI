@@ -17,14 +17,14 @@
 <script lang="ts">
 import Input from './Input.vue'
 import Icon from './Icon.vue'
-import {defineComponent, watchEffect, ref, computed} from 'vue'
+import {defineComponent, watchEffect, ref, computed, onMounted} from 'vue';
 import {add, subtract} from 'mmq-utils'
 export default defineComponent({
   name: 'InputNumber',
   components: {Input, Icon},
   props: {
     modelValue: {
-      type: Number,
+      type: [Number,String],
       default: 0
     },
     disabled: {
@@ -42,6 +42,10 @@ export default defineComponent({
     step: {
       type: Number,
       default: 1
+    },
+    precision: {
+      type: Number,
+      default: undefined
     }
   },
   setup(props, context) {
@@ -75,6 +79,9 @@ export default defineComponent({
     })
     watchEffect(() => {
       inputValue.value = props.modelValue
+      if (props.precision) {
+        inputValue.value = Number(props.modelValue).toFixed(props.precision)
+      }
     })
     const handleButtonMinus = () => {
       const curVal = subtract(props.modelValue, props.step)
