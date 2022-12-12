@@ -1,6 +1,6 @@
 {
   "name": "mmq-ui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -55,6 +55,7 @@
   },
   "homepage": "https://github.com/tgbf2674/vue3-ui#readme",
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "@vitest/ui": "^0.24.3",
     "esbuild": "^0.15.10",
     "mitt": "^3.0.0",

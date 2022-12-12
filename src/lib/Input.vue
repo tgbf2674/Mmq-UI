@@ -100,7 +100,7 @@ export default defineComponent({
   top: 0;
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 32px;
   font-size: 10px;
   fill: #999999;
 }

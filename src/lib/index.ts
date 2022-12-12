@@ -29,6 +29,7 @@ export { default as MqGrid } from './Grid.vue'
 export { default as MqGridCol } from './GridCol.vue'
 export { default as MqIcon } from './Icon.vue'
 export { default as MqInput } from './Input.vue'
+export { default as MqInputNumber } from './InputNumber.vue'
 export { default as MqLoading } from './Loading.vue'
 export { default as MqMessage } from './Message.vue'
 export { default as MqSkeleton } from './Skeleton.vue'
@@ -72,6 +73,7 @@ import MqGrid from './Grid.vue'
 import MqGridCol from './GridCol.vue'
 import MqIcon from './Icon.vue'
 import MqInput from './Input.vue'
+import MqInputNumber from './InputNumber.vue'
 import MqLoading from './Loading.vue'
 import MqMessage from './Message.vue'
 import MqSkeleton from './Skeleton.vue'
@@ -97,6 +99,7 @@ const componentList: any = [
   MqMessage,
   MqLoading,
   MqInput,
+  MqInputNumber,
   MqIcon,
   MqGrid,
   MqGridCol,

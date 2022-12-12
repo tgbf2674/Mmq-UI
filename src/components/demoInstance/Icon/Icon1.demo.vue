@@ -1,19 +1,17 @@
 <demo>
-常规用法
+基础使用
 </demo>
 <template>
-  <Icon name="icon-user" fill="rgb(24,144,255)" font-size="20"/>
-  <Icon name="icon-right" fill="rgb(24,144,255)" font-size="20"/>
+  <MqIcon>
+    <Edit />
+  </MqIcon>
 </template>
 
 <script lang="ts">
-import Icon from "../../../lib/Icon.vue";
-import {ref} from 'vue';
+import MqIcon from '../../../lib/MqIcon.vue';
 export default {
-  components: {Icon},
+  components: {MqIcon},
   setup() {
-    const currentTab = ref('first');
-    return {currentTab};
   }
 };
 </script>
