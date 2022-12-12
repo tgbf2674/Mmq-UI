@@ -18,7 +18,7 @@
 import Input from './Input.vue'
 import Icon from './Icon.vue'
 import {defineComponent, watchEffect, ref, computed} from 'vue'
-import mmqUtils from 'mmq-utils'
+import {add, subtract} from 'mmq-utils'
 export default defineComponent({
   name: 'InputNumber',
   components: {Input, Icon},
@@ -77,7 +77,7 @@ export default defineComponent({
       inputValue.value = props.modelValue
     })
     const handleButtonMinus = () => {
-      const curVal = mmqUtils.subtract(props.modelValue, props.step)
+      const curVal = subtract(props.modelValue, props.step)
       if (curVal < props.min) {
         context.emit('update:modelValue', props.min)
       } else {
@@ -85,7 +85,7 @@ export default defineComponent({
       }
     }
     const handleButtonAdd = () => {
-      const curVal = mmqUtils.add(props.modelValue, props.step)
+      const curVal = add(props.modelValue, props.step)
       curVal > props.max ? context.emit('update:modelValue', props.max) : context.emit('update:modelValue', curVal)
     }
     const handleChange = (value: any) => {

@@ -1783,10 +1783,10 @@ mitt@^3.0.0:
   resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.0.tgz#69ef9bd5c80ff6f57473e8d89326d01c414be0bd"
   integrity sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==
 
-mmq-utils@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/mmq-utils/-/mmq-utils-1.0.11.tgz#ea5d24686b3bc0eb522a90d4533081a47668c613"
-  integrity sha512-6izBjUqKF6fXgJu5WJURJ3g/rY5JBAsAeW+5epqKrHAFx/W6ofiGup2DfIIE3wS+VweB7YxNjIGjEmVv/5H72A==
+mmq-utils@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/mmq-utils/-/mmq-utils-1.0.18.tgz#a035aec6c44655e3e1f5010ee7526497f217e1cc"
+  integrity sha512-ExkR5rP0fQKzdLkbg5I4DuUzCqnAv/rFK2M9edD9vT9nBiO6OcGB0SjONpExEgTGmR6huFGIgaAt1zCnGHRzoQ==
   dependencies:
     gulp-replace "^1.1.3"
     gulp-typescript "6.0.0-alpha.1"
