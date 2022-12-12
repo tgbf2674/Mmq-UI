@@ -11,6 +11,7 @@ export default {
     globals: {
       vue: 'Vue',
       mitt: 'mitt',
+      'mmq-utils': 'mmq-utils',
       '@vue/runtime-core': 'runtimeCore',
       '@vue/reactivity': 'reactivity'
     },

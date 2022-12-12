@@ -7,9 +7,8 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, inject} from 'vue';
+import {defineComponent, getCurrentInstance} from 'vue';
 import {emitter} from './MqSelect.vue';
-
 export default defineComponent({
   name: 'MqSelectOption',
   props: {
