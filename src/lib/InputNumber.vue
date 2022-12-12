@@ -38,6 +38,10 @@ export default defineComponent({
     max: {
       type: Number,
       default: +Infinity
+    },
+    step: {
+      type: Number,
+      default: 1
     }
   },
   setup(props, context) {
@@ -73,7 +77,7 @@ export default defineComponent({
       inputValue.value = props.modelValue
     })
     const handleButtonMinus = () => {
-      const curVal = props.modelValue - 1
+      const curVal = props.modelValue - props.step
       if (curVal < props.min) {
         context.emit('update:modelValue', props.min)
       } else {
@@ -81,11 +85,12 @@ export default defineComponent({
       }
     }
     const handleButtonAdd = () => {
-      context.emit('update:modelValue', props.modelValue + 1)
+      const curVal = props.modelValue + props.step
+      curVal > props.max ? context.emit('update:modelValue', props.max) : context.emit('update:modelValue', curVal)
     }
     const handleInputValue = (value) => {
       value = Number(value.replace(/[^\d]/g, ''))
-      value ? context.emit('update:modelValue', value) : context.emit('update:modelValue', 0)
+      value ? context.emit('update:modelValue', 0) : context.emit('update:modelValue', value)
     }
     return {
       handleButtonAdd,
