@@ -9,7 +9,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 export default defineComponent({
-  name: "MqIcon",
+  name: "MqIcons",
   props: {
     name: {
       type: String,
