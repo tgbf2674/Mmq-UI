@@ -1,6 +1,6 @@
 <template>
   <div class="mmq-icon-wrapper">
-    <div class="mmq-icon" :style="{ fill, 'font-size': fontSize + 'px' }" aria-hidden="true">
+    <div class="mmq-icon" :style="{ color, 'font-size': fontSize + 'px' }" aria-hidden="true">
       <slot></slot>
     </div>
   </div>
@@ -16,7 +16,7 @@ export default defineComponent({
       required: true,
       default: 'icon-upload'
     },
-    fill: {
+    color: {
       type: String,
       default: ''
     },
@@ -28,15 +28,5 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.mmq-icon-wrapper {
-  display: inline;
-  font-size: 14px;
-  .mmq-icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    overflow: hidden;
-  }
-}
+<style lang="scss" scoped>
 </style>
