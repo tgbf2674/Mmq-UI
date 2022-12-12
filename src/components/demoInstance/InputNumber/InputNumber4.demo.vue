@@ -4,7 +4,7 @@
 
 <template>
   <h5>允许定义递增递减的步进控制，设置 step 属性可以控制步长。</h5>
-  <InputNumber :precision="2" :step="0.1" :min="0" :max="10" v-model="num"/>
+  <InputNumber :step="0.1" :min="0" :max="10" v-model="num"/>
 </template>
 
 <script lang="ts">
