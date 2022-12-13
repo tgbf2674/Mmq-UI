@@ -84,3 +84,6 @@ interface MessageOptions {
 
 // Tooltip
 type TooltipEffectOptions = 'dark' | 'light'
+
+// Input
+type InputSizeOptions =  'large' | 'normal' | 'small'

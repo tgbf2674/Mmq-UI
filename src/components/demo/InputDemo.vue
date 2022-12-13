@@ -6,6 +6,7 @@
   <Demo :component="Input4Demo"/>
   <Demo :component="Input5Demo"/>
   <Demo :component="Input6Demo"/>
+  <Demo :component="Input7Demo"/>
 </template>
 
 <script lang="ts">
@@ -16,10 +17,11 @@ import Input3Demo from '../demoInstance/Input/Input3.demo.vue'
 import Input4Demo from '../demoInstance/Input/Input4.demo.vue'
 import Input5Demo from '../demoInstance/Input/Input5.demo.vue'
 import Input6Demo from '../demoInstance/Input/Input6.demo.vue'
+import Input7Demo from '../demoInstance/Input/Input7.demo.vue'
 export default {
   components: {Demo},
   setup() {
-    return {Input1Demo, Input2Demo, Input3Demo, Input4Demo, Input5Demo, Input6Demo};
+    return {Input1Demo, Input2Demo, Input3Demo, Input4Demo, Input5Demo, Input6Demo, Input7Demo};
   }
 };
 </script>

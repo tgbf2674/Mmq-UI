@@ -1,28 +1,39 @@
 <template>
-  <div class="mmq-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
-    <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="mmq-input-inner" @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
-    <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
-            <Icon @click="clearInputValue" name="icon-error"/>
-       </span>
-    <span v-if="type==='password' && childInputValue" class="mmq-input-icon-wrapper">
-            <Icon @click="changeInputType" name="icon-preview"/>
-       </span>
-    <span v-if="maxlength" class="mmq-input-count-wrapper">{{ countNum }}/{{ maxlength }}</span>
+  <div v-bind="$attrs" :class="[disabled ?'is-disabled': '', classSize, 'mmq-input']">
     <span v-if="prefixIcon" class="mmq-input-icon-prefix">
-            <Icon :name="prefixIcon"/>
-        </span>
+      <MqIcon>
+        <component color="#999999" :is="prefixIcon"></component>
+      </MqIcon>
+    </span>
+    <input v-model="childInputValue" :type="childInputType" :class="['mmq-input-inner']"
+           @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled"
+           :placeholder="placeholder"/>
+    <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
+      <MqIcon @click="clearInputValue" :font-size="IconSize" color="#d2d0d0">
+        <CircleClose/>
+      </MqIcon>
+    </span>
+    <span v-if="type==='password' && childInputValue" class="mmq-input-icon-wrapper">
+      <MqIcon @click="changeInputType" :font-size="IconSize" color="#d2d0d0">
+        <Hide/>
+      </MqIcon>
+    </span>
+    <span v-if="maxlength" class="mmq-input-count-wrapper">{{ countNum }}/{{ maxlength }}</span>
     <span v-if="suffixIcon" class="mmq-input-icon-suffix">
-            <Icon :name="suffixIcon"/>
-        </span>
+      <MqIcon>
+        <component color="#999999" :is="suffixIcon"></component>
+      </MqIcon>
+    </span>
   </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, watchEffect} from 'vue';
-import Icon from "./Icon.vue";
+import {computed, defineComponent, PropType, ref, watchEffect} from 'vue';
+import MqIcon from './MqIcon.vue';
+
 export default defineComponent({
-  name: "MqInput",
-  components: {Icon},
+  name: 'MqInput',
+  components: {MqIcon},
   inheritAttrs: false,
   props: {
     placeholder: {
@@ -32,6 +43,10 @@ export default defineComponent({
     inputValue: {
       type: [String, Number],
       default: ''
+    },
+    size: {
+      type: String as PropType<InputSizeOptions>,
+      default: 'normal'
     },
     type: {
       type: String,
@@ -55,16 +70,24 @@ export default defineComponent({
       type: String
     }
   },
-  emits: ['input','change','focus','blur','mouseleave','mouseenter','keydown','update:inputValue'],
+  emits: ['input', 'change', 'focus', 'blur', 'mouseleave', 'mouseenter', 'keydown', 'update:inputValue'],
   setup(props, context) {
     const inputChange = () => {
-      context.emit('input', childInputValue.value)
+      context.emit('input', childInputValue.value);
       context.emit('update:inputValue', childInputValue.value);
     };
     const clearInputValue = () => {
       childInputValue.value = '';
       context.emit('update:inputValue', '');
     };
+    const classSize = computed(() => {
+      return `mmq-size-${props.size}`;
+    });
+    const IconSize = computed(() => {
+      if (props.size === 'large') return 18;
+      else if (props.size === 'normal') return 16;
+      else return 14;
+    });
     const changeInputType = () => {
       childInputType.value = childInputType.value === 'text' ? 'password' : 'text';
     };
@@ -72,15 +95,15 @@ export default defineComponent({
       return childInputValue.value.length || 0;
     });
     const onChangHandle = () => {
-      context.emit('change', childInputValue.value)
-    }
+      context.emit('change', childInputValue.value);
+    };
     const onkeydownHandle = (e: KeyboardEvent) => {
-      if(e.keyCode === 13)
-      context.emit('keydown', e)
-    }
+      if (e.keyCode === 13)
+        context.emit('keydown', e);
+    };
     const childInputValue = ref();
     watchEffect(() => {
-       childInputValue.value = props.inputValue;
+      childInputValue.value = props.inputValue;
     });
     const childInputType = ref(props.type);
     watchEffect(() => {
@@ -88,112 +111,124 @@ export default defineComponent({
         childInputValue.value = childInputValue.value.slice(0, Number(props.maxlength) * 1);
       }
     });
-    return {inputChange, childInputValue, clearInputValue, childInputType, changeInputType, countNum, onkeydownHandle, onChangHandle};
+    return {
+      inputChange,
+      childInputValue,
+      clearInputValue,
+      childInputType,
+      changeInputType,
+      countNum,
+      onkeydownHandle,
+      onChangHandle,
+      classSize,
+      IconSize
+    };
   }
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./src/style/theme.scss";
-%mmq-input-icon {
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: center;
-  height: 32px;
-  font-size: 10px;
-  fill: #999999;
-}
+
 .mmq-input {
   position: relative;
-  font-size: 14px;
-  display: inline-block;
+  display: inline-flex;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  width: 100%;
+  align-items: center;
+
+  &::placeholder {
+    color: #c0c4cc;
+  }
+
+  &:hover {
+    border: 1px solid #bdbec1;
+    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: 0s;
+  }
+
   .mmq-input-inner {
     -webkit-appearance: none;
     background-color: #fff;
     background-image: none;
-    border-radius: 4px;
-    border: 1px solid #dcdfe6;
     box-sizing: border-box;
     color: #606266;
-    display: inline-block;
+    display: inline-flex;
     font-size: inherit;
-    height: 30px;
-    line-height: 40px;
+    border-radius: 4px;
     outline: none;
-    padding: 0 15px;
     width: 100%;
-    &::placeholder {
-      color: #c0c4cc;
-    }
-    &:hover {
-      border: 1px solid #bdbec1;
-      transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-      transition-property: border-color;
-      transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-      transition-delay: 0s;
-    }
-    &:focus {
-      outline: none;
-      border-color: $mmq-type-primary;
-    }
+    border: none;
+    padding:0 10px;
+    flex: 1;
   }
+
   .mmq-input-icon-wrapper {
-    position: absolute;
-    height: 40px;
-    right: 10px;
-    top: 0;
-    cursor: pointer;
+    height: 100%;
+    margin-right: 4px;
     display: flex;
     align-items: center;
-    svg {
-      fill: #d2d0d0;
-      font-size: 15px;
-      &:hover {
-        fill: #82848a;
-      }
-    }
+    cursor: pointer;
   }
+
   .mmq-input-icon-prefix {
-    @extend %mmq-input-icon;
-    left: 0;
-    margin-left: 10px;
-    margin-right: 5px;
+    height: 100%;
+    margin: 0 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
+
   .mmq-input-icon-suffix {
-    @extend %mmq-input-icon;
     right: 0;
-    margin-left: 5px;
-    margin-right: 10px;
   }
+
   .mmq-input-count-wrapper {
     position: absolute;
     display: flex;
     align-items: center;
+    height: 100%;
     top: 0;
     right: 5px;
-    height: 40px;
     color: #909399;
     font-size: 12px;
   }
+
   &.is-disabled {
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    cursor: not-allowed;
     .mmq-input-inner {
       background-color: #f5f7fa;
-      border-color: #e4e7ed;
-      color: #c0c4cc;
       cursor: not-allowed;
     }
   }
-  &.el-input--suffix {
+
+  &.mmq-input--suffix {
     .mmq-input-inner {
-      padding-right: 30px;
     }
   }
-  &.el-input--prefix {
+
+  &.mmq-input--prefix {
     .mmq-input-inner {
       padding-left: 40px;
     }
   }
+}
+.mmq-size-large {
+  height: 38px;
+  font-size: 16px;
+}
+.mmq-size-normal {
+  height: 30px;
+  font-size: 14px;
+}
+.mmq-size-small {
+  height: 22px;
+  font-size: 12px;
 }
 </style>

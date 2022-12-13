@@ -2,8 +2,8 @@
 支持图标
 </demo>
 <template>
-  <Input prefixIcon="icon-user" placeholder="请输入用户名" v-model="inputValue"/>
-  <Input suffixIcon="icon-search" placeholder="请输入搜索条件" v-model="inputValue"/>
+  <Input prefixIcon="edit" placeholder="请输入用户名" v-model="inputValue"/>
+  <Input suffixIcon="search" placeholder="请输入搜索条件" v-model="inputValue"/>
 </template>
 
 <script lang="ts">

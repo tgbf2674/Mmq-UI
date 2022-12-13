@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import MqIconList from '../../../lib/MqIconList.vue';
+import MqIconList from './MqIconList.vue';
 export default {
   components: {MqIconList},
   setup() {
