@@ -1,11 +1,11 @@
 <template>
-  <div v-bind="$attrs" :class="[disabled ?'is-disabled': '', classSize, 'mmq-input']">
+  <div v-bind="$attrs" ref="inputRef" :class="[disabled ?'is-disabled': '', classSize, 'mmq-input']">
     <span v-if="prefixIcon" class="mmq-input-icon-prefix">
       <MqIcon>
         <component color="#999999" :is="prefixIcon"></component>
       </MqIcon>
     </span>
-    <input v-model="childInputValue" :type="childInputType" :class="['mmq-input-inner']"
+    <input @focus="handleFocus" @blur="handleBlur" v-model="childInputValue" :type="childInputType" :class="['mmq-input-inner']"
            @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled"
            :placeholder="placeholder"/>
     <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
@@ -72,6 +72,13 @@ export default defineComponent({
   },
   emits: ['input', 'change', 'focus', 'blur', 'mouseleave', 'mouseenter', 'keydown', 'update:inputValue'],
   setup(props, context) {
+    const inputRef = ref()
+    const handleFocus = () => {
+      inputRef.value.style.borderColor = '#409eff'
+    }
+    const handleBlur = () => {
+      inputRef.value.style.borderColor = '#dcdfe6'
+    }
     const inputChange = () => {
       context.emit('input', childInputValue.value);
       context.emit('update:inputValue', childInputValue.value);
@@ -108,7 +115,7 @@ export default defineComponent({
     const childInputType = ref(props.type);
     watchEffect(() => {
       if (countNum.value > Number(props.maxlength)) {
-        childInputValue.value = childInputValue.value.slice(0, Number(props.maxlength) * 1);
+        childInputValue.value = childInputValue.value.slice(0, Number(props.maxlength));
       }
     });
     return {
@@ -121,7 +128,10 @@ export default defineComponent({
       onkeydownHandle,
       onChangHandle,
       classSize,
-      IconSize
+      IconSize,
+      inputRef,
+      handleFocus,
+      handleBlur
     };
   }
 });
@@ -149,6 +159,10 @@ export default defineComponent({
     transition-duration: 0.2s;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     transition-delay: 0s;
+  }
+
+  &:focus {
+    border: 1px solid blue;
   }
 
   .mmq-input-inner {
@@ -213,13 +227,22 @@ export default defineComponent({
 .mmq-size-large {
   height: 38px;
   font-size: 16px;
+  .mmq-input-inner {
+    line-height: 36px;
+  }
 }
 .mmq-size-normal {
   height: 30px;
   font-size: 14px;
+  .mmq-input-inner {
+    line-height: 28px;
+  }
 }
 .mmq-size-small {
   height: 22px;
   font-size: 12px;
+  .mmq-input-inner {
+    line-height: 20px;
+  }
 }
 </style>
