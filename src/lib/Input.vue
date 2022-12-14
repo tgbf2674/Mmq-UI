@@ -27,8 +27,8 @@
       </MqIcon>
     </span>
   </div>
-  <div v-else>
-    <textarea rows="2"></textarea>
+  <div class="mmq-textarea" v-else>
+    <textarea class="mmq-textarea-inner" :rows="rows"></textarea>
   </div>
 </template>
 
@@ -74,6 +74,10 @@ export default defineComponent({
     suffixIcon: {
       type: String
     },
+    rows: {
+      type: Number,
+      default: 2
+    }
   },
   emits: ['input', 'change', 'focus', 'blur', 'mouseleave', 'mouseenter', 'keydown', 'update:inputValue'],
   setup(props, context) {
@@ -167,7 +171,7 @@ export default defineComponent({
   }
 
   &:focus {
-    border: 1px solid blue;
+    border: 1px solid #409eff;
   }
 
   .mmq-input-inner {
@@ -255,6 +259,31 @@ export default defineComponent({
 
   .mmq-input-inner {
     line-height: 20px;
+  }
+}
+
+.mmq-textarea {
+  width: 100%;
+  .mmq-textarea-inner {
+    width: 100%;
+    display: inline-flex;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    outline: none;
+    resize: vertical;
+    &::placeholder {
+      color: #c0c4cc;
+    }
+    &:hover {
+      border: 1px solid #bdbec1;
+      transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+      transition-property: border-color;
+      transition-duration: 0.1s;
+      transition-delay: 0s;
+    }
+    &:focus {
+      border: 1px solid #409eff;
+    }
   }
 }
 </style>
