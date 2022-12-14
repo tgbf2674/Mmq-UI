@@ -1,11 +1,13 @@
 <template>
-  <div v-bind="$attrs" ref="inputRef" :class="[disabled ?'is-disabled': '', classSize, 'mmq-input']">
+  <div v-if="type !== 'textarea'" v-bind="$attrs" ref="inputRef"
+       :class="[disabled ?'is-disabled': '', classSize, 'mmq-input']">
     <span v-if="prefixIcon" class="mmq-input-icon-prefix">
       <MqIcon>
         <component color="#999999" :is="prefixIcon"></component>
       </MqIcon>
     </span>
-    <input @focus="handleFocus" @blur="handleBlur" v-model="childInputValue" :type="childInputType" :class="['mmq-input-inner']"
+    <input @focus="handleFocus" @blur="handleBlur" v-model="childInputValue" :type="childInputType"
+           :class="['mmq-input-inner']"
            @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled"
            :placeholder="placeholder"/>
     <span v-if="clearable && childInputValue" class="mmq-input-icon-wrapper">
@@ -24,6 +26,9 @@
         <component color="#999999" :is="suffixIcon"></component>
       </MqIcon>
     </span>
+  </div>
+  <div v-else>
+    <textarea rows="2"></textarea>
   </div>
 </template>
 
@@ -49,7 +54,7 @@ export default defineComponent({
       default: 'normal'
     },
     type: {
-      type: String,
+      type: String as PropType<InputTypeOptions>,
       default: 'text'
     },
     disabled: {
@@ -68,17 +73,17 @@ export default defineComponent({
     },
     suffixIcon: {
       type: String
-    }
+    },
   },
   emits: ['input', 'change', 'focus', 'blur', 'mouseleave', 'mouseenter', 'keydown', 'update:inputValue'],
   setup(props, context) {
-    const inputRef = ref()
+    const inputRef = ref();
     const handleFocus = () => {
-      inputRef.value.style.borderColor = '#409eff'
-    }
+      inputRef.value.style.borderColor = '#409eff';
+    };
     const handleBlur = () => {
-      inputRef.value.style.borderColor = '#dcdfe6'
-    }
+      inputRef.value.style.borderColor = '#dcdfe6';
+    };
     const inputChange = () => {
       context.emit('input', childInputValue.value);
       context.emit('update:inputValue', childInputValue.value);
@@ -218,29 +223,36 @@ export default defineComponent({
     background-color: #f5f7fa;
     border-color: #e4e7ed;
     cursor: not-allowed;
+
     .mmq-input-inner {
       background-color: #f5f7fa;
       cursor: not-allowed;
     }
   }
 }
+
 .mmq-size-large {
   height: 38px;
   font-size: 16px;
+
   .mmq-input-inner {
     line-height: 36px;
   }
 }
+
 .mmq-size-normal {
   height: 30px;
   font-size: 14px;
+
   .mmq-input-inner {
     line-height: 28px;
   }
 }
+
 .mmq-size-small {
   height: 22px;
   font-size: 12px;
+
   .mmq-input-inner {
     line-height: 20px;
   }
