@@ -28,7 +28,11 @@
     </span>
   </div>
   <div class="mmq-textarea" v-else>
-    <textarea class="mmq-textarea-inner" :rows="rows"></textarea>
+    <textarea @focus="handleFocus" @blur="handleBlur" v-model="childInputValue" class="mmq-textarea-inner" :rows="rows"
+              @change="onChangHandle" @keydown="onkeydownHandle" @input="inputChange" :disabled="disabled"
+              :placeholder="placeholder"
+    ></textarea>
+    <span v-if="maxlength" class="mmq-textarea-count-wrapper">{{ countNum }}/{{ maxlength }}</span>
   </div>
 </template>
 
@@ -264,6 +268,10 @@ export default defineComponent({
 
 .mmq-textarea {
   width: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+
   .mmq-textarea-inner {
     width: 100%;
     display: inline-flex;
@@ -271,9 +279,11 @@ export default defineComponent({
     border-radius: 4px;
     outline: none;
     resize: vertical;
+
     &::placeholder {
       color: #c0c4cc;
     }
+
     &:hover {
       border: 1px solid #bdbec1;
       transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
@@ -281,9 +291,18 @@ export default defineComponent({
       transition-duration: 0.1s;
       transition-delay: 0s;
     }
+
     &:focus {
       border: 1px solid #409eff;
     }
+  }
+
+  .mmq-textarea-count-wrapper {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #909399;
+    font-size: 12px;
   }
 }
 </style>
