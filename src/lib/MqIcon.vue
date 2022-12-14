@@ -10,11 +10,6 @@ import {defineComponent} from 'vue';
 export default defineComponent({
   name: 'MqIcons',
   props: {
-    name: {
-      type: String,
-      required: true,
-      default: 'icon-upload'
-    },
     color: {
       type: String,
       default: ''

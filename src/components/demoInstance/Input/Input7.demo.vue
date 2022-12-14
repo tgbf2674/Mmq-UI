@@ -2,9 +2,11 @@
 输入框尺寸
 </demo>
 <template>
-  <Input placeholder="请输入姓名" size="large" v-model:input-value="inputValue" prefixIcon="icon-user"/>
+  <div style="display: flex;align-items: center;">
+  <Input placeholder="请输入姓名" size="large" v-model:input-value="inputValue"/>
   <Input style="margin: 0 20px" placeholder="请输入姓名" v-model:input-value="inputValue"/>
-  <Input placeholder="请输入姓名" size="small" v-model:input-value="inputValue" suffixIcon="icon-search"/>
+  <Input placeholder="请输入姓名" size="small" v-model:input-value="inputValue"/>
+  </div>
 </template>
 
 <script lang="ts">

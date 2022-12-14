@@ -61,7 +61,7 @@ export default defineComponent({
       default: false
     },
     maxlength: {
-      type: String
+      type: Number
     },
     prefixIcon: {
       type: String
@@ -163,8 +163,8 @@ export default defineComponent({
     outline: none;
     width: 100%;
     border: none;
-    padding:0 10px;
     flex: 1;
+    margin: 0 6px;
   }
 
   .mmq-input-icon-wrapper {
@@ -177,25 +177,27 @@ export default defineComponent({
 
   .mmq-input-icon-prefix {
     height: 100%;
-    margin: 0 6px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-left: 6px;
   }
 
   .mmq-input-icon-suffix {
-    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 6px;
   }
 
   .mmq-input-count-wrapper {
-    position: absolute;
     display: flex;
     align-items: center;
     height: 100%;
-    top: 0;
-    right: 5px;
     color: #909399;
     font-size: 12px;
+    margin-right: 4px;
   }
 
   &.is-disabled {
@@ -205,17 +207,6 @@ export default defineComponent({
     .mmq-input-inner {
       background-color: #f5f7fa;
       cursor: not-allowed;
-    }
-  }
-
-  &.mmq-input--suffix {
-    .mmq-input-inner {
-    }
-  }
-
-  &.mmq-input--prefix {
-    .mmq-input-inner {
-      padding-left: 40px;
     }
   }
 }
