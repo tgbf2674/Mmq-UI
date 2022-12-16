@@ -1,5 +1,6 @@
 <template>
-  <div
+  <transition name="fade">
+    <div
       @click.stop="handleClick"
       v-show="visible"
       :style="positionStyle"
@@ -7,16 +8,18 @@
       <slot>
         ↑↑↑
       </slot>
-  </div>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
-import { ref } from "@vue/reactivity";
-import { computed, onBeforeUnmount, onMounted } from "@vue/runtime-core";
+import {ref} from '@vue/reactivity';
+import {computed, onBeforeUnmount, onMounted} from '@vue/runtime-core';
 import {defineComponent} from 'vue';
 import {throttle} from 'mmq-utils';
+
 export default defineComponent({
-  name: "MqBackTop",
+  name: 'MqBackTop',
   props: {
     visibleHeight: {
       type: Number,
@@ -39,18 +42,18 @@ export default defineComponent({
     const easeInOutCubic = (value: number) =>
       value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
     let visible = ref(false);
-    let el = ref()
+    let el = ref();
     let container = ref();
     const positionStyle = computed(() => {
       return {
         right: `${props.right}px`,
         bottom: `${props.bottom}px`
-      }
-    })
+      };
+    });
     onMounted(() => {
-      init()
-      container.value.addEventListener('scroll', throttle(onScroll,200))
-    })
+      init();
+      container.value.addEventListener('scroll', throttle(onScroll, 200));
+    });
     const init = () => {
       container.value = document;
       el.value = document.documentElement;
@@ -65,15 +68,15 @@ export default defineComponent({
     };
     const onScroll = () => {
       const scrollTop = el.value.scrollTop;
-      console.log(scrollTop)
+      console.log(scrollTop);
       visible.value = scrollTop >= props.visibleHeight;
     };
     const handleClick = (e: Event) => {
-      scrollToTop()
-      context.emit("click", e);
+      scrollToTop();
+      context.emit('click', e);
     };
     const scrollToTop = () => {
-      const temp = el.value
+      const temp = el.value;
       const beginTime = Date.now();
       const beginValue = temp.scrollTop;
       const rAF =
@@ -87,11 +90,11 @@ export default defineComponent({
           el.value.scrollTop = 0;
         }
       };
-      rAF(frameFunc)
+      rAF(frameFunc);
     };
     onBeforeUnmount(() => {
-      container.value.removeEventListener('scroll', onScroll)
-    })
+      container.value.removeEventListener('scroll', onScroll);
+    });
     return {
       visible,
       handleClick,
@@ -113,9 +116,16 @@ export default defineComponent({
   font-size: 20px;
   cursor: pointer;
   z-index: 5;
-  transition: ;
+
   &:hover {
     background-color: #409eff;
   }
 }
+.fade-enter-active, .fade-leave-active {
+  transition: all .25s
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0
+}
+
 </style>
