@@ -1,26 +1,26 @@
 <template>
   <div
       @click.stop="handleClick"
-      :style="{
-        'right': styleRight,
-        'bottom': styleBottom
-      }"
-      class="el-backtop">
+      v-show="visible"
+      :style="positionStyle"
+      class="mmq-backtop">
       <slot>
         ↑↑↑
       </slot>
-    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { ref } from "@vue/reactivity";
 import { computed, onBeforeUnmount, onMounted } from "@vue/runtime-core";
-export default {
+import {defineComponent} from 'vue';
+import {throttle} from 'mmq-utils';
+export default defineComponent({
   name: "MqBackTop",
   props: {
     visibleHeight: {
       type: Number,
-      default: 10,
+      default: 100,
     },
     right: {
       type: Number,
@@ -39,31 +39,33 @@ export default {
     const easeInOutCubic = (value: number) =>
       value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
     let visible = ref(false);
-    let el = ref();
+    let el = ref()
     let container = ref();
-    const styleBottom = computed(() => {
-      return `${props.bottom}`;
-    });
-    const styleRight = computed(() => {
-      return `${props.right}`;
-    });
+    const positionStyle = computed(() => {
+      return {
+        right: `${props.right}px`,
+        bottom: `${props.bottom}px`
+      }
+    })
     onMounted(() => {
       init()
-      container.value.addEventListener('scroll', onScroll())
+      container.value.addEventListener('scroll', throttle(onScroll,200))
     })
     const init = () => {
-      container = document;
-      el = document.documentElement;
+      container.value = document;
+      el.value = document.documentElement;
       if (props.target) {
-        el = document.querySelector(props.target);
-        if (!el.value) {
+        if (!el) {
           throw new Error(`target不存在，请检查`);
+        } else {
+          el.value = document.querySelector(props.target)!;
         }
         container.value = el.value;
       }
     };
     const onScroll = () => {
       const scrollTop = el.value.scrollTop;
+      console.log(scrollTop)
       visible.value = scrollTop >= props.visibleHeight;
     };
     const handleClick = (e: Event) => {
@@ -88,17 +90,32 @@ export default {
       rAF(frameFunc)
     };
     onBeforeUnmount(() => {
-      container.value.removeEventListener('scroll', onScroll())
+      container.value.removeEventListener('scroll', onScroll)
     })
     return {
       visible,
-      styleBottom,
-      styleRight,
-      handleClick
+      handleClick,
+      positionStyle
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
+.mmq-backtop {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 5;
+  transition: ;
+  &:hover {
+    background-color: #409eff;
+  }
+}
 </style>

@@ -2,7 +2,7 @@
 常规使用
 </demo>
 <template>
-  <BackTop target=".content" :buttom="200">
+  <BackTop :bottom="100" :right="100">
     <template #default>
       <div
         style="
