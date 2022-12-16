@@ -36,9 +36,13 @@ body {
 }
 
 tr {
-  text-align: center;
-}
+  text-align: left;
+  border-bottom: 1px solid #dcdfe6;
+  td {
+    font-weight: normal;
+  }
 
+}
 .tipWarning {
   color: #ff9900;
 }
