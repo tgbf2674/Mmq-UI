@@ -1,8 +1,8 @@
 <demo>
-基础多选
+有禁用选项
 </demo>
 <template>
-  <h5>为 MqSelect 设置 multiple 属性即可启用多选， 此时 v-model 的值为当前选中值所组成的数组。</h5>
+  <h5>在 mq-option 中，设定 disabled 值为 true，即可禁用该选项</h5>
   <div style="display: flex;align-items: center">
     <MqSelect @onChange="handleChange" v-model="currentFoot" size="large">
       <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
