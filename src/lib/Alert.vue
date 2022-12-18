@@ -1,17 +1,22 @@
 <template>
   <transition name="mmq-alert-fade">
     <div v-show="visible" class="mmq-alert" :class="[typeClass,center ? 'is-center' : '', 'is-' +effect]" role="alert">
-      <Icon v-if="showIcon" class="mmq-alert__icon" :name="iconName" :class="isBigIcon"></Icon>
+      <MqIcon v-if="showIcon" class="mmq-alert__icon" :class="isBigIcon">
+        <component :is="iconName"></component>
+      </MqIcon>
       <div class="mmq-alert__content">
+        <div class="content-wrapper">
         <span v-if="title || $slots.title" class="mmq-alert__title" :class="[isBoldTitle]">
           <slot name="title">{{ title }}</slot>
         </span>
-        <p v-if="$slots.default || description" class="mmq-alert__description">
+        <div v-if="$slots.default || description" class="mmq-alert__description">
           <slot>{{ description }}</slot>
-        </p>
-        <Icon v-if="closable" class="mmq-alert__closebtn" :name="closeName"
-              @click="close">{{ closeText }}
-        </Icon>
+        </div>
+        </div>
+        <MqIcon v-if="closable && !closeText" class="mmq-alert__closebtn" :name="closeName"
+              @click="close">
+          <Close />
+        </MqIcon>
         <span v-if="closeText!== ''" class="is-customed" @click="close">{{closeText}}</span>
       </div>
     </div>
@@ -20,18 +25,18 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref} from 'vue';
-import Icon from './Icon.vue';
+import MqIcon from './MqIcon.vue';
 
 const ALERT_TYPE_CLASSES_MAP = {
-  success: 'icon-success',
-  warning: 'icon-warning',
-  error: 'icon-error',
-  info: 'icon-info',
+  success: 'SuccessFilled',
+  warning: 'WarningFilled',
+  error: 'CircleCloseFilled',
+  info: 'InfoFilled',
 };
 
 export default defineComponent({
   name: 'MqAlert',
-  components: {Icon},
+  components: {MqIcon},
   props: {
     title: {
       type: String,
@@ -72,7 +77,7 @@ export default defineComponent({
     );
     const closeName = computed(()=>{
       if(props.closeText===''){
-        return 'icon-close'
+        return 'close'
       }else {
         return null
       }
@@ -104,26 +109,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   transition: opacity 0.2s;
-
-  &.is-light {
-    .mmq-alert__closebtn {
-      &::v-deep .mmq-icon {
-        fill: #909399;
-      }
-    }
-  }
-
-  &.is-dark {
-    .mmq-alert__closebtn {
-      &::v-deep .mmq-icon{
-        fill: #ffffff;
-      }
-    }
-
-    .mmq-alert__description {
-      color: #ffffff;
-    }
-  }
 
   &.is-center {
     justify-content: center;
@@ -230,8 +215,13 @@ export default defineComponent({
   }
 
   .mmq-alert__content {
-    display: table-cell;
+    display: flex;
+    align-items: center;
+    width: 100%;
     padding: 0 8px;
+    .content-wrapper {
+      width: 100%;
+    }
   }
 
   .mmq-alert__icon {
@@ -261,10 +251,8 @@ export default defineComponent({
     .mmq-alert__closebtn {
       font-size: 12px;
       opacity: 1;
-      position: absolute;
-      top: 12px;
-      right: 15px;
       cursor: pointer;
+      justify-content: flex-end;
     }
     .is-customed{
       font-style: normal;

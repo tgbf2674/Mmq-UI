@@ -1,5 +1,5 @@
 <demo>
-带有辅助性描述
+带有辅助性描述和图标
 </demo>
 <template>
   <Alert

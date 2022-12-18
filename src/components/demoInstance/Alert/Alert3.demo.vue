@@ -4,7 +4,7 @@
 <template>
   <Alert title="不可关闭的alert" :closable="false" type="success"></Alert>
   <Alert title="自定义close-text" closeText="知道了" type="info"> </Alert>
-  <Alert title="设置了回调的alert" @click="hello" type="warning"> </Alert>
+  <Alert title="设置了回调的alert" closable @click="hello" type="warning"> </Alert>
 </template>
 
 <script lang="ts">
