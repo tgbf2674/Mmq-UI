@@ -1,12 +1,11 @@
 <template>
   <div class="mmq-imageModel-wrapper">
-    <slot v-if="false" @click="imgClick"></slot>
-    <div class="myImg" @click="imgClick">
+    <div :class="['myImg', isPreview]" @click="imgClick">
       <component :is="$slots.default"></component>
     </div>
-    <teleport to="body">
+    <teleport v-if="preview" to="body">
       <div @click="closeModel" ref="modelRef" class="model">
-        <span @click="closeModel" ref="closeRef" class="mmq-imageModel-close">&times;</span>
+        <span ref="closeRef" class="mmq-imageModel-close">&times;</span>
         <img ref="modelImgRef" class="model-content" src="" alt="">
       </div>
     </teleport>
@@ -14,28 +13,35 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {computed, defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'Image',
   props: {
     //放大展示的图片路径
-    modelImgSrc: {
+    src: {
       type: String,
       default: ''
+    },
+    preview: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(props: {modelImgSrc: string}) {
+  setup(props) {
     const modelRef = ref();
     const modelImgRef = ref();
+    const isPreview = computed(() => {
+      return props.preview ? 'preview' : ''
+    })
     const imgClick = (event: any) => {
-      modelRef.value.style.display = 'block';
-      modelImgRef.value.src = props.modelImgSrc || event.target.src;
+      modelRef.value.style.display = 'flex';
+      modelImgRef.value.src = props.src || event.target.src;
     };
     const closeModel = () => {
       modelRef.value.style.display = 'none';
     };
-    return {modelRef, modelImgRef, imgClick, closeModel};
+    return {modelRef, modelImgRef, imgClick, closeModel, isPreview};
   }
 });
 </script>
@@ -44,14 +50,15 @@ export default defineComponent({
 .mmq-imageModel-wrapper {
   .myImg {
     border-radius: 5px;
-    cursor: pointer;
     transition: 0.3s;
 
     img {
       width: 100%;
       max-width: 300px;
     }
-
+  }
+  .preview {
+    cursor: pointer;
     &:hover {
       opacity: 0.7;
     }
@@ -61,7 +68,6 @@ export default defineComponent({
 .model {
   display: none;
   position: fixed;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
