@@ -2,7 +2,7 @@
   <div class="mmq-imageModel-wrapper">
     <div :class="['myImg', isPreview]" @click="imgClick">
       <slot>
-        <img :src="src" :style="fitStyle">
+        <img :src="src" :style="fitStyle" alt="">
       </slot>
     </div>
     <teleport v-if="preview" to="body">
@@ -43,11 +43,15 @@ export default defineComponent({
       return { 'object-fit' : props.fit }
     })
     const imgClick = (event: any) => {
-      modelRef.value.style.display = 'flex';
-      modelImgRef.value.src = props.src || event.target.src;
+      if (modelRef.value) {
+        modelRef.value.style.display = 'flex';
+        modelImgRef.value.src = props.src || event.target.src;
+      }
     };
     const closeModel = () => {
-      modelRef.value.style.display = 'none';
+      if (modelRef.value) {
+        modelRef.value.style.display = 'none';
+      }
     };
     return {modelRef, modelImgRef, imgClick, closeModel, isPreview, fitStyle};
   }
