@@ -88,3 +88,6 @@ type TooltipEffectOptions = 'dark' | 'light'
 // Input
 type InputSizeOptions =  'large' | 'normal' | 'small'
 type InputTypeOptions = 'text' | 'textarea' | 'password'
+
+// image
+type imageFitOptions = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down'

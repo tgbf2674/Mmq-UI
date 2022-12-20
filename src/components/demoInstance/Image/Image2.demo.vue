@@ -3,7 +3,7 @@
 </demo>
 <template>
   <ImageModel preview src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg">
-    <img width="300px" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" alt=""/>
+    <img width="300px" src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" alt=""/>
   </ImageModel>
 </template>
 

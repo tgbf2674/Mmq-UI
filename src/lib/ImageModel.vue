@@ -1,7 +1,9 @@
 <template>
   <div class="mmq-imageModel-wrapper">
     <div :class="['myImg', isPreview]" @click="imgClick">
-      <component :is="$slots.default"></component>
+      <slot>
+        <img :src="src" :style="fitStyle">
+      </slot>
     </div>
     <teleport v-if="preview" to="body">
       <div @click="closeModel" ref="modelRef" class="model">
@@ -13,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from 'vue';
+import {computed, defineComponent, PropType, ref} from 'vue';
 
 export default defineComponent({
   name: 'Image',
@@ -26,6 +28,9 @@ export default defineComponent({
     preview: {
       type: Boolean,
       default: false
+    },
+    fit: {
+      type: String as PropType<imageFitOptions>
     }
   },
   setup(props) {
@@ -34,6 +39,9 @@ export default defineComponent({
     const isPreview = computed(() => {
       return props.preview ? 'preview' : ''
     })
+    const fitStyle = computed(() => {
+      return { 'object-fit' : props.fit }
+    })
     const imgClick = (event: any) => {
       modelRef.value.style.display = 'flex';
       modelImgRef.value.src = props.src || event.target.src;
@@ -41,7 +49,7 @@ export default defineComponent({
     const closeModel = () => {
       modelRef.value.style.display = 'none';
     };
-    return {modelRef, modelImgRef, imgClick, closeModel, isPreview};
+    return {modelRef, modelImgRef, imgClick, closeModel, isPreview, fitStyle};
   }
 });
 </script>
@@ -51,10 +59,12 @@ export default defineComponent({
   .myImg {
     border-radius: 5px;
     transition: 0.3s;
-
+    width: 100%;
+    height: 100%;
     img {
       width: 100%;
-      max-width: 300px;
+      height: 100%;
+      max-width: 100%;
     }
   }
   .preview {
