@@ -3,14 +3,13 @@
     <label v-if="label">{{ label }}</label>
     <div>
       <slot></slot>
-      <p v-if="error">{{ error }}</p>
+      <p v-if="fieldError">{{ fieldError }}</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref} from 'vue';
-
+import {computed, defineComponent, inject, onMounted, onUnmounted, ref} from 'vue';
 export default defineComponent({
   name: 'FormItem',
   props: {
@@ -23,10 +22,32 @@ export default defineComponent({
       default: ''
     }
   },
-  setup() {
+  setup(props, context) {
     const error = ref('');
+    onMounted(() => {
+      if (props.prop) {
+        dispatchEvent('form.addField', {
+          prop: props.prop
+        })
+      }
+    })
+    const fieldError = computed(() => {
+      if (props.prop) return ''
+      const formError = inject<any>('FormInstance').formError
+      return formError[props.prop] || ''
+    })
+    const dispatchEvent = (eventName: string, params: any) => {
+      inject<any>('FormInstance').emitter.emit(eventName, params)
+    }
+    onUnmounted(() => {
+      if (props.prop) {
+        dispatchEvent('form.removeField', {
+          prop: props.prop
+        })
+      }
+    })
     return {
-      error
+      error, fieldError
     };
   }
 });
