@@ -57,6 +57,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "@vitest/ui": "^0.24.3",
+    "async-validator": "^4.2.5",
     "esbuild": "^0.15.10",
     "mitt": "^3.0.0",
     "mmq-utils": "^1.0.18",
