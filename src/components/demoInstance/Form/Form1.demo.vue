@@ -31,7 +31,8 @@ export default {
     const rules = ref({
       tel: [
         {required: true, message: '您的手机号码未输入'},
-        {pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误'}
+        // {pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误'}
+        { min: 3, max: 5, message: '长度只能为3-5' }
       ],
       region: [
         {

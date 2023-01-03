@@ -24,11 +24,12 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const fields: any = ref([]);
+    const fields = ref([]);
     const formError = ref({});
     const formRules = computed(() => {
       const descriptor: any = {};
-      fields.value.forEach(({prop}) => {
+      fields.value.forEach((item: FormFieldsOptions) => {
+        const prop = item.prop;
         if (props.rules) {
           if (!Array.isArray(props.rules[prop])) {
             console.error(`prop 为 ${prop} 的 FormItem 校验规则不存在或者其值不是数组`);
@@ -38,45 +39,46 @@ export default defineComponent({
           descriptor[prop] = props.rules[prop];
         }
       });
+      console.log(descriptor);
       return descriptor;
     });
     const formValue = computed(() => {
-      return fields.value.reduce((data: any, {prop}) => {
-        data[prop] = props.model[prop];
+      return fields.value.reduce((data, {prop}) => {
+        (data as any)[prop] = props.model[prop];
         return data;
       }, {});
     });
     const validate = (callback: Function) => {
       const validator = new AsyncValidator(formRules.value);
-      validator.validate(formValue.value, (errors: any) => {
-        let formError: any = {};
+      validator.validate(formValue.value, (errors) => {
+        let formErrorTemp: FormErrorOptions = {};
         if (errors && errors.length) {
-          errors.forEach((item: any) => {
-            formError[item.field] = item.message;
+          errors.forEach((item) => {
+            if (item.field && item.message) {
+              formErrorTemp[item.field] = item.message;
+            }
           });
         } else {
-          formError = {};
+          formErrorTemp = {};
         }
-        formError.value = formError;
-        emitter.emit('formError', formError.value)
+        formError.value = formErrorTemp;
+        emitter.emit('formError', formError.value);
         const errInfo: any[] = [];
-        fields.value.forEach((item: any) => {
-          if (formError[item.prop]) {
-            errInfo.push(formError[item.prop]);
+        fields.value.forEach((item: FormErrorOptions) => {
+          if (formErrorTemp[item.prop]) {
+            errInfo.push(formErrorTemp[item.prop]);
           }
         });
         callback(errInfo);
       });
     };
     provide('formRules', formRules);
-    emitter.on('form.addField', (field: any) => {
-      if (field) {
-        fields.value.push(field);
-      }
+    emitter.on('form.addField', (field) => {
+      fields.value.push(field);
     });
     emitter.on('form.removeField', (field: any) => {
       if (field) {
-        fields.value = fields.value.filter((item: { prop: string, el: any }) => {
+        fields.value = fields.value.filter((item: FormFieldsOptions) => {
           return item.prop !== field.prop;
         });
       }
