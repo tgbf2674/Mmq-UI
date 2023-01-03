@@ -10,6 +10,7 @@
       <MqSelectOption v-for="item in options" :key="item.value" :value="item.value" :label="item.label"
                       :disabled="item.disabled"></MqSelectOption>
     </MqSelect>
+    {{ currentFoot }}
   </div>
 </template>
 

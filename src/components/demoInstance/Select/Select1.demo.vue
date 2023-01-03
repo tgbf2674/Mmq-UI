@@ -55,6 +55,14 @@ export default {
       {
         value: '选项6',
         label: '杂酱面',
+      },
+      {
+        value: '选项7',
+        label: '123',
+      },
+      {
+        value: '选项8',
+        label: '杂酱321面',
       }
     ];
     const currentFoot = ref('');

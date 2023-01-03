@@ -68,7 +68,7 @@ export default defineComponent({
         callback(errInfo);
       });
     };
-    provide('formErrorArr', formError);
+    provide('formRules', formRules);
     emitter.on('form.addField', (field: any) => {
       if (field) {
         fields.value.push(field);

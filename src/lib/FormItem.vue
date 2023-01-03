@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <label v-if="label">{{ label }}</label>
-    <div>
+  <div class="MqFormItem">
+    <label :class="{isRequired}" v-if="label">{{ label }}</label>
+    <div class="MqFormItemContent">
       <slot></slot>
-      <p v-if="fieldError">{{ fieldError }}</p>
+      <div class="MqFormItemError" v-if="fieldError">{{ fieldError }}</div>
     </div>
   </div>
 </template>
@@ -33,6 +33,15 @@ export default defineComponent({
       emitter.on('formError', (val: any) => {
         error.value = val[props.prop]
       })
+      console.log(inject<any>('formRules').value.tel, 123)
+    })
+    const isRequired = computed(() => {
+      let res = false
+      const rules = inject<any>('formRules').value
+      for (const key in rules[props.prop]) {
+        if (rules[props.prop][key].required) res = true
+      }
+      return res
     })
     let error = ref()
     const fieldError = computed(() => {
@@ -50,12 +59,31 @@ export default defineComponent({
       }
     })
     return {
-      fieldError
+      fieldError, isRequired
     };
   }
 });
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.MqFormItem {
+  margin-bottom: 18px;
+  font-size: 14px;
+  .MqFormItemContent {
+    position: relative;
+    font-size: 12px;
+    .MqFormItemError {
+      color: #f56c6c;
+      font-size: 12px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
+  .isRequired:before{
+    content: '*';
+    color: #f56c6c;
+    margin-right: 4px;
+  }
+}
 </style>

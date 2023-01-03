@@ -3,7 +3,7 @@
     <div class="mmq-select-text-wrap">
       <input :readonly="!filterable" :disabled="disabled"
              :class="['mmq-select-input', size, disabled ? 'disabled' : '']" type="text"
-             :value="modelValue" @input="handleInputTextChange" :placeholder="placeholder"
+             :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder"
              @click.stop="showOptions = !showOptions"/>
       <div class="mmq-select-icon-wrap">
         <Icon :name="showOptions ? 'icon-menudown' : showClearIcon ? '' : 'icon-menuright' "></Icon>
@@ -20,7 +20,7 @@
         <div
           class="select-empty"
           v-if="
-            (!loading &&
+            (!loading && filterable &&
               ((!filterResultList.length && isSearchIn && modelValue.length > 0) ||
                 !filterDataList.length))
           "
@@ -124,7 +124,9 @@ export default defineComponent({
           if (!isSelf) handleCloseOptions();
         }
       }, false);
-      getSearchData();
+      if (props.filterable) {
+        getSearchData();
+      }
     });
     const handleOptionsHandle = (value: any) => {
       if (!props.multiple) {
@@ -134,7 +136,7 @@ export default defineComponent({
           label: value.label,
           value: value.value
         });
-        context.emit('update:modelValue', value.label);
+        context.emit('update:modelValue', value.value);
       } else {
         const index = labelList.value.findIndex((item: any) => {
           return item === value.label;
@@ -184,7 +186,6 @@ export default defineComponent({
 .mmq-select {
   width: 240px;
   position: relative;
-  margin: 20px;
 
   .mmq-select-input {
     -webkit-appearance: none;
