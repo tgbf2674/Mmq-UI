@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, onMounted, onUnmounted, ref} from 'vue';
+import {computed, defineComponent, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import {emitter} from './Form.vue'
 export default defineComponent({
   name: 'FormItem',
   props: {
@@ -23,21 +24,23 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const error = ref('');
     onMounted(() => {
       if (props.prop) {
         dispatchEvent('form.addField', {
           prop: props.prop
         })
       }
+      emitter.on('formError', (val: any) => {
+        error.value = val[props.prop]
+      })
     })
+    let error = ref()
     const fieldError = computed(() => {
-      if (props.prop) return ''
-      const formError = inject<any>('FormInstance').formError
-      return formError[props.prop] || ''
+      if (!props.prop) return ''
+      return error.value || ''
     })
     const dispatchEvent = (eventName: string, params: any) => {
-      inject<any>('FormInstance').emitter.emit(eventName, params)
+      emitter.emit(eventName, params)
     }
     onUnmounted(() => {
       if (props.prop) {
@@ -47,7 +50,7 @@ export default defineComponent({
       }
     })
     return {
-      error, fieldError
+      fieldError
     };
   }
 });

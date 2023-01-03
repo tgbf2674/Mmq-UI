@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref} from 'vue';
+import {computed, defineComponent, getCurrentInstance, inject, onMounted, provide, ref} from 'vue';
 import AsyncValidator from 'async-validator';
 import mitt from 'mitt';
 
@@ -58,6 +58,7 @@ export default defineComponent({
           formError = {};
         }
         formError.value = formError;
+        emitter.emit('formError', formError.value)
         const errInfo: any[] = [];
         fields.value.forEach((item: any) => {
           if (formError[item.prop]) {
@@ -67,7 +68,7 @@ export default defineComponent({
         callback(errInfo);
       });
     };
-    provide('FormInstance', {formError, emitter, instance: getCurrentInstance()});
+    provide('formErrorArr', formError);
     emitter.on('form.addField', (field: any) => {
       if (field) {
         fields.value.push(field);
