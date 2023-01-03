@@ -25,6 +25,7 @@ export { default as MqDialog } from './Dialog.vue'
 export { default as MqDropdown } from './Dropdown.vue'
 export { default as MqEmpty } from './Empty.vue'
 export { default as MqForm } from './Form.vue'
+export { default as MqFormItem } from './FormItem.vue'
 export { default as MqGrid } from './Grid.vue'
 export { default as MqGridCol } from './GridCol.vue'
 export { default as MqIcon } from './MqIcon.vue'
@@ -69,6 +70,7 @@ import MqDialog from './Dialog.vue'
 import MqDropdown from './Dropdown.vue'
 import MqEmpty from './Empty.vue'
 import MqForm from './Form.vue'
+import MqFormItem from './FormItem.vue'
 import MqGrid from './Grid.vue'
 import MqGridCol from './GridCol.vue'
 import MqIcon from './Icon.vue'
@@ -104,6 +106,7 @@ const componentList: any = [
   MqGrid,
   MqGridCol,
   MqForm,
+  MqFormItem,
   MqEmpty,
   MqDialog,
   MqDropdown,
