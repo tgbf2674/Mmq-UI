@@ -48,7 +48,7 @@ export default defineComponent({
       if (!props.prop) return ''
       return error.value || ''
     })
-    const dispatchEvent = (eventName: string, params: any) => {
+    const dispatchEvent = (eventName: string, params: FormFieldsOptions) => {
       emitter.emit(eventName, params)
     }
     onUnmounted(() => {
