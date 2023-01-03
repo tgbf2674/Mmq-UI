@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import {computed, defineComponent, inject, onMounted, onUnmounted, ref} from 'vue';
 import {emitter} from './Form.vue';
 
 export default defineComponent({
@@ -36,7 +36,6 @@ export default defineComponent({
       emitter.on('formError', (val: any) => {
         error.value = val[props.prop];
       });
-      console.log(inject<any>('formRules').value.tel, 123);
     });
     const isRequired = computed(() => {
       let res = false;

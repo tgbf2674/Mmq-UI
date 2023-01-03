@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, inject, onMounted, provide, ref} from 'vue';
+import {computed, defineComponent, provide, ref} from 'vue';
 import AsyncValidator from 'async-validator';
 import mitt from 'mitt';
 
@@ -23,7 +23,7 @@ export default defineComponent({
       default: undefined
     }
   },
-  setup(props, context) {
+  setup(props) {
     const fields = ref([]);
     const formError = ref({});
     const formRules = computed(() => {
@@ -39,7 +39,6 @@ export default defineComponent({
           descriptor[prop] = props.rules[prop];
         }
       });
-      console.log(descriptor);
       return descriptor;
     });
     const formValue = computed(() => {
