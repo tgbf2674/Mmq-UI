@@ -14,6 +14,7 @@
     </MqFormItem>
   </MqForm>
   <MqButton level="main" @click="handleClick">提交</MqButton>
+  <MqButton @click="handleReset">重置</MqButton>
 </template>
 
 <script lang="ts">
@@ -31,8 +32,8 @@ export default {
     const rules = ref({
       tel: [
         {required: true, message: '您的手机号码未输入'},
-        // {pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误'}
-        { min: 3, max: 5, message: '长度只能为3-5' }
+        {pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误'}
+        // { min: 3, max: 5, message: '长度只能为3-5' }
       ],
       region: [
         {
@@ -45,8 +46,11 @@ export default {
         console.log(errs)
       })
     }
+    const handleReset = () => {
+      formRef.value.resetFields()
+    }
     return {
-      formData, rules, formRef, handleClick
+      formData, rules, formRef, handleClick, handleReset
     }
   }
 }

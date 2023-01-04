@@ -11,8 +11,9 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, onMounted, onUnmounted, ref} from 'vue';
+import {computed, defineComponent, inject, onMounted, onUnmounted, ref, watch} from 'vue';
 import {emitter} from './Form.vue';
+import va from '../../index';
 
 export default defineComponent({
   name: 'FormItem',

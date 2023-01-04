@@ -1,13 +1,14 @@
 <template>
-  <form class="mmq-form">
+  <form ref="MqFormRef" class="mmq-form">
     <slot></slot>
   </form>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, provide, ref} from 'vue';
+import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref} from 'vue';
 import AsyncValidator from 'async-validator';
 import mitt from 'mitt';
+import {clone} from 'mmq-utils';
 
 export const emitter = mitt();
 
@@ -23,9 +24,18 @@ export default defineComponent({
       default: undefined
     }
   },
-  setup(props) {
+  setup(props, context) {
     const fields = ref([]);
     const formError = ref({});
+    const MqFormRef = ref()
+    const initValues = clone(props.model, true)
+    const resetFields = () => {
+      formError.value = []
+      emitter.emit('formError', formError.value)
+      for (const key in props.model) {
+        props.model[key] = initValues[key]
+      }
+    }
     const formRules = computed(() => {
       const descriptor: any = {};
       fields.value.forEach((item: FormFieldsOptions) => {
@@ -47,7 +57,7 @@ export default defineComponent({
         return data;
       }, {});
     });
-    const validate = (callback: Function) => {
+    const validate = (callback?: Function) => {
       const validator = new AsyncValidator(formRules.value);
       validator.validate(formValue.value, (errors) => {
         let formErrorTemp: FormErrorOptions = {};
@@ -68,10 +78,12 @@ export default defineComponent({
             errInfo.push(formErrorTemp[item.prop]);
           }
         });
-        callback(errInfo);
+        if (callback) {
+          callback(errInfo);
+        }
       });
     };
-    provide('formRules', formRules);
+    provide('formRules', formRules)
     emitter.on('form.addField', (field) => {
       fields.value.push(field);
     });
@@ -83,7 +95,7 @@ export default defineComponent({
       }
     });
     return {
-      fields, formError, validate
+      fields, formError, validate, MqFormRef, resetFields
     };
   }
 });
