@@ -18,6 +18,14 @@
     <MqFormItem label="是否男性" prop="sex">
       <MqSwitch type="tel" close-text="否" open-text="是" v-model="formData.sex"/>
     </MqFormItem>
+    <MqFormItem label="Activity type" prop="type">
+      <MqCheckboxGroup v-model="formData.type">
+        <MqCheckbox label="Online activities" />
+        <MqCheckbox label="Promotion activities" />
+        <MqCheckbox label="Offline activities" />
+        <MqCheckbox label="Simple brand exposure" />
+      </MqCheckboxGroup>
+    </MqFormItem>
   </MqForm>
   <MqButton level="main" @click="handleClick">提交</MqButton>
   <MqButton @click="handleReset">重置</MqButton>
@@ -27,13 +35,13 @@
 import MqForm from '../../../lib/Form.vue'
 import MqFormItem from '../../../lib/FormItem.vue'
 import MqInput from '../../../lib/Input.vue'
-import {MqButton, MqSelect, MqSelectOption, MqSwitch} from '../../../lib';
+import {MqButton, MqSelect, MqSelectOption, MqSwitch, MqCheckbox, MqCheckboxGroup} from '../../../lib';
 import {reactive, ref} from 'vue';
 export default {
   name: 'Form1.demo',
-  components: {MqForm, MqSwitch, MqFormItem, MqInput, MqButton, MqSelect, MqSelectOption},
+  components: {MqForm, MqCheckbox, MqCheckboxGroup, MqSwitch, MqFormItem, MqInput, MqButton, MqSelect, MqSelectOption},
   setup() {
-    const formData = reactive({tel: '', region: '', sex: false})
+    const formData = reactive({tel: '', region: '', sex: false, type: []})
     const formRef= ref()
     const rules = ref({
       tel: [
@@ -45,6 +53,13 @@ export default {
         {
           required: true, message: '请选择区域'
         }
+      ],
+      type: [
+        {
+          type: 'array',
+          required: true,
+          message: '请选择类型'
+        },
       ]
     })
     const handleClick = () => {
