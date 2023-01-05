@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref} from 'vue';
+import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref, watch, watchEffect} from 'vue';
 import MqSelectOption from './MqSelectOption.vue';
 import Icon from './Icon.vue';
 import mitt from 'mitt';
@@ -108,6 +108,11 @@ export default defineComponent({
       isSearchIn.value = true;
       filterResultList.value = filterDataList.value.filter((item) => item.label.includes(value));
     };
+    watchEffect(() => {
+      if (!props.modelValue) {
+        currentLabel.value = ''
+      }
+    })
     onMounted(() => {
       const internalInstance = getCurrentInstance();
       emitter.on('onChange', (val: any) => {

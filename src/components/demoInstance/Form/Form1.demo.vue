@@ -2,6 +2,9 @@
 基本使用
 </demo>
 <template>
+  <h5>最基础的表单包括各种输入表单项，比如input、select、radio、checkbox等。
+
+    在每一个 form 组件中，你需要一个 form-item 字段作为输入项的容器，用于获取值与验证值。</h5>
   <MqForm :model="formData" :rules="rules" ref="formRef">
     <MqFormItem label="手机号" prop="tel">
       <MqInput type="tel" v-model:input-value="formData.tel"/>
