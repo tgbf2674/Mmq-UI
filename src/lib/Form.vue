@@ -42,8 +42,7 @@ export default defineComponent({
         const prop = item.prop;
         if (props.rules) {
           if (!Array.isArray(props.rules[prop])) {
-            console.error(`prop 为 ${prop} 的 FormItem 校验规则不存在或者其值不是数组`);
-            descriptor[prop] = [{required: true}];
+            console.warn(`prop 为 ${prop} 的 FormItem 校验规则不存在或者其值不是数组`);
             return;
           }
           descriptor[prop] = props.rules[prop];

@@ -60,10 +60,10 @@ export default defineComponent({
     const checkedValue = ref(props.modelValue);
     const switchStatusClass = ref('mmq-switch-close');
     const selectOpenTextClass = computed(() => {
-      return checkedValue.value === props.openValue ? 'mmq-switch-text-selected' : ''
+      return checkedValue.value !== props.openValue ? 'mmq-switch-text-selected' : ''
     })
     const selectCloseTextClass = computed(() => {
-      return checkedValue.value !== props.openValue ? 'mmq-switch-text-selected' : ''
+      return checkedValue.value === props.openValue ? 'mmq-switch-text-selected' : ''
     })
     const selectStatusStyle = computed(() => {
       if (checkedValue.value === props.openValue) {
@@ -88,8 +88,8 @@ export default defineComponent({
     onMounted(() => {
       props.modelValue ? checkedValue.value = props.openValue : checkedValue.value = props.closeValue;
     });
-
     watchEffect(() => {
+      checkedValue.value = props.modelValue
       if (checkedValue.value === props.openValue) {
         switchStatusClass.value = 'mmq-switch-open';
         switchStatusText.value = props.openText;

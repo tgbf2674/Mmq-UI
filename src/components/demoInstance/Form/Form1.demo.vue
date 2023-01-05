@@ -15,6 +15,9 @@
         <MqSelectOption label="two" value="beijing"></MqSelectOption>
       </MqSelect>
     </MqFormItem>
+    <MqFormItem label="是否男性" prop="sex">
+      <MqSwitch type="tel" close-text="否" open-text="是" v-model="formData.sex"/>
+    </MqFormItem>
   </MqForm>
   <MqButton level="main" @click="handleClick">提交</MqButton>
   <MqButton @click="handleReset">重置</MqButton>
@@ -24,13 +27,13 @@
 import MqForm from '../../../lib/Form.vue'
 import MqFormItem from '../../../lib/FormItem.vue'
 import MqInput from '../../../lib/Input.vue'
-import {MqButton, MqSelect, MqSelectOption} from '../../../lib';
-import {ref} from 'vue';
+import {MqButton, MqSelect, MqSelectOption, MqSwitch} from '../../../lib';
+import {reactive, ref} from 'vue';
 export default {
   name: 'Form1.demo',
-  components: {MqForm, MqFormItem, MqInput, MqButton, MqSelect, MqSelectOption},
+  components: {MqForm, MqSwitch, MqFormItem, MqInput, MqButton, MqSelect, MqSelectOption},
   setup() {
-    const formData = ref({tel: '', region: ''})
+    const formData = reactive({tel: '', region: '', sex: false})
     const formRef= ref()
     const rules = ref({
       tel: [
