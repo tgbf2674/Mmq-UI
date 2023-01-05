@@ -18,7 +18,7 @@
     <MqFormItem label="是否男性" prop="sex">
       <MqSwitch type="tel" close-text="否" open-text="是" v-model="formData.sex"/>
     </MqFormItem>
-    <MqFormItem label="Activity type" prop="type">
+    <MqFormItem label="类型" prop="type">
       <MqCheckboxGroup v-model="formData.type">
         <MqCheckbox label="Online activities" />
         <MqCheckbox label="Promotion activities" />
