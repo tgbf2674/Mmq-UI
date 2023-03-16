@@ -17,7 +17,7 @@ export default function () {
     if (e.offsetX) {
       starlist.push(new (Star as any)(e.offsetX, e.offsetY));
     }
-  }, 50));
+  }, 30));
 
   function random(min: number, max: number) {
     return Math.floor((max - min) * Math.random() + min);

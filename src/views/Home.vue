@@ -40,6 +40,7 @@
 <script lang="ts">
 import topNav from '../components/topNav.vue';
 import bgAnimation from '../utils/bgAnimation';
+import {onUnmounted} from 'vue';
 
 export default {
 name: "Home",
@@ -52,6 +53,9 @@ name: "Home",
     canvas.id = 'canvas'
     App!.appendChild(canvas)
     bgAnimation()
+    onUnmounted(() => {
+      App!.removeChild(canvas)
+    })
   }
 }
 </script>
