@@ -24,9 +24,9 @@ export default {
 <style>
 #app {
   height: 100vh;
-  background-image: url(http://layui-vue.pearadmin.com/assets/background.9012b445.svg);
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
 }
 /* 滚动槽 */
 ::-webkit-scrollbar {

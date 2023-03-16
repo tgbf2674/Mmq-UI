@@ -39,10 +39,19 @@
 
 <script lang="ts">
 import topNav from '../components/topNav.vue';
+import bgAnimation from '../utils/bgAnimation';
+
 export default {
 name: "Home",
   components: {
   topNav
+  },
+  setup() {
+    const App = document.querySelector('#app')
+    const canvas = document.createElement('canvas')
+    canvas.id = 'canvas'
+    App!.appendChild(canvas)
+    bgAnimation()
   }
 }
 </script>
@@ -53,6 +62,9 @@ $border-radius: 4px;
 $color: #fff;
 .topNavAndBanner {
   height: 34%;
+  width: 100%;
+  top: 0;
+  position: absolute;
   background: linear-gradient(145deg, #0081ff 0%, #1cbbb4 100%);
   clip-path: ellipse(80% 60% at 50% 40%);
 }
@@ -111,7 +123,7 @@ $color: #fff;
   color: $color;
   position: absolute;
   left: 50%;
-  top: 18%;
+  top: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
   flex-direction: column;
