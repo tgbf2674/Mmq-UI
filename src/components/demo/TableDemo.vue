@@ -1,0 +1,26 @@
+<template>
+  <h1>Table 组件示例 </h1>
+  <Demo :component="Table1Demo"></Demo>
+  <Demo :component="Table2Demo"></Demo>
+</template>
+
+<script lang="ts">
+import Table1Demo from '../demoInstance/Table/Table1.demo.vue'
+import Table2Demo from '../demoInstance/Table/Table2.demo.vue'
+import Demo from '../Demo.vue';
+export default {
+  name: 'TableDemo',
+  components: {
+    Demo
+  },
+  setup () {
+    return {
+      Table1Demo, Table2Demo
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

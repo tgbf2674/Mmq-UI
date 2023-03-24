@@ -34,6 +34,7 @@ import form from './components/demo/FormDemo.vue'
 import backTop from './components/demo/BackTopDemo.vue';
 import pagination from './components/demo/PaginationDemo.vue'
 import select from './components/demo/SelectDemo.vue'
+import Table from './components/demo/TableDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdown.vue'
 import intro from './markdown/intro.md'
@@ -84,7 +85,8 @@ export const router = createRouter({
         {path: 'form',component: form},
         {path: 'backTop',component: backTop},
         {path: 'pagination',component: pagination},
-        {path: 'select',component: select}
+        {path: 'select',component: select},
+        {path: 'table',component: Table}
       ]}
   ]
 });
