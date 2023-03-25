@@ -1,12 +1,12 @@
 <demo>
-带边框
+固定列
 </demo>
 
 <template>
-  <h4>添加表格边框线，页头和页脚。</h4>
-  <MqTable :columns="columns" :data-source="data" bordered>
-    <template #title>Header</template>
-    <template #footer>Footer</template>
+  <h4>横向内容过多时，可选择固定列。
+
+    固定列需要使用 fixed 属性，它接受 Boolean 值。 如果为 true, 列将被左侧固定. 它还接受传入字符串，left 或 right，表示左边固定还是右边固定。</h4>
+  <MqTable class="tableClass" :columns="columns" :data-source="data" bordered>
   </MqTable>
 </template>
 
@@ -26,9 +26,9 @@ export default {
       {key: '4', name: '胡彦祖', age: 42, address: '西湖区湖底公园1西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',}
     ])
     const columns = reactive([
-      {title: '姓名', dataIndex: 'name', key: 'name'},
-      {title: '年龄', dataIndex: 'age', key: 'age'},
-      {title: '住址', dataIndex: 'address', key: 'address', ellipsis: 'true'}
+      {title: '姓名', dataIndex: 'name', key: 'name', width: 400},
+      {title: '年龄', dataIndex: 'age', key: 'age', width: 500},
+      {title: '住址', dataIndex: 'address', key: 'address', ellipsis: 'true', width: 1000}
     ])
     return{
       data, columns
@@ -37,6 +37,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

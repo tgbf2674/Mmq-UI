@@ -3,7 +3,7 @@
     <div class="mqTableTitle" v-if="$slots.footer">
       <slot name="title"></slot>
     </div>
-    <div class="mqTableHeader">
+    <div ref="tableHeadRef" class="mqTableHeader">
       <table>
         <colgroup>
           <col :style="item.width ? { width: item.width + 'px' } : { width: 100 / columns.length + '%' }" v-for="(item, index) in columns" :key="index" />
@@ -17,7 +17,7 @@
         </thead>
         </table>
       </div>
-    <div ref="tableBodyRef" class="mqTableBody">
+    <div ref="tableBodyRef" class="mqTableBody" @scroll="handleScroll">
       <table>
         <colgroup>
           <col :style="item.width ? { width: item.width + 'px' } : { width: 100 / columns.length + '%' }" v-for="(item, index) in columns" :key="index" />
@@ -39,7 +39,7 @@
 
 <script lang="ts">
 
-import {computed, defineComponent, onMounted, ref} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, ref} from 'vue';
 
 export default defineComponent({
   name: 'MqTable',
@@ -62,17 +62,22 @@ export default defineComponent({
   },
   setup(props, context) {
     const tableBodyRef = ref()
+    const tableHeadRef = ref()
     const hasBorder = computed(() => {
       if (props.bordered) return 'hasBorder';
       else return '';
     });
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement
+      tableHeadRef.value.scrollLeft = target.scrollLeft
+    }
     onMounted(() => {
       if (props.height) {
         tableBodyRef.value.style.height = props.height + 'px'
       }
     })
     return {
-      hasBorder, tableBodyRef
+      hasBorder, tableBodyRef, tableHeadRef, handleScroll
     };
   }
 });
@@ -80,6 +85,22 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .mqTable {
+  /* 滚动槽 */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background: rgba(0,0,0,0.06);
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.08);
+  }
+  /* 滚动条滑块 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(0,0,0,0.12);
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  }
   .mqTableTitle {
     border: 1px solid #f0f0f0;
     border-bottom: transparent;
@@ -95,6 +116,7 @@ export default defineComponent({
   }
 
   .mqTableHeader {
+    overflow-x: auto;
     table {
       border-collapse: collapse;
       width: 100%;
@@ -132,8 +154,16 @@ export default defineComponent({
       }
     }
   }
+  .mqTableHeader::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  .mqTableHeader::-webkit-scrollbar-thumb {
+    width: 0;
+    height: 0;
+  }
   .mqTableBody {
-    overflow-y: auto;
+    overflow: auto;
     table {
       border-collapse: collapse;
       width: 100%;
