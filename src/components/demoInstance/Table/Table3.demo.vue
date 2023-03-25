@@ -4,7 +4,7 @@
 
 <template>
   <h4>添加表格边框线，页头和页脚。</h4>
-  <MqTable :columns="columns" :data-source="data" bordered>
+  <MqTable :height="250" :columns="columns" :data-source="data" bordered>
     <template #title>Header</template>
     <template #footer>Footer</template>
   </MqTable>
@@ -22,8 +22,8 @@ export default {
     const data = reactive([
       {key: '1', name: '胡彦斌', age: 32, address: '西湖区湖底公园1号',},
       {key: '2', name: '胡彦祖', age: 32, address: '西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',},
-      {key: '2', name: '胡彦祖', age: 42, address: '西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',},
-      {key: '2', name: '胡彦祖', age: 42, address: '西湖区湖底公园1西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',},
+      {key: '3', name: '胡彦祖', age: 42, address: '西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',},
+      {key: '4', name: '胡彦祖', age: 42, address: '西湖区湖底公园1西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号西湖区湖底公园1号',}
     ])
     const columns = reactive([
       {title: '姓名', dataIndex: 'name', key: 'name'},
