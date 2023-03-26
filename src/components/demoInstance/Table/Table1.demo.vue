@@ -24,7 +24,7 @@ export default {
     ])
     const columns = reactive([
       {title: '姓名', dataIndex: 'name', key: 'name'},
-      {title: '年龄', dataIndex: 'age', key: 'age'},
+      {title: '年龄', dataIndex: 'age', key: 'age', width: 80},
       {title: '住址', dataIndex: 'address', key: 'address', ellipsis: 'true'}
     ])
     return{

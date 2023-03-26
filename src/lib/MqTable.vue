@@ -6,11 +6,11 @@
     <div ref="tableHeadRef" class="mqTableHeader">
       <table>
         <colgroup>
-          <col :style="item.width ? { width: item.width + 'px' } : { width: 100 / columns.length + '%' }" v-for="(item, index) in columns" :key="index" />
+          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index" />
         </colgroup>
         <thead>
         <tr>
-          <th :style="item.width ? { width: item.width + 'px' } : ''" v-for="(item, index) in columns" :key="index">
+          <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item, index) in columns" :key="index">
             {{ item.title }}
           </th>
         </tr>
@@ -20,11 +20,11 @@
     <div ref="tableBodyRef" class="mqTableBody" @scroll="handleScroll">
       <table>
         <colgroup>
-          <col :style="item.width ? { width: item.width + 'px' } : { width: 100 / columns.length + '%' }" v-for="(item, index) in columns" :key="index" />
+          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index" />
         </colgroup>
         <tbody>
-        <tr v-for="(item, index) in dataSource" :key="index">
-          <td :class="[fieldItem.ellipsis ? 'hasEllipsis' : '', hasBorder]" v-for="(fieldItem, fieldIndex) in columns"
+        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in dataSource" :key="index">
+          <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
               :key="item.key">{{ item[fieldItem.dataIndex] }}
           </td>
         </tr>
@@ -39,7 +39,11 @@
 
 <script lang="ts">
 
-import {computed, defineComponent, nextTick, onMounted, ref} from 'vue';
+import {defineComponent, nextTick, onMounted, ref} from 'vue';
+
+type HeadStyleType = {
+  width?: string
+}
 
 export default defineComponent({
   name: 'MqTable',
@@ -60,24 +64,110 @@ export default defineComponent({
       type: Number
     }
   },
-  setup(props, context) {
+  setup(props) {
     const tableBodyRef = ref()
     const tableHeadRef = ref()
-    const hasBorder = computed(() => {
-      if (props.bordered) return 'hasBorder';
-      else return '';
-    });
+    const tableThRef = ref()
+    const tableTdRef = ref()
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement
       tableHeadRef.value.scrollLeft = target.scrollLeft
+      if (tableHeadRef.value.scrollLeft === 0) {
+        tableThRef.value[computedFixedCol().leftCount-1].classList.add('fixedLeftFirst')
+      } else {
+        tableThRef.value[computedFixedCol().leftCount-1].classList.remove('fixedLeftFirst')
+      }
+    }
+    const findThOrTd = (className: string, el: string) => {
+      const target = el === 'td' ? tableTdRef : tableThRef
+      let arr: HTMLElement [] = []
+      target.value.forEach((item: HTMLElement) => {
+        Array.from(item.classList).forEach(el => {
+          if (arr && el === className) {
+            arr.push(item)
+          }
+        })
+      })
+      return arr
+    }
+    const fixedStyle = (fieldItem: TableColumnsOptions) => {
+      const arr: string[] = []
+      if (props.bordered) arr.push( 'hasBorder')
+      if (typeof fieldItem.fixed === 'boolean' && fieldItem.fixed) arr.push( 'tableLiftFixed')
+      else if (fieldItem.fixed === 'left') arr.push( 'tableLiftFixed')
+      else if (fieldItem.fixed === 'right') arr.push( 'tableRightFixed')
+      return arr
+    }
+    const bodyTdClass = (fieldItem: TableColumnsOptions) => {
+      const classArr = []
+      if (fieldItem.ellipsis) classArr.push('hasEllipsis')
+      return classArr.concat(fixedStyle(fieldItem))
+    }
+    const mouseEnterHandle = (e: Event) => {
+      const target = e.target as Element
+      target.classList.add('hoverRow')
+    }
+    const mouseLeaveHandle = (e: Event) => {
+      const target = e.target as Element
+      target.classList.remove('hoverRow')
+    }
+    const headThStyle = (item: TableColumnsOptions) => {
+      const styles: HeadStyleType = {}
+      if (item.width) styles.width = item.width + 'px'
+      return styles
+    }
+    const fixedCol = (tdArr: HTMLElement [], thArr: HTMLElement []) => {
+      let temp: HTMLElement[][] = []
+      for (let i = 0;i<tdArr.length / computedFixedCol().leftCount;i++) {
+        temp.push([])
+      }
+      tdArr.forEach((item, index: number) => {
+        let idx = Math.floor(index / computedFixedCol().leftCount)
+        temp[idx].push(item)
+      })
+      for (let i =0;i<temp.length;i++) {
+        for (let j = 1; j<temp[i].length;j++) {
+          temp[i][j].style.left = temp[i][j-1].clientWidth + 'px'
+        }
+      }
+      for (let i = 1; i< thArr.length;i++) {
+        thArr[i].style.left = thArr[i-1].clientWidth  + 'px'
+      }
+    }
+    const fixedColPosition = () => {
+      const fixedThElArr: HTMLElement [] = []
+      const fixedTdElArr: HTMLElement [] = []
+      const fixedThRightElArr: HTMLElement [] = []
+      const fixedTdRightElArr: HTMLElement [] = []
+      fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'))
+      fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'))
+      fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'))
+      fixedTdRightElArr.push(...findThOrTd('tableRightFixed', 'td'))
+      fixedCol(fixedTdElArr, fixedThElArr)
+      fixedCol(fixedTdRightElArr, fixedThRightElArr)
+    }
+    const computedFixedCol = () => {
+      let leftCount = 0
+      let rightCount = 0
+      props.columns.forEach((item:any) => {
+        if (item.fixed === 'right') rightCount++
+        else if (item.fixed && item.fixed === 'left') leftCount++
+      })
+      return {leftCount, rightCount}
     }
     onMounted(() => {
       if (props.height) {
         tableBodyRef.value.style.height = props.height + 'px'
       }
+      fixedColPosition()
+      nextTick(() => {
+        if (tableThRef.value[computedFixedCol().leftCount -1]) {
+          tableThRef.value[computedFixedCol().leftCount - 1].classList.add('fixedLeftFirst')
+        }
+      })
     })
     return {
-      hasBorder, tableBodyRef, tableHeadRef, handleScroll
+      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef
     };
   }
 });
@@ -117,8 +207,14 @@ export default defineComponent({
 
   .mqTableHeader {
     overflow-x: auto;
+    border-left: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;;
+    //border-right: 1px solid #f0f0f0;
     table {
+      display: table;
       border-collapse: collapse;
+      border-spacing: 0;
       width: 100%;
       table-layout: fixed;
 
@@ -126,29 +222,19 @@ export default defineComponent({
         tr {
           th {
             padding: 12px 14px;
-            background-color: darken(#fafafa, 1%);
             color: #646468;
             font-size: 16px;
             text-align: left;
             line-height: 1.5;
-            position: relative;
             width: 100%;
+            border-bottom: 1px solid #f0f0f0;
           }
-
-          th::before {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            width: 1px;
-            height: 1.6em;
-            background-color: #0000000f;
-            transform: translateY(-50%);
-            transition: background-color .3s;
-            content: "";
+          .hasBorder {
+            border-bottom: 1px solid #f0f0f0;
+            border-left: 1px solid #f0f0f0;
           }
-
-          th:last-child {
-            border-right: 1px solid #f0f0f0;
+          .hasBorder:first-child {
+            border-left: none;
           }
         }
       }
@@ -162,42 +248,89 @@ export default defineComponent({
     width: 0;
     height: 0;
   }
+  .tableLiftFixed {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #fff;
+  }
+  .tableLiftFixed:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10px;
+    bottom: -1px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    touch-action: none;
+    pointer-events: none;
+    right: -10px;
+    box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, .15);
+  }
+  .fixedLeftFirst:before {
+    box-shadow: none;
+  }
+  .tableRightFixed {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    background-color: #fff;
+  }
+
+  .tableRightFixed:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10px;
+    bottom: -1px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    touch-action: none;
+    pointer-events: none;
+    left: -10px;
+    box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, .15);
+  }
+  .fixedRightFirst:before {
+    box-shadow: none;
+  }
   .mqTableBody {
     overflow: auto;
+    border: 1px solid #f0f0f0;
+    border-right: none;
+    border-top: none;
+    height: 100%;
     table {
+      display: table;
       border-collapse: collapse;
+      border-spacing: 0;
       width: 100%;
       table-layout: fixed;
       tbody {
         tr {
           td {
-            padding: 12px 14px;
-            border: 1px solid;
+            padding: 12px 16px;
             color: #646468;
             font-size: 16px;
             text-align: left;
             line-height: 1.5;
-            border-color: transparent transparent #f0f0f0 transparent;
+            border-bottom: 1px solid #f0f0f0;
           }
 
           .hasBorder {
-            border-color: transparent transparent #f0f0f0 #f0f0f0;
+            border-right: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
           }
 
           .hasEllipsis {
-            overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             word-break: keep-all;
+            overflow: hidden;
           }
 
-          td:last-child {
-            border-right: 1px solid #f0f0f0;
-          }
-
-          &:hover {
-            background-color: darken(#fafafa, 2%);
-          }
+        }
+        .hoverRow {
+          background-color: darken(#fafafa, 2%);
         }
       }
     }
