@@ -3,12 +3,17 @@
   <Demo :component="Collapse1Demo"></Demo>
   <Demo :component="Collapse2Demo"></Demo>
   <Demo :component="Collapse3Demo"></Demo>
-  <H2>Collapse 事件</H2>
-  <MqTable :columns="columns" :data-source="data" bordered></MqTable>
-  <H2>Collapse 属性</H2>
-  <MqTable :columns="columns1" :data-source="data1" bordered></MqTable>
-  <H2>Collapse Item属性</H2>
-  <MqTable :columns="columns1" :data-source="data1" bordered></MqTable>
+  <MqTable :columns="columns" :data-source="data" bordered>
+    <template #title><h2>Collapse 事件</h2></template>
+  </MqTable>
+
+  <MqTable :columns="columns1" :data-source="data1" bordered>
+    <template #title><h2>Collapse 属性</h2></template>
+  </MqTable>
+
+  <MqTable :columns="columns1" :data-source="data1" bordered>
+    <template #title><h2>Collapse Item属性</h2></template>
+  </MqTable>
 </template>
 
 <script lang="ts">

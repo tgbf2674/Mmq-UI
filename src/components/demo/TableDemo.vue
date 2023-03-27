@@ -6,10 +6,12 @@
   <Demo :component="Table4Demo"></Demo>
   <Demo :component="Table5Demo"></Demo>
   <Demo :component="Table6Demo"></Demo>
-  <H2>参数</H2>
-  <MqTable :columns="columns" :data-source="data" bordered></MqTable>
-  <H2>Column</H2>
-  <MqTable :columns="columns1" :data-source="data" bordered></MqTable>
+  <MqTable :columns="columns" :data-source="data" bordered>
+    <template #title><h2>参数</h2></template>
+  </MqTable>
+  <MqTable style="margin-top: 20px" :columns="columns1" :data-source="data1" bordered>
+    <template #title><h2>Column</h2></template>
+  </MqTable>
 </template>
 
 <script lang="ts">

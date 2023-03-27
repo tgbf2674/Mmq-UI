@@ -5,19 +5,9 @@
     <Demo :component="Switch2Demo"></Demo>
     <Demo :component="Switch3Demo"></Demo>
     <Demo :component="Switch4Demo"></Demo>
-    <h2>事件</h2>
-    <table width="100%">
-      <tr>
-        <th>事件名</th>
-        <th>说明</th>
-        <th>参数</th>
-      </tr>
-      <tr>
-        <td>change</td>
-        <td>switch 状态发生变化时的回调函数</td>
-        <td>val，新状态的值</td>
-      </tr>
-    </table>
+    <MqTable :columns="columns" :data-source="data" bordered>
+      <template #title><h2>事件</h2></template>
+    </MqTable>
   </div>
 </template>
 
@@ -27,16 +17,27 @@ import Switch2Demo from '../demoInstance/Switch/Switch2.demo.vue'
 import Switch3Demo from '../demoInstance/Switch/Switch3.demo.vue'
 import Switch4Demo from '../demoInstance/Switch/Switch4.demo.vue'
 import Demo from '../Demo.vue';
+import {reactive} from 'vue';
 export default {
 name: "switchDemo",
   components:{Demo
   },
   setup(){
+    const data = reactive([
+      {key: '1', attr: 'change', describe: 'switch 状态发生变化时的回调函数', params: 'val，新状态的值'},
+    ])
+    const columns = reactive([
+      {title: '参数', dataIndex: 'attr', key: 'attr'},
+      {title: '说明', dataIndex: 'describe', key: 'describe'},
+      {title: '参数', dataIndex: 'params', key: 'params'}
+    ])
     return {
       Switch1Demo,
       Switch2Demo,
       Switch3Demo,
-      Switch4Demo
+      Switch4Demo,
+      data,
+      columns
     }
   }
 }

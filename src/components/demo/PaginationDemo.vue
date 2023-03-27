@@ -3,8 +3,9 @@
   <Demo :component="PaginationDemo1"></Demo>
   <Demo :component="PaginationDemo2"></Demo>
   <Demo :component="PaginationDemo3"></Demo>
-  <H2>事件</H2>
-  <MqTable :columns="columns" :data-source="data" bordered></MqTable>
+  <MqTable :columns="columns" :data-source="data" bordered>
+    <template #title><h2>事件</h2></template>
+  </MqTable>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <div class="mqTable">
-    <div class="mqTableTitle" v-if="$slots.footer">
+    <div class="mqTableTitle" v-if="$slots.title">
       <slot name="title"></slot>
     </div>
     <div ref="tableHeadRef" class="mqTableHeader">
