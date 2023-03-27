@@ -36,6 +36,7 @@ export default {
       {key: '4', attr: 'footer', describe: '表格尾部', type: 'Function(currentPageData)|v-slot:footer="currentPageData"', default: '-'},
       {key: '5', attr: 'header', describe: '表格头部', type: 'Function(currentPageData)|v-slot:header="currentPageData"', default: '-'},
       {key: '6', attr: 'height', describe: 'Table 的高度， 默认为自动高度。', type: 'string', default: '-'},
+      {key: '7', attr: 'bodyCell', describe: 'bodyCell。', type: 'v-slot:bodyCell="{text, record, index, column}"', default: '-'},
     ])
     const columns = reactive([
       {title: '参数', dataIndex: 'attr', key: 'attr'},
