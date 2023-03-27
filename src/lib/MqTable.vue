@@ -40,7 +40,7 @@
 
 <script lang="ts">
 
-import {defineComponent, nextTick, onMounted, ref} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, ref} from 'vue';
 
 type HeadStyleType = {
   width?: string
@@ -62,6 +62,9 @@ export default defineComponent({
       default: false
     },
     height: {
+      type: Number
+    },
+    maxHeight: {
       type: Number
     }
   },
@@ -172,10 +175,12 @@ export default defineComponent({
         method === 'add' ? item.classList.add(clazz) : item.classList.remove(clazz)
       })
     }
+    const setTableBodyHeight = () => {
+      if (props.height) tableBodyRef.value.style.height = props.height + 'px'
+      if (props.maxHeight) tableBodyRef.value.style.maxHeight = props.maxHeight + 'px'
+    }
     onMounted(() => {
-      if (props.height) {
-        tableBodyRef.value.style.height = props.height + 'px'
-      }
+      setTableBodyHeight()
       initArr()
       fixedColPosition()
       nextTick(() => {
