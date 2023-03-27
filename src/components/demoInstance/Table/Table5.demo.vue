@@ -6,7 +6,7 @@
   <h4>横向内容过多时，可选择固定列。
 
     固定列需要使用 fixed 属性，它接受 Boolean 值。 如果为 true, 列将被左侧固定. 它还接受传入字符串，left 或 right，表示左边固定还是右边固定。</h4>
-  <MqTable class="tableClass" :columns="columns" :data-source="data">
+  <MqTable :columns="columns" :data-source="data">
   </MqTable>
 </template>
 

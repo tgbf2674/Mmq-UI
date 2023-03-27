@@ -42,6 +42,7 @@ export { default as MqTooltip } from './Tooltip.vue'
 export { default as MqSelect } from './MqSelect.vue'
 export { default as MqSelectOption } from './MqSelectOption.vue'
 export { default as MqPagination } from './MqPagination.vue'
+export { default as MqTable } from './MqTable.vue'
 
 import MqSwitch from './MqSwitch.vue'
 import MqButton from './Button.vue'
@@ -87,6 +88,7 @@ import MqTooltip from './Tooltip.vue'
 import MqPagination from './MqPagination.vue';
 import MqSelect from './MqSelect.vue';
 import MqSelectOption from './MqSelectOption.vue';
+import MqTable from './MqTable.vue';
 import { App} from 'vue';
 
 const componentList: any = [
@@ -133,7 +135,8 @@ const componentList: any = [
   MqContainer,
   MqPagination,
   MqSelect,
-  MqSelectOption
+  MqSelectOption,
+  MqTable
 ]
 
 const install = function (Vue: App) {
