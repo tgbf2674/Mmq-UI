@@ -25,7 +25,8 @@
         <tbody>
         <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in dataSource" :key="index">
           <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
-              :key="item.key">{{ item[fieldItem.dataIndex] }}
+              :key="item.key">
+            <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item" :index="item.key">{{ item[fieldItem.dataIndex] }}</slot>
           </td>
         </tr>
         </tbody>

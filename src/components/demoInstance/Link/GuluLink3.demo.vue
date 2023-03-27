@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import GuluLink from '../../../lib/GuluLink.vue'
+import GuluLink from '../../../lib/MqLink.vue'
 export default {
   name: 'GuluLink1.demo',
   components:{

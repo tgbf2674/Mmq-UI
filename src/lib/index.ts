@@ -5,6 +5,7 @@ export { default as MqTabs } from './Tabs.vue'
 export { default as MqTab } from './Tab.vue'
 export { default as MqRadio } from './Radio.vue'
 export { default as MqTag } from './Tag.vue'
+export { default as MqLink } from './MqLink.vue'
 export { default as MqAside } from './Container/Aside.vue'
 export { default as MqContainer } from './Container/Container.vue'
 export { default as MqFooter } from './Container/Footer.vue'
@@ -89,6 +90,7 @@ import MqPagination from './MqPagination.vue';
 import MqSelect from './MqSelect.vue';
 import MqSelectOption from './MqSelectOption.vue';
 import MqTable from './MqTable.vue';
+import MqLink from './MqLink.vue';
 import { App} from 'vue';
 
 const componentList: any = [
@@ -136,7 +138,8 @@ const componentList: any = [
   MqPagination,
   MqSelect,
   MqSelectOption,
-  MqTable
+  MqTable,
+  MqLink
 ]
 
 const install = function (Vue: App) {
