@@ -69,13 +69,26 @@ export default defineComponent({
     const tableHeadRef = ref()
     const tableThRef = ref()
     const tableTdRef = ref()
+    const fixedThElArr: HTMLElement [] = []
+    const fixedTdElArr: HTMLElement [] = []
+    const fixedThRightElArr: HTMLElement [] = []
+    const fixedTdRightElArr: HTMLElement [] = []
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement
       tableHeadRef.value.scrollLeft = target.scrollLeft
       if (tableHeadRef.value.scrollLeft === 0) {
-        tableThRef.value[computedFixedCol().leftCount-1].classList.add('fixedLeftFirst')
+        fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
+        computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
       } else {
-        tableThRef.value[computedFixedCol().leftCount-1].classList.remove('fixedLeftFirst')
+        fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow')
+        computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow')
+      }
+      if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
+        fixedThRightElArr[0].classList.add('noShadow')
+        computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow')
+      } else {
+        fixedThRightElArr[0].classList.remove('noShadow')
+        computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow')
       }
     }
     const findThOrTd = (className: string, el: string) => {
@@ -135,14 +148,6 @@ export default defineComponent({
       }
     }
     const fixedColPosition = () => {
-      const fixedThElArr: HTMLElement [] = []
-      const fixedTdElArr: HTMLElement [] = []
-      const fixedThRightElArr: HTMLElement [] = []
-      const fixedTdRightElArr: HTMLElement [] = []
-      fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'))
-      fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'))
-      fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'))
-      fixedTdRightElArr.push(...findThOrTd('tableRightFixed', 'td'))
       fixedCol(fixedTdElArr, fixedThElArr)
       fixedCol(fixedTdRightElArr, fixedThRightElArr)
     }
@@ -155,15 +160,28 @@ export default defineComponent({
       })
       return {leftCount, rightCount}
     }
+    const initArr = () => {
+      fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'))
+      fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'))
+      fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'))
+      fixedTdRightElArr.push(...findThOrTd('tableRightFixed', 'td'))
+    }
+    const computedFixedFirstClass = (arr: HTMLElement [], method: string, clazz: string) => {
+      arr.forEach(item => {
+        method === 'add' ? item.classList.add(clazz) : item.classList.remove(clazz)
+      })
+    }
     onMounted(() => {
       if (props.height) {
         tableBodyRef.value.style.height = props.height + 'px'
       }
+      initArr()
       fixedColPosition()
       nextTick(() => {
-        if (tableThRef.value[computedFixedCol().leftCount -1]) {
-          tableThRef.value[computedFixedCol().leftCount - 1].classList.add('fixedLeftFirst')
+        if (fixedThElArr[fixedThElArr.length - 1]) {
+          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
         }
+        computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
       })
     })
     return {
@@ -267,7 +285,7 @@ export default defineComponent({
     right: -10px;
     box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, .15);
   }
-  .fixedLeftFirst:before {
+  .noShadow:before {
     box-shadow: none;
   }
   .tableRightFixed {
@@ -290,13 +308,12 @@ export default defineComponent({
     left: -10px;
     box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, .15);
   }
-  .fixedRightFirst:before {
+  .noShadow:before {
     box-shadow: none;
   }
   .mqTableBody {
     overflow: auto;
     border: 1px solid #f0f0f0;
-    border-right: none;
     border-top: none;
     height: 100%;
     table {
@@ -331,6 +348,9 @@ export default defineComponent({
         }
         .hoverRow {
           background-color: darken(#fafafa, 2%);
+          td {
+            background-color: darken(#fafafa, 2%);
+          }
         }
       }
     }
