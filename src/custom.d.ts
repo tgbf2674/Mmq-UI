@@ -104,5 +104,5 @@ interface FormErrorOptions {
 
 // table
 interface TableColumnsOptions {
-  title: string, dataIndex: string, key: string, width: number, fixed: string | boolean, ellipsis: boolean, bordered: boolean
+  title: string, dataIndex: string, key: string, width: number, fixed: string | boolean, ellipsis: boolean, bordered: boolean, sort: Function
 }

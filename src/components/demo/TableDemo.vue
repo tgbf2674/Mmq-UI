@@ -57,7 +57,8 @@ export default {
     const data1 = reactive([
       {key: '1', attr: 'width', describe: '列宽度', type: 'number', default: '-'},
       {key: '2', attr: 'ellipsis', describe: '超过宽度将自动省略', type: 'boolean', default: 'false'},
-      {key: '3', attr: 'fixed', describe: '列是否固定，可选 true(等效于 left) \'left\' \'right\'', type: 'boolean|string', default: 'false'}
+      {key: '3', attr: 'fixed', describe: '列是否固定，可选 true(等效于 left) \'left\' \'right\'', type: 'boolean|string', default: 'false'},
+      {key: '4', attr: 'sort', describe: '排序函数，本地排序使用一个函数(参考 Array.sort 的 compareFunction)', type: 'Function', default: '-'}
     ])
     return {
       Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, data, columns, columns1, data1

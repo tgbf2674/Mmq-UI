@@ -30,8 +30,8 @@ export default {
     ])
     const columns = reactive([
       {title: '姓名', dataIndex: 'name', key: 'name'},
-      {title: '年龄', dataIndex: 'age', key: 'age', width: 200, sort: (a:TableDataType ,b: TableDataType) => a.age - b.age},
-      {title: '住址', dataIndex: 'address', key: 'address', ellipsis: 'true'}
+      {title: '年龄', dataIndex: 'age', key: 'age', width: 200, defaultSortOrder: 'descend',sort: (a:TableDataType ,b: TableDataType) => a.age - b.age},
+      {title: '住址', dataIndex: 'address', key: 'address', ellipsis: 'true',sort: (a:TableDataType ,b: TableDataType) => a.address.length - b.address.length}
     ])
     return{
       data, columns

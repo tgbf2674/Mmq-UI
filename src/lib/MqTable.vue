@@ -6,32 +6,36 @@
     <div ref="tableHeadRef" class="mqTableHeader">
       <table>
         <colgroup>
-          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index" />
+          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
         </colgroup>
         <thead>
         <tr>
-          <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item, index) in columns" :key="item.key">
+          <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item) in columns"
+              :key="item.key">
             <div class="cell">{{ item.title }}
               <span v-if="item.sort" class="sortWrapper">
-                <i @click="sortHandler(item.sort, 0)" :class="['sortAscending', sortMethod === 0 ? 'sortASelected' : '' ]"></i>
-                <i @click="sortHandler(item.sort, 1)" :class="['sortDescending', sortMethod === 1 ? 'sortDSelected' : '' ] "></i>
+                <i @click="sortHandler(item.sort, $event)" :class="['sortAscending', '123']"></i>
+                <i @click="sortHandler(item.sort, $event)" :class="['sortDescending'] "></i>
               </span>
             </div>
           </th>
         </tr>
         </thead>
-        </table>
-      </div>
+      </table>
+    </div>
     <div ref="tableBodyRef" class="mqTableBody" @scroll="handleScroll">
       <table>
         <colgroup>
-          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index" />
+          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
         </colgroup>
         <tbody>
-        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item) in realDataSource" :key="item.key">
+        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item) in realDataSource"
+            :key="item.key">
           <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
               :key="item.key">
-            <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item" :index="item.key">{{ item[fieldItem.dataIndex] }}</slot>
+            <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item"
+                  :index="item.key">{{ item[fieldItem.dataIndex] }}
+            </slot>
           </td>
         </tr>
         </tbody>
@@ -45,7 +49,7 @@
 
 <script lang="ts">
 
-import { defineComponent, nextTick, onMounted, ref} from 'vue';
+import {defineComponent, nextTick, onMounted, ref} from 'vue';
 import {clone} from 'mmq-utils';
 
 type HeadStyleType = {
@@ -75,145 +79,175 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const tableBodyRef = ref()
-    const tableHeadRef = ref()
-    const tableThRef = ref()
-    const tableTdRef = ref()
-    const fixedThElArr: HTMLElement [] = []
-    const fixedTdElArr: HTMLElement [] = []
-    const fixedThRightElArr: HTMLElement [] = []
-    const fixedTdRightElArr: HTMLElement [] = []
-    const sortMethod = ref(0)
-    const realDataSource = ref(clone(props.dataSource, true))
-    const sortHandler = (fn: Function, sortDire: number) => {
-      sortMethod.value = sortDire
-      sortDire ? realDataSource.value.sort(fn).reverse() : realDataSource.value.sort(fn)
-    }
+    const tableBodyRef = ref();
+    const tableHeadRef = ref();
+    const tableThRef = ref();
+    const tableTdRef = ref();
+    const fixedThElArr: HTMLElement [] = [];
+    const fixedTdElArr: HTMLElement [] = [];
+    const fixedThRightElArr: HTMLElement [] = [];
+    const fixedTdRightElArr: HTMLElement [] = [];
+    const realDataSource = ref(clone(props.dataSource, true));
+    const sortHandler = (fn: Function, e: Event) => {
+      clearSortSelected();
+      if (Array.from((e.target as HTMLElement).classList).findIndex(item => item === 'sortDescending') >= 0)(e.target as HTMLElement).classList.add('sortDSelected');
+      else if (Array.from((e.target as HTMLElement).classList).findIndex(item => item === 'sortAscending') >= 0) (e.target as HTMLElement).classList.add('sortASelected');
+    };
+    const clearSortSelected = () => {
+      const indexs: number[] = [];
+      props.columns.forEach((item, index) => {
+        if ((item as TableColumnsOptions).sort) {
+          indexs.push(index);
+        }
+      });
+      if (indexs.length) {
+        const temp = [];
+        for (let i = 0; i < indexs.length; i++) {
+          temp.push(...tableThRef.value[indexs[i]].children[0].childNodes[1].children);
+        }
+        temp.forEach(item => {
+          if (Array.from(item.classList).findIndex(item => item === 'sortDescending') >= 0 && Array.from(item.classList).findIndex(item => item === 'sortDSelected') >= 0) item.classList.remove('sortDSelected');
+          else if (Array.from(item.classList).findIndex(item => item === 'sortAscending') >= 0 && Array.from(item.classList).findIndex(item => item === 'sortASelected') >= 0) item.classList.remove('sortASelected');
+        });
+      }
+    };
     const handleScroll = (e: Event) => {
-      const target = e.target as HTMLElement
-      tableHeadRef.value.scrollLeft = target.scrollLeft
+      const target = e.target as HTMLElement;
+      tableHeadRef.value.scrollLeft = target.scrollLeft;
       if (tableBodyRef.value.clientHeight !== tableBodyRef.value.offsetHeight) {
         if (tableHeadRef.value.scrollLeft === 0) {
-          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
-          computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
+          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow');
+          computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow');
         } else {
-          fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow')
-          computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow')
+          fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow');
+          computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow');
         }
         if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
-          fixedThRightElArr[0].classList.add('noShadow')
-          computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow')
+          fixedThRightElArr[0].classList.add('noShadow');
+          computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow');
         } else {
-          fixedThRightElArr[0].classList.remove('noShadow')
-          computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow')
+          fixedThRightElArr[0].classList.remove('noShadow');
+          computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow');
         }
       }
-    }
+    };
     const findThOrTd = (className: string, el: string) => {
-      const target = el === 'td' ? tableTdRef : tableThRef
-      let arr: HTMLElement [] = []
+      const target = el === 'td' ? tableTdRef : tableThRef;
+      let arr: HTMLElement [] = [];
       target.value.forEach((item: HTMLElement) => {
         Array.from(item.classList).forEach(el => {
           if (arr && el === className) {
-            arr.push(item)
+            arr.push(item);
           }
-        })
-      })
-      return arr
-    }
+        });
+      });
+      return arr;
+    };
     const hasBordered = () => {
-      if (props.bordered) return 'hasBorder'
-    }
+      if (props.bordered) return 'hasBorder';
+    };
     const fixedStyle = (fieldItem: TableColumnsOptions) => {
-      const arr: string[] = []
-      if (props.bordered) arr.push( 'hasBorder')
-      if (typeof fieldItem.fixed === 'boolean' && fieldItem.fixed) arr.push( 'tableLiftFixed')
-      else if (fieldItem.fixed === 'left') arr.push( 'tableLiftFixed')
-      else if (fieldItem.fixed === 'right') arr.push( 'tableRightFixed')
-      return arr
-    }
+      const arr: string[] = [];
+      if (props.bordered) arr.push('hasBorder');
+      if (typeof fieldItem.fixed === 'boolean' && fieldItem.fixed) arr.push('tableLiftFixed');
+      else if (fieldItem.fixed === 'left') arr.push('tableLiftFixed');
+      else if (fieldItem.fixed === 'right') arr.push('tableRightFixed');
+      return arr;
+    };
     const bodyTdClass = (fieldItem: TableColumnsOptions) => {
-      const classArr = []
-      if (fieldItem.ellipsis) classArr.push('hasEllipsis')
-      return classArr.concat(fixedStyle(fieldItem))
-    }
+      const classArr = [];
+      if (fieldItem.ellipsis) classArr.push('hasEllipsis');
+      return classArr.concat(fixedStyle(fieldItem));
+    };
     const mouseEnterHandle = (e: Event) => {
-      const target = e.target as Element
-      target.classList.add('hoverRow')
-    }
+      const target = e.target as Element;
+      target.classList.add('hoverRow');
+    };
     const mouseLeaveHandle = (e: Event) => {
-      const target = e.target as Element
-      target.classList.remove('hoverRow')
-    }
+      const target = e.target as Element;
+      target.classList.remove('hoverRow');
+    };
     const headThStyle = (item: TableColumnsOptions) => {
-      const styles: HeadStyleType = {}
-      if (item.width) styles.width = item.width + 'px'
-      return styles
-    }
+      const styles: HeadStyleType = {};
+      if (item.width) styles.width = item.width + 'px';
+      return styles;
+    };
     const fixedCol = (tdArr: HTMLElement [], thArr: HTMLElement []) => {
-      let temp: HTMLElement[][] = []
-      for (let i = 0;i<tdArr.length / computedFixedCol().leftCount;i++) {
-        temp.push([])
+      let temp: HTMLElement[][] = [];
+      for (let i = 0; i < tdArr.length / computedFixedCol().leftCount; i++) {
+        temp.push([]);
       }
       tdArr.forEach((item, index: number) => {
-        let idx = Math.floor(index / computedFixedCol().leftCount)
-        temp[idx].push(item)
-      })
-      for (let i =0;i<temp.length;i++) {
-        for (let j = 1; j<temp[i].length;j++) {
-          temp[i][j].style.left = temp[i][j-1].clientWidth + 'px'
+        let idx = Math.floor(index / computedFixedCol().leftCount);
+        temp[idx].push(item);
+      });
+      for (let i = 0; i < temp.length; i++) {
+        for (let j = 1; j < temp[i].length; j++) {
+          temp[i][j].style.left = temp[i][j - 1].clientWidth + 'px';
         }
       }
-      for (let i = 1; i< thArr.length;i++) {
-        thArr[i].style.left = thArr[i-1].clientWidth  + 'px'
+      for (let i = 1; i < thArr.length; i++) {
+        thArr[i].style.left = thArr[i - 1].clientWidth + 'px';
       }
-    }
+    };
     const fixedColPosition = () => {
-      fixedCol(fixedTdElArr, fixedThElArr)
-      fixedCol(fixedTdRightElArr, fixedThRightElArr)
-    }
+      fixedCol(fixedTdElArr, fixedThElArr);
+      fixedCol(fixedTdRightElArr, fixedThRightElArr);
+    };
     const computedFixedCol = () => {
-      let leftCount = 0
-      let rightCount = 0
-      props.columns.forEach((item:any) => {
-        if (item.fixed === 'right') rightCount++
-        else if (item.fixed && item.fixed === 'left') leftCount++
-      })
-      return {leftCount, rightCount}
-    }
+      let leftCount = 0;
+      let rightCount = 0;
+      props.columns.forEach((item: any) => {
+        if (item.fixed === 'right') rightCount++;
+        else if (item.fixed && item.fixed === 'left') leftCount++;
+      });
+      return {leftCount, rightCount};
+    };
     const initArr = () => {
-      fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'))
-      fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'))
-      fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'))
-      fixedTdRightElArr.push(...findThOrTd('tableRightFixed', 'td'))
-    }
+      fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'));
+      fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'));
+      fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'));
+      fixedTdRightElArr.push(...findThOrTd('tableRightFixed', 'td'));
+    };
     const computedFixedFirstClass = (arr: HTMLElement [], method: string, clazz: string) => {
       arr.forEach(item => {
-        method === 'add' ? item.classList.add(clazz) : item.classList.remove(clazz)
-      })
-    }
+        method === 'add' ? item.classList.add(clazz) : item.classList.remove(clazz);
+      });
+    };
     const setTableBodyHeight = () => {
-      if (props.height) tableBodyRef.value.style.height = props.height + 'px'
-      if (props.maxHeight) tableBodyRef.value.style.maxHeight = props.maxHeight + 'px'
-    }
+      if (props.height) tableBodyRef.value.style.height = props.height + 'px';
+      if (props.maxHeight) tableBodyRef.value.style.maxHeight = props.maxHeight + 'px';
+    };
     const setScrollBar = () => {
-      const arr: HTMLElement[] = Array.from(tableThRef.value)
-      arr[arr.length- 1].style.transform = `translateX(${tableBodyRef.value.clientWidth - tableBodyRef.value.offsetWidth}px)`
-    }
+      const arr: HTMLElement[] = Array.from(tableThRef.value);
+      arr[arr.length - 1].style.transform = `translateX(${tableBodyRef.value.clientWidth - tableBodyRef.value.offsetWidth}px)`;
+    };
     onMounted(() => {
-      setTableBodyHeight()
-      initArr()
-      fixedColPosition()
-      setScrollBar()
+      setTableBodyHeight();
+      initArr();
+      fixedColPosition();
+      setScrollBar();
       nextTick(() => {
         if (fixedThElArr[fixedThElArr.length - 1]) {
-          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
+          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow');
         }
-        computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
-      })
-    })
+        computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow');
+      });
+    });
     return {
-      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef, hasBordered, sortHandler, realDataSource, sortMethod
+      tableBodyRef,
+      tableHeadRef,
+      handleScroll,
+      bodyTdClass,
+      headThStyle,
+      fixedStyle,
+      mouseEnterHandle,
+      mouseLeaveHandle,
+      tableThRef,
+      tableTdRef,
+      hasBordered,
+      sortHandler,
+      realDataSource
     };
   }
 });
@@ -226,17 +260,20 @@ export default defineComponent({
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     border-radius: 3px;
-    background: rgba(0,0,0,0.06);
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.08);
+    background: rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
   }
+
   /* 滚动条滑块 */
   ::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background: rgba(0,0,0,0.12);
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
   }
+
   .mqTableTitle {
     border: 1px solid #f0f0f0;
     border-bottom: transparent;
@@ -253,6 +290,7 @@ export default defineComponent({
 
   .mqTableHeader {
     overflow-x: auto;
+
     table {
       display: table;
       border-collapse: collapse;
@@ -269,9 +307,11 @@ export default defineComponent({
             text-align: left;
             line-height: 1.5;
             width: 100%;
+
             .cell {
               display: flex;
               align-items: center;
+
               .sortWrapper {
                 display: inline-flex;
                 flex-direction: column;
@@ -282,6 +322,7 @@ export default defineComponent({
                 cursor: pointer;
                 overflow: initial;
                 position: relative;
+
                 .sortAscending {
                   width: 0;
                   height: 0;
@@ -291,6 +332,7 @@ export default defineComponent({
                   border-bottom-color: #a8abb2;
                   top: -5px;
                 }
+
                 .sortDescending {
                   width: 0;
                   height: 0;
@@ -300,15 +342,18 @@ export default defineComponent({
                   border-top-color: #a8abb2;
                   bottom: -3px;
                 }
+
                 .sortASelected {
                   border-bottom-color: #409eff;
                 }
+
                 .sortDSelected {
                   border-top-color: #409eff;
                 }
               }
             }
           }
+
           .hasBorder {
             border-left: 1px solid #f0f0f0;
           }
@@ -316,20 +361,24 @@ export default defineComponent({
       }
     }
   }
+
   .mqTableHeader::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
+
   .mqTableHeader::-webkit-scrollbar-thumb {
     width: 0;
     height: 0;
   }
+
   .tableLiftFixed {
     position: sticky;
     left: 0;
     z-index: 2;
     background-color: #fff;
   }
+
   .tableLiftFixed:before {
     content: "";
     position: absolute;
@@ -343,9 +392,11 @@ export default defineComponent({
     right: -10px;
     box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, .15);
   }
+
   .noShadow:before {
     box-shadow: none;
   }
+
   .tableRightFixed {
     position: sticky;
     right: 0;
@@ -366,18 +417,22 @@ export default defineComponent({
     left: -10px;
     box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, .15);
   }
+
   .noShadow:before {
     box-shadow: none;
   }
+
   .mqTableBody {
     overflow: auto;
     height: 100%;
+
     table {
       display: table;
       border-collapse: collapse;
       border-spacing: 0;
       width: 100%;
       table-layout: fixed;
+
       tbody {
         tr {
           td {
@@ -402,8 +457,10 @@ export default defineComponent({
           }
 
         }
+
         .hoverRow {
           background-color: darken(#fafafa, 2%);
+
           td {
             background-color: darken(#fafafa, 2%);
           }
@@ -412,6 +469,7 @@ export default defineComponent({
     }
   }
 }
+
 .hasBorder {
   border-left: 1px solid #f0f0f0;
   border-top: 1px solid #f0f0f0;
