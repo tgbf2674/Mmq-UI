@@ -7,6 +7,7 @@
   <Demo :component="Table5Demo"></Demo>
   <Demo :component="Table6Demo"></Demo>
   <Demo :component="Table7Demo"></Demo>
+  <Demo :component="Table8Demo"></Demo>
   <MqTable :columns="columns" :data-source="data" bordered>
     <template #title><h2>参数</h2></template>
   </MqTable>
@@ -23,6 +24,7 @@ import Table4Demo from '../demoInstance/Table/Table4.demo.vue'
 import Table5Demo from '../demoInstance/Table/Table5.demo.vue'
 import Table6Demo from '../demoInstance/Table/Table6.demo.vue'
 import Table7Demo from '../demoInstance/Table/Table7.demo.vue'
+import Table8Demo from '../demoInstance/Table/Table8.demo.vue'
 import Demo from '../Demo.vue';
 import {reactive} from 'vue';
 export default {
@@ -58,7 +60,7 @@ export default {
       {key: '3', attr: 'fixed', describe: '列是否固定，可选 true(等效于 left) \'left\' \'right\'', type: 'boolean|string', default: 'false'}
     ])
     return {
-      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, data, columns, columns1, data1
+      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, data, columns, columns1, data1
     }
   }
 }

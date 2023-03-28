@@ -10,8 +10,13 @@
         </colgroup>
         <thead>
         <tr>
-          <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item, index) in columns" :key="index">
-            {{ item.title }}
+          <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item, index) in columns" :key="item.key">
+            <div class="cell">{{ item.title }}
+              <span v-if="item.sort" class="sortWrapper">
+                <i @click="sortHandler(item.sort, 0)" :class="['sortAscending', sortMethod === 0 ? 'sortASelected' : '' ]"></i>
+                <i @click="sortHandler(item.sort, 1)" :class="['sortDescending', sortMethod === 1 ? 'sortDSelected' : '' ] "></i>
+              </span>
+            </div>
           </th>
         </tr>
         </thead>
@@ -23,7 +28,7 @@
           <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index" />
         </colgroup>
         <tbody>
-        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in dataSource" :key="index">
+        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item) in realDataSource" :key="item.key">
           <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
               :key="item.key">
             <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item" :index="item.key">{{ item[fieldItem.dataIndex] }}</slot>
@@ -41,6 +46,7 @@
 <script lang="ts">
 
 import { defineComponent, nextTick, onMounted, ref} from 'vue';
+import {clone} from 'mmq-utils';
 
 type HeadStyleType = {
   width?: string
@@ -77,6 +83,12 @@ export default defineComponent({
     const fixedTdElArr: HTMLElement [] = []
     const fixedThRightElArr: HTMLElement [] = []
     const fixedTdRightElArr: HTMLElement [] = []
+    const sortMethod = ref(0)
+    const realDataSource = ref(clone(props.dataSource, true))
+    const sortHandler = (fn: Function, sortDire: number) => {
+      sortMethod.value = sortDire
+      sortDire ? realDataSource.value.sort(fn).reverse() : realDataSource.value.sort(fn)
+    }
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement
       tableHeadRef.value.scrollLeft = target.scrollLeft
@@ -201,7 +213,7 @@ export default defineComponent({
       })
     })
     return {
-      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef, hasBordered
+      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef, hasBordered, sortHandler, realDataSource, sortMethod
     };
   }
 });
@@ -257,6 +269,45 @@ export default defineComponent({
             text-align: left;
             line-height: 1.5;
             width: 100%;
+            .cell {
+              display: flex;
+              align-items: center;
+              .sortWrapper {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                height: 14px;
+                width: 24px;
+                vertical-align: middle;
+                cursor: pointer;
+                overflow: initial;
+                position: relative;
+                .sortAscending {
+                  width: 0;
+                  height: 0;
+                  border: solid 5px transparent;
+                  position: absolute;
+                  left: 7px;
+                  border-bottom-color: #a8abb2;
+                  top: -5px;
+                }
+                .sortDescending {
+                  width: 0;
+                  height: 0;
+                  border: solid 5px transparent;
+                  position: absolute;
+                  left: 7px;
+                  border-top-color: #a8abb2;
+                  bottom: -3px;
+                }
+                .sortASelected {
+                  border-bottom-color: #409eff;
+                }
+                .sortDSelected {
+                  border-top-color: #409eff;
+                }
+              }
+            }
           }
           .hasBorder {
             border-left: 1px solid #f0f0f0;
