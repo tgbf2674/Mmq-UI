@@ -1,5 +1,5 @@
 <template>
-  <div class="mqTable">
+  <div :class="['mqTable', hasBordered]">
     <div class="mqTableTitle" v-if="$slots.title">
       <slot name="title"></slot>
     </div>
@@ -107,6 +107,9 @@ export default defineComponent({
       })
       return arr
     }
+    const hasBordered = () => {
+      if (props.bordered) return 'hasBorder'
+    }
     const fixedStyle = (fieldItem: TableColumnsOptions) => {
       const arr: string[] = []
       if (props.bordered) arr.push( 'hasBorder')
@@ -179,10 +182,16 @@ export default defineComponent({
       if (props.height) tableBodyRef.value.style.height = props.height + 'px'
       if (props.maxHeight) tableBodyRef.value.style.maxHeight = props.maxHeight + 'px'
     }
+    const setScrollBar = () => {
+      const arr: HTMLElement[] = Array.from(tableThRef.value)
+      arr[arr.length- 1].style.transform = `translateX(${tableBodyRef.value.clientWidth - tableBodyRef.value.offsetWidth}px)`
+    }
     onMounted(() => {
       setTableBodyHeight()
       initArr()
       fixedColPosition()
+      setScrollBar()
+      console.log(tableBodyRef.value.offsetWidth, tableBodyRef.value.clientWidth)
       nextTick(() => {
         if (fixedThElArr[fixedThElArr.length - 1]) {
           fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
@@ -191,7 +200,7 @@ export default defineComponent({
       })
     })
     return {
-      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef
+      tableBodyRef, tableHeadRef, handleScroll, bodyTdClass, headThStyle, fixedStyle, mouseEnterHandle, mouseLeaveHandle, tableThRef, tableTdRef, hasBordered
     };
   }
 });
@@ -231,10 +240,6 @@ export default defineComponent({
 
   .mqTableHeader {
     overflow-x: auto;
-    border-left: 1px solid #f0f0f0;
-    border-top: 1px solid #f0f0f0;
-    border-right: 1px solid #f0f0f0;;
-    //border-right: 1px solid #f0f0f0;
     table {
       display: table;
       border-collapse: collapse;
@@ -251,14 +256,9 @@ export default defineComponent({
             text-align: left;
             line-height: 1.5;
             width: 100%;
-            border-bottom: 1px solid #f0f0f0;
           }
           .hasBorder {
-            border-bottom: 1px solid #f0f0f0;
             border-left: 1px solid #f0f0f0;
-          }
-          .hasBorder:first-child {
-            border-left: none;
           }
         }
       }
@@ -319,8 +319,6 @@ export default defineComponent({
   }
   .mqTableBody {
     overflow: auto;
-    border: 1px solid #f0f0f0;
-    border-top: none;
     height: 100%;
     table {
       display: table;
@@ -336,10 +334,10 @@ export default defineComponent({
             font-size: 16px;
             text-align: left;
             line-height: 1.5;
-            border-bottom: 1px solid #f0f0f0;
           }
 
           .hasBorder {
+            border-bottom: 1px solid #f0f0f0;
             border-right: 1px solid #f0f0f0;
             border-bottom: 1px solid #f0f0f0;
           }
@@ -362,5 +360,9 @@ export default defineComponent({
     }
   }
 }
-
+.hasBorder {
+  border-left: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+}
 </style>
