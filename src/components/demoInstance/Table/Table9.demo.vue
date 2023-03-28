@@ -1,13 +1,24 @@
 <demo>
-流体高度
+自定义表头
 </demo>
 
 <template>
-  <h4>当数据量动态变化时，可以为 Table 设置一个最大高度。
-
-    通过设置 max-height 属性指定最大高度。 此时若表格所需的高度大于最大高度，则会显示一个滚动条。</h4>
-  <MqButton @click="addHandle">add</MqButton>
-  <MqTable :max-height="300" :columns="columns" :data-source="data">
+  <h4>对表头进行自定义操作</h4>
+  <MqTable :columns="columns" :data-source="data">
+    <template #headerCell="{ title, column }">
+      <template v-if="column.dataIndex === 'name'">
+        {{ title }}
+        <MqIcon>
+          <UserFilled />
+        </MqIcon>
+      </template>
+      <template v-else-if="column.dataIndex === 'action'">
+        <MqInput />
+      </template>
+      <template v-else>
+        {{ title }}
+      </template>
+    </template>
     <template #bodyCell="{ column, text, record, index }">
       <template v-if="column.dataIndex === 'name'">
         <MqTag>{{ text }}</MqTag>
@@ -47,19 +58,8 @@ export default {
       const idx: number = data.findIndex(item => item.key === index)
       if (idx >= 0) data.splice(idx, 1)
     }
-    let count = ref(data.length)
-    const addHandle = () => {
-      count.value += 1
-      const newData = {
-        key: `${count.value}`,
-        name: 'hahaha',
-        age: 32,
-        address: `London, Park Lane no. ${count.value}`
-      }
-      data.push(newData)
-    }
     return{
-      data, columns, clickHandle, addHandle
+      data, columns, clickHandle
     }
   }
 }

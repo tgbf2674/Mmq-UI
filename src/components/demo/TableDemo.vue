@@ -6,6 +6,7 @@
   <Demo :component="Table4Demo"></Demo>
   <Demo :component="Table5Demo"></Demo>
   <Demo :component="Table6Demo"></Demo>
+  <Demo :component="Table9Demo"></Demo>
   <Demo :component="Table7Demo"></Demo>
   <Demo :component="Table8Demo"></Demo>
   <MqTable :columns="columns" :data-source="data" bordered>
@@ -25,6 +26,7 @@ import Table5Demo from '../demoInstance/Table/Table5.demo.vue'
 import Table6Demo from '../demoInstance/Table/Table6.demo.vue'
 import Table7Demo from '../demoInstance/Table/Table7.demo.vue'
 import Table8Demo from '../demoInstance/Table/Table8.demo.vue'
+import Table9Demo from '../demoInstance/Table/Table9.demo.vue'
 import Demo from '../Demo.vue';
 import {reactive} from 'vue';
 export default {
@@ -61,7 +63,7 @@ export default {
       {key: '4', attr: 'sort', describe: '排序函数，本地排序使用一个函数(参考 Array.sort 的 compareFunction)', type: 'Function', default: '-'}
     ])
     return {
-      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, data, columns, columns1, data1
+      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, Table9Demo, data, columns, columns1, data1
     }
   }
 }

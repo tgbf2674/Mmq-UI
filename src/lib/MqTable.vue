@@ -12,11 +12,14 @@
         <tr>
           <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item) in columns"
               :key="item.key">
-            <div class="cell">{{ item.title }}
-              <span v-if="item.sort" class="sortWrapper">
+            <div class="cell">
+              <slot name="headerCell" :title="item.title" :column="item">
+                {{ item.title }}
+                <span v-if="item.sort" class="sortWrapper">
                 <i @click="sortHandler(item.sort, $event)" :class="['sortAscending', '123']"></i>
                 <i @click="sortHandler(item.sort, $event)" :class="['sortDescending'] "></i>
               </span>
+              </slot>
             </div>
           </th>
         </tr>
@@ -49,7 +52,7 @@
 
 <script lang="ts">
 
-import {defineComponent, nextTick, onMounted, ref} from 'vue';
+import {defineComponent, nextTick, onMounted, ref, watch} from 'vue';
 import {clone} from 'mmq-utils';
 
 type HeadStyleType = {
@@ -93,6 +96,9 @@ export default defineComponent({
     const ascendingReg = RegExp(/sortAscending/);
     const aSelectedReg = RegExp(/sortASelected/);
     const sortMethod = ref();
+    watch(props.dataSource, (newVal) => {
+      realDataSource.value = clone(newVal);
+    });
     const sortHandler = (fn: Function, e: Event) => {
       clearSortSelected();
       if (descendingReg.test((e.target as HTMLElement).classList.value)) {

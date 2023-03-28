@@ -3,7 +3,7 @@
 </demo>
 
 <template>
-  <h4>指定表格的数据源 dataSource 为一个数组。</h4>
+  <h4>对某一列数据进行排序，通过指定列的 sort 函数即可启动排序按钮。<code>sort: function(rowA, rowB) { ... }</code>， rowA、rowB 为比较的两个行数据。</h4>
   <MqTable :columns="columns" :data-source="data"></MqTable>
 </template>
 
