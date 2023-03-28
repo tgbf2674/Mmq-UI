@@ -47,6 +47,7 @@ export default {
     }
     let count = ref(data.length)
     const addHandle = () => {
+      count.value++
       const newData = {
         key: `${count.value}`,
         name: 'hahaha',

@@ -40,7 +40,7 @@
 
 <script lang="ts">
 
-import {computed, defineComponent, nextTick, onMounted, ref} from 'vue';
+import { defineComponent, nextTick, onMounted, ref} from 'vue';
 
 type HeadStyleType = {
   width?: string
@@ -80,19 +80,21 @@ export default defineComponent({
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement
       tableHeadRef.value.scrollLeft = target.scrollLeft
-      if (tableHeadRef.value.scrollLeft === 0) {
-        fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
-        computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
-      } else {
-        fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow')
-        computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow')
-      }
-      if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
-        fixedThRightElArr[0].classList.add('noShadow')
-        computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow')
-      } else {
-        fixedThRightElArr[0].classList.remove('noShadow')
-        computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow')
+      if (tableBodyRef.value.clientHeight !== tableBodyRef.value.offsetHeight) {
+        if (tableHeadRef.value.scrollLeft === 0) {
+          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
+          computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow')
+        } else {
+          fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow')
+          computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow')
+        }
+        if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
+          fixedThRightElArr[0].classList.add('noShadow')
+          computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow')
+        } else {
+          fixedThRightElArr[0].classList.remove('noShadow')
+          computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow')
+        }
       }
     }
     const findThOrTd = (className: string, el: string) => {
@@ -191,7 +193,6 @@ export default defineComponent({
       initArr()
       fixedColPosition()
       setScrollBar()
-      console.log(tableBodyRef.value.offsetWidth, tableBodyRef.value.clientWidth)
       nextTick(() => {
         if (fixedThElArr[fixedThElArr.length - 1]) {
           fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow')
