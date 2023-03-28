@@ -2,9 +2,11 @@
   <a
     :class="['mmq-link',type ? `mmq-link-${type}` : '',disabled && 'is-disabled',underline && !disabled && 'is-underline']"
     :href="disabled || !href ? null : href" @click="handleClick">
-    <Icon v-if="icon" :name="icon" :fill="IconColor"></Icon>
+    <MqIcon v-if="icon" :color="IconColor">
+      <component :is="icon"></component>
+    </MqIcon>
     <span v-if="$slots.default" class="mmq-link-inner">
-    <slot></slot>
+      <slot></slot>
     </span>
     <slot v-if="$slots.icon" name="icon"></slot>
   </a>
@@ -12,11 +14,9 @@
 
 <script lang="ts">
 import {computed, defineComponent, PropType, ref, reactive} from 'vue';
-import Icon from './Icon.vue';
 
 export default defineComponent({
   name: 'MqLink',
-  components: {Icon},
   props: {
     type: {
       type: String as PropType<LinkType>,

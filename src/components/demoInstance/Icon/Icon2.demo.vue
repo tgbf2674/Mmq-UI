@@ -8,9 +8,7 @@
 </template>
 
 <script lang="ts">
-import MqIcon from '../../../lib/MqIcon.vue';
 export default {
-  components: {MqIcon},
   setup() {
   }
 };

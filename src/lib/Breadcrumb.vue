@@ -14,7 +14,7 @@ export default defineComponent({
       type: String,
       default: '/'
     },
-    separatorClass: {
+    separatorCustom: {
       type: String,
       default: ''
     }
@@ -37,6 +37,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .mmq-breadcrumb {
+  height: 40px;
+  display: flex;
+  align-items: center;
   font-size: 14px;
   line-height: 1;
 }

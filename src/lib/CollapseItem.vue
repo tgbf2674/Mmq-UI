@@ -4,7 +4,9 @@
       <div class="header-wrapper">
         <slot name="header">{{ title }}</slot>
       </div>
-      <Icon name="icon-menuright"/>
+      <MqIcon fontSize="20">
+        <ArrowRight />
+      </MqIcon>
     </div>
     <Spread :visible="isActive">
       <div class="mmq-collapse-item-body">
@@ -15,14 +17,13 @@
 </template>
 
 <script lang="ts">
-import Icon from './Icon.vue';
 import {computed, defineComponent, getCurrentInstance, inject} from 'vue';
 import {emitter} from './Collapse.vue';
 import Spread from './Spread.vue';
 
 export default defineComponent({
   name: 'MqCollapseItem',
-  components: {Icon, Spread},
+  components: {Spread},
   props: {
     name: {
       type: String,

@@ -26,7 +26,7 @@ type AlertEffect = 'light' | 'dark'
 //breadcrumb
 interface IBreadcrumbProps {
   separator: string
-  separatorClass: string
+  separatorCustom: string
 }
 
 interface ICollapseProps{
@@ -74,7 +74,7 @@ interface LoadingOptions {
 //Message
 interface MessageOptions {
   message: string,
-  type?: 'success' | 'error' | 'warning' | 'info' ,
+  type?: 'SuccessFilled' | 'WarningFilled' | 'CircleCloseFilled' | 'InfoFilled' ,
   canClose?: boolean,
   close?: () => void,
   displayTime?: number,

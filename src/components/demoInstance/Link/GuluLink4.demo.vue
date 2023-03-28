@@ -1,21 +1,21 @@
 <demo>
-图标
+自定义图标，可去Icon组件处挑选
 </demo>
 <template>
   <div>
-    <mmq-link type="danger" icon="icon-delete">删除</mmq-link>
-    <mmq-link type="warning">用户<Icon name="icon-user" fill="#e6a23c"></Icon></mmq-link>
+    <mmq-link type="danger" icon="Delete">删除</mmq-link>
+    <mmq-link type="warning">用户<MqIcon color="#e6a23c">
+      <Document />
+    </MqIcon></mmq-link>
   </div>
 </template>
 
 <script lang="ts">
 import GuluLink from '../../../lib/MqLink.vue'
-import Icon from '../../../lib/Icon.vue'
 export default {
   name: 'GuluLink1.demo',
   components:{
-    'mmq-link': GuluLink,
-    Icon
+    'mmq-link': GuluLink
   }
 }
 </script>

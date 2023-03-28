@@ -3,17 +3,17 @@
   <span ref="link" :class="['mmq-breadcrumb-inner',to? 'is-link' : '']" role="link">
     <slot></slot>
   </span>
-  <Icon fill="#c0c4cc" v-if="separatorClass" class="mmq-breadcrumb-separator" :name="separatorClass"></Icon>
+  <MqIcon color="#c0c4cc" v-if="separatorCustom" class="mmq-breadcrumb-separator">
+    <component :is="separatorCustom"></component>
+  </MqIcon>
   <span v-else class="mmq-breadcrumb-separator" role="presentation">{{ separator }}</span>
 </span>
 </template>
 
 <script lang="ts">
 import {getCurrentInstance, inject, onMounted, PropType, Ref, ref} from 'vue';
-import Icon from './Icon.vue'
 export default {
   name: 'MqBreadcrumbItem',
-  components: {Icon},
   props: {
     to:{
       type: [String,Object] as PropType<string>,
@@ -38,7 +38,7 @@ export default {
     })
     return {
       link,separator: parent!.separator,
-      separatorClass: parent!.separatorClass
+      separatorCustom: parent!.separatorCustom
     }
   }
 }

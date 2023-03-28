@@ -6,8 +6,12 @@
              :value="currentLabel" @input="handleInputTextChange" :placeholder="placeholder"
              @click.stop="showOptions = !showOptions"/>
       <div class="mmq-select-icon-wrap">
-        <Icon :name="showOptions ? 'icon-menudown' : showClearIcon ? '' : 'icon-menuright' "></Icon>
-        <Icon v-if="showClearIcon" @click.stop="handleClearInputText" name="icon-close"></Icon>
+        <MqIcon>
+          <component :is="showOptions ? 'ArrowDown': 'ArrowRight'"></component>
+        </MqIcon>
+        <MqIcon v-if="showClearIcon" @click.stop="handleClearInputText">
+          <CircleClose />
+        </MqIcon>
       </div>
     </div>
     <transition name="mmq-select-transition">
@@ -34,15 +38,14 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref, watch, watchEffect} from 'vue';
+import {computed, defineComponent, getCurrentInstance, onMounted, provide, ref, watchEffect} from 'vue';
 import MqSelectOption from './MqSelectOption.vue';
-import Icon from './Icon.vue';
 import mitt from 'mitt';
 
 export const emitter = mitt();
 export default defineComponent({
   name: 'MqSelect',
-  components: {MqSelectOption, Icon},
+  components: {MqSelectOption},
   props: {
     placeholder: {
       type: String,
@@ -275,6 +278,8 @@ export default defineComponent({
   .mmq-select-icon-wrap {
     position: absolute;
     right: 14px;
+    display: flex;
+    align-items: center;
   }
 }
 

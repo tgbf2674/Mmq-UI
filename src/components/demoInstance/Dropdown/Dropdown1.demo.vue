@@ -3,7 +3,11 @@
 </demo>
 <template>
   <Dropdown>
-    <span>下拉菜单<Icon fill="rgb(64,158,255)" name="icon-menudown"/></span>
+    <span>下拉菜单
+      <MqIcon color="rgb(64,158,255)">
+        <ArrowDown />
+      </MqIcon>
+    </span>
     <template #dropdown>
       <span>西游记</span>
       <span>三国演义</span>
@@ -15,10 +19,9 @@
 
 <script lang="ts">
 import Dropdown from '../../../lib/Dropdown.vue';
-import Icon from '../../../lib/Icon.vue';
 export default {
 name: "Dropdown1.demo",
-  components: {Dropdown,Icon},
+  components: {Dropdown},
 }
 </script>
 

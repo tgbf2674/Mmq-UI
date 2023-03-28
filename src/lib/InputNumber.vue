@@ -2,13 +2,17 @@
   <div ref="inputNumberRef" :class="['mmq-inputNumber', disabled && 'disabled']">
     <div :style="MinusNotAllowedStyle">
       <div :style="MinusPointerNoneStyle" :class="['mmq-inputNumber-decrease']" @click.prevent="handleButtonMinus">
-        <Icon name="icon-minus"></Icon>
+        <MqIcon>
+          <Plus />
+        </MqIcon>
       </div>
     </div>
     <Input :disabled="disabled" placeholder v-model:input-value="inputValue" @change="handleChange"/>
     <div :style="IncreaseNotAllowedStyle">
       <div :style="IncreasePointerNoneStyle" class="mmq-inputNumber-increase" @click.stop="handleButtonAdd">
-        <Icon name="icon-add"></Icon>
+        <MqIcon>
+          <Minus />
+        </MqIcon>
       </div>
     </div>
   </div>
@@ -16,12 +20,11 @@
 
 <script lang="ts">
 import Input from './Input.vue'
-import Icon from './Icon.vue'
 import {defineComponent, watchEffect, ref, computed, onMounted} from 'vue';
 import {add, subtract} from 'mmq-utils'
 export default defineComponent({
   name: 'InputNumber',
-  components: {Input, Icon},
+  components: {Input},
   props: {
     modelValue: {
       type: [Number,String],

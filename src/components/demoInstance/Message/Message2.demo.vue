@@ -17,27 +17,30 @@ export default {
     const openSuccess = () => {
       openMessage({
         message: '这是一条成功提示消息',
-        type: 'success',
+        type: 'SuccessFilled',
         displayTime:100,
       });
     };
     const openError = () => {
       openMessage({
         message: '这是一条失败提示消息',
-        type: 'error',
+        type: 'CircleCloseFilled',
+        displayTime:100,
       });
     };
     const openWarning = () => {
       openMessage({
         message: '这是一条提醒消息',
-        type: 'warning',
+        type: 'WarningFilled',
+        displayTime:100,
       });
     };
     const openInfo = () => {
       openMessage({
         message: '这是一条普通消息',
-        type: 'info',
+        type: 'InfoFilled',
         canClose: false,
+        displayTime:100,
       });
     };
     return {openSuccess, openError,openWarning,openInfo};
