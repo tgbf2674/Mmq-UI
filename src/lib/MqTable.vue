@@ -88,10 +88,21 @@ export default defineComponent({
     const fixedThRightElArr: HTMLElement [] = [];
     const fixedTdRightElArr: HTMLElement [] = [];
     const realDataSource = ref(clone(props.dataSource, true));
+    const descendingReg = RegExp(/sortDescending/);
+    const dSelectedReg = RegExp(/sortDescending/);
+    const ascendingReg = RegExp(/sortAscending/);
+    const aSelectedReg = RegExp(/sortASelected/);
+    const sortMethod = ref();
     const sortHandler = (fn: Function, e: Event) => {
       clearSortSelected();
-      if (Array.from((e.target as HTMLElement).classList).findIndex(item => item === 'sortDescending') >= 0)(e.target as HTMLElement).classList.add('sortDSelected');
-      else if (Array.from((e.target as HTMLElement).classList).findIndex(item => item === 'sortAscending') >= 0) (e.target as HTMLElement).classList.add('sortASelected');
+      if (descendingReg.test((e.target as HTMLElement).classList.value)) {
+        sortMethod.value = 0;
+        (e.target as HTMLElement).classList.add('sortDSelected');
+      } else if (ascendingReg.test((e.target as HTMLElement).classList.value)) {
+        sortMethod.value = 1;
+        (e.target as HTMLElement).classList.add('sortASelected');
+      }
+      sortMethod.value ? realDataSource.value.sort(fn) : realDataSource.value.sort(fn).reverse();
     };
     const clearSortSelected = () => {
       const indexs: number[] = [];
@@ -106,8 +117,8 @@ export default defineComponent({
           temp.push(...tableThRef.value[indexs[i]].children[0].childNodes[1].children);
         }
         temp.forEach(item => {
-          if (Array.from(item.classList).findIndex(item => item === 'sortDescending') >= 0 && Array.from(item.classList).findIndex(item => item === 'sortDSelected') >= 0) item.classList.remove('sortDSelected');
-          else if (Array.from(item.classList).findIndex(item => item === 'sortAscending') >= 0 && Array.from(item.classList).findIndex(item => item === 'sortASelected') >= 0) item.classList.remove('sortASelected');
+          if (descendingReg.test(item.classList) && dSelectedReg.test(item.classList)) item.classList.remove('sortDSelected');
+          else if (ascendingReg.test(item.classList) && aSelectedReg.test(item.classList)) item.classList.remove('sortASelected');
         });
       }
     };
