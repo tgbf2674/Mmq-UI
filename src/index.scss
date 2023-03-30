@@ -35,6 +35,11 @@ body {
   overflow: hidden;
 }
 
+h5 {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
 table {
   border-collapse:collapse;  //表格的边框合并，如果相邻，则共用一个边框。
   border-spacing:0;

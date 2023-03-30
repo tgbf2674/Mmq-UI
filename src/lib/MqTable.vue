@@ -1,6 +1,6 @@
 <template>
   <div :class="['mqTable', hasBordered]">
-    <div class="mqTableTitle" v-if="$slots.title">
+    <div :class="['mqTableTitle', computedSizeClass]" v-if="$slots.title">
       <slot name="title"></slot>
     </div>
     <div ref="tableHeadRef" class="mqTableHeader">
@@ -12,11 +12,11 @@
         <tr>
           <th ref="tableThRef" :class="fixedStyle(item)" :style="headThStyle(item)" v-for="(item) in columns"
               :key="item.key">
-            <div class="cell">
+            <div :class="['cell', computedSizeClass]">
               <slot name="headerCell" :title="item.title" :column="item">
                 {{ item.title }}
                 <span v-if="item.sort" class="sortWrapper">
-                <i @click="sortHandler(item.sort, $event)" :class="['sortAscending', '123']"></i>
+                <i @click="sortHandler(item.sort, $event)" :class="['sortAscending']"></i>
                 <i @click="sortHandler(item.sort, $event)" :class="['sortDescending'] "></i>
               </span>
               </slot>
@@ -34,7 +34,7 @@
         <tbody>
         <tr :class="computedRowClass(item, index)" @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in realDataSource"
             :key="item.key">
-          <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
+          <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
               :key="item.key">
             <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item"
                   :index="item.key">{{ item[fieldItem.dataIndex] }}
@@ -44,7 +44,7 @@
         </tbody>
       </table>
     </div>
-    <div class="mqTableFooter" v-if="$slots.footer">
+    <div :class="['mqTableFooter', computedSizeClass]" v-if="$slots.footer">
       <slot name="footer"></slot>
     </div>
   </div>
@@ -52,7 +52,7 @@
 
 <script lang="ts">
 
-import {defineComponent, nextTick, onMounted, ref, watch} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, PropType, ref, watch} from 'vue';
 import {clone} from 'mmq-utils';
 
 type HeadStyleType = {
@@ -67,7 +67,7 @@ export default defineComponent({
       default: () => []
     },
     columns: {
-      type: Array,
+      type: Array as PropType<TableColumnsOptions []>,
       default: () => []
     },
     bordered: {
@@ -82,6 +82,10 @@ export default defineComponent({
     },
     rowClassName: {
       type: Function
+    },
+    size: {
+      type: String as PropType<TableSizeOptions>,
+      default: 'normal'
     }
   },
   setup(props) {
@@ -107,6 +111,11 @@ export default defineComponent({
         return props.rowClassName(record, index)
       }
     }
+    const computedSizeClass = computed(() => {
+      if (props.size === 'middle') return 'mqTableMiddle'
+      else if (props.size === 'small') return 'mqTableSmall'
+      else return 'mqTableNormal'
+    })
     const sortHandler = (fn: Function, e: Event) => {
       clearSortSelected();
       if (descendingReg.test((e.target as HTMLElement).classList.value)) {
@@ -273,7 +282,8 @@ export default defineComponent({
       hasBordered,
       sortHandler,
       realDataSource,
-      computedRowClass
+      computedRowClass,
+      computedSizeClass
     };
   }
 });
@@ -303,8 +313,16 @@ export default defineComponent({
   .mqTableTitle {
     border: 1px solid #f0f0f0;
     border-bottom: transparent;
-    padding: 16px;
-    background: #fafafa;
+    font-size: 14px;
+  }
+  .mqTableSmall {
+    padding: 8px;
+  }
+  .mqTableMiddle {
+    padding: 12px 8px;
+  }
+  .mqTableNormal {
+    padding: 16px 8px;
   }
 
   .mqTableFooter {
@@ -313,6 +331,7 @@ export default defineComponent({
     padding: 16px;
     color: #000000d9;
     background: #fafafa;
+    font-size: 14px;
   }
 
   .mqTableHeader {
@@ -328,9 +347,8 @@ export default defineComponent({
       thead {
         tr {
           th {
-            padding: 12px 14px;
             color: #646468;
-            font-size: 16px;
+            font-size: 14px;
             text-align: left;
             line-height: 1.5;
             width: 100%;
@@ -379,13 +397,19 @@ export default defineComponent({
                 }
               }
             }
+            .mqTableSmall {
+              padding: 8px;
+            }
+            .mqTableMiddle {
+              padding: 12px 8px;
+            }
+            .mqTableNormal {
+              padding: 16px 8px;
+            }
           }
-
           .hasBorder {
             border-left: 1px solid #f0f0f0;
           }
-        }
-        .table-striped {
         }
       }
     }
@@ -465,9 +489,8 @@ export default defineComponent({
       tbody {
         tr {
           td {
-            padding: 12px 16px;
             color: #646468;
-            font-size: 16px;
+            font-size: 14px;
             text-align: left;
             line-height: 1.5;
           }
@@ -484,7 +507,6 @@ export default defineComponent({
             word-break: keep-all;
             overflow: hidden;
           }
-
         }
 
         .hoverRow {

@@ -10,6 +10,7 @@
   <Demo :component="Table7Demo"></Demo>
   <Demo :component="Table8Demo"></Demo>
   <Demo :component="Table10Demo"></Demo>
+  <Demo :component="Table11Demo"></Demo>
   <MqTable :columns="columns" :data-source="data" bordered>
     <template #title><h2>参数</h2></template>
   </MqTable>
@@ -21,6 +22,7 @@
 <script lang="ts">
 import Table1Demo from '../demoInstance/Table/Table1.demo.vue'
 import Table10Demo from '../demoInstance/Table/Table10.demo.vue'
+import Table11Demo from '../demoInstance/Table/Table11.demo.vue'
 import Table2Demo from '../demoInstance/Table/Table2.demo.vue'
 import Table3Demo from '../demoInstance/Table/Table3.demo.vue'
 import Table4Demo from '../demoInstance/Table/Table4.demo.vue'
@@ -43,9 +45,10 @@ export default {
       {key: '3', attr: 'dataSource', describe: '数据数组', type: 'object[]', default: '-'},
       {key: '4', attr: 'footer', describe: '表格尾部', type: 'Function(currentPageData)|v-slot:footer="currentPageData"', default: '-'},
       {key: '5', attr: 'header', describe: '表格头部', type: 'Function(currentPageData)|v-slot:header="currentPageData"', default: '-'},
-      {key: '6', attr: 'height', describe: 'Table 的高度， 默认为自动高度。', type: 'string', default: '-'},
-      {key: '7', attr: 'bodyCell', describe: '个性化单元格。', type: 'v-slot:bodyCell="{text, record, index, column}"', default: '-'},
-      {key: '8', attr: 'rowClassName', describe: '表格行的类名。', type: 'Function(record, index):string"', default: '-'},
+      {key: '6', attr: 'height', describe: 'Table 的高度， 默认为自动高度', type: 'string', default: '-'},
+      {key: '7', attr: 'bodyCell', describe: '个性化单元格', type: 'v-slot:bodyCell="{text, record, index, column}"', default: '-'},
+      {key: '8', attr: 'rowClassName', describe: '表格行的类名', type: 'Function(record, index):string"', default: '-'},
+      {key: '9', attr: 'size', describe: '表格大小', type: 'normal | middle | small"', default: 'normal'},
     ])
     const columns = reactive([
       {title: '参数', dataIndex: 'attr', key: 'attr'},
@@ -66,7 +69,7 @@ export default {
       {key: '4', attr: 'sort', describe: '排序函数，本地排序使用一个函数(参考 Array.sort 的 compareFunction)', type: 'Function', default: '-'}
     ])
     return {
-      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, Table9Demo, Table10Demo, data, columns, columns1, data1
+      Table1Demo, Table2Demo, Table3Demo, Table4Demo, Table5Demo, Table6Demo, Table7Demo, Table8Demo, Table9Demo, Table10Demo, Table11Demo, data, columns, columns1, data1
     }
   }
 }
