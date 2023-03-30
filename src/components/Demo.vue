@@ -18,9 +18,9 @@
 import 'prismjs'
 import 'prismjs/themes/prism-okaidia.css'
 import Button from '../lib/Button.vue'
-import {computed, ref} from 'vue';
+import {computed, defineComponent, onMounted, ref} from 'vue';
 const Prism = (window as any).Prism
-export default {
+export default defineComponent({
   name: 'Demo',
   components: {
     Button
@@ -28,7 +28,7 @@ export default {
   props: {
     component: Object
   },
-  setup(props:any){
+  setup(props: any){
     const html = computed(()=>{
       return Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html' )
     })
@@ -40,7 +40,7 @@ export default {
       Prism,html,codeVisible,toggleCode
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
