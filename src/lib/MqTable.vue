@@ -32,7 +32,7 @@
           <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
         </colgroup>
         <tbody>
-        <tr @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item) in realDataSource"
+        <tr :class="computedRowClass(item, index)" @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in realDataSource"
             :key="item.key">
           <td ref="tableTdRef" :class="bodyTdClass(fieldItem)" v-for="(fieldItem) in columns"
               :key="item.key">
@@ -79,6 +79,9 @@ export default defineComponent({
     },
     maxHeight: {
       type: Number
+    },
+    rowClassName: {
+      type: Function
     }
   },
   setup(props) {
@@ -99,6 +102,11 @@ export default defineComponent({
     watch(props.dataSource, (newVal) => {
       realDataSource.value = clone(newVal);
     });
+    const computedRowClass = (record: any, index: number) => {
+      if (props.rowClassName) {
+        return props.rowClassName(record, index)
+      }
+    }
     const sortHandler = (fn: Function, e: Event) => {
       clearSortSelected();
       if (descendingReg.test((e.target as HTMLElement).classList.value)) {
@@ -264,7 +272,8 @@ export default defineComponent({
       tableTdRef,
       hasBordered,
       sortHandler,
-      realDataSource
+      realDataSource,
+      computedRowClass
     };
   }
 });
@@ -295,6 +304,7 @@ export default defineComponent({
     border: 1px solid #f0f0f0;
     border-bottom: transparent;
     padding: 16px;
+    background: #fafafa;
   }
 
   .mqTableFooter {
@@ -324,7 +334,7 @@ export default defineComponent({
             text-align: left;
             line-height: 1.5;
             width: 100%;
-
+            background: #fafafa;
             .cell {
               display: flex;
               align-items: center;
@@ -374,6 +384,8 @@ export default defineComponent({
           .hasBorder {
             border-left: 1px solid #f0f0f0;
           }
+        }
+        .table-striped {
         }
       }
     }
