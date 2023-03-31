@@ -5,7 +5,7 @@ export default function () {
   const div1 = document.createElement('div');
 
   div.className = 'anchorWrapper'
-  div1.className = 'anchorWrapper1'
+  div1.className = 'anchorWrapperLayout'
   main.appendChild(div);
   div.appendChild(div1)
   main.insertBefore(div, demoDom[0]);

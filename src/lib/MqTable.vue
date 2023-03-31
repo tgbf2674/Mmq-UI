@@ -437,7 +437,7 @@ export default defineComponent({
     position: absolute;
     top: 0;
     width: 10px;
-    bottom: -1px;
+    bottom: 1px;
     overflow-x: hidden;
     overflow-y: hidden;
     touch-action: none;
@@ -462,7 +462,7 @@ export default defineComponent({
     position: absolute;
     top: 0;
     width: 10px;
-    bottom: -1px;
+    bottom: 1px;
     overflow-x: hidden;
     overflow-y: hidden;
     touch-action: none;

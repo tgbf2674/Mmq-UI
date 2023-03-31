@@ -56,10 +56,10 @@ table {
   max-width: calc(80% - 120px);
   overflow: auto;
   padding: 8px;
-  .anchorWrapper1 {
+  .anchorWrapperLayout {
     display: flex;
     a {
-      padding: 8px;
+      padding: 8px 10px;
       display: inline-block;
       margin: 0 20px;
       border: 1px solid #f0f0f0;
