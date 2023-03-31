@@ -2,6 +2,8 @@ export default function () {
   const demoDom = document.querySelectorAll('.demo');
   const main = document.querySelector('main') as HTMLElement;
   const div = document.createElement('div');
+
+  div.className = 'anchorWrapper'
   main.appendChild(div);
   main.insertBefore(div, demoDom[0]);
   demoDom.forEach((item, index) => {
@@ -12,7 +14,7 @@ export default function () {
     }
     div.appendChild(a);
     a.addEventListener('click', () => {
-      document.documentElement.scrollTop = demoDom[index].offsetTop - 74
+      document.documentElement.scrollTo({top: (demoDom[index] as HTMLElement).offsetTop - 74, behavior: 'smooth'})
     })
   });
 }
