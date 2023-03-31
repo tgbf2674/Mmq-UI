@@ -50,18 +50,25 @@ table {
 }
 
 .anchorWrapper {
-  display: flex;
-  justify-content: center;
   position: fixed;
   top: 0;
   z-index: 30;
+  max-width: calc(80% - 120px);
+  overflow: auto;
   padding: 8px;
-  a {
-    padding: 16px;
-    margin: 0 20px;
-    border: 1px solid #f0f0f0;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 fade-out(black, 0.95);
+  .anchorWrapper1 {
+    display: flex;
+    a {
+      padding: 8px;
+      display: inline-block;
+      margin: 0 20px;
+      border: 1px solid #f0f0f0;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 fade-out(black, 0.95);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
     a:hover {
       border-color: #40a9ff;
       color: #40a9ff;

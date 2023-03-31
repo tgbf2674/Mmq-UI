@@ -17,7 +17,8 @@
 </template>
 
 <script lang="ts">
-import {inject, Ref } from 'vue'
+import { inject, Ref} from 'vue';
+import {useRouter} from 'vue-router';
 export default {
   name: 'topNav',
   props: {
