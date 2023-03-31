@@ -14,9 +14,14 @@ import InputNumber2 from '../demoInstance/InputNumber/InputNumber2.demo.vue'
 import InputNumber3 from '../demoInstance/InputNumber/InputNumber3.demo.vue'
 import InputNumber4 from '../demoInstance/InputNumber/InputNumber4.demo.vue'
 import InputNumber5 from '../demoInstance/InputNumber/InputNumber5.demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   components: {Demo},
   setup() {
+    onMounted(() => {
+      addADom()
+    });
     return { InputNumber1, InputNumber2, InputNumber3, InputNumber4, InputNumber5};
   }
 };

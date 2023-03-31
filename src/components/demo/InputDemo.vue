@@ -20,9 +20,14 @@ import Input5Demo from '../demoInstance/Input/Input5.demo.vue'
 import Input6Demo from '../demoInstance/Input/Input6.demo.vue'
 import Input7Demo from '../demoInstance/Input/Input7.demo.vue'
 import Input8Demo from '../demoInstance/Input/Input8.demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   components: {Demo},
   setup() {
+    onMounted(() => {
+      addADom()
+    });
     return {Input1Demo, Input2Demo, Input3Demo, Input4Demo, Input5Demo, Input6Demo, Input7Demo, Input8Demo};
   }
 };

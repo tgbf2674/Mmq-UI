@@ -6,10 +6,15 @@
 <script lang="ts">
 import Dropdown1Demo from '../demoInstance/Dropdown/Dropdown1.demo.vue'
 import Demo from '../Demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'DropDownDemo',
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Dropdown1Demo
     }

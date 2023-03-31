@@ -6,10 +6,15 @@
 <script lang="ts">
 import Demo from '../Demo.vue'
 import Container1Demo from '../demoInstance/Container/Container1.demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "ContainerDemo",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
   return {
     Container1Demo
   }

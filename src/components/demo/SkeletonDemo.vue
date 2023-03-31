@@ -16,11 +16,16 @@ import Skeleton4Demo from '../demoInstance/Skeleton/Skeleton4.demo.vue';
 import Skeleton5Demo from '../demoInstance/Skeleton/Skeleton5.demo.vue';
 import Skeleton6Demo from '../demoInstance/Skeleton/Skeleton6.demo.vue';
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 
 export default {
 name: "Skeleton",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Skeleton1Demo,Skeleton2Demo,Skeleton3Demo,Skeleton4Demo,Skeleton5Demo,Skeleton6Demo
     }

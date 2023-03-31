@@ -21,11 +21,15 @@ import Demo from '../Demo.vue'
 import Collapse1Demo from '../demoInstance/Collapse/Collapse1.demo.vue'
 import Collapse2Demo from '../demoInstance/Collapse/Collapse2.demo.vue'
 import Collapse3Demo from '../demoInstance/Collapse/Collapse3.demo.vue'
-import {reactive} from 'vue';
+import {onMounted, reactive} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "CollapseDemo",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     const data = reactive([
       {key: '1', attr: 'change', describe: '当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为string，否则为array)', params: '新当前页'},
     ])

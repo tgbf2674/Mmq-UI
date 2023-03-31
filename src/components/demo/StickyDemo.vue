@@ -6,10 +6,15 @@
 <script lang="ts">
 import Sticky1Demo from '../demoInstance/Sticky/Sticky1.demo.vue'
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "StickyDemo",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
   return {
     Sticky1Demo
   }

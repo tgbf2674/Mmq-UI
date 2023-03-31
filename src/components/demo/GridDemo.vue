@@ -6,15 +6,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, onMounted} from 'vue';
 import Demo from "../Demo.vue";
 import Grid1Demo from '../demoInstance/Grid/Grid1.demo.vue';
 import Grid2Demo from '../demoInstance/Grid/Grid2.demo.vue';
 import Grid3Demo from '../demoInstance/Grid/Grid3.demo.vue';
+import addADom from '../../utils/addADom';
 export default defineComponent({
   name: "CardDemo",
   components: {Demo},
   setup() {
+    onMounted(() => {
+      addADom()
+    });
     return {Grid1Demo,Grid2Demo,Grid3Demo};
   }
 });

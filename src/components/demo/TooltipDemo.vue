@@ -14,10 +14,15 @@ import Tooltip3Demo from '../demoInstance/Tooltip/Tooltip3.demo.vue'
 import Tooltip4Demo from '../demoInstance/Tooltip/Tooltip4.demo.vue'
 import Tooltip5Demo from '../demoInstance/Tooltip/Tooltip5.demo.vue'
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "TooltipDemo",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
   return {Tooltip1Demo, Tooltip2Demo, Tooltip3Demo, Tooltip4Demo, Tooltip5Demo}
   }
 }

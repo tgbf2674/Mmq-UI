@@ -17,12 +17,16 @@ import Switch2Demo from '../demoInstance/Switch/Switch2.demo.vue'
 import Switch3Demo from '../demoInstance/Switch/Switch3.demo.vue'
 import Switch4Demo from '../demoInstance/Switch/Switch4.demo.vue'
 import Demo from '../Demo.vue';
-import {reactive} from 'vue';
+import {onMounted, reactive} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "switchDemo",
   components:{Demo
   },
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     const data = reactive([
       {key: '1', attr: 'change', describe: 'switch 状态发生变化时的回调函数', params: 'val，新状态的值'},
     ])

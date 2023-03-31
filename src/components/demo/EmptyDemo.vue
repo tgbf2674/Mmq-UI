@@ -12,12 +12,17 @@ import Empty2Demo from '../demoInstance/Empty/Empty2.demo.vue'
 import Empty3Demo from '../demoInstance/Empty/Empty3.demo.vue'
 import Empty4Demo from '../demoInstance/Empty/Empty4.demo.vue'
 import Demo from '../Demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "EmptyDemo",
   components: {
   Demo
   },
   setup(){
+    onMounted(() => {
+      addADom()
+    });
   return {
     Empty1Demo,Empty2Demo,Empty3Demo,Empty4Demo
   }

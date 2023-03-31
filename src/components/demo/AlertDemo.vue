@@ -18,10 +18,15 @@ import Alert4Demo from '../demoInstance/Alert/Alert4.demo.vue'
 import Alert5Demo from '../demoInstance/Alert/Alert5.demo.vue'
 import Alert6Demo from '../demoInstance/Alert/Alert6.demo.vue'
 import Alert7Demo from '../demoInstance/Alert/Alert7.demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'Alert',
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {Alert1Demo,Alert2Demo,Alert3Demo,Alert4Demo,Alert5Demo,Alert6Demo,Alert7Demo}
   }
 }

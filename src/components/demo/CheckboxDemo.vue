@@ -14,10 +14,14 @@ import checkboxDemo3 from '../demoInstance/Checkbox/Checkbox3.demo.vue'
 import checkboxDemo4 from '../demoInstance/Checkbox/Checkbox4.demo.vue'
 import checkboxDemo5 from '../demoInstance/Checkbox/Checkbox5.demo.vue'
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'Checkbox',
   components: {Demo},
-  setup() {
+  setup() {onMounted(() => {
+    addADom()
+  });
     return {checkboxDemo1, checkboxDemo2, checkboxDemo3, checkboxDemo4, checkboxDemo5}
   }
 }

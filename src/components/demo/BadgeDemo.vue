@@ -12,10 +12,15 @@ import Badge2Demo from '../demoInstance/Badge/Badge2.demo.vue'
 import Badge3Demo from '../demoInstance/Badge/Badge3.demo.vue'
 import Badge4Demo from '../demoInstance/Badge/Badge4.demo.vue'
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'BadgeDemo',
   components: { Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Badge1Demo,Badge2Demo,Badge3Demo,Badge4Demo
     }

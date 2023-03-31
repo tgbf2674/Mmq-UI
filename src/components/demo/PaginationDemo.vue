@@ -13,12 +13,16 @@ import Demo from '../Demo.vue'
 import PaginationDemo1 from '../demoInstance/Pagination/Pagination1.demo.vue'
 import PaginationDemo2 from '../demoInstance/Pagination/Pagination2.demo.vue'
 import PaginationDemo3 from '../demoInstance/Pagination/Pagination3.demo.vue'
-import {reactive} from 'vue'
+import {onMounted, reactive} from 'vue'
+import addADom from '../../utils/addADom'
 
 export default {
   name: 'PaginationDemo',
   components: {Demo},
   setup() {
+    onMounted(() => {
+      addADom()
+    });
     const data = reactive([
       {key: '1', attr: 'changePage', describe: 'currentPage 改变时触发', params: '新当前页'},
       {key: '2', attr: 'prevClick', describe: '用户点击上一页按钮改变当前页时触发', params: '新当前页'},

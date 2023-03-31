@@ -8,10 +8,15 @@
 import Result1Demo from '../demoInstance/Result/Result1.demo.vue'
 import Result2Demo from '../demoInstance/Result/Result2.demo.vue'
 import Demo from '../Demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'ResultDemo',
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Result1Demo,Result2Demo
     }

@@ -10,10 +10,15 @@ import Demo from '../Demo.vue'
 import Radio1Demo from '../demoInstance/Raido/Radio1.demo.vue'
 import Radio2Demo from '../demoInstance/Raido/Radio2.demo.vue'
 import Radio3Demo from '../demoInstance/Raido/Radio3.demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "RadioDemo",
   components: {Demo},
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Radio1Demo,Radio2Demo, Radio3Demo
     }

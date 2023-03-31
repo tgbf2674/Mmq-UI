@@ -19,16 +19,19 @@ import Button5Demo from '../demoInstance/Button/Button5.demo.vue'
 import Button6Demo from '../demoInstance/Button/Button6.demo.vue'
 import Button7Demo from '../demoInstance/Button/Button7.demo.vue'
 import Demo from '../Demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'buttonDemo',
   components:{
     Button,Demo
   },
   setup(){
-    const onClick = ()=>{
-    }
+    onMounted(() => {
+      addADom()
+    });
     return {
-      onClick,Button1Demo,Button2Demo,Button3Demo,Button4Demo,Button5Demo,Button6Demo,Button7Demo
+      Button1Demo,Button2Demo,Button3Demo,Button4Demo,Button5Demo,Button6Demo,Button7Demo
     }
   }
 }

@@ -14,12 +14,17 @@ import Tag3Demo from '../demoInstance/Tag/Tag3.demo.vue'
 import Tag4Demo from '../demoInstance/Tag/Tag4.demo.vue'
 import Tag5Demo from '../demoInstance/Tag/Tag5.demo.vue'
 import Demo from '../Demo.vue'
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
 name: "TagDemo",
   components:{
   Demo
   },
   setup(){
+    onMounted(() => {
+      addADom()
+    });
   return {
     Tag1Demo,Tag2Demo,Tag3Demo,Tag4Demo,Tag5Demo
   }

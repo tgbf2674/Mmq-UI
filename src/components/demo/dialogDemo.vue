@@ -12,7 +12,8 @@ import Dialog4Demo from '../demoInstance/Dialog/Dialog4.dmeo.vue';
 import Dialog5Demo from '../demoInstance/Dialog/Dialog5.dmeo.vue';
 import Dialog3Demo from '../demoInstance/Dialog/Dialog3.demo.vue';
 import {openDialog} from '../../lib/openDialog'
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
+import addADom from '../../utils/addADom';
 export default {
   name: 'dialogDemo',
   components:{
@@ -21,6 +22,9 @@ export default {
     Demo
   },
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     const x = ref(false)
     const toggle = ()=>{
       x.value = !x.value

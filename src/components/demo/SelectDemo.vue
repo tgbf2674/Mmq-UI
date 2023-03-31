@@ -20,6 +20,8 @@ import SelectDemo5 from '../demoInstance/Select/Select5.demo.vue';
 import SelectDemo6 from '../demoInstance/Select/Select6.demo.vue';
 import SelectDemo7 from '../demoInstance/Select/Select7.demo.vue';
 import SelectDemo2 from '../demoInstance/Select/Select2.demo.vue';
+import {onMounted} from 'vue';
+import addADom from '../../utils/addADom';
 
 export default {
   name: 'SelectDemo',
@@ -27,6 +29,9 @@ export default {
     Demo
   },
   setup() {
+    onMounted(() => {
+      addADom()
+    });
     return {
       SelectDemo1, SelectDemo7, SelectDemo3, SelectDemo4, SelectDemo5, SelectDemo6, SelectDemo2
     };

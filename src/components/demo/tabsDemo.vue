@@ -12,12 +12,17 @@ import Demo from '../Demo.vue'
 import Tabs1Demo from '../demoInstance/Tab/Tabs1.demo.vue'
 import Tabs2Demo from '../demoInstance/Tab/Tabs2.demo.vue'
 import Tabs3Demo from '../demoInstance/Tab/Tabs3.demo.vue'
+import {onMounted} from 'vue'
+import addADom from '../../utils/addADom'
 export default {
 name: "tabsDemo",
   components: {
   Tab,Tabs,Demo
   },
   setup(){
+    onMounted(() => {
+      addADom()
+    });
     return {
       Tabs1Demo, Tabs2Demo, Tabs3Demo
     }
