@@ -32,13 +32,28 @@
           <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
         </colgroup>
         <tbody>
-        <tr :class="computedRowClass(item, index)" @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle" v-for="(item, index) in realDataSource"
+        <tr :class="computedRowClass(item, index)" @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle"
+            v-for="(item, index) in realDataSource"
             :key="item.key">
           <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
               :key="item.key">
-            <slot name="bodyCell" :column="fieldItem" :text="item[fieldItem.dataIndex]" :record="item"
-                  :index="item.key">{{ item[fieldItem.dataIndex] }}
+            <slot name="bodyCell" :column="fieldItem" :record="item"
+                  :index="item.key">{{ item[fieldItem.dataIndex] || item.index }}
             </slot>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-if="showSummary" ref="tableFooterRef" class="mqTableSummary">
+      <table>
+        <colgroup>
+          <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
+        </colgroup>
+        <tbody>
+        <tr>
+          <td ref="tableSummaryRef" :class="[bodyTdClass(item), computedSizeClass]" v-for="(item, index) in columns" :key="index">
+            {{ index === 0 ? summaryData.sumTitle : summaryData[item.dataIndex] }}
           </td>
         </tr>
         </tbody>
@@ -53,7 +68,7 @@
 <script lang="ts">
 
 import {computed, defineComponent, nextTick, onMounted, PropType, ref, watch} from 'vue';
-import {clone} from 'mmq-utils';
+import {clone, isUndefined} from 'mmq-utils';
 
 type HeadStyleType = {
   width?: string
@@ -86,36 +101,43 @@ export default defineComponent({
     size: {
       type: String as PropType<TableSizeOptions>,
       default: 'normal'
+    },
+    showSummary: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
     const tableBodyRef = ref();
     const tableHeadRef = ref();
+    const tableFooterRef = ref();
+    const tableSummaryRef = ref()
     const tableThRef = ref();
     const tableTdRef = ref();
-    const fixedThElArr: HTMLElement [] = [];
-    const fixedTdElArr: HTMLElement [] = [];
-    const fixedThRightElArr: HTMLElement [] = [];
-    const fixedTdRightElArr: HTMLElement [] = [];
+    let fixedThElArr: HTMLElement [] = [];
+    let fixedTdElArr: HTMLElement [] = [];
+    let fixedThRightElArr: HTMLElement [] = [];
+    let fixedTdRightElArr: HTMLElement [] = [];
     const realDataSource = ref(clone(props.dataSource, true));
     const descendingReg = RegExp(/sortDescending/);
     const dSelectedReg = RegExp(/sortDescending/);
     const ascendingReg = RegExp(/sortAscending/);
     const aSelectedReg = RegExp(/sortASelected/);
     const sortMethod = ref();
+    const summaryData = ref({})
     watch(props.dataSource, (newVal) => {
       realDataSource.value = clone(newVal);
     });
     const computedRowClass = (record: any, index: number) => {
       if (props.rowClassName) {
-        return props.rowClassName(record, index)
+        return props.rowClassName(record, index);
       }
-    }
+    };
     const computedSizeClass = computed(() => {
-      if (props.size === 'middle') return 'mqTableMiddle'
-      else if (props.size === 'small') return 'mqTableSmall'
-      else return 'mqTableNormal'
-    })
+      if (props.size === 'middle') return 'mqTableMiddle';
+      else if (props.size === 'small') return 'mqTableSmall';
+      else return 'mqTableNormal';
+    });
     const sortHandler = (fn: Function, e: Event) => {
       clearSortSelected();
       if (descendingReg.test((e.target as HTMLElement).classList.value)) {
@@ -148,33 +170,48 @@ export default defineComponent({
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement;
       tableHeadRef.value.scrollLeft = target.scrollLeft;
-      if (tableBodyRef.value.clientHeight !== tableBodyRef.value.offsetHeight) {
-        if (tableHeadRef.value.scrollLeft === 0) {
-          fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow');
-          computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow');
-        } else {
-          fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow');
-          computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow');
+      tableFooterRef.value.scrollLeft = target.scrollLeft;
+      if (fixedThElArr.length) {
+        if (tableBodyRef.value.clientHeight !== tableBodyRef.value.offsetHeight) {
+          if (tableHeadRef.value.scrollLeft === 0) {
+            fixedThElArr[fixedThElArr.length - 1].classList.add('noShadow');
+            computedFixedFirstClass(fixedTdElArr, 'add', 'noShadow');
+          } else {
+            fixedThElArr[fixedThElArr.length - 1].classList.remove('noShadow');
+            computedFixedFirstClass(fixedTdElArr, 'remove', 'noShadow');
+          }
         }
-        if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
-          fixedThRightElArr[0].classList.add('noShadow');
-          computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow');
-        } else {
-          fixedThRightElArr[0].classList.remove('noShadow');
-          computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow');
+        if (fixedThRightElArr.length) {
+          if (target.scrollLeft === tableHeadRef.value.scrollWidth - tableHeadRef.value.clientWidth) {
+            fixedThRightElArr[0].classList.add('noShadow');
+            computedFixedFirstClass(fixedTdRightElArr, 'add', 'noShadow');
+          } else {
+            fixedThRightElArr[0].classList.remove('noShadow');
+            computedFixedFirstClass(fixedTdRightElArr, 'remove', 'noShadow');
+          }
         }
       }
     };
     const findThOrTd = (className: string, el: string) => {
-      const target = el === 'td' ? tableTdRef : tableThRef;
+      let target = el === 'td' ? tableTdRef : tableThRef;
       let arr: HTMLElement [] = [];
       target.value.forEach((item: HTMLElement) => {
-        Array.from(item.classList).forEach(el => {
-          if (arr && el === className) {
+        Array.from(item.classList).forEach(element => {
+          if (arr && element === className) {
             arr.push(item);
           }
         });
       });
+      if (props.showSummary && el === 'td') {
+        target = tableSummaryRef
+        target.value.forEach((item: HTMLElement) => {
+          Array.from(item.classList).forEach(element => {
+            if (arr && element === className) {
+              arr.push(item);
+            }
+          });
+        });
+      }
       return arr;
     };
     const hasBordered = () => {
@@ -238,6 +275,10 @@ export default defineComponent({
       return {leftCount, rightCount};
     };
     const initArr = () => {
+      fixedThElArr = []
+      fixedTdElArr = []
+      fixedThRightElArr = []
+      fixedTdRightElArr = []
       fixedThElArr.push(...findThOrTd('tableLiftFixed', 'th'));
       fixedTdElArr.push(...findThOrTd('tableLiftFixed', 'td'));
       fixedThRightElArr.push(...findThOrTd('tableRightFixed', 'th'));
@@ -256,7 +297,27 @@ export default defineComponent({
       const arr: HTMLElement[] = Array.from(tableThRef.value);
       arr[arr.length - 1].style.transform = `translateX(${tableBodyRef.value.clientWidth - tableBodyRef.value.offsetWidth}px)`;
     };
+    const computedSummary = () => {
+      if (props.showSummary) {
+        const res:any = {
+          sumTitle: 'Sum'
+        }
+        realDataSource.value.forEach((item: any) => {
+          for (const key in item) {
+            if (typeof item[key] === 'number') {
+              isUndefined(res[key]) ? res[key] = 0 : res[key] += item[key]
+            } else {
+              res[key] = '/'
+            }
+          }
+        })
+        summaryData.value = res
+        initArr()
+        console.log(fixedTdElArr)
+      }
+    }
     onMounted(() => {
+      computedSummary()
       setTableBodyHeight();
       initArr();
       fixedColPosition();
@@ -271,6 +332,8 @@ export default defineComponent({
     return {
       tableBodyRef,
       tableHeadRef,
+      tableFooterRef,
+      tableSummaryRef,
       handleScroll,
       bodyTdClass,
       headThStyle,
@@ -283,7 +346,9 @@ export default defineComponent({
       sortHandler,
       realDataSource,
       computedRowClass,
-      computedSizeClass
+      computedSizeClass,
+      summaryData,
+      computedSummary
     };
   }
 });
@@ -315,12 +380,15 @@ export default defineComponent({
     border-bottom: transparent;
     font-size: 14px;
   }
+
   .mqTableSmall {
     padding: 8px;
   }
+
   .mqTableMiddle {
     padding: 12px 8px;
   }
+
   .mqTableNormal {
     padding: 16px 8px;
   }
@@ -353,6 +421,7 @@ export default defineComponent({
             line-height: 1.5;
             width: 100%;
             background: #fafafa;
+
             .cell {
               display: flex;
               align-items: center;
@@ -397,16 +466,20 @@ export default defineComponent({
                 }
               }
             }
+
             .mqTableSmall {
               padding: 8px;
             }
+
             .mqTableMiddle {
               padding: 12px 8px;
             }
+
             .mqTableNormal {
               padding: 16px 8px;
             }
           }
+
           .hasBorder {
             border-left: 1px solid #f0f0f0;
           }
@@ -421,6 +494,16 @@ export default defineComponent({
   }
 
   .mqTableHeader::-webkit-scrollbar-thumb {
+    width: 0;
+    height: 0;
+  }
+
+  .mqTableSummary::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .mqTableSummary::-webkit-scrollbar-thumb {
     width: 0;
     height: 0;
   }
@@ -514,6 +597,29 @@ export default defineComponent({
 
           td {
             background-color: darken(#fafafa, 2%);
+          }
+        }
+      }
+    }
+  }
+
+  .mqTableSummary {
+    overflow-x: auto;
+    table {
+      table-layout: fixed;
+      border-collapse: collapse;
+      width: 100%;
+      border-spacing: 0;
+      border: 0;
+
+      tbody {
+        tr {
+          td {
+            color: #646468;
+            font-size: 14px;
+            text-align: left;
+            line-height: 1.5;
+            padding: 12px 8px;
           }
         }
       }

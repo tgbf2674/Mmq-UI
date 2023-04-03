@@ -11,6 +11,7 @@
   <Demo :component="Table8Demo"></Demo>
   <Demo :component="Table10Demo"></Demo>
   <Demo :component="Table11Demo"></Demo>
+  <Demo :component="Table12Demo"></Demo>
   <MqTable :columns="columns" :data-source="data" bordered>
     <template #title><h2>参数</h2></template>
   </MqTable>
@@ -23,6 +24,7 @@
 import Table1Demo from '../demoInstance/Table/Table1.demo.vue';
 import Table10Demo from '../demoInstance/Table/Table10.demo.vue';
 import Table11Demo from '../demoInstance/Table/Table11.demo.vue';
+import Table12Demo from '../demoInstance/Table/Table12.demo.vue';
 import Table2Demo from '../demoInstance/Table/Table2.demo.vue';
 import Table3Demo from '../demoInstance/Table/Table3.demo.vue';
 import Table4Demo from '../demoInstance/Table/Table4.demo.vue';
@@ -115,6 +117,7 @@ export default {
       Table9Demo,
       Table10Demo,
       Table11Demo,
+      Table12Demo,
       data,
       columns,
       columns1,
