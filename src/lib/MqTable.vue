@@ -38,7 +38,7 @@
           <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
               :key="item.key">
             <slot name="bodyCell" :column="fieldItem" :record="item"
-                  :index="item.key">{{ item[fieldItem.dataIndex] || item.index }}
+                  :index="item.key">{{ item[fieldItem.dataIndex] || item.sumText }}
             </slot>
           </td>
         </tr>
@@ -53,7 +53,7 @@
         <tbody>
         <tr>
           <td ref="tableSummaryRef" :class="[bodyTdClass(item), computedSizeClass]" v-for="(item, index) in columns" :key="index">
-            {{ index === 0 ? summaryData.sumTitle : summaryData[item.dataIndex] }}
+            {{ index === 0 ? summaryData.sumText : summaryData[item.dataIndex] }}
           </td>
         </tr>
         </tbody>
@@ -105,6 +105,10 @@ export default defineComponent({
     showSummary: {
       type: Boolean,
       default: false
+    },
+    sumText: {
+      type: String,
+      default: '合计'
     }
   },
   setup(props) {
@@ -300,7 +304,7 @@ export default defineComponent({
     const computedSummary = () => {
       if (props.showSummary) {
         const res:any = {
-          sumTitle: 'Sum'
+          sumText: props.sumText
         }
         realDataSource.value.forEach((item: any) => {
           for (const key in item) {
@@ -313,7 +317,6 @@ export default defineComponent({
         })
         summaryData.value = res
         initArr()
-        console.log(fixedTdElArr)
       }
     }
     onMounted(() => {

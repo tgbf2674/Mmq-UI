@@ -1,9 +1,9 @@
 <demo>
-常规用法
+表尾合计行
 </demo>
 
 <template>
-  <h4>指定表格的数据源 dataSource 为一个数组。</h4>
+  <h4>将 show-summary 设置为true就会在表格尾部展示合计行。 默认情况下，对于合计行，第一列不进行数据求合操作，而是显示「合计」二字（可通过sum-text配置），其余列会将本列所有数值进行求合操作，并显示出来。</h4>
   <MqTable show-summary :columns="columns" :data-source="data">
   </MqTable>
 </template>
