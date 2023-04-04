@@ -38,7 +38,7 @@
           <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
               :key="item.key">
             <slot name="bodyCell" :column="fieldItem" :record="item"
-                  :index="item.key">{{ item[fieldItem.dataIndex] || item.sumText }}
+                  :index="item.key">{{ item[fieldItem.dataIndex] }}
             </slot>
           </td>
         </tr>
@@ -109,6 +109,9 @@ export default defineComponent({
     sumText: {
       type: String,
       default: '合计'
+    },
+    summaryMethod: {
+      type: Function,
     }
   },
   setup(props) {
@@ -303,19 +306,23 @@ export default defineComponent({
     };
     const computedSummary = () => {
       if (props.showSummary) {
-        const res:any = {
-          sumText: props.sumText
-        }
-        realDataSource.value.forEach((item: any) => {
-          for (const key in item) {
-            if (typeof item[key] === 'number') {
-              isUndefined(res[key]) ? res[key] = 0 : res[key] += item[key]
-            } else {
-              res[key] = '/'
-            }
+        if (!props.summaryMethod) {
+          const res: any = {
+            sumText: props.sumText
           }
-        })
-        summaryData.value = res
+          realDataSource.value.forEach((item: any) => {
+            for (const key in item) {
+              if (typeof item[key] === 'number') {
+                isUndefined(res[key]) ? res[key] = 0 + item[key] : res[key] += item[key]
+              } else {
+                res[key] = '/'
+              }
+            }
+          })
+          summaryData.value = res
+        } else {
+          summaryData.value = props.summaryMethod()
+        }
         initArr()
       }
     }
@@ -608,6 +615,7 @@ export default defineComponent({
 
   .mqTableSummary {
     overflow-x: auto;
+    background: #f6f6f6;
     table {
       table-layout: fixed;
       border-collapse: collapse;
@@ -623,6 +631,7 @@ export default defineComponent({
             text-align: left;
             line-height: 1.5;
             padding: 12px 8px;
+            background: #fafafa;
           }
         }
       }
