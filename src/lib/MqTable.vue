@@ -32,7 +32,7 @@
           <col :style="headThStyle(item)" v-for="(item, index) in columns" :key="index"/>
         </colgroup>
         <tbody>
-        <tr :class="computedRowClass(item, index)" @mouseleave="mouseLeaveHandle" @mouseenter="mouseEnterHandle"
+        <tr :class="computedRowClass(item, index)" @click="handleClick(item, index)"
             v-for="(item, index) in realDataSource"
             :key="item.key">
           <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
@@ -112,15 +112,20 @@ export default defineComponent({
     },
     summaryMethod: {
       type: Function,
+    },
+    highlightCurrentRow: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(props) {
+  setup(props, context) {
     const tableBodyRef = ref();
     const tableHeadRef = ref();
     const tableFooterRef = ref();
     const tableSummaryRef = ref()
     const tableThRef = ref();
     const tableTdRef = ref();
+    const currentSelect = ref()
     let fixedThElArr: HTMLElement [] = [];
     let fixedTdElArr: HTMLElement [] = [];
     let fixedThRightElArr: HTMLElement [] = [];
@@ -136,9 +141,14 @@ export default defineComponent({
       realDataSource.value = clone(newVal);
     });
     const computedRowClass = (record: any, index: number) => {
+      const res: string [] = []
       if (props.rowClassName) {
-        return props.rowClassName(record, index);
+        res.push(props.rowClassName(record, index))
       }
+      if (props.highlightCurrentRow && index === currentSelect.value) {
+        res.push('currentSelected')
+      }
+      return res
     };
     const computedSizeClass = computed(() => {
       if (props.size === 'middle') return 'mqTableMiddle';
@@ -156,6 +166,11 @@ export default defineComponent({
       }
       sortMethod.value ? realDataSource.value.sort(fn) : realDataSource.value.sort(fn).reverse();
     };
+    const handleClick = (currentRow: any, index: number) => {
+      const oldSelectedRow = realDataSource.value[currentSelect.value]
+      currentSelect.value = index
+      context.emit('currentChange', currentRow, oldSelectedRow)
+    }
     const clearSortSelected = () => {
       const indexs: number[] = [];
       props.columns.forEach((item, index) => {
@@ -358,7 +373,8 @@ export default defineComponent({
       computedRowClass,
       computedSizeClass,
       summaryData,
-      computedSummary
+      computedSummary,
+      handleClick
     };
   }
 });
@@ -581,6 +597,7 @@ export default defineComponent({
 
       tbody {
         tr {
+          transition: all .2s ease-in-out;
           td {
             color: #646468;
             font-size: 14px;
@@ -601,10 +618,11 @@ export default defineComponent({
             overflow: hidden;
           }
         }
-
-        .hoverRow {
+        .currentSelected {
+          background-color: #ecf5ff;
+        }
+        tr:hover {
           background-color: darken(#fafafa, 2%);
-
           td {
             background-color: darken(#fafafa, 2%);
           }
