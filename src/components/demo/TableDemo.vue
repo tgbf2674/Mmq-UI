@@ -16,8 +16,11 @@
   <MqTable :columns="columns" :data-source="data" bordered>
     <template #title><h2>参数</h2></template>
   </MqTable>
-  <MqTable style="margin-top: 20px" :columns="columns1" :data-source="data1" bordered>
+  <MqTable style="margin: 20px 0" :columns="columns1" :data-source="data1" bordered>
     <template #title><h2>Column</h2></template>
+  </MqTable>
+  <MqTable :columns="columns2" :data-source="data2" bordered>
+    <template #title><h2>事件</h2></template>
   </MqTable>
 </template>
 
@@ -110,6 +113,14 @@ export default {
         default: '-'
       }
     ]);
+    const columns2 = reactive([
+      {title: '事件名', dataIndex: 'eventName', key: 'eventName'},
+      {title: '说明', dataIndex: 'describe', key: 'describe'},
+      {title: '回调参数', dataIndex: 'params', key: 'params'}
+    ]);
+    const data2 = reactive([
+      {key: '1', eventName: 'current-change', describe: '当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性', params: 'currentRow, oldCurrentRow'},
+    ]);
     return {
       Table1Demo,
       Table2Demo,
@@ -127,7 +138,9 @@ export default {
       data,
       columns,
       columns1,
-      data1
+      data1,
+      columns2,
+      data2
     };
   }
 };
