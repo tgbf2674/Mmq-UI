@@ -76,6 +76,7 @@ export default {
       {key: '9', attr: 'size', describe: '表格大小', type: 'normal | middle | small"', default: 'normal'},
       {key: '10', attr: 'showSummary', describe: '是否展示合计', type: 'boolean', default: 'false'},
       {key: '11', attr: 'sumText', describe: '合计行的展示标题', type: 'string', default: '合计'},
+      {key: '12', attr: 'summaryMethod', describe: '自定义合计行计算方法', type: 'Function(): object', default: '-'},
     ]);
     const columns = reactive([
       {title: '参数', dataIndex: 'attr', key: 'attr'},
