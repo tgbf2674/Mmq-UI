@@ -37,7 +37,7 @@
             :key="item.key">
           <td ref="tableTdRef" :class="[bodyTdClass(fieldItem), computedSizeClass]" v-for="(fieldItem) in columns"
               :key="item.key">
-            <slot name="bodyCell" :column="fieldItem" :record="item"
+            <slot name="bodyCell" :column="fieldItem" :record="item" :text="item[fieldItem.dataIndex]"
                   :index="item.key">{{ item[fieldItem.dataIndex] }}
             </slot>
           </td>
