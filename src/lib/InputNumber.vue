@@ -7,7 +7,7 @@
         </MqIcon>
       </div>
     </div>
-    <Input :disabled="disabled" placeholder v-model:input-value="inputValue" @change="handleChange"/>
+    <Input type="number" :disabled="disabled" placeholder v-model:input-value="inputValue" @change="handleChange"/>
     <div :style="IncreaseNotAllowedStyle">
       <div :style="IncreasePointerNoneStyle" class="mmq-inputNumber-increase" @click.stop="handleButtonAdd">
         <MqIcon>

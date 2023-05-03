@@ -39,6 +39,7 @@
 <script lang="ts">
 import {computed, defineComponent, PropType, ref, watchEffect} from 'vue';
 import MqIcon from './MqIcon.vue';
+import {InputEvent} from 'happy-dom';
 
 export default defineComponent({
   name: 'MqInput',
@@ -92,7 +93,7 @@ export default defineComponent({
     const handleBlur = () => {
       inputRef.value.style.borderColor = '#dcdfe6';
     };
-    const inputChange = (val) => {
+    const inputChange = (val: InputEvent) => {
       context.emit('input', val.data);
       context.emit('update:inputValue', childInputValue.value);
     };
@@ -192,6 +193,14 @@ export default defineComponent({
     border: none;
     flex: 1;
     margin: 0 6px;
+  }
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   .mmq-input-icon-wrapper {
@@ -305,4 +314,6 @@ export default defineComponent({
     font-size: 12px;
   }
 }
+
+
 </style>
