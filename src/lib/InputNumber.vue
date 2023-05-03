@@ -3,7 +3,7 @@
     <div :style="MinusNotAllowedStyle">
       <div :style="MinusPointerNoneStyle" :class="['mmq-inputNumber-decrease']" @click.prevent="handleButtonMinus">
         <MqIcon>
-          <Plus />
+          <Minus />
         </MqIcon>
       </div>
     </div>
@@ -11,7 +11,7 @@
     <div :style="IncreaseNotAllowedStyle">
       <div :style="IncreasePointerNoneStyle" class="mmq-inputNumber-increase" @click.stop="handleButtonAdd">
         <MqIcon>
-          <Minus />
+          <Plus />
         </MqIcon>
       </div>
     </div>

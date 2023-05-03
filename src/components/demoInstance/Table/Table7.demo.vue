@@ -9,7 +9,7 @@
   <MqButton @click="addHandle">add</MqButton>
   <MqTable :max-height="300" :columns="columns" :data-source="data">
     <template #bodyCell="{ column, text, record, index }">
-      <template v-if="column.dataIndex === 'name'">
+      <template v-if="column.dataIndex === 'name' && index === '1'">
         <MqTag>{{ text }}</MqTag>
       </template>
       <template v-else-if="column.dataIndex === 'action'">
