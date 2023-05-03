@@ -100,9 +100,14 @@ export default defineComponent({
     }
     const handleChange = (value: any) => {
       const isNumber = (/^-?\d*\.?\d+$/).test(value)
-      if (isNumber) value = Number(value)
-      else value = 0
-      value ? context.emit('update:modelValue', value) : context.emit('update:modelValue', 0)
+      if (isNumber) inputValue.value = Number(value)
+      else inputValue.value = 0
+      if (inputValue.value >= props.max) {
+        inputValue.value = props.max
+      } else if (inputValue.value <= props.min) {
+        inputValue.value = props.min
+      }
+      context.emit('update:modelValue', inputValue.value)
     }
     return {
       handleButtonAdd,
