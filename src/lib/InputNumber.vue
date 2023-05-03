@@ -133,11 +133,6 @@ export default defineComponent({
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
-
-  &:hover {
-    border: 1px solid #bdbec1;
-  }
-
   &-decrease {
     width: 30px;
     height: 30px;

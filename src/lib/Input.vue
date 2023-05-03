@@ -92,8 +92,8 @@ export default defineComponent({
     const handleBlur = () => {
       inputRef.value.style.borderColor = '#dcdfe6';
     };
-    const inputChange = () => {
-      context.emit('input', childInputValue.value);
+    const inputChange = (val) => {
+      context.emit('input', val.data);
       context.emit('update:inputValue', childInputValue.value);
     };
     const clearInputValue = () => {
