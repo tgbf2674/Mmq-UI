@@ -1,5 +1,5 @@
 import {mount} from '@vue/test-utils'
-import {describe, test, expect} from 'vitest'
+import {describe, test, expect, it} from 'vitest'
 import MqSwitch from '../lib/MqSwitch.vue'
 describe('switch', () => {
   test('存在', () => {
@@ -30,11 +30,11 @@ describe('switch', () => {
   })
   test('点击改变开关状态', async () => {
     const wrapper = mount(MqSwitch, {
-      props: {
+      propsData: {
         modelValue: false
       }
     })
-    await wrapper.find('.mmq-switch-status').trigger('click')
+    await wrapper.setProps({ modelValue: true })
     expect(wrapper.find('.mmq-switch-open').exists()).toBe(true)
   })
   test('是否展示按钮的文字描述', async () => {

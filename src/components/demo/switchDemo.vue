@@ -1,5 +1,4 @@
 <template>
-  <div>
     <h1>Switch 组件示例 </h1>
     <Demo :component="Switch1Demo"></Demo>
     <Demo :component="Switch2Demo"></Demo>
@@ -8,7 +7,6 @@
     <MqTable :columns="columns" :data-source="data" bordered>
       <template #title><h2>事件</h2></template>
     </MqTable>
-  </div>
 </template>
 
 <script lang="ts">
@@ -21,8 +19,7 @@ import {onMounted, reactive} from 'vue';
 import addADom from '../../utils/addADom';
 export default {
 name: "switchDemo",
-  components:{Demo
-  },
+  components:{Demo},
   setup(){
     onMounted(() => {
       addADom()
